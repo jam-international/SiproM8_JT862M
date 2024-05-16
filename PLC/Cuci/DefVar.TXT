@@ -1,0 +1,678 @@
+As2000 Simbols Table
+#vb1;VbEnableCamme;Comando di abilitazione camme ( globale )
+#vb2;Vb2_C1_Apritensione;Vb attivazione apritenzione cucitrice 1
+#vb3;Vb3_C2_Apritensione;Vb attivazione apritenzione cucitrice 2
+#vb4;Vb4_C1_InCucitura;Vb a On quando sono in cucitura e gira l'ago
+#vb5;Vb5_C2_InCucitura;Vb a On quando sono in cucitura e gira l'ago
+#vb6;Vb6_PinzeOkTestManut;Vb a On quando le pinze dei caricatori e cucitrici sono posizionate bene per manutenzione
+#vb7;Vb7_TestManutRun;Vb a On quando sono in ciclo manutenzione
+#vb8;Vb8_ExitAutomatico;Vb a On quando sono fermo con tutti i programmi e posso uscire dall'automatico per liberare l'hmi
+#vb9;Vb9_ChiudePiegatore4;chiudo il piegatore 4 prima che arrivi la pinza del caricatore va a sbattere
+#vb10;Vb10_StepResetCanale3;fatto per gestire lo stop nella macchina a stati canale 3
+#vb11;Vb11_StepResetCanale3_1;fatto per gestire lo stop nella macchina a stati canale 3 messa a on per gestire lo step piegatore
+#vb12;Vb12_StepResetCanale3_2;fatto per gestire lo stop nella macchina a stati canale 3 messa a on per gestire lo step traslatore
+#vb13;Vb13_C1_BloccoFiloINI;Vb attivazione blocco filo inizio cucitura cucitrice 1
+#vb14;Vb14_C1_BloccoFiloEND;Vb attivazione blocco filo fine cucitura cucitrice 1
+#vb15;Vb15_C2_BloccoFiloINI;Vb attivazione blocco filo inizio cucitura cucitrice 2
+#vb16;Vb16_C2_BloccoFiloEND;Vb attivazione blocco filo fine cucitura cucitrice 2
+#vb20;Vb20_ResetContapezziUser;Vb reset contatore pezzi
+#vb21;Vb21_Tasca_dx_sx;ON = Attiva alternanza programma Dx e Sx
+#vb22;Vb22_device_lentezza_tasca;ON = attivo
+#vb23;Vb23_CmdRaffreddamentoAgo;Vb comando raffreddamento ago
+#vb30;Vb30_C1_InCucitura;=1 sono all'iterno di una cucitura (anche se sono in HOLD)
+#vb31;Vb31_C2_InCucitura;=1 sono all'iterno di una cucitura (anche se sono in HOLD)
+#vb32;Vb32_C1_StopCucitura;=1 è stata fermata la cucitura (Stop o rottura filo)
+#vb33;Vb33_C2_StopCucitura;=1 è stata fermata la cucitura (Stop o rottura filo)
+#vb34;Vb34_FinitoCucitura_C1;=1 è finita la cucitura
+#vb35;Vb35_FinitoCucitura_C2;=1 è finita la cucitura
+#vb36;Vb36_Clear_OPT1;=1 clear uscita OPT1 (retrattile)
+#vb37;Vb37_Clear_OPT2;=1 clear uscita OPT2 (ranocchia)
+#vb38;Vb38_Clear_OPT3;=1 clear uscita OPT3 (salto piedino)
+#vb42;Vb42_PrimaTasca;=1 macchina appena accesa e non ho mai cucito
+#vb43;Vb43_TestCuciPrimaTasca;=1 ho premuto test cucitura sulla prima tasca senza mai aver cucito
+#vb50;MacchinaAzzerata;Flag macchina azzerata
+#vb51;RichiestaStartCuci2;Richiesta di start cucitrice 2
+#vb52;Vb52RichiestaZeroAxDaHmiC1;Richiesta di azzeramento pinza X + Y da parte dell'interfaccia C1
+#vb53;Vb53RichiestaZeroAxDaHmiC2;Richiesta di azzeramento pinza X + Y da parte dell'interfaccia C2
+#vb54;Vb54HmiDiag_XP_YP_C1;Richiesta di diagonale hmi X POSITIVO Y POSITIVO C1
+#vb55;Vb55HmiDiag_XP_YM_C1;Richiesta di diagonale hmi X POSITIVO Y NEGATIVO C1
+#vb56;Vb56HmiDiag_XM_YP_C1;Richiesta di diagonale hmi X NEGATIVO Y POSITIVO C1
+#vb57;Vb57HmiDiag_XM_YM_C1;Richiesta di diagonale hmi X NEGATIVO Y NEGATIVO C1
+#vb58;Vb58HmiDiag_XP_YP_C2;Richiesta di diagonale hmi X POSITIVO Y POSITIVO C2
+#vb59;Vb59HmiDiag_XP_YM_C2;Richiesta di diagonale hmi X POSITIVO Y NEGATIVO C2
+#vb60;Vb60HmiDiag_XM_YP_C2;Richiesta di diagonale hmi X NEGATIVO Y POSITIVO C2
+#vb61;Vb61HmiDiag_XM_YM_C2;Richiesta di diagonale hmi X NEGATIVO Y NEGATIVO C2
+#vb62;Vb62HmiJogXP_C1;Richiesta jog + asse X C1
+#vb63;Vb63HmiJogXM_C1;Richiesta jog - asse X C1
+#vb64;Vb64HmiJogYP_C1;Richiesta jog + asse Y C1
+#vb65;Vb65HmiJogYM_C1;Richiesta jog - asse Y C1
+#vb66;Vb66HmiJogXP_C2;Richiesta jog + asse X C2
+#vb67;Vb67HmiJogXM_C2;Richiesta jog - asse X C2
+#vb68;Vb68HmiJogYP_C2;Richiesta jog + asse Y C2
+#vb69;Vb69HmiJogYM_C2;Richiesta jog - asse Y C2
+#vb72;Vb72HmiMoveXY_C1;Richiesta di spostamento assi XY da Modifica_programmi.java
+#vb73;Vb73HmiMoveXY_C2;Richiesta di spostamento assi XY da Modifica_programmi.java
+#vb74;Vb74HmiMoveXY_PieAlto_C1;Richiesta di spostamento assi XY da Modifica_programmi.java con piedino alto
+#vb75;Vb75HmiMoveXY_PieAlto_C2;Richiesta di spostamento assi XY da Modifica_programmi.java con piedino alto
+#vb76;Vb76EnableCucitureInfinite_C1;=1 fa cuciture infinite
+#vb77;Vb77EnableCucitureInfinite_C2;=1 fa cuciture infinite
+#vb78;Vb78SetVelManualeAsseAgo_C1;=1 setta la velocità manuale nei parametri assi dell'ago
+#vb79;Vb79SetVelManualeAsseAgo_C2;=1 setta la velocità manuale nei parametri assi dell'ago
+#vb80;Vb80ShowIconaTools;=1 permette a HMI di mostrare l'icona per andare alla pagina tools
+#vb81;Vb81PremutoResetAccensione;=1 se premo il verde mentre il pulsante reset piegatore è premuto
+#vb82;Vb82BilanciereSu_RigheCN;=1 nel ciclo Righe, se premo la pedana si alza il bilanciere
+#vb83;Vb83PiegatoreRisalito;=1 il sensore nuovo ha rilevato che il piegatore si è sollevato abbastanza per far avanzare il caricatore
+#vb84;Vb84AbilitaSensAltoPieg;=1 abilitia la lettura sel sensore alto piegatore
+#vb85;Vb85debug;
+#vb86;Vb86In_Azzeramento_C1;=1 sto facendo azzeramento C1
+#vb87;Vb87In_Azzeramento_C2;=1 sto facendo azzeramento C2
+#vb88;Vb88_TascaC1Completata;=1 la tasca C1 è stata cucita e la pinza è tornata sul punto di carico
+#vb89;Vb89_TascaC2Completata;=1 la tasca C2 è stata cucita e la pinza è tornata sul punto di carico
+#vb90;Vb90_EnableAutoBobbinChang;=1 Auto bobbin changer attivo
+#vb91;Vb91_RunCambioSpola;=1 Ciclo Togli e metti spola
+#vb92;Vb92_CambiatoRevolver;= 1 l'operatore ha messo un revolver nuovo, 2 = tutti posti vuoti
+#vb93;Vb93_RotazRevolver;= 1 il revolver fa un passo di rotazione
+#vb94;Vb94_Cambiare_revolver;=1 è ora di cambiare il revolver
+#vb95;Vb95_ResetConteggio;tasto Reset HMI rimette il conteggio 1/7
+#vb99;VbTest;per test
+#vb100;VbSimulaDbg;Cucitrice simulata ( per debugger )
+#vb101;VbSyncDbg;Variabile di sync ( per debugger )
+#vb102;VbSimulazionePedanaC1;alza e abbassa le pinze tramite vb come se premessi la pedana
+#vb103;VbSimulazionePedanaC2;alza e abbassa le pinze tramite vb come se premessi la pedana
+#vb110;FronteSensIRQ1;
+#vb111;FronteSensIRQ2;
+#vb112;FronteSensIRQ3;
+#vb4000;Vb4000_Automatico;/// messa a ON da HMI sono in automatico
+#vb4001;Vb4001_StepPiegatore;/// messa a ON da HMI il piegatore è passo passo
+#vb4002;Vb4002_StepPiegatoreStop;/// punto di stop piegatore
+#vb4003;Vb4003_RqsStopPiegatore;/// richiesta di stop piegatore al CN
+#vb4004;Vb4004_AvvioPiegatore;/// avvio il piegatore da plc
+#vb4005;Vb4005_AvvioCaricatore;/// avvio il caricatore da plc
+#vb4006;Vb4006_StepTraslatore;/// messa a ON da HMI il traslatore è passo passo
+#vb4007;Vb4007_MemoriaAvviaCaric;/// memorizzo che ho premuto start e quindi appena possibile il caricatore può avanzare
+#vb4008;Vb4008_AgoSu_C1;/// riporta l'ago C1 nella posizione alta
+#vb4009;Vb4009_AgoSu_C2;/// riporta l'ago C2 nella posizione alta
+#vb4010;Vb4010_PrgPiegatoreRun;finchè gira il ciclo piegatore nel cn questa vb = ON
+#vb4011;Vb4011_TascaOk;
+#vb4012;Vb4012_FlagTascaPronta;a ON tasca pronta per caricare
+#vb4013;Vb4013_DisableLancia;finchè è a ON Blocco il pedale della lancia
+#vb4014;Vb4014JogFastSlow;hmi = 0 Jog normale(fast) =1 Jog Lento
+#vb4015;Vb4015_PrgCaricatoreRun;finchè gira il ciclo caricatore nel cn questa vb = ON
+#vb4018;Vb4018_TrigrHMITascaCucita;ad On quando una tasca è stata cucita completamente
+#vb4021;Vb4021_Piegatore1_ON;Primo piegatore attivato
+#vb4022;Vb4022_Piegatore2_ON;Secondo piegatore attivato
+#vb4023;Vb4023_Piegatore3_ON;Terzo piegatore attivato
+#vb4024;Vb4024_Piegatore4_ON;Quarto piegatore attivato
+#vb4025;Vb4025_Piegatore1_OFF;Primo piegatore disattivato
+#vb4026;Vb4026_Piegatore2_OFF;Secondo piegatore disattivato
+#vb4027;Vb4027_Piegatore3_OFF;Terzo piegatore disattivato
+#vb4028;Vb4028_Piegatore4_OFF;Quarto piegatore disattivato
+#vb4031;Vb4031_AppScaricatoreInPos;dopo un tempo che la valvola o103_Scaric_dx_sx è a ON
+#vb4032;Vb4032_AppScaricatoreStrBarre;avvio le barre insieme alla pinza alta
+#vb4033;Vb4033_RitardoAvanzataCaricatore;finchè è ad 1 il caricatore non può avanzare (ritardo dopo la barra2 on)
+#vb4034;Vb4034_ScaricOnSuRasafilo;se On la prima barra parte sul rasafilo finale, se off dopo che le pinze solo alte
+#vb4035;Vb4035_Sync_scartafilo;Nell'udf G275 alza vb4035 e quando la rimetto a false la cucitura riparte (G283.0 fermata temporanea)
+#vb4036;Vb4036_Enable_Sync_scartafilo;HMI abilita il ciclo scartafilo sincronizzato con udf
+#vb4038;Vb4038_Scatena_scartafilo;Scatena macchine a stati scartafilo
+#vb4045;Vb4045_C1_AxXFermo;Flag segnalazione asse  fermo
+#vb4046;Vb4046_C1_AxYFermo;Flag segnalazione asse  fermo
+#vb4047;Vb4047_C1_AxAgoFermo;Flag segnalazione asse  fermo
+#vb4048;Vb4048_C1_AxCroFermo;Flag segnalazione asse  fermo
+#vb4049;Vb4049_C1_AsseCARFermo;Flag segnalazione asse  fermo
+#vb4050;Vb4050_C2_AxXFermo;Flag segnalazione asse  fermo
+#vb4051;Vb4051_C2_AxYFermo;Flag segnalazione asse  fermo
+#vb4052;Vb4052_C2_AxAgoFermo;Flag segnalazione asse  fermo
+#vb4053;Vb4053_C2_AxCroFermo;Flag segnalazione asse  fermo
+#vb4054;Vb4054_C2_AsseCARFermo;Flag segnalazione asse  fermo
+#vb4058;Vb4058_C1_AsseX_YFermo;Flag segnalazione asse  fermo
+#vb4059;Vb4059_C2_AsseX_YFermo;Flag segnalazione asse  fermo
+#vb4060;Vb4060_HMISaveUdfFile;hmi salva udf
+#vb4061;Vb4061_AppTensAumentaTesta1;hmi tasto aumenta tensione testa 1
+#vb4062;Vb4062_AppTensDiminuisceTesta1;hmi tasto diminuisce tensione testa 1
+#vb4063;Vb4063_AppTensAumentaTesta2;hmi tasto aumenta tensione testa 2
+#vb4064;Vb4064_AppTensDiminuisceTesta2;hmi tasto diminuisce tensione testa 2
+#vb4065;Vb4065_AppTensAumentaSotto;hmi tasto aumenta tensione piegatore sopra
+#vb4066;Vb4066_AppTensDiminuisceSotto;hmi tasto diminuisce tensione piegatore sopra
+#vb4067;Vb4067_AppTensAumentaSopra;hmi tasto aumenta tensione piegatore sotto
+#vb4068;Vb4068_AppTensDiminuisceSopra;hmi tasto diminuisce tensione piegatore sotto
+#vb4069;Vb4069_AppTensOnSopra;hmi tasto attiva tensione piegatore sopra
+#vb4070;Vb4070_AppTensOnSotto;hmi tasto attiva tensione piegatore sotto
+#vb4071;Vb4071_AbilitaContSpolaC1;/// HMI utilizzato per abilitare il conteggio della spola C1 ( OFF funziona )
+#vb4072;Vb4072_AllarmeContSpolaC1;/// HMI utilizzato per abilitare il conteggio della spola C1 ( OFF funziona )
+#vb4073;Vb4073_AbilitaContSpolaC2;/// HMI utilizzato per abilitare il conteggio della spola C2 ( OFF funziona )
+#vb4074;Vb4074_AllarmeContSpolaC2;/// HMI utilizzato per abilitare il conteggio della spola C2 ( OFF funziona )
+#vb4075;Vb4075_GiraAgoFaiSpolaC1;/// HMI utilizzato per far girare la testa C1 per fare la spola
+#vb4076;Vb4076_GiraAgoFaiSpolaC2;/// HMI utilizzato per far girare la testa C2 per fare la spola
+#vb4078;Vb4078_TestHomeC1;/// HMI utilizzato per centrare i sensori di zero su dima cucitrice 1
+#vb4079;Vb4079_TestHomeC2;/// HMI utilizzato per centrare i sensori di zero su dima cucitrice 2
+#vb4080;Vb4080_TestFcZeroC1;/// HMI utilizzato per centrare i sensori di zero su dima cucitrice 1
+#vb4081;Vb4081_TestCaricatorePinzaC1;/// HMI utilizzato per centrare la pinza del caricatore sulla pinza cucitrice
+#vb4082;Vb4082_TestCaricatoreLanciaC1;/// HMI utilizzato per centrare la pinza del caricatore sulla lancia
+#vb4083;Vb4083_TestCaricatoreC2CaricoC1;/// HMI utilizzato per centrare la pinza del caricatore C2 carico su C1
+#vb4084;Vb4084_TestCaricatoreC2ScaricoC2;/// HMI utilizzato per centrare la pinza del caricatore C2 culla pinza C2
+#vb4085;Vb4085_TestFcZeroC2;/// HMI utilizzato per centrare i sensori di zero su dima cucitrice 2
+#vb4086;Vb4086_SavePosizioni;/// HMI in base al test scelto salva i punti
+#vb4087;Vb4087_TestLiberaPinzaCaricatore;/// HMI utilizzato per gestire l'anticipo tra pinza caricatore e C1
+#vb4088;Vb4088_TestDisableRiposizionaAgo;/// HMI utilizzato per non riposizionare l'ago al punto ago alto
+#vb4089;Vb4089_IRQPiegatore_Su;/// abilitare  IRQ per leggere il sensore piegatore su
+#vb4090;Vb4090_EnableRotturaFiloC1;/// HMI utilizzato per abilitare la rottura filo C1 ( OFF funziona )
+#vb4091;Vb4091_EnableRotturaFiloC2;/// HMI utilizzato per abilitare la rottura filo C2 ( OFF funziona )
+#vb4092;Vb4092_EnbCountRotturaFiloC1;/// HMI utilizzato per abilitare  abilitare il conteggio della rottura filo C1
+#vb4093;Vb4093_EnbCountRotturaFiloC2;/// HMI utilizzato per abilitare  abilitare il conteggio della rottura filo C2
+#vb4094;Vb4094_EnbScartafiloC1;/// HMI utilizzato per abilitare scartafilo C1
+#vb4095;Vb4095_EnbScartafiloC2;/// HMI utilizzato per abilitare scartafilo C2
+#vb4096;Vb4096_AppOnScartafiloC1;/// utilizzato da cn per abilitare scartafilo C1
+#vb4097;Vb4097_AppOnScartafiloC2;/// utilizzato da cn per abilitare scartafilo C2
+#vb4098;Vb4098_OnSeqScartafiloC1;/// utilizzato da plc per abilitare scartafilo C1
+#vb4099;Vb4099_OnSeqScartafiloC2;/// utilizzato da plc per abilitare scartafilo C2
+#vb4100;Vb4100_;
+#vb4133;Vb4133_AppMan_o1_Piegatore_1;
+#vb4134;Vb4134_AppMan_o2_Piegatore_2;
+#vb4135;Vb4135_AppMan_o3_Piegatore_3;
+#vb4136;Vb4136_AppMan_o4_Piegatore_4;
+#vb4137;Vb4137_AppMan_o5_Cambio_corpo;
+#vb4138;Vb4138_AppMan_o6_Cambio_lama_front;
+#vb4139;Vb4139_AppMan_o7_Cambio_lame_lateral;
+#vb4140;Vb4140_AppMan_o8_Cambio_Lamelle_4_5;
+#vb4141;Vb4141_AppMan_o9_Lancia_AD;
+#vb4142;Vb4142_AppMan_o10_Piegatore_AD;
+#vb4143;Vb4143_AppMan_o11_Piegatore_Su_Giu;
+#vb4144;Vb4144_AppMan_o12_Bilanciere_Su_Giu;
+#vb4145;Vb4145_AppMan_o13_Valvolone;
+#vb4146;Vb4146_AppMan_o14_C1_rasafilo;
+#vb4147;Vb4147_AppMan_o15_EvAspiratore;
+#vb4148;Vb4148_AppMan_o16;
+#vb4149;Vb4149_AppMan_o17_C1_Piedino;
+#vb4150;Vb4150_AppMan_o18_C1_Pinza_int;
+#vb4151;Vb4151_AppMan_o19_C1_Pinza_est;
+#vb4152;Vb4152_AppMan_o20_C1_Retrattile_AC;
+#vb4153;Vb4153_AppMan_o21_C1_RaffreddamentoAgo;
+#vb4154;Vb4154_AppMan_o22_Scaric_dx_sx;
+#vb4155;Vb4155_AppMan_o23_Lentezza_Tasca_AD;
+#vb4156;Vb4156_AppMan_o24_Pinza_carico_Su_Giu;
+#vb4157;Vb4157_AppMan_o25_C1_Cambio_Pinze;
+#vb4158;Vb4158_AppMan_o26_C1_Scalino_Piedino;
+#vb4159;Vb4159_AppMan_o27_C1_Ranocchia_retrat;
+#vb4160;Vb4160_AppMan_o28_Prima_barra;
+#vb4161;Vb4161_AppMan_o29_Seconda_barra;
+#vb4162;Vb4162_AppMan_o30;
+#vb4163;Vb4163_AppMan_o31_bloccaFiloMagente;
+#vb4164;Vb4164_AppMan_o32_Enable_AssiXY_C1C2;
+#vb4165;Vb4165_AppMan_o33_Gancio_AutoBC;
+#vb4166;Vb4166_AppMan_o34_Rotaz_AutoBC;
+#vb4167;Vb4167_AppMan_o35_Braccio_AutoBC;
+#vb4208;Vb4208_AppMagneteTensione;
+#vb4209;Vb4209_AppMagneteBloccaFilo;
+#vb4210;Vb4210_AppMagneteSopraPiegatore;
+#vb4211;Vb4211_AppMagneteSottoPiegatore;
+#vb4333;Vb4333_AppAut_o1_Piegatore_1;
+#vb4334;Vb4334_AppAut_o2_Piegatore_2;
+#vb4335;Vb4335_AppAut_o3_Piegatore_3;
+#vb4336;Vb4336_AppAut_o4_Piegatore_4;
+#vb4337;Vb4337_AppAut_o5_Cambio_corpo;
+#vb4338;Vb4338_AppAut_o6_Cambio_lama_front;
+#vb4339;Vb4339_AppAut_o7_Cambio_lame_lateral;
+#vb4340;Vb4340_AppAut_o8_Cambio_Lamelle_4_5;
+#vb4341;Vb4341_AppAut_o9_Lancia_AD;
+#vb4342;Vb4342_AppAut_o10_Piegatore_AD;
+#vb4343;Vb4343_AppAut_o11_Piegatore_Su_Giu;
+#vb4344;Vb4344_AppAut_o12_Bilanciere_Su_Giu;
+#vb4345;Vb4345_AppAut_o13_Valvolone;
+#vb4346;Vb4346_AppAut_o14_C1_rasafilo;
+#vb4347;Vb4347_AppAut_o15_EvAspiratore;
+#vb4348;Vb4348_AppAut_o16;
+#vb4349;Vb4349_AppAut_o17_C1_Piedino;
+#vb4350;Vb4350_AppAut_o18_C1_Pinza_int;
+#vb4351;Vb4351_AppAut_o19_C1_Pinza_est;
+#vb4352;Vb4352_AppAut_o20_C1_Retrattile_AC;
+#vb4353;Vb4353_AppAut_o21_C1_RaffreddamentoAgo;
+#vb4354;Vb4354_AppAut_o22_Scaric_dx_sx;
+#vb4355;Vb4355_AppAut_o23_Lentezza_Tasca_AD;
+#vb4356;Vb4356_AppAut_o24_Pinza_carico_Su_Giu;
+#vb4357;Vb4357_AppAut_o25_C1_Cambio_Pinze;
+#vb4358;Vb4358_AppAut_o26_C1_Scalino_Piedino;
+#vb4359;Vb4359_AppAut_o27_C1_Ranocchia_retrat;
+#vb4360;Vb4360_AppAut_o28_Prima_barra;
+#vb4361;Vb4361_AppAut_o29_Seconda_barra;
+#vb4362;Vb4362_AppAut_o30;
+#vb4363;Vb4363_AppAut_o31_bloccaFiloMagente;
+#vb4364;Vb4364_AppAut_o32_Enable_AssiXY_C1C2;
+#vb4365;Vb4365_AppAut_o33_Gancio_AutoBC;
+#vb4366;Vb4366_AppAut_o34_Rotaz_AutoBC;
+#vb4367;Vb4367_AppAut_o35_Braccio_AutoBC;
+#vb4501;Vb4501_AppVbChn3StartHMI;app pulsante hmi start
+#vb4502;Vb4502_AppPosMacchinaPerZero;a ON tutte i cilindri sono posizionati correttamente per azzeramento
+#vb4503;Vb4503_CN_Allarme;CN in allarme
+#vb4504;Vb4504_AppPosMacchinaPerAutomatico;a ON tutte i cilindri sono posizionati correttamente per automatico
+#vb4505;Vb4505_AppEnbCambioPinze;a ON abilito i pulsanti cambio pinza
+#vb4506;Vb4506_AppCambioPinzeRun;a ON ho un cambio pinza attivo disabilito Start e automatico
+#vb4507;Vb4507_AppManAuto;a ON sono in automatico a OFF in manuale
+#vb4508;Vb4508_AppHmiPiegatore;a tasto hmi piegatore
+#vb4509;Vb4509_AppEnbPiegatore;a ON abilito il piegatore
+#vb4510;Vb4510_AppHmiCaricatore;a tasto hmi  caricatore
+#vb4511;Vb4511_AppEnbCaricatore;a ON abilito il caricatore
+#vb4512;Vb4512_AppHmiCucitrice2;a tasto hmi cucitrice 2
+#vb4513;Vb4513_AppEnbCucitrice2;a ON abilito la cucitrice 2
+#vb4514;Vb4514_AppHmiScaricatore;a tasto hmi  scaricatore
+#vb4515;Vb4515_AppEnbScaricatore;a ON abilito lo scaricatore
+#vb4516;Vb4516_AppHmiScambioPinzeC1_Car2;a tasto hmi tipo scambio pinza tra cucitrice 1 e caricatore 2
+#vb4518;Vb4518_EnbQuartoXL;a ON abilito quarto XL
+#vb4519;Vb4519_AppScaricoCortiConPinza;a ON abilitolo scarico dei pezzi piccoli con la pinza
+#vb4520;Vb4520_AppScaricoCortiConPinzaRunning;a ON mentre sta girando il ciclo scaricatore pezzi piccoli
+#vb4521;Vb4521_AppHmiTestPiegatore;a tasto hmi test piegatore
+#vb4580;Vb4580_EnbSgancioPinzaDopoZero;a ON sgancia le pinze alla fine dell'azzeramento
+#vb4581;Vb4581_EnbAggancioPinzaAutomatico;a ON aggancia le pinze in automatico
+#vb4582;Vb4582_EnbSgancioPinzaFineCucitura;a ON sgancia le pinze alla fine della cucitura
+#vb4583;Vb4583_EnbStartAutomatico;a ON si avvia dopo l'aggancio delle pinze
+#vb4584;Vb4584_EnbPinzeInManuale;a ON esclude l'aggancio e lo start in  automatico
+#vb4601;Vb4601_AppRit_i24_C1_PinzaEstAlta;ritardo pinza esterna C1
+#vb4602;Vb4602_AppRit_i104_FcPinzaTraslAlta;ritardo pinza traslatore bassa
+#vb4603;Vb4603_AppRit_i23_C1_PinzaIntBassa;ritardo pinza interna alta C1
+#vb4701;Vb4701_AppRit;ritardo
+#vb4801;Vb4801_PulsStartHmiC1;pulsante su hmi per start cucitrice 1
+#vb4802;Vb4802_PulsResetHmiC1;pulsante su hmi per reset cucitrice 1
+#vb4803;Vb4803_AppResetHmiC1;memorizzo reset cucitrice 1
+#vb4805;Vb4805_AppStartCaricatoreC2;a on sto spostando le pinze cucitrice a punto di carico dopo la cucitura
+#vb4806;Vb4806_AppPinzaAltaC1;a On con pinza alta
+#vb4807;Vb4807_PinzeAlteDopoPC;a On alza le pinze dopo aver raggiunto Punti Carico
+#vb4901;Vb4901_PulsStartHmiC2;pulsante su hmi per start cucitrice 2
+#vb4902;Vb4902_PulsResetHmiC2;pulsante su hmi per reset cucitrice 2
+#vb4903;Vb4903_AppResetHmiC2;memorizzo reset cucitrice 2
+#vb4906;Vb4906_AppPinzaAltaC2;a On con pinza alta
+#vb4907;Vb4907_PinzeAlteDopoPC;a On alza le pinze dopo aver raggiunto Punti Carico
+#vb5000;VbDbg;
+#vb7006;VbCmdAzzAx1;Asse 1 - Comando azzeramento asse
+#vb7013;VbFlgAzzAx1;Asse 1 - Flag asse azzerato
+#vb7014;VbFlgPosAx1;Asse 1 - Flag asse in posizione
+#vb7026;VbCmdAzzAx2;Asse 2 - Comando azzeramento asse
+#vb7033;VbFlgAzzAx2;Asse 2 - Flag asse azzerato
+#vb7034;VbFlgPosAx2;Asse 2 - Flag asse in posizione
+#vb7046;VbCmdAzzAx3;Asse 3 - Comando azzeramento asse
+#vb7053;VbFlgAzzAx3;Asse 3 - Flag asse azzerato
+#vb7054;VbFlgPosAx3;Asse 3 - Flag asse in posizione
+#vb7066;VbCmdAzzAx4;Asse 4 - Comando azzeramento asse
+#vb7073;VbFlgAzzAx4;Asse 4 - Flag asse azzerato
+#vb7074;VbFlgPosAx4;Asse 4 - Flag asse in posizione
+#vb7086;VbCmdAzzAx5;Asse 5 - Comando azzeramento asse
+#vb7093;VbFlgAzzAx5;Asse 5 - Flag asse azzerato
+#vb7094;VbFlgPosAx5;Asse 5 - Flag asse in posizione
+#vb7106;VbCmdAzzAx6;Asse 6 - Comando azzeramento asse
+#vb7113;VbFlgAzzAx6;Asse 6 - Flag asse azzerato
+#vb7114;VbFlgPosAx6;Asse 6 - Flag asse in posizione
+#vb7126;VbCmdAzzAx7;Asse 7 - Comando azzeramento asse
+#vb7133;VbFlgAzzAx7;Asse 7 - Flag asse azzerato
+#vb7134;VbFlgPosAx7;Asse 7 - Flag asse in posizione
+#vb7146;VbCmdAzzAx8;Asse 8 - Comando azzeramento asse
+#vb7153;VbFlgAzzAx8;Asse 8 - Flag asse azzerato
+#vb7154;VbFlgPosAx8;Asse 8 - Flag asse in posizione
+#vb7166;VbCmdAzzAx9;Asse 9 - Comando azzeramento asse
+#vb7173;VbFlgAzzAx9;Asse 9 - Flag asse azzerato
+#vb7174;VbFlgPosAx9;Asse 9 - Flag asse in posizione
+#vb7186;VbCmdAzzAx10;Asse 10 - Comando azzeramento asse
+#vb7193;VbFlgAzzAx10;Asse 10 - Flag asse azzerato
+#vb7194;VbFlgPosAx10;Asse 10 - Flag asse in posizione
+#vb7901;VbChn1Start;VB START canale 1
+#vb7903;VbChn1Reset;VB RESET canale 1
+#vb7908;VbChn1AutoRun;VB Auto Running canale 1
+#vb7921;VbChn2Start;VB START canale 2
+#vb7923;VbChn2Reset;VB RESET canale 2
+#vb7928;VbChn2AutoRun;VB Auto Running canale 2
+#vb7941;VbChn3Start;VB START canale 3
+#vb7943;VbChn3Reset;VB RESET canale 3
+#vb7948;VbChn3AutoRun;VB Auto Running canale 3
+#vn1;VnErrCodeCamme;Codice di erore delle funzioni di camme
+#vn2;Vn2CodiceAllarmeXHmi;codice allarme da visualizzare su HMI
+#vn3;Vn3CodiceAllarmeUdf;codice allarme lettura udf
+#vn4;Vn4CodiceWarning;codice warning inviato dal PLC al HMI
+#vn5;Vn5CodiceAllarmeCambioSpola;= 1 nessuno posto vuoto
+#vn10;Vn10MemoStatoCuci1;Memorizzo lo stato cuci 1 quando sono in step o reset piegatore ( macchina a stati canale 3 )
+#vn11;VnStatoCuci1;Stato cuci 1 ( macchina a stati canale 3 )
+#vn12;VnStatoCuci2;Stato cuci 2 ( macchina a stati canale 3 )
+#vn13;Vn13MemoStatoCuci2;Memorizzo lo stato cuci 1 quando sono in step traslatore ( macchina a stati canale 3 )
+#vn14;Vn14TipoScartafiloC1;0 = no scartafilo, 1 = scartafilo dopo ritorno punto carico 2 = scartafilo ogni rasafilo
+#vn15;Vn15TipoScartafiloC2;0 = no scartafilo, 1 = scartafilo dopo ritorno punto carico 2 = scartafilo ogni rasafilo
+#vn16;Vn16GoCuci;=1 C1_ExeCucitura può partire a cucire,=2 abort C1_ExeCucitura
+#vn20;Fun202VnParIndx_0;Codice della funzione
+#vn21;Fun202VnParIndx_1;FunId – identificativo della funzione
+#vn22;Fun202VnParIndx_2;Indice vb abilitazione della funzione
+#vn23;Fun202VnParIndx_3;Indice vq contatore
+#vn101;Vn101_Piegatore1_CH;Numero Primo piegatore attivato
+#vn102;Vn102_Piegatore2_CH;Numero Secondo piegatore attivato
+#vn103;Vn103_Piegatore3_CH;Numero Terzo piegatore attivato
+#vn104;Vn104_Piegatore4_CH;Numero Quarto piegatore attivato
+#vn105;Vn105_Piegatore1_AP;Numero Primo piegatore disattivato
+#vn106;Vn106_Piegatore2_AP;Numero Secondo piegatore disattivato
+#vn107;Vn107_Piegatore3_AP;Numero Terzo piegatore disattivato
+#vn108;Vn108_Piegatore4_AP;Numero Quarto piegatore disattivato
+#vn109;Vn109_OrdinePiegCH;ordine chiusura piegatori memorizzato su programma
+#vn110;Vn110_OrdinePiegAP;ordine apertura piegatori memorizzato su programma
+#vn111;Vn111_EnbEtichetta;/// a ON abilito la pausa per mettere l'etichetta ( 1 = tutte) ( 2 = 1 si 1 no )
+#vn112;Vn112_AppEtichettaMod_2;/// utilizzata come appoggio modo 2 ( se serve mettere reset )
+#vn115;Vn115_CopiaSeqPiegFree;copia sequenza piegatura Free per pagina touch
+#vn120;Vn120_AppEnbScambioPinzeC1_Car2;a 1 abilito tipo scambio pinza tra cucitrice 1 e caricatore 2
+#vn131;Vn131_Debug;debug su pagina AUTO touch
+#vn132;Vn132_DebugPie;debug su pagina AUTO touch
+#vn133;Vn133_DebugAuto;debug su pagina AUTO touch
+#vn151;Vn151_SpeedStep1;vn velocità jog assi pinza comandati da HMI step 1
+#vn152;Vn152_SpeedStep2;vn velocità jog assi pinza comandati da HMI step 2
+#vn153;Vn153_SpeedStep3;vn velocità jog assi pinza comandati da HMI step 3
+#vn160;mc_stati_PiuMenoTensione;indice macchina stati per gestione tasti + - del valore tensione filo
+#vn162;Vn162_Read_anaout99;
+#vn163;Vn163_Read_anaout100;
+#vn170;Vn170_IdxAutoBobbinChanh;
+#vn196;Vn196_Tasca_DX_C1;
+#vn197;Vn197_Tasca_SX_C1;
+#vn198;Vn198_Tasca_DX_C2;
+#vn199;Vn199_Tasca_SX_C2;
+#vn201;Vn201PrgForkPiegatore;
+#vn202;Vn202PrgForkCaricatoreMan;
+#vn203;Vn203PrgForkResetFolder;
+#vn221;Vn221StatusIdx1Revolver;0 = Idle, 1 = spola non presente, 2 = spola presente, 3 = spela già caricata
+#vn222;Vn222StatusIdx2Revolver;0 = Idle, 1 = spola non presente, 2 = spola presente, 3 = spela già caricata
+#vn223;Vn223StatusIdx3Revolver;0 = Idle, 1 = spola non presente, 2 = spola presente, 3 = spela già caricata
+#vn224;Vn224StatusIdx4Revolver;0 = Idle, 1 = spola non presente, 2 = spola presente, 3 = spela già caricata
+#vn225;Vn225StatusIdx5Revolver;0 = Idle, 1 = spola non presente, 2 = spola presente, 3 = spela già caricata
+#vn226;Vn226StatusIdx6Revolver;0 = Idle, 1 = spola non presente, 2 = spola presente, 3 = spela già caricata
+#vn227;Vn227StatusIdx7Revolver;0 = Idle, 1 = spola non presente, 2 = spola presente, 3 = spela già caricata
+#vn228;Vn228StatusIdx8Revolver;0 = Idle, 1 = spola non presente, 2 = spola presente, 3 = spela già caricata
+#vn231;VnDeltaCntGiri_C1;
+#vn232;VnMemCntGiri_C1;
+#vn233;VnDeltaCntGiri_C2;
+#vn234;VnMemCntGiri_C2;
+#vn236;CodiceDeviceOptional;
+#vn240;Vn240AnnoOrologioPLC;
+#vn241;Vn241MeseOrologioPLC;
+#vn242;Vn242giornoOrologioPLC;
+#vn243;Vn243OraOrologioPLC;
+#vn244;Vn244MinutiOrologioPLC;
+#vn245;Vn245secondiOrologioPLC;
+#vn246;Vn246LimiteAnno;
+#vn247;Vn247LimiteMese;
+#vn248;Vn248LimiteGiorno;
+#vn320;Vn_ID_macchina;vn numero identificatore macchina,
+#vn777;vntest;
+#vn778;vntest1;
+#vn779;vntest2;
+#vn3001;VnOvdAx1;Asse 1 - Override indipendente
+#vn3011;VnFaseZeroAx1;Asse 1 - Fase azzeramento
+#vn3013;VnStatoAx1;Asse 1 - Status asse
+#vn3021;VnOvdAx2;Asse 2 - Override indipendente
+#vn3031;VnFaseZeroAx2;Asse 2 - Fase azzeramento
+#vn3033;VnStatoAx2;Asse 2 - Status asse
+#vn3041;VnOvdAx3;Asse 3 - Override indipendente
+#vn3051;VnFaseZeroAx3;Asse 3 - Fase azzeramento
+#vn3053;VnStatoAx3;Asse 3 - Status asse
+#vn3061;VnOvdAx4;Asse 4 - Override indipendente
+#vn3071;VnFaseZeroAx4;Asse 4 - Fase azzeramento
+#vn3073;VnStatoAx4;Asse 4 - Status asse
+#vn3081;VnOvdAx5;Asse 5 - Override indipendente
+#vn3091;VnFaseZeroAx5;Asse 5 - Fase azzeramento
+#vn3093;VnStatoAx5;Asse 5 - Status asse
+#vn3101;VnOvdAx6;Asse 6 - Override indipendente
+#vn3111;VnFaseZeroAx6;Asse 6 - Fase azzeramento
+#vn3113;VnStatoAx6;Asse 6 - Status asse
+#vn3121;VnOvdAx7;Asse 7 - Override indipendente
+#vn3131;VnFaseZeroAx7;Asse 7 - Fase azzeramento
+#vn3133;VnStatoAx7;Asse 7 - Status asse
+#vn3141;VnOvdAx8;Asse 8 - Override indipendente
+#vn3151;VnFaseZeroAx8;Asse 8 - Fase azzeramento
+#vn3153;VnStatoAx8;Asse 8 - Status asse
+#vn3161;VnOvdAx9;Asse 9 - Override indipendente
+#vn3171;VnFaseZeroAx9;Asse 9 - Fase azzeramento
+#vn3173;VnStatoAx9;Asse 9 - Status asse
+#vn3181;VnOvdAx10;Asse 10 - Override indipendente
+#vn3191;VnFaseZeroAx10;Asse 10 - Fase azzeramento
+#vn3193;VnStatoAx10;Asse 10 - Status asse
+#vq1;CamMode;Camme: modo operativo
+#vq2;CamAxNum;Camme: numero dell'asse
+#vq3;CamDigOut;Camme: n. uscita digitale o indice VB
+#vq4;CamStart;Camme: soglia start
+#vq5;CamStop;Camme: soglia stop
+#vq6;CamModule;Camme: modulo
+#vq10;CamCmd;Camme: comando
+#vq11;CamPar1;Camme: parametro 1
+#vq12;CamPar2;Camme: parametro 2
+#vq13;CamPar3;Camme: parametro 3
+#vq14;CamPar4;Camme: parametro 4
+#vq15;CamPar5;Camme: parametro 5
+#vq20;RollPlcAgoModule;Rollover asse ago - Modulo
+#vq21;RollPlcAgoQuo;Rollover asse ago - Quota dopo il rollover
+#vq22;GoAxPlcAgoErrCode;GoAx asse ago - ErrorCode
+#vq23;GoAxPlcAgoModule;GoAx asse ago - Modulo per asse tondo
+#vq24;GoAxPlcAgoVel;GoAx asse ago - Velocita'
+#vq25;StopPlcAgoErrCode;Stop asse ago - ErrorCode
+#vq26;StopPlcAgoQuoObj;Stop asse ago - Quota obiettivo
+#vq27;StopPlcAgoFuture;Stop asse ago - future espansioni
+#vq28;MovePlcAgoErrCode;Mov. asse ago - ErrorCode
+#vq29;MovePlcAgoQuoObj;Mov. asse ago - Quota obiettivo
+#vq30;MovePlcAgoVel;Mov. asse ago - Velocita'
+#vq31;MovePlcAgoFuture;Mov. asse ago - future espansioni
+#vq51;PosAx_C1_AsseX;Cucitrice 1 - Asse X
+#vq52;PosAx_C1_AsseY;Cucitrice 1 - Asse Y
+#vq53;PosAx_C1_AsseAGO;Cucitrice 1 - Asse AGO
+#vq54;PosAx_C1_AsseCRO;Cucitrice 1 - Asse CROCHET
+#vq55;PosAx_C1_AsseCAR;Cucitrice 1 - Asse CARICATORE
+#vq56;PosAx_C2_AsseX;Cucitrice 2 - Asse X
+#vq57;PosAx_C2_AsseY;Cucitrice 2 - Asse Y
+#vq58;PosAx_C2_AsseAGO;Cucitrice 2 - Asse AGO
+#vq59;PosAx_C2_AsseCRO;Cucitrice 2 - Asse CROCHET
+#vq60;PosAx_C2_AsseCAR;Cucitrice 2 - Asse CARICATORE
+#vq61;PosAx11;Posizione asse 11
+#vq62;PosAx12;Posizione asse 12
+#vq63;PosAx13;Posizione asse 13
+#vq64;PosAx14;Posizione asse 14
+#vq65;PosAx15;Posizione asse 15
+#vq66;PosAx16;Posizione asse 16
+#vq100;Vq_100_WRITE_FC_ind_X;Vq scrittura fine corsa indietro asse X
+#vq101;Vq_101_WRITE_FC_ava_X;Vq scrittura fine corsa avanti asse X
+#vq102;Vq_102_WRITE_FC_ind_Y;Vq scrittura fine corsa indietro asse Y
+#vq103;Vq_103_WRITE_FC_ava_Y;Vq scrittura fine corsa avanti asse Y
+#vq104;Vq_104_READ_FC_ind_X;Vq lettura fine corsa indietro asse X
+#vq105;Vq_105_READ_FC_ava_X;Vq lettura fine corsa avanti asse X
+#vq106;Vq_106_READ_FC_ind_Y;Vq lettura fine corsa indietro asse Y
+#vq107;Vq_107_READ_FC_ava_Y;Vq lettura fine corsa avanti asse Y
+#vq108;Vq108_WRITE_Vel_manualeAgo_C1;Vq da inserire nel parametro asse velocità manuale asse Ago
+#vq109;Vq109_WRITE_Vel_manualeAgo_C2;Vq da inserire nel parametro asse velocità manuale asse Ago
+#vq110;Vq_110_READ_FC_ind_CARIC;Vq lettura fine corsa indietro asse Y
+#vq111;Vq_111_READ_FC_ava_CARIC;Vq lettura fine corsa avanti asse Y
+#vq3000;Vq3000_RitPiegatoreAD_ON;
+#vq3001;Vq3001_RitPiegatoreAD_OFF;
+#vq3002;Vq3002_RitPiegatoreAlto_ON;
+#vq3003;Vq3003_RitPiegatoreAlto_OFF;
+#vq3004;Vq3004_RitElettrocPerno_ON;
+#vq3005;Vq3005_RitElettrocPerno_OFF;
+#vq3006;Vq3006_RitPiegatore_1_ON;
+#vq3007;Vq3007_RitPiegatore_1_OFF;
+#vq3008;Vq3008_RitPiegatore_2_ON;
+#vq3009;Vq3009_RitPiegatore_2_OFF;
+#vq3010;Vq3010_RitPiegatore_3_ON;
+#vq3011;Vq3011_RitPiegatore_3_OFF;
+#vq3012;Vq3012_RitPiegatore_4_ON;
+#vq3013;Vq3013_RitPiegatore_4_OFF;
+#vq3014;Vq3014_RitBilancere_ON;
+#vq3015;Vq3015_RitBilancere_OFF;
+#vq3016;Vq3016_RitElettrocSotto_ON;
+#vq3017;Vq3017_RitElettrocSotto_OFF;
+#vq3018;Vq3018_RitPosCaricatoreCarico;
+#vq3019;Vq3019_RitPosCaricatoreScarico;
+#vq3020;Vq3020_RitPinzaCaricatore_ON;
+#vq3021;Vq3021_RitPinzaCaricatore_OFF;
+#vq3022;Vq3022_RitLancia_ON;////// non utilizzato
+#vq3023;Vq3023_RitLancia_OFF;
+#vq3024;Vq3024_RitCarSopraLancia;
+#vq3025;Vq3025_RitCarRispettoBarra2;
+#vq3050;Vq3050_RitC1_Pinza_est_ON;non utilizzato
+#vq3051;Vq3050_RitC1_Pinza_est_OFF;
+#vq3052;Vq3052_RitC1_Pinza_int_ON;
+#vq3053;Vq3053_Tim_C1_Scartafilo;
+#vq3054;Vq3054_C1_VelFeed_Reset;Velocità movimenti XY durante Reset chiamato da HMI
+#vq3057;C1_SogliaVelRaffAgo;soglia velocita' raffreddamento ago
+#vq3060;Vq3060_;non utilizzato
+#vq3063;Vq3063_Tim_C2_Scartafilo;
+#vq3070;Vq3070_RitPinzaTraslatore_ON;
+#vq3080;Vq3080_RitScaricatoreDxSx_ON_OK;
+#vq3081;Vq3081_RitScaricatoreDxSx_OFF;
+#vq3082;Vq3082_RitScaricatorePrimaBarra;
+#vq3083;Vq3083_RitScaricatoreSecondaBarra;
+#vq3084;Vq3084_SpostamentoPinzaPezziCorti;
+#vq3085;Vq3085_RitStartAuto;
+#vq3090;Vq3090_TimeoutSensori;
+#vq3091;Vq3091_TimeAsp_Lentezza;
+#vq3092;Vq3092_QuoteLimiteAsseY_C1;se durante l'azzeramento l'asse Y si trova sotto a questa quota allora sposto l'asse Y a questa quota e poi azzero X
+#vq3093;Vq3093_QuoteLimiteAsseY_C2;se durante l'azzeramento l'asse Y si trova sotto a questa quota allora sposto l'asse Y a questa quota e poi azzero X
+#vq3094;Vq3094_TimeColpoTensione;durata del colpo forte per chiudere la tensione filo
+#vq3095;Vq3095_TimeChiusTensTasti;quando premo i teasti Ten+ e Tens- su HMI la tensione rimane chiusa per questo tempo
+#vq3106;Vq3106_RitPiegatore_1_ON;variabile per memorizzare tempo su sequenza Standard
+#vq3107;Vq3107_RitPiegatore_1_OFF;variabile per memorizzare tempo su sequenza Standard
+#vq3108;Vq3108_RitPiegatore_2_ON;variabile per memorizzare tempo su sequenza Standard
+#vq3109;Vq3109_RitPiegatore_2_OFF;variabile per memorizzare tempo su sequenza Standard
+#vq3110;Vq3110_RitPiegatore_3_ON;variabile per memorizzare tempo su sequenza Standard
+#vq3111;Vq3111_RitPiegatore_3_OFF;variabile per memorizzare tempo su sequenza Standard
+#vq3112;Vq3112_RitPiegatore_4_ON;variabile per memorizzare tempo su sequenza Standard
+#vq3113;Vq3113_RitPiegatore_4_OFF;variabile per memorizzare tempo su sequenza Standard
+#vq3114;Vq3114_RitPiegatore_1_ON;variabile per memorizzare tempo su sequenza Curve3
+#vq3115;Vq3115_RitPiegatore_1_OFF;variabile per memorizzare tempo su sequenza Curve3
+#vq3116;Vq3116_RitPiegatore_2_ON;variabile per memorizzare tempo su sequenza Curve3
+#vq3117;Vq3117_RitPiegatore_2_OFF;variabile per memorizzare tempo su sequenza Curve3
+#vq3118;Vq3118_RitPiegatore_3_ON;variabile per memorizzare tempo su sequenza Curve3
+#vq3119;Vq3119_RitPiegatore_3_OFF;variabile per memorizzare tempo su sequenza Curve3
+#vq3120;Vq3120_RitPiegatore_4_ON;variabile per memorizzare tempo su sequenza Curve3
+#vq3121;Vq3121_RitPiegatore_4_OFF;variabile per memorizzare tempo su sequenza Curve3
+#vq3122;Vq3122_RitPiegatore_1_ON;variabile per memorizzare tempo su sequenza Square
+#vq3123;Vq3123_RitPiegatore_1_OFF;variabile per memorizzare tempo su sequenza Square
+#vq3124;Vq3124_RitPiegatore_2_ON;variabile per memorizzare tempo su sequenza Square
+#vq3125;Vq3125_RitPiegatore_2_OFF;variabile per memorizzare tempo su sequenza Square
+#vq3126;Vq3126_RitPiegatore_3_ON;variabile per memorizzare tempo su sequenza Square
+#vq3127;Vq3127_RitPiegatore_3_OFF;variabile per memorizzare tempo su sequenza Square
+#vq3128;Vq3128_RitPiegatore_4_ON;variabile per memorizzare tempo su sequenza Square
+#vq3129;Vq3129_RitPiegatore_4_OFF;variabile per memorizzare tempo su sequenza Square
+#vq3130;Vq3130_RitPiegatore_1_ON;variabile per memorizzare tempo su sequenza Free
+#vq3131;Vq3131_RitPiegatore_1_OFF;variabile per memorizzare tempo su sequenza Free
+#vq3132;Vq3132_RitPiegatore_2_ON;variabile per memorizzare tempo su sequenza Free
+#vq3133;Vq3133_RitPiegatore_2_OFF;variabile per memorizzare tempo su sequenza Free
+#vq3134;Vq3134_RitPiegatore_3_ON;variabile per memorizzare tempo su sequenza Free
+#vq3135;Vq3135_RitPiegatore_3_OFF;variabile per memorizzare tempo su sequenza Free
+#vq3136;Vq3136_RitPiegatore_4_ON;variabile per memorizzare tempo su sequenza Free
+#vq3137;Vq3137_RitPiegatore_4_OFF;variabile per memorizzare tempo su sequenza Free
+#vq3138;Vq3138_RitPiegatore_1_ON;variabile per memorizzare tempo su sequenza Curve5
+#vq3139;Vq3139_RitPiegatore_1_OFF;variabile per memorizzare tempo su sequenza Curve5
+#vq3140;Vq3140_RitPiegatore_2_ON;variabile per memorizzare tempo su sequenza Curve5
+#vq3141;Vq3141_RitPiegatore_2_OFF;variabile per memorizzare tempo su sequenza Curve5
+#vq3142;Vq3142_RitPiegatore_3_ON;variabile per memorizzare tempo su sequenza Curve5
+#vq3143;Vq3143_RitPiegatore_3_OFF;variabile per memorizzare tempo su sequenza Curve5
+#vq3144;Vq3144_RitPiegatore_4_ON;variabile per memorizzare tempo su sequenza Curve5
+#vq3145;Vq3145_RitPiegatore_4_OFF;variabile per memorizzare tempo su sequenza Curve5
+#vq3160;Vq3160_ContSensPiegatoreSu;punti contati dalla molla rottura filo
+#vq3500;Vq3500_PosizioneCaricRiposo;posizione caricatore a riposo fuori ingombro
+#vq3501;Vq3501_PosizioneCaricCaricoTasca;posizione caricatore carico tasca
+#vq3502;Vq3502_PosizioneCaricScaricoTasca;posizione caricatore scarico tasca
+#vq3503;Vq3503_PosizioneCaricLiberaPinzaC1;posizione caricatore dopo scarico per abbassare la pinza C1
+#vq3504;Vq3504_AppPosizioneCaricLiberaPinzaC1;posizione caricatore dopo scarico per abbassare la pinza C1 calcolata in base alla velocità
+#vq3505;Vq3505_CoeffPosizioneCaricLiberaPinzaC1;coefficente calcolo posizione caricatore dopo scarico per abbassare la pinza C1 calcolata in base alla velocità
+#vq3510;Vq3510_VelocitaCaricRiposo;Velocità  caricatore a vuoto %
+#vq3511;Vq3511_VelocitaCaricLavoro;Velocità  caricatore lavoro %
+#vq3512;Vq3512_VelocitaCaricTastiPieCar;Velocità  caricatore quando lo sposto con i tasti piegatore e caricatore %
+#vq3513;Vq3513_VelCarAppoggio;
+#vq3520;Vq3520_PosizioneTraslScaricaC2;posizione traslatore scarico C2
+#vq3521;Vq3521_PosizioneTraslAspCaricoTascaC1;posizione traslatore aspetta carico tasca
+#vq3522;Vq3522_PosizioneTraslCaricoTascaC1;posizione traslatore carico tasca su cucitrice 1
+#vq3523;Vq3523_PosizioneTraslAspScaricoC2;posizione traslatore aspetta scarico su cucitrice 2
+#vq3524;Vq3524_AppPosInizio;appoggio
+#vq3525;Vq3525_PosizioneTraslAspScaricoC2_XL;posizione traslatore aspetta scarico su cucitrice 2 quarto XL
+#vq3530;Vq3530_VelocitaTraslRiposo;Velocità  traslatore a vuoto %
+#vq3531;Vq3531_VelocitaTraslLavoro;Velocità  traslatore lavoro %
+#vq3535;Vq3535_PosAsseX_TaraturaPinzaAgo;posizione asse X taratura pinza ago
+#vq3536;Vq3536_PosAsseY_TaraturaPinzaAgo;posizione asse Y taratura pinza ago
+#vq3540;Vq3540_PuntiAvvioDxSx;numero punti avvicinamento scaricatore prima della fine cucitura
+#vq3550;Vq3550_PosAsseY_C2_OFF;posizione asse Y cucitrice 2 selezionata
+#vq3560;Vq3560_N_PuntiRottFiloC1;punti impostati rottura filo
+#vq3561;Vq3561_ContPuntiRottFiloC1;punti contati dalla molla rottura filo
+#vq3562;Vq3562_N_PuntiRottFiloC2;punti impostati rottura filo
+#vq3563;Vq3563_ContPuntiRottFiloC2;punti contati dalla molla rottura filo
+#vq3564;Vq3564_Debug;
+#vq3565;Vq3565_debug;
+#vq3566;Vq3566_debug;
+#vq3591;Vq3591_CNT_CicliAutomaticoUser;conteggio cicli automatico azzerabile da utente            valore 0.001
+#vq3592;Vq3592_CNT_CicliAutomaticoVita;conteggio cicli automatico vita macchina                valore 0.001
+#vq3593;Vq3593_CNT_CicliAutomaticoVitaX100K;conteggio cicli automatico vita macchina x 100000        a 100000 di vq3592 incrementa valore 0.001
+#vq3595;VqContatore;
+#vq3596;Vq3596_ContPuntiSpolaC1;conteggio punti fatti
+#vq3597;Vq3597_ImpPuntiSpolaC1;conteggio punti da fare
+#vq3598;Vq3598_ContPuntiSpolaC2;conteggio punti fatti
+#vq3599;Vq3599_ImpPuntiSpolaC2;conteggio punti da fare
+#vq3600;GoAxPlcCaricErrCode;GoAx asse caricatore - ErrorCode
+#vq3601;GoAxPlcCariObj;GoAx asse caricatore - quota obbiettivo
+#vq3602;GoAxPlcCaricVel;GoAx asse caricatore - Velocita'
+#vq3603;GoAxPlcCaric;GoAx asse caricatore - Libera
+#i1;i1_Pulsanti_start;
+#i2;i2_C1_Pedana;
+#i3;i3_C1_PedanaPiegatore;
+#i4;i4_C1_FcZeroCrochet;
+#i5;i5_FcPinzaCaricoAlta;
+#i6;i6_FcMinCaricatore1;
+#i7;i7_FcPiegatore_AV;
+#i8;i8_FcPiegatore_DI;i8_C1_FcMaxAsseY
+#i9;i9_FcPiegatoreBasso;
+#i10;i10_Piegatore_Salito;
+#i11;i11_FcLancia_DI;
+#i12;i12_Pressostato;
+#i13;i13;
+#i14;i14;
+#i15;i15;
+#i16;i16;
+#i17;i17;
+#i18;i18_RotturaFilo;
+#i19;i19_C1_FcMinAsseX;
+#i20;i20_C1_FcMinAsseY;
+#i21;i21_Emg;
+#i22;i22_C1_FcZeroAgo;
+#i23;i23_C1_PinzaIntBassa;i28_Rinforzo_ready
+#i24;i24_C1_PinzaEstAlta;
+#i25;i25_PulsResetFolder;i27_Rinforzo_Attivo
+#i26;i26_C1_PulsStopTesta;
+#i27;i27_Rinforzo_Attivo;
+#i28;i28_Rinforzo_ready;
+#i29;i29;
+#i30;i30;
+#i31;i31_C1_ReadyAsseX;
+#i32;i32_C1_ReadyAsseY;
+#i33;i33_AutoBC_Braccio_Off;AutoBobbinChanger
+#i34;i34_AutoBC_Braccio_On;AutoBobbinChanger
+#i35;i35_AutoBC_PresenzaSpol;AutoBobbinChanger
+#i36;i36_AutoBC_Rot_on;AutoBobbinChanger
+#i37;i37_AutoBC_Rot_off;AutoBobbinChanger
+#o1;o1_Piegatore_1;
+#o2;o2_Piegatore_2;
+#o3;o3_Piegatore_3;
+#o4;o4_Piegatore_4;
+#o5;o5_Cambio_corpo;
+#o6;o6_Cambio_lama_front;
+#o7;o7_Cambio_lame_lateral;
+#o8;o8_Cambio_Lamelle_4_5;
+#o9;o9_Lancia_AD;
+#o10;o10_Piegatore_AD;
+#o11;o11_Piegatore_Su_Giu;
+#o12;o12_Bilanciere_Su_Giu;
+#o13;o13_Valvolone;
+#o14;o14_C1_rasafilo;
+#o15;o15_EvAspiratore;
+#o16;o16;
+#o17;o17_C1_Piedino;
+#o18;o18_C1_Pinza_int;
+#o19;o19_C1_Pinza_est;
+#o20;o20_C1_Retrattile_AC;
+#o21;o21_C1_RaffreddamentoAgo;
+#o22;o22_Scaric_dx_sx;
+#o23;o23_Lentezza_Tasca_AD;
+#o24;o24_Pinza_carico_Su_Giu;
+#o25;o25_C1_Cambio_Pinze;
+#o26;o26_C1_Scalino_Piedino;
+#o27;o27_C1_Ranocchia_retrat;
+#o28;o28_Prima_barra;
+#o29;o29_Seconda_barra;
+#o30;o30;
+#o31;o31_bloccaFiloMagente;
+#o32;o32_Enable_AssiXY_C1C2;
+#o33;o33_Gancio_AutoBC;AutoBobbinChanger
+#o34;o34_Rotaz_AutoBC;AutoBobbinChanger
+#o35;o35_Braciio_AutoBC;AutoBobbinChanger

@@ -1,0 +1,57 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_Parametri.src   
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+//
+// In simulazione si forza il reload dei parametri
+//  #M210331_1GF#                       gf              1.1     31/03/2021
+//
+// NOTA: non modificare questo file
+// ==========================================================================
+
+
+#include "DefVar.h"
+
+
+
+sub ()
+
+        // In simulazione si forza il reload dei parametri - #M210331_1GF#
+    if ( C1_CuciSimulaAuto == 1 )
+        C1_ReloadParam = ON
+    endif
+
+        // Calcolo parametri assi solo se serve
+    if ( C1_ReloadParam )
+
+            // Programmazione camme digitali
+        SyncVar( C1_CmdInitCamme )
+    
+            // Parametri di cucitura
+        ExecPlcFun( PLC_CUCI_SET_PARAM, 101, C1_SGL_START_STOP_IDX )        
+
+//------------------------------------------------------------
+// Le seguenti istruzioni non servono se si usa il tabellone dei parametri dinamici
+//@// ExecPlcFun( PLC_CUCI_SET_PARAM, 111, C1_ACC_DEC_X_IDX )        
+//@// ExecPlcFun( PLC_CUCI_SET_PARAM, 112, C1_FREQ_X_IDX )        
+//@// ExecPlcFun( PLC_CUCI_SET_PARAM, 121, C1_ACC_DEC_Y_IDX )        
+//@// ExecPlcFun( PLC_CUCI_SET_PARAM, 122, C1_FREQ_Y_IDX )        
+//------------------------------------------------------------
+
+            // Parametri assi - calcolo velocita' massima asse ago
+        ExecPlcFun( PLC_READ_AX_PARAM, (C1_AsseAGO * 100)+6,  C1_VEL_RIF_AGO )        
+        ExecPlcFun( PLC_READ_AX_PARAM, (C1_AsseAGO * 100)+21, C1_MM_RIF_AGO )        
+        ExecPlcFun( PLC_READ_AX_PARAM, (C1_AsseAGO * 100)+22, C1_IMP_RIF_AGO )        
+    
+        C1_VelMaxAgoRPM = ( C1_VelRifAgo * C1_MmRifAgo * 60 ) / ( C1_ImpRifAgo * 360 * 1000 )
+
+    endif
+
+endsub
+

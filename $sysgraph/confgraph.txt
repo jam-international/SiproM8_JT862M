@@ -1,0 +1,96 @@
+[StartConfGraph]
+
+    [StartNote]
+    configurazione della grafica di sistema
+    ultima modifica: 03.06.2014
+    da fw Ver. 1.12.037
+    [EndNote]
+    
+    [StartLanguageSet]
+        CurLanguageStr = "gb-GB"
+        CurSpLanguageId = 1
+    [EndLanguageSet]
+
+    [StartInputSet]
+        NumInputMode = 0
+        FileNameFilterStr = ""
+        MaxFileNameLength = 0
+    [EndInputSet]
+
+    [StartTouchScreenPar]
+        TouchBuzzerEnab = 0
+        LampDelayOffS = 0
+    [EndTouchScreenPar]
+
+    [StartDesktop]
+        DesktopBackColor = &HFF3A6EA5
+
+        SplashScreenOrgX = -1
+        SplashScreenOrgY = -1
+    [EndDesktop]
+
+    [StartSysGraph]
+        [StartNote]
+            0 = system message box on alarm
+            1 = system message box on alarm if SmartPage is not running
+            2 = system alarm window on alarm
+            3 = system alarm window on alarm if SmartPage is not running
+        [EndNote]
+
+        GraphEmergMode = 1
+
+        UsePcVars = 0
+
+        [StartHgo]
+            [StartNote]
+                1 = Pulsante "Service" sul desktop
+            [EndNote]
+
+            HgoId = 1
+            HgoFlgMakeHide = 0
+            HgoAccessPassw = ""
+        [EndHgo]
+
+        [StartHgo]
+            [StartNote]
+                2 = Pulsante "SmartPage" sul desktop
+            [EndNote]
+
+            HgoId = 2
+            HgoFlgMakeHide = 0
+            HgoAccessPassw = ""
+        [EndHgo]
+
+        [StartHgo]
+            [StartNote]
+                6 = Item "Parametri" nella pagina Service
+            [EndNote]
+
+            HgoId = 6
+            HgoFlgMakeHide = 0
+            HgoAccessPassw = "456258"
+        [EndHgo]
+
+        [StartHgo]
+            [StartNote]
+                7 = Item "Test" nella pagina Service
+            [EndNote]
+
+            HgoId = 7
+            HgoFlgMakeHide = 0
+            HgoAccessPassw = "456258"
+        [EndHgo]
+
+        [StartHgo]
+            [StartNote]
+                8 = Item "Touch Trim" nella pagina Service
+            [EndNote]
+
+            HgoId = 8
+            HgoFlgMakeHide = 0
+            HgoAccessPassw = "456258"
+        [EndHgo]
+    [EndSysGraph]
+
+[EndConfGraph]
+

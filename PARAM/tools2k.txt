@@ -1,0 +1,100 @@
+[StartTools]
+  #Version 1.0.6.12207
+  #CanAdd Tool
+
+  [StartNote]
+    Parametri utensili - 12.09.2008
+  [EndNote]
+
+  MaxToolNumber = 50
+
+  [StartUserParamName]
+    #HIDETITLEPAR
+    User_Param1_Name = ""
+    User_Param2_Name = ""
+    User_Param3_Name = ""
+    User_Param4_Name = ""
+    User_Param5_Name = ""
+    User_Param6_Name = ""
+  [EndUserParamName]
+
+  [StartTool]
+    Number = 1
+    Enabled = 0
+    IsMilling_Tool = 0
+    Position = 1
+    Radius = 10
+    Cutting_Radius = 0
+    Length1 = 100
+    Length2 = 0
+    Quadrant = 0
+    Shape = 0
+    Comment = "T1"
+    User_Param1 = 0
+    User_Param2 = 0
+    User_Param3 = 0
+    User_Param4 = 0
+    User_Param5 = 0
+    User_Param6 = 0
+  [EndTool]
+
+  [StartTool]
+    Number = 2
+    Enabled = 0
+    IsMilling_Tool = 0
+    Position = 1
+    Radius = 20
+    Cutting_Radius = 0
+    Length1 = 200
+    Length2 = 0
+    Quadrant = 0
+    Shape = 0
+    Comment = "T2"
+    User_Param1 = 0
+    User_Param2 = 0
+    User_Param3 = 0
+    User_Param4 = 0
+    User_Param5 = 0
+    User_Param6 = 0
+  [EndTool]
+
+  [StartTool]
+    Number = 3
+    Enabled = 0
+    IsMilling_Tool = 0
+    Position = 1
+    Radius = 30
+    Cutting_Radius = 0
+    Length1 = 300
+    Length2 = 0
+    Quadrant = 0
+    Shape = 0
+    Comment = "T3"
+    User_Param1 = 0
+    User_Param2 = 0
+    User_Param3 = 0
+    User_Param4 = 0
+    User_Param5 = 0
+    User_Param6 = 0
+  [EndTool]
+
+  [StartTool]
+    Number = 4
+    Enabled = 0
+    IsMilling_Tool = 0
+    Position = 1
+    Radius = 40
+    Cutting_Radius = 0
+    Length1 = 400
+    Length2 = 0
+    Quadrant = 0
+    Shape = 0
+    Comment = "T4"
+    User_Param1 = 0
+    User_Param2 = 0
+    User_Param3 = 0
+    User_Param4 = 0
+    User_Param5 = 0
+    User_Param6 = 0
+  [EndTool]
+[EndTools]

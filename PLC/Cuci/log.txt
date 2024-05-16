@@ -1,0 +1,2 @@
+input: D:\GitHub\SiproM8_JT862M\PLC\Cuci\Download\Cuci.bin
+exit error: 0 -OK-

@@ -1,0 +1,35 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_AzzEndCustom.src
+//              Personalizzazioni alla fine del programma di azzeramento    
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+
+#include "DefVar.h"
+
+
+
+sub ()
+
+        // alzo le pinze dopo azzeramento
+	//  if ( Vb4803_AppResetHmiC1 == 0 and Vb52RichiestaZeroAxDaHmiC1 == 0 )   Daniele: quando torno da tool alza le pinze
+	if ( Vb4803_AppResetHmiC1 == 0 and Vb4807_PinzeAlteDopoPC ==1)
+		Vb4350_AppAut_o18_C1_Pinza_int = ON
+		Vb4351_AppAut_o19_C1_Pinza_est = ON 
+	endif
+	
+        // azzero numero punti fatti 
+	C1_VqActPntCuci = 0
+
+endsub
+

@@ -1,0 +1,67 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: ResetFolder.src   
+//
+// NOTE:                                NAME:          VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        Mauro          1.0     08/04/2019
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+'#include "defvar.h"
+
+sub ()
+///// in base a dove mi ero fermato resetto le pinze e il caricatore
+	if ( vn10               == 10)
+		WaitCond ( Vb4049                 )
+		fp[ 5          ] = 5
+		if(vb4511                  == 1 ) 
+			ax[ 5          ] = Vq3501                            
+		else
+			ax[ 5          ] = Vq3500                      
+
+		endif
+		Vb4356                                = 0  
+		vb36            = 1 	//apro retrattile
+		vb37            = 1 	//abbasso perni ranocchia
+		vb38            = 1 	//disattivo salto piedino
+		Vb4350                         = 1 
+		Vb4351                         = 1 		
+		vn10               = 0
+		Vb4015                  = 0  
+			goto FINE
+	endif
+
+	if ( vn10               == 11 or vn10               == 12 or vn10               == 13 or vn10               == 14 )
+		Vb4356                                = 0  
+		WaitCond ( din5                 )
+		WaitCond ( Vb4049                 )
+		fp[ 5          ] = 5
+		if(vb4511                  == 1 ) 
+			ax[ 5          ] = Vq3501                           
+		else
+			ax[ 5          ] = Vq3500                      
+
+		endif
+		vb36            = 1 	//apro retrattile
+		vb37            = 1 	//abbasso perni ranocchia
+		vb38            = 1 	//disattivo salto piedino
+		Vb4350                         = 1 
+		Vb4351                         = 1 		
+		vn10               = 0
+		Vb4015                  = 0  
+		goto FINE
+	endif
+
+
+:FINE
+	Vb4012                 = 0  
+	Vb4013               = 0  
+	Vb4003                  = 0  
+
+endsub

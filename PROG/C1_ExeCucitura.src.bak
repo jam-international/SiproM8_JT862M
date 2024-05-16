@@ -1,0 +1,255 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_ExeCucitura.src   
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: non modificare questo file
+// ==========================================================================
+
+
+#include "DefVar.h"
+
+
+
+sub ()
+        // Piedino su
+    SyncVar( C1_CmdPiedinoSu )    
+
+        // --------------------------------------------------
+        // Velocita' [mm/min] nei G0 senza cucitura
+    if ( C1_ReloadParam )
+        ExecPlcFun( PLC_CUCI_CMD, 107, C1_FEED_G0_IDX )        
+    endif
+        // --------------------------------------------------
+        
+        // Reset variabile di canale: vel. asse ago RPM
+    VcdRpmAgo = 0
+        // --------------------------------------------------
+        // La Velocita' di lavoro Ago dei parametri e' il limite massimo
+    C1_VelLavRPM = C1_ParVelLavRPM
+
+    if ( C1_VelLavRPM > C1_UdfVelLavRPM )           // #M200717_1GF#
+        C1_VelLavRPM = C1_UdfVelLavRPM
+    endif
+
+        
+        // La minore tra C1_ParVelLavRPM e C1_UdfVelLavRPM
+
+        // Verifica ulteriore limitazione
+    if ( C1_VelLavRPM > C1_VelRiduzioneRPM )        // #M200717_1GF#
+        C1_VelLavRPM = C1_VelRiduzioneRPM
+    endif
+    // Imposta la velocita' di lavoro 
+    ExecPlcFun( PLC_CUCI_CMD, 106, C1_VelLavRPM )  // #M210313_1GF        
+
+        // --------------------------------------------------
+        // Esegue solo se e' necessario ricalcolare i parametri
+    if ( C1_ReloadParam )
+
+            // --------------------------------------------------
+            // Punti iniziali da profilo UDF o da parametro
+        if ( C1_UdfVelIniRPM > 0 )
+          C1_PtIni  = C1_UdfPuntiVelIni * 1000
+          C1_RpmIni = C1_UdfVelIniRPM 
+        else
+          C1_PtIni  = C1_ParPuntiVelIni * 1000
+          C1_RpmIni = C1_ParVelIniRPM 
+        endif
+
+            // #M200529_1GF#
+        if ( C1_RpmIni > C1_VelLavRPM )
+            C1_RpmIni = C1_VelLavRPM 
+        endif
+
+            // Imposta punti iniziali ( funzione PLC )
+        ExecPlcFun( PLC_CUCI_SET_PARAM, 103, C1_PT_INI_IDX )        
+
+            // --------------------------------------------------
+            // Punti finali da profilo UDF o da parametro
+        if ( C1_UdfVelRallRPM > 0 )
+            C1_PtRall  = C1_UdfPuntiVelRall * 1000
+            C1_RpmRall = C1_UdfVelRallRPM 
+        else
+            C1_PtRall  = C1_ParPuntiVelRall * 1000
+            C1_RpmRall = C1_ParVelRallRPM 
+        endif
+
+            // #M200529_1GF#
+        if ( C1_RpmRall > C1_VelLavRPM )
+            C1_RpmRall = C1_VelLavRPM 
+        endif
+
+            // Imposta punti finali ( funzione PLC )
+        ExecPlcFun( PLC_CUCI_SET_PARAM, 104, C1_PT_RALL_IDX )        
+
+            // --------------------------------------------------
+            // Lettura delle coordinate di inizio cucitura
+        C1_FirstPtContext = C1_PROFILO_CNTX
+
+        ExecPlcFun( PLC_CUCI_CMD, 161, C1_FIRST_PT_IDX )
+
+        if ( C1_FirstPtValid > 0 )
+        Vn2CodiceAllarmeXHmi = 3
+            gosub "Halt.obj"
+        endif
+
+            // Creazione del buffer di cucitura
+        ISO G281 P CA_MD_NO_MOVE X C1_FirstPt_X Y C1_FirstPt_Y
+    //  ExecPlcFun( PLC_CUCI_CMD, 160, C1_PROFILO_CNTX )            // #M201023_1GF#        
+        C1_CalcBufContext = C1_PROFILO_CNTX                         // #M201023_1GF#
+        ExecPlcFun( PLC_CUCI_CMD, 159, C1_CALC_BUF_IDX )            // #M201023_1GF#        
+        ISO G280
+
+            // Verifica codice errore creazione tabella             // #M201023_1GF#
+        if ( C1_CalcBufErrCode > 0 )
+        Vn2CodiceAllarmeXHmi = 4
+            gosub "Halt.obj"        
+        endif
+
+    endif
+
+        // Solo se presente l'asse di rotazione
+    if ( C1_AsseC != AX_NULL )    
+            // Movimento asse C alla posizione iniziale - #M200724_1GF#
+        C1_Fun74_QuoObj = C1_FirstPt_C
+        if ( C1_ParVelRotazione > 0 ) 
+            C1_Fun74_VelObj = -C1_ParVelRotazione
+        else    
+            C1_Fun74_VelObj = -10
+        endif
+        C1_Fun74_Future = 0
+        ExecPlcFun( PLC_MOVE_AX, (C1_AsseC * 100), C1_FUN74_IDX )
+    endif
+
+
+
+    //aspetto autorizzazione a partire a cucire dal CicloAutomatico
+do
+    if(Vn16GoCuci == 1 or Vn16GoCuci ==2)
+
+        if(Vn16GoCuci ==2)
+            goto ENDCUCI
+        endif
+        Vn16GoCuci = 0
+        exitdo
+    endif
+    loop
+vntest2 = 1
+        // Movimento a posizione di inizio cucitura
+    C1_VelFeed = C1_Udf_FeedG0
+    ISO G1 X C1_FirstPt_X Y C1_FirstPt_Y F C1_VelFeed
+
+        // Solo se presente l'asse di rotazione
+    if ( C1_AsseC != AX_NULL )    
+            // Aspetta Asse C fermo - #M200724_1GF#
+        WaitCond( IsAxInStop( C1_AsseC ) ) 
+    endif
+
+        // Verifica se parto con il TEST premuto : viene forzato Hold
+    if ( C1_CuciSimulaAuto == 1 )
+        C1_CmdHoldRelease = 1		//il TEST è premuto quindi attivo Hold
+    endif
+    
+
+    if ( C1_CmdHoldRelease == 0 )					//se non ho hold resetto il buffer di cucitura e parto dall'inizio
+        ISO G281 P CA_MD_NO_RES_NO_INS X C1_FirstPt_X Y C1_FirstPt_Y	//resetto il buffer di cucitura e parto dall'inizio
+    else
+	//se parto con TEST, chiamo ripartenza con il rewind del programma di cucitura
+        C1_CuciBufRewind = ON   // #M230406_1GF# - force rewind flag in C1_Ripartenza
+        gosub "C1_Ripartenza"
+    endif
+
+    C1_CuciBufRewind = OFF      // #M230406_1GF# - reset rewind flag    
+
+    C1_ReloadParam = OFF        // finito il primo giro in automatico non eseguo più le impostazioni
+
+        // Esecuzione cucitura
+    Vb30_C1_InCucitura = ON 
+
+   
+    do
+    vntest2 = 2
+        ISO G280
+
+            // Attesa
+        DelayS( 0.1 )
+
+            // Attesa asse ago fermo
+        WaitCond( IsAxInStop( C1_AsseAGO ) )      
+
+            // Non in stato di HOLD
+        if ( C1_CmdHoldRelease == 0 )
+            exitdo
+        endif            
+
+            // Ripartenza cucitura
+        gosub "C1_Ripartenza"
+
+    loop        
+
+        // Piedino su
+    SyncVar( C1_CmdPiedinoSu )    
+
+        // #####################################
+        // PERSONALIZZAZIONE: blocco fine spola 
+    if ( Vb4071_AbilitaContSpolaC1 == 1 and Vb4072_AllarmeContSpolaC1 )
+
+         C1_VelFeed = C1_Par_FeedG0Reset
+        if ( C1_Udf_FeedG0 < C1_VelFeed )           // #M200717_1GF#
+            C1_VelFeed = C1_Udf_FeedG0
+        endif
+
+        ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F C1_VelFeed
+
+
+	//se attivo auto bobbin changer
+	if(Vb4072_AllarmeContSpolaC1 ==1 and Vb90_EnableAutoBobbinChang)
+		Vb91_RunCambioSpola = ON
+	endif
+
+
+
+        WaitCond ( Vb4072_AllarmeContSpolaC1 == 0 or Vb4071_AbilitaContSpolaC1 ==0 )
+    endif
+        // #####################################
+
+        // Solo se presente l'asse di rotazione
+    if ( C1_AsseC != AX_NULL )    
+            // Movimento asse C alla posizione iniziale - #M200724_1GF#
+        C1_Fun74_QuoObj = C1_FirstPt_C
+        if ( C1_ParVelRotazione > 0 ) 
+            C1_Fun74_VelObj = -C1_ParVelRotazione
+        else    
+            C1_Fun74_VelObj = -10
+        endif
+        C1_Fun74_Future = 0
+        ExecPlcFun( PLC_MOVE_AX, (C1_AsseC * 100), C1_FUN74_IDX )
+    endif
+
+
+:ENDCUCI
+    Vn16GoCuci = 0
+    // Movimento a posizione di home ( coordinate macchina )
+    Vb4805_AppStartCaricatoreC2 = ON
+    if ( Vb4515_AppEnbScaricatore and Vb4034_ScaricOnSuRasafilo and Vb4519_AppScaricoCortiConPinza == 0)
+        Vb4032_AppScaricatoreStrBarre = ON  //fa partire scarictore
+    endif
+    C1_VelFeed = C1_Par_FeedG0Reset
+    if ( C1_Udf_FeedG0 < C1_VelFeed )           // #M200717_1GF#
+        C1_VelFeed = C1_Udf_FeedG0
+    endif
+    ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F C1_VelFeed    
+    if(Vn14TipoScartafiloC1 == 1)
+        Vb4038_Scatena_scartafilo = ON
+    endif
+    Vb30_C1_InCucitura = OFF
+   
+    Vb88_TascaC1Completata = ON
+endsub

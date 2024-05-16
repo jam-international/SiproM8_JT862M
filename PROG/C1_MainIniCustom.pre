@@ -1,0 +1,78 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_MainIniCustom.src
+//              Personalizzazioni all'inizio del programma Main    
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+'#include "DefVar.h"
+
+
+
+sub ()
+
+        // Centratura pinza con ago
+    if ( Vb4080              )
+        gosub "C1_TestPinzaAgo"
+        Vb4080              = 0  
+        Vb4078            = 0  
+        gosub "Halt.obj"
+    endif      
+
+        ///// dopo un reset riporto la pinza in posizione home
+    if ( vb4803               )
+
+	    SyncVar( vb1003          )    
+		Delays (0.1)
+
+	//C1_VelFeed = C1_Par_FeedG0Reset
+	//if ( C1_Udf_FeedG0 < C1_VelFeed )           // #M200717_1GF#
+	//	C1_VelFeed = C1_Udf_FeedG0
+	//endif
+
+
+
+
+        fa[ 1        ] = vq3054                 
+        fa[ 2        ] = vq3054                 
+	if(vn320          == 862 )
+		ax[ 2        ] = 250        //// sposto tutto indietro
+	else
+		ax[ 2        ] = 200        //// sposto tutto indietro
+	endif
+        ax[ 1        ] = 0 
+        ax[ 2        ] = 0
+        ISO G1 X vq1911      Y vq1912      F vq3054                     
+        Delays (0.1)
+	vb36            = 1 	//apro retrattile
+	vb37            = 1 	//abbasso perni ranocchia
+	vb38            = 1 	//disattivo salto piedino
+        Vb4350                         = 1 
+        Vb4351                         = 1  
+
+	WaitCond ( din24               == 1)
+
+	vb36            = 1 	//apro retrattile
+	vb38            = 1 	//disattivo salto piedino
+
+	Vb4096                   = 1 
+	vb4803               = 0  
+	vb30               = 0  
+	vb1955       = 0  
+
+	vq1952          = 0	// azzero numero punti fatti 
+
+		gosub "Halt.obj"						///// messo per non iniziare a cucire dopo il reset
+
+    endif
+
+endsub

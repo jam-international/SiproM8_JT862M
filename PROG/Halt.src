@@ -1,0 +1,44 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: Halt.src   
+//
+// NOTE:                                NAME:          VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf             1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: non modificare questo file
+// ==========================================================================
+
+#include "DefVar.h"
+
+
+
+sub ()
+
+    switch ( $CHN_NUM )
+    
+        case 1
+            VbChn1Reset = 1
+            break
+    
+        case 2
+            VbChn2Reset = 1
+            break
+    
+        default
+            VbChn1Reset = 1
+            VbChn2Reset = 1
+            VbChn3Reset = 1
+    
+    endswitch
+
+    do
+        DelayS( 1 )
+    loop    
+	
+endsub
+

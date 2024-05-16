@@ -1,0 +1,14 @@
+﻿[Settings]
+    0, 0, 563, 218
+    0, 1, 2, 3, 4, 5
+    True, True, True, True, True, True
+    1
+    1
+    False
+[EndSettings]
+[Table]
+       3,     7908,        0, C1 Feed Istantanea, 65535
+       3,     7909,        0, C1 Feed Impostata, 65535
+       3,     7928,        0, C2 Feed Istantanea, 65535
+       3,     7929,        0, C2 Feed Impostata, 65535
+[EndTable]

@@ -1,0 +1,115 @@
+[StartEthercat]
+  #Version 1.0.6.11970
+  #CanAdd NetEthercat
+
+  [StartNetEthercat]
+    #CanAdd EcatNodeDrvSiproPos
+    #CanAdd EcatNodeDrvSiproVel
+    #CanAdd EcatNodeDrvDanaPos
+    #CanAdd EcatNodeDrvDanaVel
+    #CanAdd EcatNodeDrvDeltaPos
+    #CanAdd EcatNodeDrvDeltaVel
+    #CanAdd EcatNodeDrvOmronPos
+    #CanAdd EcatNodeDrvOmronVel
+    #CanAdd EcatNodeDrvSanyoPos
+    #CanAdd EcatNodeDrvPanasonicPos
+    #CanAdd EcatNodeDrvPanasonicVel
+    #CanAdd EcatNodeDrvCtrlTechnPos
+    #CanAdd EcatNodeDrvCtrlTechnVel
+    #CanAdd EcatNodeDrvYaskawaPos
+    #CanAdd EcatNodeDrvYaskawaVel
+    #CanAdd EcatNodeDrvHdtLovatoPos
+    #CanAdd EcatNodeDrvHdtLovatoVel
+    #CanAdd EcatNodeDrvGenericPos
+    #CanAdd EcatNodeDrvGenericVel
+    #CanAdd EcatNodeMcpuEnhanced
+    #CanAdd EcatNodeBalluff
+    #CanAdd EcatGenericNode
+    NetId = 1
+    NetEnable = 1
+    NetDelayStartS = 10
+    NetOffsDelayRxUs = 0
+    NetDisableNmtInfo = 1
+    EcatDebugLevel = 0
+    NetEnableEmergOnLost = 0
+    EcatNetLoopTimeOffsMs = 0
+    EcatUseGpt1SysTimer = 0
+    EcatFirstNetLoopPeriodNs = 0
+    EcatLogMsgLevel = 0
+    EcatDCStartDelayUs = 0
+    EcatDCStartDelayPerNodeUs = 0
+    EcatMailboxPollTimeMs = 0
+    EcatDbgBufferSizeKb = 0
+    EcatGatewayMasterMode = 0
+    EcatGatewayIP = "0.0.0.0"
+    EcatNoDelayStartOnReboot = 0
+    EcatToutOperatTimeS = 0
+
+    [StartEcatNodeDrvDeltaPos]
+      #CanAdd EcatMonitor
+      #CanAdd EcatSetVal
+      EcatNodeId = 1
+      Name = ""
+      NodeEnable = 1
+      AxId = 3
+      EngineImpGiro = 65536
+      EmergOnPowerOff = 1
+      EcatZeroMode = 0
+      EcatFlgSensIncrem = 0
+      NodeStateVnIdx = 0
+      NodeGestStateVnIdx = 0
+    [EndEcatNodeDrvDeltaPos]
+
+    [StartEcatNodeDrvDeltaPos]
+      #CanAdd EcatMonitor
+      #CanAdd EcatSetVal
+      EcatNodeId = 2
+      Name = ""
+      NodeEnable = 1
+      AxId = 4
+      EngineImpGiro = 65536
+      EmergOnPowerOff = 1
+      EcatZeroMode = 0
+      EcatFlgSensIncrem = 0
+      NodeStateVnIdx = 0
+      NodeGestStateVnIdx = 0
+    [EndEcatNodeDrvDeltaPos]
+
+    [StartEcatNodeDrvDeltaPos]
+      #CanAdd EcatMonitor
+      #CanAdd EcatSetVal
+      EcatNodeId = 3
+      Name = ""
+      NodeEnable = 1
+      AxId = 5
+      EngineImpGiro = 65536
+      EmergOnPowerOff = 1
+      EcatZeroMode = 0
+      EcatFlgSensIncrem = 0
+      NodeStateVnIdx = 0
+      NodeGestStateVnIdx = 0
+    [EndEcatNodeDrvDeltaPos]
+
+    [StartEcatNodeMcpuEnhanced]
+      #CanAdd EcatMonitor
+      #CanAdd EcatSetVal
+      EcatNodeId = 4
+      Name = ""
+      NodeEnable = 1
+      MaxIONum = 128
+      NumDi = 32
+      NumDo = 32
+      AnInBoard = 0
+      MaxAiNum = 0
+      NumAi = 0
+      MaxAoNum = 0
+      NumAo = 0
+      McpuExpBoardCode = 0
+      NumMcpuEnc = 0
+      MaxMcpuEnc = 0
+      NodeStateVnIdx = 0
+      NodeGestStateVnIdx = 0
+      Sync0StartTimeUs = 0
+    [EndEcatNodeMcpuEnhanced]
+  [EndNetEthercat]
+[EndEthercat]

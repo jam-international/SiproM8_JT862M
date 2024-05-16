@@ -1,0 +1,525 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: CicloAutomatico.src   
+//
+// NOTE:                                NAME:          VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        Mauro          1.0     23/04/2019
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+'#include "DefVar.h"
+
+
+sub ()
+
+
+ // Verifica se necessario il ciclo di azzeramento
+if ( vb50             == 0 )
+
+	// Verifica azzeramenti cucitrice 1
+	if ( vb1032          == 0 )
+		vn777  =20
+		vb7901      = 1
+	endif
+
+
+
+
+
+	vb7086      = 1
+	if(vn320          == 882 ) 
+		vb7186       = 1 
+	endif
+
+	WaitCond ( ( vb7093      == 1 ) and ( vn3091        >= 7 ) )
+
+	//se alla pressione del verde avevo il pulsante reset piegatore premuto il plc aveva alazato la pinza esterna per non far incastrare le dime
+	if(vb81                       == 1)
+
+		Vb4351                         =0
+		Delays ( 1.0 )
+		vb81                       =0
+	endif
+	//
+
+
+	if(vn320          == 882 ) 
+		WaitCond ( ( vb7193       == 1 ) and ( vn3191         >= 7 ) )
+	endif
+
+	if ( vn3091        > 7 ) 
+		gosub "Halt.obj"
+	endif    
+
+	if(vn320          == 882 )	
+		if ( vn3191         > 7 ) 
+			gosub "Halt.obj"
+		endif    
+	endif
+
+	fp[ 5          ] = Vq3512                         
+
+
+
+
+
+
+	////// caricatore per piegatore o manuale
+	if( vb4509                 )
+
+		ax[ 5          ] = Vq3500                      
+
+
+	endif
+	if( vb4511                  )
+
+		ax[ 5          ] = Vq3501                          
+		vb4507            = 1 	//quanto arrivo in posizione alzo la variabile ciclo Automatico per poter iniziare
+
+
+	endif
+
+	WaitCond( vb50             == 1 )
+
+	gosub "Halt.obj"
+endif
+
+
+
+/////////////////////////////////////////// tarature pinze lancia e caricatori
+            // lancio automatico per centrare la pinza su ago Cucitrice 1
+    if ( vb50             and Vb4080              )
+            // lancio automatico per centrare la pinza su ago
+	    vn777  = 30
+            vb7901      = 1 
+			vb7              = 1 
+			Delays ( 0.5 )
+			WaitCond ( vb7908        == 0 and Vb4080              == 0 )
+			vb7              = 0  
+        gosub "Halt.obj"
+	endif
+
+
+            // lancio automatico per centrare la caricatore su pinza cucitrice
+    if ( vb50             and ( Vb4081                       or Vb4082                        or Vb4087                           ))
+				vb7              = 1 
+		        Vb4350                         = 0  
+				Vb4351                         = 0   
+				Vb4356                                = 0  
+
+            // lancio automatico per centrare la caricatore su pinza cucitrice
+		gosub "TestManutenzione.obj"	
+			vb7              = 0  
+        gosub "Halt.obj"
+	endif
+
+
+
+
+        // 	Ciclo macchina set iniziali  ******** impostati da PLC secondo il tipo di start**********************
+		//  VnStatoCuci1 = 0
+		/////// se sono in manuale parto dal passo 30 
+		//if ( Vb4507_AppManAuto == 0 )
+		//			VnStatoCuci1 = 30
+		//		endif
+		//   VnStatoCuci2 = 0
+        // 	Ciclo macchina set iniziali  ******** impostati da PLC secondo il tipo di start**********************
+
+
+
+
+vb11                    = 0  
+Vb4012                 = 0  
+Vb4013               = 0  
+Vb4003                  = 0  
+
+
+KillProg( vn201                , 0 )
+KillProg( vn201                , 0 )
+KillProg( vn202                    , 0 )
+KillProg( vn202                    , 0 )
+KillProg( vn203                  , 0 )
+KillProg( vn203                  , 0 )
+
+
+
+vb51                = 0
+
+// Imposta le velocita' e predispone gli assi caricatori
+fp[ 5          ] = Vq3510                    
+
+
+
+// posizioni caricatore per piegatore o manuale
+if( vb4507            and vb4509                 )
+	ax[ 5          ] = Vq3500                     
+
+endif
+// posizione caricatore per ciclo solo caricatore
+if( vb4507            and vb4511                  )
+	ax[ 5          ] = Vq3501                          
+
+endif
+
+do
+
+// Macchina a stati cucitrice 1
+//	0 = lancio fork del ciclo Piegatore o Caricatore per preparare tasca
+//	5 = attendo tasca pronta
+//	10 = abbasso pinza interna
+//	11 = aspetto pinza interna bassa
+//	12 = alzo pinza caricatore
+//	13 = aspetto pinza caricatore alta e riposiziono caricatore
+//	14 = aspetto pinza caricatore fuori ingombro per abbassare la pinza esterna
+//	30 = start cucitura
+//	31 = discrimino se sono in automatico o manuale
+//	40 = riporto il piegatore al carico e abilito per la tasca successiva
+//	50 = attesa fine cucitura: richiesta start cucitrice 2 se utilizzata oppure alzo le pinze e riparto da capo
+//	60 = attesa postazione libera con la seconda cucitrice
+//	100 = fine ciclo 
+//	200 = pausa per avanzamento a step o reset piegatore
+//	201 = attesa rilascio pedana step
+//	202 = attesa fine fork reset piegatore
+
+switch ( vn11         )
+
+	case 0	//lancio fork per preparare la tasca (Fork Ciclo Piegatore oppure Fork Ciclo Caricatore)
+		if( vb4507            and vb4509                 )
+			vn201                 = ForkProg ( "Piegatore", 1 )	
+		endif
+		if( vb4507            and vb4511                  )
+			vn202                     = ForkProg ( "CaricatoreMan", 1 )	
+		endif
+		vn11         = 5
+		Delays ( 0.1)  //non togliere Daniele
+		break
+
+	case 5	// aspetto che i Fork mi indicano che la tasca e nel frattempo controllo se devo uscire
+		if ( Vb4012                 )
+			vn11         = 10
+			Vb4012                 = 0  
+			break
+		endif
+		if (vb4507            == 0 or vb8                )
+			vn11         = 100	//esco dal CicloAutomatico
+
+		endif
+
+		break
+
+	case 10	// aspetto caricatore in quota per abbassare la pinza interna C1
+		//----- step reset piegatore inizio
+		if ( vb10                  == 0 and vb11                    == 0   )
+			vn10               = vn11          
+			vn11         = 200
+			break
+		endif
+		vb11                    = 0  
+		vn16       = 0
+		//----- step reset piegatore fine
+
+		if ( IsAxInQuote( 5          ) )
+			Vb4350                         = 0  
+			vn11         = 11
+		endif
+
+		break
+
+	case 11	// aspetto pinza interna C1 bassa per alzare la pinza caricatore
+		//----- step reset piegatore inizio
+		if ( vb10                  == 0 and vb11                    == 0   )
+			vn10               = vn11          
+			vn11         = 200
+			break
+		endif
+		vb11                    = 0  
+		//----- step reset piegatore fine
+
+		if ( din23                )
+
+
+			if(Vb4001               == 0  )		//se non sono in passo passo faccio partire il fork Chn1 per anticipare la cucitura altrimenti proseguo normale
+								// e il canale lo faccio partire dopo
+
+				vn777  = 40	
+				vb7901      = 1			//faccio partire il fork per la cucitura in anticipo per non perdere tempo!
+			endif
+
+
+
+
+			Vb4356                                = 0  
+			vn11         = 12
+		endif
+		if(vn2                  ==24)
+			goto FINE
+		endif
+		break
+
+	case 12	// aspetto pinza caricatore alta per muovere il caricatore indietro
+		//----- step reset piegatore inizio
+		if ( vb10                  == 0 and vb11                    == 0   )
+			vn10               = vn11          
+			vn11         = 200
+			break
+		endif
+		vb11                    = 0  
+		//----- step reset piegatore fine
+
+		if ( din5                 )
+
+
+
+
+
+
+			if ( vb4507            and vb4509                 )		//// utilizzo il piegatore
+				AxAnt( 5         , Vq3500                      , -Vq3510                    , 2, 0 )  
+			endif
+			if ( vb4507            and vb4511                  )		//// utilizzo solo il caricatore
+				AxAnt( 5         , Vq3501                           , -Vq3510                    , 2, 0 )  
+			endif
+			vn11         = 13
+		endif
+		break
+
+	case 13	// aspetto il caricatore fuori ingombro per abbassare la pinza estrna C1
+		//----- step reset piegatore inizio
+		if ( vb10                  == 0 and vb11                    == 0   )
+			vn10               = vn11          
+			vn11         = 200
+			break
+		endif
+		vb11                    = 0  
+		//----- step reset piegatore fine
+
+		if ( vq55             < Vq3504                                )
+			Vb4351                         = 0  		
+
+
+
+
+
+			vn11         = 14
+
+		endif
+		break
+
+	case 14	// aspetto pinza estrna C1 bassa per iniziare a cucire
+		//----- step reset piegatore inizio
+		if ( vb10                  == 0 and vb11                    == 0   )
+			vn10               = vn11          
+			vn11         = 200
+			break
+		endif
+		vb11                    = 0  
+		//----- step reset piegatore fine
+
+
+		vn11         = 16
+
+		break
+
+	case 16
+		if ( (vb4601                            or vb11                    or Vb4001              ) and din23                 )
+			//se sono in passo passo faccio partire il Chn1 per la cucitura
+			if( Vb4001               )
+
+				vb7901      = 50	
+				vn11         = 30
+
+
+			endif
+
+			vb11                    = 0  
+			vn11         = 30
+			endif
+		break
+
+
+	case 30// parto a cucire
+
+		vn16       = 1
+
+		vn11         = 31
+		Vb4015                  = 0  
+		break
+
+	case 31
+		if ( vb4507            == 0 and vb7908        == 0 )	//se ho spento Piegatore o Caricatore e la cucitura è finita --> esco
+			vn11         = 100
+			break
+		endif
+		if ( vb4507            )	//se i tasti Piegatore o Caricatore sono ancora accesi non esco ma continio
+			vn11         = 40
+			break
+		endif
+
+		break
+
+	case 40 //se non sono in passo passo piegatore quando il caricatore è tornato rilancio i fork se i tasti Piegatore o Caricatore sono ancora accesi
+		//if(Vb4001_StepPiegatore == OFF)
+			if  ( IsAxInQuote( 5          ))
+				Vb4003                  = 0  	//se sono arrivato qui pulisco questo flag perchè se ho premuto Reset Piegatore mentre tornava rimaneva alto
+				if ( vb4507            and vb4509                 )	//se Piegatore acceso lancio il suo Fork
+					if ( IsForkActive( vn201                 ) == 0 )
+						vn201                 = ForkProg ( "Piegatore", 1 )
+					endif
+					Vb4013               = 0  
+					if(vb22                      )  //se è attivo il kit lentezza tasca lo faccio avanzare
+						Vb4355                              = 1 
+					endif
+				endif
+				if ( vb4507            and vb4511                  )	//se Caricatore acceso lancio il suo Fork
+					if ( IsForkActive( vn202                     ) == 0 )
+						vn202                     = ForkProg ( "CaricatoreMan", 1 )
+					endif
+				endif
+
+				vn11         = 49
+			endif
+		//endif
+
+		break
+
+
+	case 49
+		if ( vb1955       or vb1034           )	//se la cucitura è partita... continuo a 50
+			vn11         = 50
+		endif
+
+		if(vb1009            == 1 )
+			vb1006          = 1
+			vn11         = 50
+
+		endif
+
+
+
+//		if(C1_CmdHoldRelease == 1 or Vb4802_PulsResetHmiC1 == 1)
+//			C1_CmdSimulaAva = 1
+//			VbChn1Reset = ON
+//			if(Vb4802_PulsResetHmiC1 == 1)
+//				Vb4803_AppResetHmiC1 = ON 
+//				VnStatoCuci1 = 5
+//			endif
+//		endif
+
+		break
+
+
+	case 50	//aspetto la fine della cucitura
+		if ( vb4803               == 1 )	//se ho premuto reset cucitura torno al passo 5
+			vn11         = 5			
+		endif
+		if (vb4805                     ) 	//se la cucitura è finita
+			if (  vb7908        == 0 and vb4803               == 0 ) //se il canale della cucitura ha finito e non è stato premuto il reset cucitura ...
+				vb4805                      = 0  
+				vb36            = 1 	//apro retrattile
+				vb37            = 1 	//abbasso perni ranocchia
+				vb38            = 1 	//disattivo salto piedino
+
+				Vb4350                         = 1 
+				Vb4351                         = 1  
+				Vb4096                   = 1 
+
+				if(Vb4001               )	//se la cucitura è finita e il passo passo piegatore attivo  faccio partire il fork piegatore
+					if ( vb4507            and vb4509                 )	//se Piegatore acceso lancio il suo Fork
+						if ( IsForkActive( vn201                 ) == 0 )
+							vn201                 = ForkProg ( "Piegatore", 1 )
+						endif
+						Vb4013               = 0  
+					endif
+				endif
+
+				vn11         = 55
+			endif 
+		endif
+		if(Vb4001               and din3                  == 1 )	//se mentre cuce e passo passo piegatore attivo e premo la pedana faccio partire il fork piegatore
+			if ( vb4507            and vb4509                 )	//se Piegatore acceso lancio il suo Fork
+				if ( IsForkActive( vn201                 ) == 0 )
+					vn201                 = ForkProg ( "Piegatore", 1 )
+				endif
+				Vb4013               = 0  
+			endif
+		endif
+
+		break
+
+	case 55	//aspetto pinze alte e poi riapro la retrattile
+		if(din24               == 1)
+			vb36            = 1 	//apro retrattile
+			vb37            = 1 	//abbasso perni ranocchia
+			vb38            = 1 	//disattivo salto piedino
+			vn11         = 5	//riparto dal passo 5 in attesa di una nuova tasca
+		endif
+
+		break
+
+	case 60 
+		if ( vb51                == 0 )
+			vn11         = 5
+		endif
+		break
+
+
+	case 200 //-----case PASSO PASSO oppure RESET ----  aspetto la pedana piegatore o il reset
+		Vb4015                  = 0  
+		if ( vb10                  or din3                  )
+			vn11         = 201
+		endif 
+		if ( vb10                  or din25               )
+			vn11         = 202
+		endif 
+		break
+
+	case 201 // aspetto la pedana piegatore o il reset
+		if ( vb10                  or din3                  == 0 )
+			vn11         = vn10              
+			vn10               = 0
+			vb11                    = 1 
+		endif 
+		break
+
+	case 202 //se chiamato lancio il fork Reset
+		if ( vb10                  or din25               == 0 )
+			vn203                   = ForkProg ( "ResetFolder", 1 )
+			vn11         = 203
+			endif 
+		break
+
+	case 203 // aspetto la fine del fork reset per uscire
+		if ( IsForkActive( vn203                   ) == 0 ) 
+			vn11         = 5
+		endif 
+		break
+
+endswitch
+
+
+		if ( ( vb4507            == 0 or vb8                )  and vn11         == 100 and ( vn12         == 0 or vn12         == 10 ))
+			Exitdo
+		endif	
+
+ loop
+
+
+
+
+
+
+
+	//////// reset finali
+
+		Vb4013               = 0  
+
+//////////////////////////////////////////////////////////////////////////togliere
+:FINE	
+//////////////////////////////////////////////////////////////////////////togliere	
+endsub

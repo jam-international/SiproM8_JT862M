@@ -1,0 +1,19 @@
+﻿[Settings]
+    16, 5, 559, 307
+    0, 1, 2, 3, 4, 5
+    True, True, True, True, True, True
+    1
+    1
+    False
+[EndSettings]
+[Table]
+       1,     2003,        0, Su, 65535
+       1,     2004,        0, Giu, 65535
+       3,     2708,        0, TimeSu, 65535
+       3,     2709,        0, TimeGiu, 65535
+       5,       97,        0, DigOut, 65535
+       2,     2003,        0, Stato Ago, 65535
+       1,     2030,        0, FuoriIng, 65535
+       1,     2033,        0, CuciOrMove, 65535
+       1,     2955,        0, VbRun, 65535
+[EndTable]

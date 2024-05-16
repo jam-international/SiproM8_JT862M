@@ -1,0 +1,98 @@
+[StartUdf]
+
+[StartMatrixStep]
+MatrixId = 111
+MatrixName ="C1_Base_Profilo"
+VN1901 = 0
+VQ1901 = 0.000
+VQ1902 = 0.000
+[EndMatrixStep]
+
+[StartMatrixStep]
+MatrixId = 211
+MatrixName ="C2_Base_Profilo"
+VN2901 = 0
+VQ2901 = 0.000
+VQ2902 = 0.000
+[EndMatrixStep]
+
+[StartMatrixStep]
+MatrixId = 112
+MatrixName ="C1_Head_Profilo"
+VQ1911 = 0.000
+VQ1912 = 0.000
+VQ1913 = 0.000
+VQ1914 = 0.000
+VQ1915 = 0.000
+VQ1916 = 0.000
+VQ1917 = 0.000
+VQ1918 = 0.000
+VQ1919 = 0.000
+VQ1920 = 0.000
+VQ1921 = 0.000
+VQ1922 = 0.000
+VQ1923 = 0.000
+VQ1924 = 0.000
+VQ1925 = 0.000
+VQ1926 = 0.000
+VQ1927 = 0.000
+VQ1928 = 0.000
+VQ1929 = 0.000
+VQ1930 = 0.000
+[EndMatrixStep]
+
+[StartMatrixStep]
+MatrixId = 212
+MatrixName ="C2_Head_Profilo"
+VQ2911 = 0.000
+VQ2912 = 0.000
+VQ2913 = 0.000
+VQ2914 = 0.000
+VQ2915 = 0.000
+VQ2916 = 0.000
+VQ2917 = 0.000
+VQ2918 = 0.000
+VQ2919 = 0.000
+VQ2920 = 0.000
+VQ2921 = 0.000
+VQ2922 = 0.000
+VQ2923 = 0.000
+VQ2924 = 0.000
+VQ2925 = 0.000
+VQ2926 = 0.000
+VQ2927 = 0.000
+VQ2928 = 0.000
+VQ2929 = 0.000
+VQ2930 = 0.000
+[EndMatrixStep]
+
+BaseMatrixId = 111
+HeadMatrixId = 112
+
+[StartHeadVal]
+0.10
+0.10
+3500
+0.002
+500
+0.001
+200
+50000
+3000
+0
+9000
+9000
+90000
+0
+0
+0
+0
+0
+0
+0
+[EndHeadVal]
+ [StartStepsMultiVal]
+1000 87.45 67.2
+[EndStepsMultiVal]
+
+[EndUdf]

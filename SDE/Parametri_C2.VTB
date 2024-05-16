@@ -1,0 +1,25 @@
+[Settings]
+    28, 8, 600, 452
+    0, 1, 2, 3, 4, 5
+    True, True, True, True, True, True
+    1
+    1
+    False
+[EndSettings]
+[Table]
+       3,     2701,        0, Soglia start movimento [gradi], 65535
+       3,     2702,        0, Soglia stop  movimento [gradi], 65535
+       3,     2703,        0, Ago alto [gradi], 65535
+       3,     2704,        0, Start camma apritensione [gradi], 65535
+       3,     2705,        0, Stop  camma apritensione [gradi], 65535
+       3,     2706,        0, Start camma coltello [gradi], 65535
+       3,     2707,        0, Stop  camma coltello [gradi], 65535
+       3,     2708,        0, Tempo salita piedino [s], 65535
+       3,     2709,        0, Tempo discesa piedino [s], 65535
+       3,     2710,        0, Vel. lavoro ago [RPM], 65535
+       3,     2711,        0, Punti iniziali (no fix3), 65535
+       3,     2712,        0, Vel iniziale ago [RPM], 65535
+       3,     2713,        0, Punti rallentamento (no fix3), 65535
+       3,     2714,        0, Vel rallentamento ago [RPM], 65535
+       3,     2715,        0, Quota stop dell'ago, 65535
+[EndTable]

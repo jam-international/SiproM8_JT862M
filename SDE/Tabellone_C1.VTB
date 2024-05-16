@@ -1,0 +1,20 @@
+﻿[Settings]
+    4, 7, 600, 314
+    0, 1, 2, 3, 4, 5
+    True, True, True, True, True, True
+    1
+    1
+    False
+[EndSettings]
+[Table]
+       3,     1651,        0, Contatore punti cucitura, 65535
+       3,     1652,        0, mm  per calcolo anticipo, 65535
+       3,     1653,        0, RPM per calcolo anticipo, 65535
+       3,     1654,        0, Passo UDF per calcolo anticipo, 65535
+       3,     1655,        0, mm  per calcolo Freq X, 65535
+       3,     1656,        0, RPM per calcolo Freq X, 65535
+       3,     1657,        0, Passo UDF per calcolo Freq X, 65535
+       3,     1658,        0, mm  per calcolo Freq Y, 65535
+       3,     1659,        0, RPM per calcolo Freq Y, 65535
+       3,     1660,        0, Passo UDF per calcolo Freq Y, 65535
+[EndTable]

@@ -1,0 +1,157 @@
+***********************************************************************
+*
+*	DYNAMIC LINK AND INDIRECT ALLOCATION LISTING FOR: Cuci
+*
+***********************************************************************
+
+
+***************************************************
+	 FIRST CODE AREA
+***************************************************
+
+***************************************************
+	 DATABLOCK INDIRECT ALLOCATION
+***************************************************
+*
+* List of data blocks that will be checked run-time for consistency with
+* their definition available at compile-time
+*
+*
+*	REQUIREMENTS for DATA BLOCK %M700
+*		Process image: 0
+*		Number of elements: 64
+*		Data size (bytes): 82
+0000	00 00 02 BC 00 00 00 40 00 00 00 52 
+
+*
+*	REQUIREMENTS for DATA BLOCK %M300
+*		Process image: 0
+*		Number of elements: 8192
+*		Data size (bytes): 1
+000C	00 00 01 2C 00 00 20 00 00 00 00 01 
+
+*
+*	REQUIREMENTS for DATA BLOCK %I100
+*		Process image: 0
+*		Number of elements: 512
+*		Data size (bytes): -1
+0018	00 01 00 64 00 00 02 00 FF FF FF FF 
+
+*
+*	REQUIREMENTS for DATA BLOCK %Q200
+*		Process image: 0
+*		Number of elements: 512
+*		Data size (bytes): -1
+0024	00 02 00 C8 00 00 02 00 FF FF FF FF 
+
+*
+*	REQUIREMENTS for DATA BLOCK %M500
+*		Process image: 0
+*		Number of elements: 8192
+*		Data size (bytes): 4
+0030	00 00 01 F4 00 00 20 00 00 00 00 04 
+
+*
+*	REQUIREMENTS for DATA BLOCK %M400
+*		Process image: 0
+*		Number of elements: 4096
+*		Data size (bytes): 2
+003C	00 00 01 90 00 00 10 00 00 00 00 02 
+
+*
+*	REQUIREMENTS for DATA BLOCK %M600
+*		Process image: 0
+*		Number of elements: 256
+*		Data size (bytes): 8
+0048	00 00 02 58 00 00 01 00 00 00 00 08 
+
+*
+* List of all references to data allocated on data blocks
+* along with the whole information required by the run-time linker
+*
+
+DBIDX: 500 - DBTYPE: 0
+0000	00 14 01 F4 00 00 00 00 00 00 00 00 
+
+
+DBIDX: 600 - DBTYPE: 0
+000C	00 18 02 58 00 00 00 00 00 00 00 00 
+
+
+DBIDX: 400 - DBTYPE: 0
+0018	00 10 01 90 00 00 00 00 00 00 00 00 
+
+
+DBIDX: 300 - DBTYPE: 0
+0024	00 0C 01 2C 00 00 00 00 00 00 00 00 
+
+
+DBIDX: 200 - DBTYPE: 2
+0030	00 08 00 C8 00 00 00 00 00 02 00 00 
+
+
+DBIDX: 700 - DBTYPE: 0
+003C	00 1C 02 BC 00 00 00 00 00 00 00 00 
+
+
+DBIDX: 100 - DBTYPE: 1
+0048	00 04 00 64 00 00 00 00 00 01 00 00 
+
+
+***************************************************
+	 FUNCTION INDIRECT ALLOCATION
+***************************************************
+
+NAME: WORDTODOUT  - OFFSET: 24
+
+NAME: STRNCMP  - OFFSET: 72
+
+NAME: DINTOWORD  - OFFSET: 4
+
+NAME: TONL  - OFFSET: 84
+
+NAME: TMONOL  - OFFSET: 92
+
+NAME: TPULSE  - OFFSET: 56
+
+NAME: STRNCAT  - OFFSET: 76
+
+NAME: ST_STRING  - OFFSET: 400
+
+NAME: DINTOLONG  - OFFSET: 12
+
+NAME: TPULSEL  - OFFSET: 96
+
+NAME: RISEEDGE  - OFFSET: 60
+
+NAME: DOUTTOWORD  - OFFSET: 20
+
+NAME: LONGTODIN  - OFFSET: 16
+
+NAME: TON  - OFFSET: 44
+
+NAME: STRCPY  - OFFSET: 80
+
+NAME: DOUTTOLONG  - OFFSET: 28
+
+NAME: EXECPLCFUN  - OFFSET: 0
+
+NAME: TMONO  - OFFSET: 52
+
+NAME: LONGTODOUT  - OFFSET: 32
+
+NAME: TOFFL  - OFFSET: 88
+
+NAME: FALLEDGE  - OFFSET: 64
+
+NAME: STRNCPY  - OFFSET: 68
+
+NAME: VBTOWORD  - OFFSET: 36
+
+NAME: TOFF  - OFFSET: 48
+
+NAME: WORDTODIN  - OFFSET: 8
+
+NAME: STRICMP  - OFFSET: 112
+
+NAME: WORDTOVB  - OFFSET: 40

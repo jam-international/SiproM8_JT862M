@@ -1,0 +1,28 @@
+﻿[Settings]
+    26, 26, 476, 459
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    True, True, True, True, True, False, False, False, False, False, False, False, False
+    1
+    1
+    False
+[EndSettings]
+[Table]
+       1,     1955,        0, in cucitura, 65535, FF000000, 0, 0, 0, True, False, False
+       1,     4805,        0, finita cucitura, 65535, FF000000, 0, 0, 0, True, False, False
+       1,        8,        0, Vb8_ExitAutomatico, 65535, FF00FFFF, 0, 0, 0, True, False, False
+       2,       11,        0, case CicloAutomatico, 65535, FF008080, 0, 0, 0, True, False, False
+       1,     4508,        0, tasto Piegatore, 65535, FF00FF00, 0, 0, 0, True, False, False
+       1,     4509,        0, stato tasto Piegatore, 65535, FF0000FF, 0, 0, 0, True, False, False
+       1,     4510,        0, tasto Caricatore, 65535, FF8000FF, 0, 0, 0, True, False, False
+       1,     4511,        0, stato tasto caricatore, 65535, FF008000, 0, 0, 0, True, False, False
+       1,     4000,        0, Vb4000_Automatico, 65535, FFFF0000, 0, 0, 0, True, False, False
+       1,     4015,        0, PrgCaricatoreRun, 65535, FFFF8000, 0, 0, 0, True, False, False
+       1,     4507,        0, Vb4507_AppManAuto, 65535, FFFF00FF, 0, 0, 0, True, False, False
+       3,     3511,        0, , 65535, FF800080, 0, 0, 0, True, False, False
+       3,     3510,        0, , 65535, FF808000, 0, 0, 0, True, False, False
+       2,      111,        0, , 65535, FF000000, 0, 0, 0, True, False, False
+       2,      132,        0, step ciclo Piegatore, 65535, FF000000, 0, 0, 0, True, False, False
+       2,       10,        0, , 65535, FF000000, 0, 0, 0, True, False, False
+       1,     1009,        0, , 65535, FF000000, 0, 0, 0, True, False, False
+       2,     1004,        0, , 65535, FF000000, 0, 0, 0, True, False, False
+[EndTable]

@@ -1,0 +1,48 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_TestPinzaAgo   
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        Mauro        1.0     27-02-2020
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+
+#include "defvar.h"
+
+
+sub ()
+        Vb4350_AppAut_o18_C1_Pinza_int = OFF
+        Vb4367_AppAut_o19_C1_Pinza_est = OFF 
+            Delays (0.1)
+	//	WaitCond ( i24_C1_PinzaEstAlta == 0)
+        // Comando azzeramento AsseX
+    VbCmdAzzAx1 = 1
+        // Comando azzeramento AsseY
+    VbCmdAzzAx2 = 1
+        // Attende fine azzeramento asse AsseX 
+    WaitCond ( ( VbFlgAzzAx1 == 1 ) and ( VnFaseZeroAx1 >= 7 ) )
+    WaitCond ( ( VbFlgAzzAx2 == 1 ) and ( VnFaseZeroAx2 >= 7 ) )
+	fp[ C1_AsseX ] = 100   
+    fp[ C1_AsseY ] = 100    
+    Delays (1.5)   
+	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
+	if ( Vb4078_TestHomeC1 == 0 )
+		ax[ C1_AsseX ] = Vq3535_PosAsseX_TaraturaPinzaAgo    
+		ax[ C1_AsseY ] = Vq3536_PosAsseY_TaraturaPinzaAgo
+        Delays (0.1) 
+	else
+		ax[ C1_AsseX ] = C1_QuoHomeX    
+		ax[ C1_AsseY ] = C1_QuoHomeY
+        Delays (0.1) 
+	endif
+	C1_AssiAzzerati = ON
+
+endsub
+

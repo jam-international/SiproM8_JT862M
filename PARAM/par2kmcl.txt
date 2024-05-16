@@ -1,0 +1,9 @@
+[StartMechatr]
+  #Version 1.0.6.6574
+
+  [StartNetMechatr]
+    #CanAdd NodeMechatrDrvPos
+    NetId = 1
+    NetEnable = 1
+  [EndNetMechatr]
+[EndMechatr]

@@ -1,0 +1,34 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_PreCucitura.src
+//              Operazioni prima di eseguire la cucitura
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+
+#include "DefVar.h"
+
+
+
+sub ()
+
+        //// aspetto a cucire se ho il quarto XL
+    if ( Vb4518_EnbQuartoXL and Vb4507_AppManAuto )
+        do
+            if ( ( PosAx_C2_AsseCAR < ( Vq3525_PosizioneTraslAspScaricoC2_XL + 10 ) and VbChn2AutoRun == 0 ) or Vb4507_AppManAuto == 0 )
+                Exitdo
+            endif
+        loop
+    endif
+
+endsub
+

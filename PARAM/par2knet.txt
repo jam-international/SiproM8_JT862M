@@ -1,0 +1,39 @@
+[StartNets]
+  #Version 1.0.6.12207
+  [StartNote]
+    File di Configurazione Reti Ethernet (Default)
+  [EndNote]
+
+
+  [StartEth]
+    Ch = 0
+
+    [StartPar]
+      Client = "192.168.0.92"
+      Server = "192.168.0.30"
+      Gateway = "192.168.0.1"
+      Mask = "255.255.255.0"
+      EthSpeed = 100
+    [EndPar]
+
+    [StartNetPort]
+      FtpPort = 21
+    [EndNetPort]
+  [EndEth]
+
+  [StartEth]
+    Ch = 1
+
+    [StartPar]
+      Client = "192.168.0.93"
+      Server = "192.168.0.30"
+      Gateway = "192.168.0.1"
+      Mask = "255.255.255.0"
+      EthSpeed = 100
+    [EndPar]
+
+    [StartNetPort]
+      FtpPort = 21
+    [EndNetPort]
+  [EndEth]
+[EndNets]

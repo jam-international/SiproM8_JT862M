@@ -1,0 +1,287 @@
+[StartOrigins]
+
+  [StartNote]
+  backup date: 25/02/2022  10:18:03
+  [EndNote]
+
+  [StartAxOrig]
+    OrgNum = 1
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 2
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 3
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 4
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 5
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 6
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 7
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 8
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 9
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 10
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 11
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 12
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 13
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 14
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 15
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 16
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 17
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 18
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 19
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+  [StartAxOrig]
+    OrgNum = 20
+    OrgAxis1 = 0.000
+    OrgAxis2 = 0.000
+    OrgAxis3 = 0.000
+    OrgAxis4 = 0.000
+    OrgAxis5 = 0.000
+    OrgAxis6 = 0.000
+    OrgAxis7 = 0.000
+    OrgAxis8 = 0.000
+    OrgAxis9 = 0.000
+    OrgAxis10 = 0.000
+  [EndAxOrig]
+
+[EndOrigins]

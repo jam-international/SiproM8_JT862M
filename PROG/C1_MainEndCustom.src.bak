@@ -1,0 +1,84 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_MainEndCustom.src
+//              Personalizzazioni alla fine del programma Main    
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+#include "DefVar.h"
+
+
+
+sub ()
+// se è attivo lo scaricatore pezzi corti mando la pinza dietro
+	Vb36_Clear_OPT1 = ON	//apro retrattile
+	Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
+	Vb38_Clear_OPT3 = ON	//disattivo salto piedino
+
+	if ( Vb4515_AppEnbScaricatore and Vb4519_AppScaricoCortiConPinza)
+		Vb4520_AppScaricoCortiConPinzaRunning = ON
+		Vb4350_AppAut_o18_C1_Pinza_int = ON
+		Vb4351_AppAut_o19_C1_Pinza_est = ON 
+		WaitCond ( i24_C1_PinzaEstAlta == 1)
+		ISO G1 X C1_QuoHomeX Y (C1_QuoHomeY + Vq3084_SpostamentoPinzaPezziCorti) F C1_VelFeed
+		Vb4350_AppAut_o18_C1_Pinza_int = OFF
+		Vb4351_AppAut_o19_C1_Pinza_est = OFF 
+		WaitCond ( i23_C1_PinzaIntBassa == 1)
+		Delays (0.1)
+		ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F C1_VelFeed
+		
+		if ( Vb4515_AppEnbScaricatore and (Vb4034_ScaricOnSuRasafilo == 0 or Vb4519_AppScaricoCortiConPinza ==1 ))
+			Vb4032_AppScaricatoreStrBarre = ON
+		endif
+		Vb4520_AppScaricoCortiConPinzaRunning = OFF
+		
+
+	endif
+
+
+
+// alzo le pinze dopo azzeramento
+	if ( Vb4803_AppResetHmiC1 == 0 and Vb4507_AppManAuto == 0 )
+		Vb4350_AppAut_o18_C1_Pinza_int = ON
+		Vb4351_AppAut_o19_C1_Pinza_est = ON 
+		Vb4096_AppOnScartafiloC1 = ON
+		WaitCond ( i24_C1_PinzaEstAlta == 1)
+		Vb36_Clear_OPT1 = ON	//apro retrattile
+		Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
+		Vb38_Clear_OPT3 = ON	//disattivo salto piedino
+		
+	endif
+
+// azzero numero punti fatti 
+	C1_VqActPntCuci = 0
+
+
+// scaricatore
+
+	if ( Vb4515_AppEnbScaricatore and (Vb4034_ScaricOnSuRasafilo == 0 or Vb4519_AppScaricoCortiConPinza ==1 ))
+		Waitcond ( Vb4031_AppScaricatoreInPos ) /// aspetto il tempo per lo spostamento dx sx dello scaricatore
+		Vb4032_AppScaricatoreStrBarre = ON
+	endif
+
+// gestione tasca dx/sx
+	if(Vb21_Tasca_dx_sx)
+		if(Vn196_Tasca_DX_C1 == 1 and Vn197_Tasca_SX_C1 == 0)
+			Vn196_Tasca_DX_C1 = 0
+			Vn197_Tasca_SX_C1 = 1
+		else
+			Vn196_Tasca_DX_C1 = 1
+			Vn197_Tasca_SX_C1 = 0
+		endif
+	endif
+	Vb34_FinitoCucitura_C1 = ON	//segnalo che è finita la cucitura   
+endsub
+

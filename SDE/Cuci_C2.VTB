@@ -1,0 +1,41 @@
+﻿[Settings]
+    483, 3, 474, 797
+    0, 1, 2, 3, 4, 5
+    True, True, True, True, True, True
+    1
+    1
+    False
+[EndSettings]
+[Table]
+       1,     2951,        0, Start, 65535
+       1,     2952,        0, Hold, 65535
+       1,     2953,        0, Release, 65535
+       1,     2954,        0, End, 65535
+       1,     2955,        0, Run, 65535
+       1,     2956,        0, Rall, 65535
+       1,     2957,        0, Rasafilo, 65535
+       1,     2958,        0, AgoAzz, 65535
+       1,     2959,        0, CamMovimento, 65535
+       1,     2960,        0, AxInMovimento, 65535
+       1,     2961,        0, LastPoint, 65535
+       1,     2962,        0, Suspend, 65535
+       1,     2963,        0, CuciIsoMode, 65535
+       2,     2951,        0, ErrCuci, 65535
+       2,     2952,        0, Status, 65535
+       2,     2953,        0, ZeroCuciCnt, 65535
+       2,     2954,        0, PntRall, 65535
+       2,     2955,        0, OvdAgo, 65535
+       2,     2956,        0, RpmAgo, 65535
+       2,     2957,        0, InfoPoint, 65535
+       3,     2951,        0, TotPunti, 65535
+       3,     2952,        0, ActPunti, 65535
+       3,     2953,        0, EncImpCuci, 65535
+       3,     2954,        0, EncMmCuci, 65535
+       3,     2955,        0, RPM, 65535
+       3,     2956,        0, ActStart, 65535
+       3,     2957,        0, ActStop, 65535
+       3,     2958,        0, AgoStart, 65535
+       3,     2959,        0, AgoStop, 65535
+       3,     2960,        0, PTotPunti, 65535
+       3,     2961,        0, PActPunti, 65535
+[EndTable]

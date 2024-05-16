@@ -1,0 +1,184 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_Azzeramento.SRC   
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+
+'#include "DefVar.h"
+
+
+sub ()
+
+	// se ho il comando da HMI per azzerare solo la pinza salto avanti
+	if ( vb52                       )
+		Vb4350                         = 0  
+		Vb4351                         = 0   
+		DelayS( 0.1 )    
+		SyncVar( vb1003          )
+
+		if((vq51           - vq1911     )< 0.1 and (vq1911       - vq51          )> -0.1 and (vq52           - vq1912     )< 0.1 and (vq1912       - vq52          )> -0.1 )
+			goto NO_ZERO_X_Y
+		endif
+
+			goto ZERO_X_Y
+	endif
+
+	WaitCond(vb81                       ==0)  ////se alla pressione del verde avevo il pulsante reset piegatore premuto aspetto che il caricatore abbia fatto l'azzeramento
+
+	vb86                  = 1 
+        // Piedino giu
+    SyncVar( vb1004           )    
+
+        // Sgancia inseguimento crochet
+    SyncVar( vb1015               )    
+
+        // --------------------------
+        // Start azzeramento asse AGO
+
+        // Se il sensore e' scoperto si va avanti finche' non si copre il sensore
+    if ( din22            )
+        AxAnt( 3         , 720 , -1, 2, 0 )         
+        WaitCond ( din22            )
+        ExecPlcFun( 75         , (3          * 100)+1 , 0 )
+        WaitCond( IsAxInStop( 3          ) ) 
+        DelayS( 0.2 )
+    endif    
+
+        // Comando di start azzeramento asse AGO
+    vb7046      = 1
+
+        // Attende fine azzeramento
+    WaitCond ( ( vb7053      == 1 ) and ( vn3051        >= 7 ) )
+
+        // Verifica se azzeramento completato con successo o con errore
+    if ( vn3051        > 7 )
+	vn2                  = 5
+        gosub "Halt.obj"
+    endif    
+
+        // Movimento a quota di ago alto
+    vn3041   = 1000
+    fp[ 3          ] = 100    
+    ax[ 3          ] = vq1703    
+
+        // Piedino su
+    SyncVar( vb1003          )    
+
+        // -----------------------------------------
+        // Comando di start azzeramento asse CROCHET 
+    vb7066      = 1
+
+        // Attende fine azzeramento
+    WaitCond ( ( vb7073      == 1 ) and ( vn3071        >= 7 ) )
+
+        // Verifica se azzeramento completato con successo o con errore
+    if ( vn3071        > 7 )
+	vn2                  = 6
+        gosub "Halt.obj"
+    endif    
+
+        // Movimento alla stessa quota dell'ago alto
+    vn3061   = 1000
+    fp[ 4          ] = 100    
+    ax[ 4          ] = vq1703    
+
+        // Aggancia inseguimento gantry
+    DelayS( 0.1 )    
+    SyncVar( vb1013              )     
+
+        // Comando azzeramento Assi rotazione 
+        // Solo se presente l'asse di rotazione
+//    if ( C1_AsseC != AX_NULL )    
+//    	VbCmdAzzAx5 = 1
+//    	VbCmdAzzAx6 = 1
+//    endif
+
+
+:ZERO_X_Y
+        // -----------------
+        // Azzeramento X e Y
+
+
+:NO_ZERO_X_Y
+        // Comando azzeramento AsseX
+
+	vb7006      = 1
+
+        // Attende fine azzeramento asse AsseX 
+    WaitCond ( ( vb7013      == 1 ) and ( vn3011        >= 7 ) )
+
+        // Verifica se azzeramento completato con errore
+    if ( vn3011        > 7 )
+	vn2                  = 7
+        gosub "Halt.obj"
+    endif
+
+        // Comando azzeramento AsseY
+    vb7026      = 1
+
+        // Attende fine azzeramento asse AsseY
+    WaitCond ( ( vb7033      == 1 ) and ( vn3031        >= 7 ) )
+
+        // Solo se presente l'asse di rotazione
+//    if ( C1_AsseC != AX_NULL )    
+//        if (Vb52RichiestaZeroAxDaHmiC1 == 0)
+//            WaitCond ( ( VbFlgAzzAx5 == 1 ) and ( VnFaseZeroAx5 >= 7 ) )
+//            WaitCond ( ( VbFlgAzzAx6 == 1 ) and ( VnFaseZeroAx6 >= 7 ) )
+//
+//            if ( VnFaseZeroAx5 > 7 )
+//		  Vn2CodiceAllarmeXHmi = 8
+//                gosub "Halt.obj"
+//            endif
+//
+//            if ( VnFaseZeroAx6 > 7 )
+//		  Vn2CodiceAllarmeXHmi = 9
+//                gosub "Halt.obj"
+//            endif
+//
+        ///// aggancio inseguimento asse C_DW
+//            ExecPlcFun( PLC_ENABLE_FOLLOW, (C1_AsseC_DW * 100), 0 )
+//
+//        endif 
+//    endif 
+
+        // Verifica se azzeramento completato con errore
+    if ( vn3031        > 7 ) 
+	vb52                       = 0  
+	vn2                  = 10
+       gosub "Halt.obj"
+    endif
+
+
+        // Carica il profilo: le quote di home sono scritte nell'header del profilo
+	vb1019                 = 1
+	gosub "C1_LoadProfilo.obj" 
+
+
+        // Movimento a posizione di home ( coordinate macchina )
+     vq1962     = vq1717            
+     if ( vq1918        < vq1962     )           // #M200717_1GF#
+        vq1962     = vq1918       
+    endif
+    if(vq1962     == 0 )
+	vq1962     = vq1717            
+    endif
+    ISO G1 X vq1911      Y vq1912      F vq1962    
+
+        // Operazioni finali Custom
+    gosub "C1_AzzEndCustom"    
+
+		// setto cucitrice 1 azzerata
+	vb1032          = 1 
+	vb52                       = 0  
+	vb86                  = 0  
+endsub

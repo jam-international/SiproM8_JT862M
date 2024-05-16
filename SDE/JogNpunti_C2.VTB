@@ -1,0 +1,15 @@
+[Settings]
+    135, 32, 606, 206
+    0, 1, 2, 3, 4, 5
+    True, True, True, True, True, True
+    1
+    1
+    False
+[EndSettings]
+[Table]
+       3,     2011,        0, N-punti, 65535
+       3,     2012,        0, VelPerc, 65535
+       3,     2013,        0, Msk, 65535
+       1,     2012,        0, Ava, 65535
+       1,     2013,        0, Ind, 65535
+[EndTable]

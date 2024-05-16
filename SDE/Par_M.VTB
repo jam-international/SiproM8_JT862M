@@ -1,0 +1,15 @@
+﻿[Settings]
+    0, 0, 827, 723
+    0, 1, 2, 3, 4, 5
+    True, True, True, True, True, True
+    1
+    1
+    False
+[EndSettings]
+[Table]
+       3,     1918,        0, feed, 65535
+       3,     1919,        0, tensione, 65535
+       3,     1921,        0, Magnete sopra, 65535
+       3,     1922,        0, Magnete sotto, 65535
+       3,     3511,        0, Vel Caricatore, 65535
+[EndTable]

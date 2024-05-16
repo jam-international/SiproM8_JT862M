@@ -1,0 +1,48 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: CaricatoreMan.src   
+//
+// NOTE:                                NAME:          VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        Mauro          1.0     23/04/2019
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+#include "defvar.h"
+
+
+sub ()
+:INIZIO
+	do //in questo fork, quando con il PLC avrò messo la tasca e premuto i pulsanti di start farò avanzare il caricatore sotto le pinze
+		if ( Vb4005_AvvioCaricatore )				/// aspetto il plc che la rimette a zero4
+		
+			Vb4015_PrgCaricatoreRun = ON
+			Vb4005_AvvioCaricatore = OFF
+			ExitDo
+		endif
+		if(Vb8_ExitAutomatico == OFF)	//se tolgo automatico del caricatore...esco
+			goto ESCI
+		endif
+		
+	loop
+
+	do	// attendo la cucitrice 1 libera e poi faccio avanzare il caricatore
+		if ( C1_VbRunCuci == OFF and i24_C1_PinzaEstAlta and i23_C1_PinzaIntBassa == 0 ) // and ( PosAx_C2_AsseCAR < ( Vq3522_PosizioneTraslCaricoTascaC1 - 1 ))) 
+			AxAnt( C1_AsseCAR, Vq3502_PosizioneCaricScaricoTasca , -Vq3511_VelocitaCaricLavoro, 2, 0 )  
+			exitdo
+		endif
+	loop
+
+
+	///// set finale
+	Vb4012_FlagTascaPronta = ON	//informo ilCicloAutomatico che la tasca è stata portata sotto le pinze di cucitura
+
+	goto INIZIO
+:ESCI
+endsub
+

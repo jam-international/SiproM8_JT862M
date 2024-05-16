@@ -1,0 +1,20 @@
+[Settings]
+    0, 0, 582, 340
+    0, 1, 2, 3, 4, 5
+    True, True, True, True, True, True
+    1
+    1
+    False
+[EndSettings]
+[Table]
+       9,        3,        0, C1 AGO, 65535
+       9,        4,        0, C1 CROCHET, 65535
+       3,     1030,        0, C1 Errore istantaneo, 65535
+       3,     1031,        0, C1 Errore massimo, 65535
+       3,     1032,        0, C1 Reset errore massimo, 65535
+       2,     3047,        0, C1 Disable drive AGO, 65535
+       1,     7047,        0, C1 Disable PID AGO, 65535
+       1,     1013,        0, C1 Enable Gantry, 65535
+       1,     1014,        0, C1 Enable StdFollow, 65535
+       1,     1015,        0, C1 Disable Follow, 65535
+[EndTable]

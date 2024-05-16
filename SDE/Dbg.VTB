@@ -1,0 +1,13 @@
+﻿[Settings]
+    615, 8, 466, 247
+    0, 1, 2, 3, 4, 5
+    True, True, True, True, True, True
+    1
+    1
+    False
+[EndSettings]
+[Table]
+       3,     1710,        0, , 65535
+       3,     1913,        0, , 65535
+       2,     1003,        0, , 65535
+[EndTable]
