@@ -181,4 +181,5 @@ sub ()
 	C1_AssiAzzerati = ON
 	Vb52RichiestaZeroAxDaHmiC1 = OFF
 	Vb86In_Azzeramento_C1 = OFF
+
 endsub

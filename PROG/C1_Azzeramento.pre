@@ -181,4 +181,5 @@ sub ()
 	vb1032          = 1 
 	vb52                       = 0  
 	vb86                  = 0  
+
 endsub

@@ -247,7 +247,9 @@
 #define Vb93_RotazRevolver			vb93		// = 1 il revolver fa un passo di rotazione
 #define Vb94_Cambiare_revolver		Vb94		// =1 è ora di cambiare il revolver
 #define Vb95_ResetConteggio			vb95		// tasto Reset HMI rimette il conteggio 1/7
-
+//
+#define Vb97_InversioneRetrattile	vb97		// = 1 invertire i tubi aria dell'apri chiudi della retrattile
+#define Vb98_ArrestaAssiQuick		vb98		// = 1 ferma tutti gli assi in quick mode
 #define	VbTest					    vb99		// per test
 
     // Debugger
@@ -261,6 +263,14 @@
 #define FronteSensIRQ2				vb111
 #define FronteSensIRQ3				vb112
 
+#define Vb115CricchettoRinforzo		vb115		//ad ON lancia il ciclo per inserire la fettuccia nei rulli
+#define Vb116RinforzoGiu_HMI		vb116		//ad ON HMI chiede al PLC di abbassare i coltelli del rinforzo
+//#define Vb117Rinforzo_un_ciclo_HMI	vb117		//ad ON HMI chiede al PLC di fare un ciclo taglio completo
+
+
+#define LeggoTemperaturaDriverAgo 	vb118		//1 = il PLC tramite Ethercat legge la temperatura del driver Ago
+#define LeggoTemperaturaDriverCro 	vb119		//1 = il PLC tramite Ethercat legge la temperatura del driver Crochet
+#define LeggoTemperaturaDriverCar 	vb120		//1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore
 //------------------------------------------------------------------------
 //
 // #######################################
@@ -421,7 +431,7 @@
 #define Vb4145_AppMan_o13_Valvolone						Vb4145
 #define Vb4146_AppMan_o14_C1_rasafilo					Vb4146
 #define Vb4147_AppMan_o15_EvAspiratore					Vb4147
-#define Vb4148_AppMan_o16								Vb4148
+#define Vb4148_AppMan_o16_coltello_rinforzo				Vb4148
 #define Vb4149_AppMan_o17_C1_Piedino					Vb4149
 #define Vb4150_AppMan_o18_C1_Pinza_int					Vb4150
 #define Vb4151_AppMan_o19_C1_Pinza_est					Vb4151
@@ -435,12 +445,15 @@
 #define Vb4159_AppMan_o27_C1_Ranocchia_retrat			Vb4159
 #define Vb4160_AppMan_o28_Prima_barra					Vb4160
 #define Vb4161_AppMan_o29_Seconda_barra					Vb4161
-#define Vb4162_AppMan_o30								Vb4162
+#define Vb4162_AppMan_o30_rullo_rinforzo				Vb4162
 #define	Vb4163_AppMan_o31_bloccaFiloMagente				Vb4163
 #define Vb4164_AppMan_o32_Enable_AssiXY_C1C2			Vb4164
 #define Vb4165_AppMan_o33_Gancio_AutoBC					Vb4165
 #define Vb4166_AppMan_o34_Rotaz_AutoBC					Vb4166
 #define Vb4167_AppMan_o35_Braccio_AutoBC				Vb4167
+#define Vb4168_AppMan_o36_coltello_rinforzo				Vb4168
+#define Vb4169_AppMan_o37_calamita_rinforzo				Vb4169
+#define Vb4170_AppMan_o38_rullo_rinforzo				Vb4170
 
 
 
@@ -469,7 +482,7 @@
 #define Vb4345_AppAut_o13_Valvolone						Vb4345
 #define Vb4346_AppAut_o14_C1_rasafilo					Vb4346
 #define Vb4347_AppAut_o15_EvAspiratore					Vb4347
-#define Vb4348_AppAut_o16								Vb4348
+#define Vb4348_AppAut_o16_coltello_rinforzo				Vb4348
 #define Vb4349_AppAut_o17_C1_Piedino					Vb4349
 #define Vb4350_AppAut_o18_C1_Pinza_int					Vb4350
 #define Vb4351_AppAut_o19_C1_Pinza_est					Vb4351
@@ -483,13 +496,15 @@
 #define Vb4359_AppAut_o27_C1_Ranocchia_retrat			Vb4359
 #define Vb4360_AppAut_o28_Prima_barra					Vb4360
 #define Vb4361_AppAut_o29_Seconda_barra					Vb4361
-#define Vb4362_AppAut_o30								Vb4362
+#define Vb4362_AppAut_o30_rullo_rinforzo				Vb4362
 #define Vb4363_AppAut_o31_bloccaFiloMagente				Vb4363
 #define Vb4364_AppAut_o32_Enable_AssiXY_C1C2			Vb4364
 #define Vb4365_AppAut_o33_Gancio_AutoBC					Vb4365
 #define Vb4366_AppAut_o34_Rotaz_AutoBC					Vb4366
 #define Vb4367_AppAut_o35_Braccio_AutoBC				Vb4367
-
+#define Vb4368_AppAut_o36_coltello_rinforzo				Vb4368
+#define Vb4369_AppAut_o37_calamita_rinforzo				Vb4369
+#define Vb4370_AppAut_o38_rullo_rinforzo				Vb4370
 
 
 //-------------------------------------------------------------------------
@@ -694,7 +709,9 @@
 
 #define Vn170_IdxAutoBobbinChanh		vn170
 
-#define Vn180_Device_Rinforzo			vn180	// 0= disabilitato, 1 = tipo JAM, 2 = tipo Turco
+#define Vn180_Device_Rinforzo			vn180	// 0= disabilitato, 1 = tipo JAM, 2 = tipo Turco con 3 schede IO Ethercat, 3 = tipo Turco con 3 schede IO Ethercat
+#define Vn181_Step_Rinforzo				vn181
+
 
 #define	Vn196_Tasca_DX_C1				vn196
 #define	Vn197_Tasca_SX_C1				vn197
@@ -738,6 +755,30 @@
 #define vntest						vn777
 #define vntest1						vn778
 #define vntest2						vn779
+// Leggo temperature motore Ago Delta
+#define Fun301_ago_vn800_err		vn800
+#define Fun301_ago_vn801_rete		vn801
+#define Fun301_ago_vn802_noto		vn802
+#define Fun301_ago_vn803_indice		vn803
+#define Fun301_ago_vn804_sub		vn804
+#define Fun301_ago_vn805_dim		vn805
+#define Fun301_ago_vn806_idResult	vn806
+// Leggo temperature motore Crochet Delta
+#define Fun301_Crochet_vn810_err		vn810
+#define Fun301_Crochet_vn811_rete		vn811
+#define Fun301_Crochet_vn812_noto		vn812
+#define Fun301_Crochet_vn813_indice		vn813
+#define Fun301_Crochet_vn814_sub		vn814
+#define Fun301_Crochet_vn815_dim		vn815
+#define Fun301_Crochet_vn816_idResult	vn816
+// Leggo temperature motore Caricagore Delta
+#define Fun301_Car_vn820_err		vn820
+#define Fun301_Car_vn821_rete		vn821
+#define Fun301_Car_vn822_noto		vn822
+#define Fun301_Car_vn823_indice		vn823
+#define Fun301_Car_vn824_sub		vn824
+#define Fun301_Car_vn825_dim		vn825
+#define Fun301_Car_vn826_idResult	vn826
 
 //------------------------------------------------------------------------
 //
@@ -765,6 +806,7 @@
 #define VnStatoAx2              vn3033      // Asse 2 - Status asse
 
 #define VnOvdAx3                vn3041      // Asse 3 - Override indipendente
+#define VnSpeedJogAx3           vn3042      // Asse 3 - Velocità Jog
 #define VnFaseZeroAx3           vn3051      // Asse 3 - Fase azzeramento
 #define VnStatoAx3           	vn3053      // Asse 3 - Status asse
 
@@ -1008,6 +1050,10 @@
 
 #define ContIRQSensPiegatore_su_IDX		3160 		// [INT]irq sensore piegatore su 
 #define Vq3160_ContSensPiegatoreSu		Vq3160 		// punti contati dalla molla rottura filo
+
+#define Vq3162TemperaturaDriverAgo		Vq3162		//coontiene la temperatura del driver ago (si legge cone VB118)
+#define Vq3163TemperaturaDriverCro		Vq3163		//coontiene la temperatura del driver crochet (si legge cone VB119)
+#define Vq3164TemperaturaDriverCar		Vq3164		//coontiene la temperatura del driver caricatore (si legge cone VB120)
 //------------------------------------------------------------------------
 // VQ da utilizzare per il ciclo automatico pos ax Vq3500-Vq3599
 //------------------------------------------------------------------------
@@ -1189,9 +1235,9 @@
 #define i20_C1_FcMinAsseY		din20	//
 #define i21_Emg					din21	//
 #define i22_C1_FcZeroAgo		din22	//
-#define i23_C1_PinzaIntBassa	din23 //i28_Rinforzo_ready
+#define i23_C1_PinzaIntBassa	din23 //
 #define i24_C1_PinzaEstAlta		din24
-#define i25_PulsResetFolder		din25 //i27_Rinforzo_Attivo
+#define i25_PulsResetFolder		din25 //
 #define i26_C1_PulsStopTesta	din26	//
 #define i27_Rinforzo_Attivo		din27
 #define i28_Rinforzo_ready		din28
@@ -1221,10 +1267,10 @@
 #define o10_Piegatore_AD		dout10      //
 #define o11_Piegatore_Su_Giu	dout11      //
 #define o12_Bilanciere_Su_Giu	dout12      // 
-#define o13_Valvolone										dout13      //
-#define o14_C1_rasafilo						dout14      //
+#define o13_Valvolone			dout13      //
+#define o14_C1_rasafilo			dout14      //
 #define o15_EvAspiratore		dout15      // 
-#define o16						dout16      //
+#define o16_coltello_rinforzo	dout16      //
 
 #define o17_C1_Piedino				dout17      // 
 #define o18_C1_Pinza_int			dout18      // 	
@@ -1239,12 +1285,15 @@
 #define o27_C1_Ranocchia_retrat		dout27      //
 #define o28_Prima_barra				dout28      // 
 #define o29_Seconda_barra			dout29      // 
-#define o30				dout30      //
+#define o30_rullo_rinforzo			dout30      //
 #define o31_bloccaFiloMagente		dout31      //
 #define o32_Enable_AssiXY_C1C2		dout32      //
 #define o33_Gancio_AutoBC			dout33		//AutoBobbinChanger
 #define o34_Rotaz_AutoBC			dout34		//AutoBobbinChanger
 #define o35_Braciio_AutoBC			dout35		//AutoBobbinChanger
+#define o36_coltello_rinforzo		dout36		//device rinforzo pneumatico
+#define o37_calamita_rinforzo		dout37		//device rinforzo pneumatico
+#define o38_rullo_rinforzo			dout38		//device rinforzo pneumatico
 
 
 // ============================================================================

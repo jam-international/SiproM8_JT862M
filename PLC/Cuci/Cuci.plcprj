@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<plcProject caseSensitive="false" useCustomWorkspace="false" debugMode="false" extcheck="true" SFCControl="false" strictPointerCheck="false" strictEnumsCheck="false" copyWarningThreshold="200" version="2.7" useLD2="false" useXPLCFiles="false" useFBMethods="false">
+<plcProject caseSensitive="false" useCustomWorkspace="false" debugMode="false" extcheck="true" SFCControl="false" strictPointerCheck="false" PNContactsOnEachNetwork="false" LocalVarsFBAccess="false" strictEnumsCheck="false" copyWarningThreshold="200" version="2.8" useLD2="false" useXPLCFiles="false" useFBMethods="false" customSortOfProjectTree="false">
 	<image>Cuci.imgx</image>
 	<commSettings>SiaxProComm:0,1000,T#TCPIP:192.168.0.92/12003,5000</commSettings>
 	<sources>
@@ -34,6 +34,7 @@
 					<program>Contatori</program>
 					<program>Timeout_Sensori</program>
 					<program>AutoBobbinChanger</program>
+					<program>Rinforzo</program>
 				</task>
 				<task name="Boot">
 					<program>Boot</program>
@@ -44,7 +45,7 @@
 				</task>
 			</tasks>
 			<globalVars>
-				<group name="Ungrouped_vars" excludeFromBuild="FALSE">
+				<group name="Ungrouped_vars" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="" version="1.0.0">
 					<var name="vret" type="DINT"/>
 					<var name="EnbAutomatico" type="BOOL"/>
 					<var name="FallEnbAutomatico" type="FallEdge"/>
@@ -73,12 +74,8 @@
 					<var name="PiegatoreStaSalendo" type="BOOL"/>
 				</group>
 			</globalVars>
-			<retainVars>
-				<group name="Ungrouped_vars" excludeFromBuild="FALSE"/>
-			</retainVars>
-			<constantVars>
-				<group name="Ungrouped_vars" excludeFromBuild="FALSE"/>
-			</constantVars>
+			<retainVars/>
+			<constantVars/>
 			<iecVarsDeclaration>
 				<group name="Ungrouped_vars">
 					<iecDeclaration active="FALSE"/>
@@ -87,7 +84,7 @@
 			<functions/>
 			<functionBlocks/>
 			<programs>
-				<program name="Emergenze" version="1.0.0" creationDate="0" lastModifiedDate="1713347293" excludeFromBuild="FALSE">
+				<program name="Emergenze" version="1.0.0" creationDate="0" lastModifiedDate="1721399451" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="Rise_ciclo_emergenza_attivata" type="RiseEdge"/>
@@ -171,6 +168,7 @@ if(Rise_ciclo_emergenza_attivata.q) then
  	C2_ReloadParam			 		 := TRUE ;(* forzo la rilettura dei programmi*)
 	C1_CuciSimulaAuto				:= FALSE ;
 	Vb30_C1_InCucitura				:= FALSE;
+	Vb115CricchettoRinforzo			:= FALSE;
 	
 	(* azzera OPT *)
 
@@ -205,7 +203,7 @@ if(Rise_ciclo_emergenza_attivata.q) then
 	Vb4145_AppMan_o13_Valvolone          	:= FALSE ;
 	Vb4146_AppMan_o14_C1_rasafilo  			:= FALSE ;	   		 
 	Vb4147_AppMan_o15_EvAspiratore   		:= FALSE ;
-	Vb4148_AppMan_o16						:= FALSE ;
+	Vb4148_AppMan_o16_coltello_rinforzo		:= FALSE ;
 	Vb4149_AppMan_o17_C1_Piedino          	:= FALSE ;			      
 	Vb4150_AppMan_o18_C1_Pinza_int        	:= FALSE ; 			      
 	Vb4151_AppMan_o19_C1_Pinza_est        	:= FALSE ;   		     
@@ -219,10 +217,16 @@ if(Rise_ciclo_emergenza_attivata.q) then
 	Vb4159_AppMan_o27_C1_Ranocchia_retrat 	:= FALSE ;      		       
 	Vb4160_AppMan_o28_Prima_barra        	:= FALSE ;        
 	Vb4161_AppMan_o29_Seconda_barra      	:= FALSE ;         
-    Vb4162_AppMan_o30						:= FALSE ;
-	Vb4163_AppMan_o31_bloccaFiloMagente			:= FALSE ;
-	Vb4164_AppMan_o32_Enable_AssiXY_C1C2	:= FALSE ;	  
-
+    Vb4162_AppMan_o30_rullo_rinforzo		:= FALSE ;
+	Vb4163_AppMan_o31_bloccaFiloMagente		:= FALSE ;
+	Vb4164_AppMan_o32_Enable_AssiXY_C1C2	:= FALSE ;	
+	Vb4165_AppMan_o33_Gancio_AutoBC			:= FALSE ;	
+	Vb4166_AppMan_o34_Rotaz_AutoBC			:= FALSE ;	
+	Vb4167_AppMan_o35_Braccio_AutoBC		:= FALSE ;	
+	Vb4168_AppMan_o36_coltello_rinforzo		:= FALSE ;	
+	Vb4169_AppMan_o37_calamita_rinforzo		:= FALSE ;	
+	Vb4170_AppMan_o38_rullo_rinforzo		:= FALSE ;	
+	
 		(* reset appoggio vb uscite automatico *)
 	Vb4333_AppAut_o1_Piegatore_1  			:= FALSE ;				
 	Vb4334_AppAut_o2_Piegatore_2     		:= FALSE ;		
@@ -233,14 +237,13 @@ if(Rise_ciclo_emergenza_attivata.q) then
 	Vb4339_AppAut_o7_Cambio_lame_lateral  	:= FALSE ; 		
 	Vb4340_AppAut_o8_Cambio_Lamelle_4_5   	:= FALSE ; 					  
 	Vb4341_AppAut_o9_Lancia_AD            	:= FALSE ;		  
-	Vb4342_AppAut_o10_Piegatore_AD
-	         	:= FALSE ;		  
+	Vb4342_AppAut_o10_Piegatore_AD			:= FALSE ;		  
 	Vb4343_AppAut_o11_Piegatore_Su_Giu     	:= FALSE ;		  
 	Vb4344_AppAut_o12_Bilanciere_Su_Giu    	:= FALSE ; 		  
 	Vb4345_AppAut_o13_Valvolone           	:= FALSE ;				
 	Vb4346_AppAut_o14_C1_rasafilo          	:= FALSE ;			 
 	Vb4347_AppAut_o15_EvAspiratore   	   	:= FALSE ;
-	Vb4348_AppAut_o16						:= FALSE ;
+	Vb4348_AppAut_o16_coltello_rinforzo		:= FALSE ;
 	Vb4349_AppAut_o17_C1_Piedino           	:= FALSE ;		      
 	Vb4350_AppAut_o18_C1_Pinza_int		   	:= FALSE ;		      
 	Vb4351_AppAut_o19_C1_Pinza_est         	:= FALSE ;	     
@@ -254,13 +257,17 @@ if(Rise_ciclo_emergenza_attivata.q) then
 	Vb4359_AppAut_o27_C1_Ranocchia_retrat  	:= FALSE ; 		  
 	Vb4360_AppAut_o28_Prima_barra         	:= FALSE ;  
 	Vb4361_AppAut_o29_Seconda_barra       	:= FALSE ;   
- 	Vb4362_AppAut_o30						:= FALSE ;
+ 	Vb4362_AppAut_o30_rullo_rinforzo		:= FALSE ;
  	Vb4363_AppAut_o31_bloccaFiloMagente		:= FALSE ;
  	Vb4364_AppAut_o32_Enable_AssiXY_C1C2	:= FALSE ;
- 	(* Auto Bobbin Changer*)
  	Vb4365_AppAut_o33_Gancio_AutoBC			:= FALSE ;
 	Vb4366_AppAut_o34_Rotaz_AutoBC			:= FALSE ;
 	Vb4367_AppAut_o35_Braccio_AutoBC		:= FALSE ;
+	Vb4368_AppAut_o36_coltello_rinforzo		:= FALSE ;
+	Vb4369_AppAut_o37_calamita_rinforzo		:= FALSE ;
+	Vb4370_AppAut_o38_rullo_rinforzo		:= FALSE ;	
+	
+	
 	Vb94_Cambiare_revolver					:= FALSE ;
 	Vb92_CambiatoRevolver					:= FALSE;		
 	Vb91_RunCambioSpola						:= FALSE;
@@ -299,7 +306,7 @@ if(Rise_ciclo_emergenza_attivata.q) then
  	Vb4511_AppEnbCaricatore				:= FALSE ;
  	C1_VqActPntCuci						:= 0;
  	Vq3160_ContSensPiegatoreSu			:= 0;
-
+	Vn181_Step_Rinforzo					:= 0;
 		(* azzeramento variabili PLC *)
 	MoveAsseY_C2_ON 	          		:= FALSE ;
 	EnbMoveAsseY_C2_ON	          		:= FALSE ;
@@ -425,10 +432,21 @@ if ( Rise_i21_Emg.q)then
 		Vb81PremutoResetAccensione := FALSE;
 	end_if;
 end_if;
+/*****************Quick stop assi*****************************************/
+if(Vb98_ArrestaAssiQuick) then
+
+	vret := ExecPlcFun( 75, 102,0 );
+	vret := ExecPlcFun( 75, 202,0 );
+	vret := ExecPlcFun( 75, 302,0 );
+	vret := ExecPlcFun( 75, 402,0 );
+	vret := ExecPlcFun( 75, 502,0 );
+	Vb98_ArrestaAssiQuick := FALSE;
+
+end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="C1_Boot" version="1.0.0" creationDate="0" lastModifiedDate="1693215494" excludeFromBuild="FALSE">
+				<program name="C1_Boot" version="1.0.0" creationDate="0" lastModifiedDate="1693215494" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars/>
 					<iecDeclaration active="FALSE"/>
 					<sourceCode type="ST">
@@ -541,7 +559,7 @@ Vn197_Tasca_SX_C1 :=0;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="C1_Camme" version="1.0.0" creationDate="0" lastModifiedDate="1704980278" excludeFromBuild="FALSE">
+				<program name="C1_Camme" version="1.0.0" creationDate="0" lastModifiedDate="1704980278" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseApritens" type="RiseEdge"/>
@@ -696,7 +714,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Boot" version="1.0.0" creationDate="0" lastModifiedDate="1715672041" excludeFromBuild="FALSE">
+				<program name="Boot" version="1.0.0" creationDate="0" lastModifiedDate="1721637120" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars/>
 					<iecDeclaration active="FALSE"/>
 					<sourceCode type="ST">
@@ -721,6 +739,8 @@ end_if;
 (*104.00 = migliorato rottura filo + conteggio positivo spola*)
 (*105.00 = il sensore alto del piegatore deve contare 2 volte IRQ + aggiunte vb42 e vb43 per TestCucitura su prima tasca*)
 (*106.00 = aggiunto variabili per colpo e durata magnete tensione*)
+(*108.00 = aggiunto vb97 per invertire tubi chiusura retrattile + Rinforzo tipo Turco con 2 e 3 schede Ethercat*)
+(*109.00 = modifica su Fai Spola (Vb4075_GiraAgoFaiSpolaC1) + Invertito valvole Rinforzo tipo 3*)
 
 	(* ------------------------------- *)
 	(* FLAG SIMULAZIONE - PER DEBUGGER *)
@@ -728,7 +748,7 @@ VbSimulaDbg := FALSE;
 
 	(* Versopne applicativo *)
 case(Vn_ID_macchina)of
-	862: App_Ver := 'JT862M - Ver 106.00 - 14.05.2024';	
+	862: App_Ver := 'JT862M - Ver 109.00 - 18.07.2024';	
 	860: App_Ver := 'JT862HM - Ver 32.00 - 29.11.2023';
 	882: App_Ver := 'JT882M - Ver 15.02 - 13.05.2021';
 end_case;
@@ -775,7 +795,7 @@ vret := ExecPlcFun( PLC_ADD_FUN_IRQ, 31, 1000 );
 ]]>
 					</sourceCode>
 				</program>
-				<program name="C1_LoadUdf" version="1.0.0" creationDate="0" lastModifiedDate="1619704873" excludeFromBuild="FALSE">
+				<program name="C1_LoadUdf" version="1.0.0" creationDate="0" lastModifiedDate="1619704873" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseBootDone" type="RiseEdge"/>
@@ -881,7 +901,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="C1_Cucitrice" version="1.0.0" creationDate="0" lastModifiedDate="1713347212" excludeFromBuild="FALSE">
+				<program name="C1_Cucitrice" version="1.0.0" creationDate="0" lastModifiedDate="1713347212" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="FallPrgRun" type="FallEdge"/>
@@ -1681,7 +1701,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="C1_AppMacchina" version="1.0.0" creationDate="0" lastModifiedDate="1704983853" excludeFromBuild="FALSE">
+				<program name="C1_AppMacchina" version="1.0.0" creationDate="0" lastModifiedDate="1704983853" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="CmdSu" type="BOOL"/>
@@ -1941,7 +1961,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="C1_CuciRtc" version="1.0.0" creationDate="0" lastModifiedDate="1712399885" excludeFromBuild="FALSE">
+				<program name="C1_CuciRtc" version="1.0.0" creationDate="0" lastModifiedDate="1712399885" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="Rise_i10_Piegatore_Salito" type="RiseEdge"/>
@@ -2038,7 +2058,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AppMainC3" version="1.0.0" creationDate="0" lastModifiedDate="1704984122" excludeFromBuild="FALSE">
+				<program name="AppMainC3" version="1.0.0" creationDate="0" lastModifiedDate="1704984122" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseBootDone" type="RiseEdge"/>
@@ -2829,7 +2849,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Piegatore" version="1.0.0" creationDate="0" lastModifiedDate="1715693334" excludeFromBuild="FALSE">
+				<program name="Piegatore" version="1.0.0" creationDate="0" lastModifiedDate="1715693334" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseLanciaAvDi" type="RiseEdge"/>
@@ -3225,7 +3245,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Uscite" version="1.0.0" creationDate="0" lastModifiedDate="1709742575" excludeFromBuild="FALSE">
+				<program name="Uscite" version="1.0.0" creationDate="0" lastModifiedDate="1720693448" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars/>
 					<iecDeclaration active="FALSE"/>
 					<sourceCode type="ST">
@@ -3489,9 +3509,17 @@ end_if;
 
 (* o20_C1_Retrattile_AC *)
 	if (( EnbManuale and Vb4152_AppMan_o20_C1_Retrattile_AC ) or ( Vb4352_AppAut_o20_C1_Retrattile_AC ))then 
-		o20_C1_Retrattile_AC := TRUE ;	
+		if( Vb97_InversioneRetrattile) then
+			o20_C1_Retrattile_AC := FALSE ;
+		else
+			o20_C1_Retrattile_AC := TRUE ;
+		end_if;		
 	else;
-		o20_C1_Retrattile_AC := FALSE ;	
+		if(Vb97_InversioneRetrattile) then
+			o20_C1_Retrattile_AC := TRUE ;
+		else
+			o20_C1_Retrattile_AC := FALSE; ;
+		end_if;	
 	end_if;
 
 	
@@ -3543,10 +3571,53 @@ end_if;
 		o23_Lentezza_Tasca_AD := FALSE ;
 	end_if;	
 
+(* o36_coltello_rinforzo *)
+	if (( EnbManuale and Vb4168_AppMan_o36_coltello_rinforzo ) or ( EnbAutomatico and Vb4368_AppAut_o36_coltello_rinforzo ))then 
+		o36_coltello_rinforzo := TRUE ;
+	else;
+		o36_coltello_rinforzo := FALSE ;
+	end_if;	
+	
+(* o37_calamita_rinforzo *)
+	if (( EnbManuale and Vb4169_AppMan_o37_calamita_rinforzo ) or ( EnbAutomatico and Vb4369_AppAut_o37_calamita_rinforzo ))then 
+		if(Vn180_Device_Rinforzo =2) then  /*tipo Turco con 3 schede IO Ethercat*/
+			o37_calamita_rinforzo := TRUE ;
+		end_if;	
+		if(Vn180_Device_Rinforzo =3) then  /*tipo Turco con 2 schede IO Ethercat*/
+			vret := ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , TO_INT ( 5000 ) );  //con alimentatore 48V
+		end_if;	
+	else;
+		if(Vn180_Device_Rinforzo =2) then	/*tipo Turco con 3 schede IO Ethercat*/
+			o37_calamita_rinforzo := FALSE ;
+		end_if;	
+		if(Vn180_Device_Rinforzo =3) then	/*tipo Turco con 2 schede IO Ethercat*/
+			vret := ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , 0 );
+		end_if;		
+	end_if;		
+	
+(* o38_rullo_rinforzo *)
+	if (( EnbManuale and Vb4170_AppMan_o38_rullo_rinforzo ) or ( EnbAutomatico and Vb4370_AppAut_o38_rullo_rinforzo ))then 
+		o38_rullo_rinforzo := TRUE ;
+	else;
+		o38_rullo_rinforzo := FALSE ;
+	end_if;
+	
+(* o16_coltello_rinforzo *)
+	if (( EnbManuale and Vb4148_AppMan_o16_coltello_rinforzo ) or ( EnbAutomatico and Vb4348_AppAut_o16_coltello_rinforzo ))then 
+		o16_coltello_rinforzo := TRUE ;
+	else;
+		o16_coltello_rinforzo := FALSE ;
+	end_if;	
+(* o30_rullo_rinforzo *)
+	if (( EnbManuale and Vb4162_AppMan_o30_rullo_rinforzo ) or ( EnbAutomatico and Vb4362_AppAut_o30_rullo_rinforzo ))then 
+		o30_rullo_rinforzo := TRUE ;
+	else;
+		o30_rullo_rinforzo := FALSE ;
+	end_if;					
 ]]>
 					</sourceCode>
 				</program>
-				<program name="RitSensori" version="1.0.0" creationDate="0" lastModifiedDate="1704984746" excludeFromBuild="FALSE">
+				<program name="RitSensori" version="1.0.0" creationDate="0" lastModifiedDate="1704984746" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="Riti24_C1_PinzaEstAlta" type="Ton"/>
@@ -3593,7 +3664,7 @@ Rit_i23_C1_PinzaIntBassa( in := ( not i23_C1_PinzaIntBassa and ( VnStatoCuci2 = 
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AppMainC1" version="1.0.0" creationDate="0" lastModifiedDate="1710422303" excludeFromBuild="FALSE">
+				<program name="AppMainC1" version="1.0.0" creationDate="0" lastModifiedDate="1710422303" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RisePinzeC1" type="RiseEdge"/>
@@ -3783,7 +3854,7 @@ if ( RiseVb4035.q )then
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AppMainC2" version="1.0.0" creationDate="0" lastModifiedDate="1704968339" excludeFromBuild="FALSE">
+				<program name="AppMainC2" version="1.0.0" creationDate="0" lastModifiedDate="1704968339" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RisePinzeC2" type="RiseEdge"/>
@@ -3824,7 +3895,7 @@ if ( RiseVb4035.q )then
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Caricatore" version="1.0.0" creationDate="0" lastModifiedDate="1704984122" excludeFromBuild="FALSE">
+				<program name="Caricatore" version="1.0.0" creationDate="0" lastModifiedDate="1704984122" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RisePinzaSuGiu" type="RiseEdge"/>
@@ -3911,7 +3982,7 @@ RisePinzaSuGiu(  in := ( i3_C1_PedanaPiegatore and not Vb4015_PrgCaricatoreRun a
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Scaricatore" version="1.0.0" creationDate="0" lastModifiedDate="1704984397" excludeFromBuild="FALSE">
+				<program name="Scaricatore" version="1.0.0" creationDate="0" lastModifiedDate="1704984397" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="Rit_o22_Scaric_dx_sx" type="Ton"/>
@@ -4055,7 +4126,7 @@ Rit_Caricatore_Avanti( in := ( Vb4033_RitardoAvanzataCaricatore ) , pt := TO_UDI
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Param_Delta" version="1.0.0" creationDate="0" lastModifiedDate="1619702712" excludeFromBuild="FALSE">
+				<program name="Param_Delta" version="1.0.0" creationDate="0" lastModifiedDate="1720591929" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars/>
 					<iecDeclaration active="FALSE"/>
 					<sourceCode type="ST">
@@ -4133,10 +4204,54 @@ if ( C1_SetParamCmd > 0 ) then
     C1_SetParamCmd := 0;
 end_if;
 
+
+
+/*Leggo Temperatura del Driver Ago Delta*/
+/*para da mettere nel Delta per leggere la temperatura P0-17 = 16*/   
+if(LeggoTemperaturaDriverAgo) then
+
+	LeggoTemperaturaDriverAgo 	:= FALSE;
+	Fun301_ago_vn801_rete 		:=1;
+	Fun301_ago_vn802_noto		:=1; //ago
+	Fun301_ago_vn803_indice 	:=8201; 
+	Fun301_ago_vn804_sub		:=0;
+	Fun301_ago_vn805_dim		:=4;
+	Fun301_ago_vn806_idResult 	:= 3162; 	//valore letto messo nella VQ3162
+	vret := ExecPlcFun( 301, 800, 801 );
+
+end_if;
+/*Leggo Temperatura del Driver Crochet Delta*/
+/*para da mettere nel Delta per leggere la temperatura P0-17 = 16*/   
+if(LeggoTemperaturaDriverCro) then
+
+	LeggoTemperaturaDriverCro 	:= FALSE;
+	Fun301_Crochet_vn811_rete 		:=1;
+	Fun301_Crochet_vn812_noto		:=2; //crochet
+	Fun301_Crochet_vn813_indice 	:=8201; 
+	Fun301_Crochet_vn814_sub		:=0;
+	Fun301_Crochet_vn815_dim		:=4;
+	Fun301_Crochet_vn816_idResult 	:= 3163; 	//valore letto messo nella VQ3163
+	vret := ExecPlcFun( 301, 810, 811 );
+
+end_if;
+/*Leggo Temperatura del Driver Caricatore Delta*/
+/*para da mettere nel Delta per leggere la temperatura P0-17 = 16*/   
+if(LeggoTemperaturaDriverCar) then
+
+	LeggoTemperaturaDriverCar 	:= FALSE;
+	Fun301_Car_vn821_rete 		:=1;
+	Fun301_Car_vn822_noto		:=3; //caricatore
+	Fun301_Car_vn823_indice 	:=8201; 
+	Fun301_Car_vn824_sub		:=0;
+	Fun301_Car_vn825_dim		:=4;
+	Fun301_Car_vn826_idResult 	:= 3164; 	//valore letto messo nella VQ3164
+	vret := ExecPlcFun( 301, 820, 821 );
+
+end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="OutAnalogicheT1" version="1.0.0" creationDate="0" lastModifiedDate="1715671899" excludeFromBuild="FALSE">
+				<program name="OutAnalogicheT1" version="1.0.0" creationDate="0" lastModifiedDate="1715671899" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseVb4061_AppTensAumentaTesta1" type="RiseEdge"/>
@@ -4565,7 +4680,7 @@ Fall_Vb4209_AppMagneteBloccaFilo (in:= Vb4209_AppMagneteBloccaFilo and VN_SYS_PA
 ]]>
 					</sourceCode>
 				</program>
-				<program name="OpCodeT1" version="1.0.0" creationDate="0" lastModifiedDate="1704984283" excludeFromBuild="FALSE">
+				<program name="OpCodeT1" version="1.0.0" creationDate="0" lastModifiedDate="1704984283" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseC1_VbRunCuci" type="RiseEdge"/>
@@ -4734,7 +4849,7 @@ Fall_Vb4209_AppMagneteBloccaFilo (in:= Vb4209_AppMagneteBloccaFilo and VN_SYS_PA
 ]]>
 					</sourceCode>
 				</program>
-				<program name="TestManutenzione" version="1.0.0" creationDate="0" lastModifiedDate="1710156188" excludeFromBuild="FALSE">
+				<program name="TestManutenzione" version="1.0.0" creationDate="0" lastModifiedDate="1710156188" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseVb4080_TestFcZeroC1" type="RiseEdge"/>
@@ -4888,7 +5003,7 @@ RiseVb4086_SavePosizioni( in := Vb4086_SavePosizioni and not Vb4507_AppManAuto )
 ]]>
 					</sourceCode>
 				</program>
-				<program name="ComandiHMI" version="1.0.0" creationDate="0" lastModifiedDate="1704983745" excludeFromBuild="FALSE">
+				<program name="ComandiHMI" version="1.0.0" creationDate="0" lastModifiedDate="1704983745" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseVb52RichiestaZeroAxDaHmiC1" type="RiseEdge"/>
@@ -5535,7 +5650,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="RotturaFilo_Spola_C1" version="1.0.0" creationDate="0" lastModifiedDate="1712915650" excludeFromBuild="FALSE">
+				<program name="RotturaFilo_Spola_C1" version="1.0.0" creationDate="0" lastModifiedDate="1721297061" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="CNT_N_PuntiRottFiloC1" type="DINT"/>
@@ -5655,6 +5770,7 @@ Fall_Vb4075_GiraAgoFaiSpolaC1 ( in:= Vb4075_GiraAgoFaiSpolaC1 and  VN_SYS_PAGE_I
 
 if(Rise_Vb4075_GiraAgoFaiSpolaC1.q) then
 
+	VnSpeedJogAx3 := 400;
 	C1_CmdPiedinoGiu := TRUE;
 	Vq108_WRITE_Vel_manualeAgo_C1 := 20000; (*vel spola 20000 = 2000rpm*)
 	Vb78SetVelManualeAsseAgo_C1 := TRUE;
@@ -5666,6 +5782,7 @@ end_if;
 if(Fall_Vb4075_GiraAgoFaiSpolaC1.q) then
 	
 	VB_AX3_JOG_PIU := FALSE;
+	VnSpeedJogAx3 := 0;
 	Vb4088_TestDisableRiposizionaAgo := FALSE;
 	Vb4008_AgoSu_C1 := TRUE;  (*lancio comando per far ritornare l'ago in posizione alta*)
 
@@ -5765,7 +5882,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Contatori" version="1.0.0" creationDate="0" lastModifiedDate="1701248089" excludeFromBuild="FALSE">
+				<program name="Contatori" version="1.0.0" creationDate="0" lastModifiedDate="1701248089" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseCntCuci1" type="RiseEdge"/>
@@ -5824,7 +5941,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Timeout_Sensori" version="1.0.0" creationDate="1627283434" lastModifiedDate="1710157317" excludeFromBuild="FALSE">
+				<program name="Timeout_Sensori" version="1.0.0" creationDate="1627283434" lastModifiedDate="1710157317" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="TonSensPinzaEstOff" type="Ton"/>
@@ -5957,7 +6074,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AutoBobbinChanger" version="1.0.0" creationDate="1709657356" lastModifiedDate="1710422012" excludeFromBuild="FALSE">
+				<program name="AutoBobbinChanger" version="1.0.0" creationDate="1709657356" lastModifiedDate="1710422012" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="mc_stati_un_passo_revolver" type="INT"/>
@@ -6248,6 +6365,138 @@ if(cmd_cerco_posto_vuoto) then
 end_if;
 	
 							 
+]]>
+					</sourceCode>
+				</program>
+				<program name="Rinforzo" version="1.0.0" creationDate="1718111140" lastModifiedDate="1721636902" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+					<vars>
+						<localVars>
+							<var name="Rise_Vb115CricchettoRinforzo" type="RiseEdge"/>
+							<var name="Ton_CricchettoRinforzo" type="Ton"/>
+							<var name="Ton_CricchettoRinforzoTaglio" type="Ton"/>
+							<var name="Out_coltello_rinforzo" type="BOOL"/>
+							<var name="Out_rullo_rinforzo" type="BOOL"/>
+							<var name="Rise_Vb116RinforzoGiu_HMI" type="RiseEdge"/>
+							<var name="Fall_Vb116RinforzoGiu_HMI" type="FallEdge"/>
+							<var name="Fall_Vn3804_PageID" type="FallEdge"/>
+							<var name="Ton_Cricchetto_riposo" type="Ton"/>
+						</localVars>
+					</vars>
+					<iecDeclaration active="FALSE"/>
+					<sourceCode type="ST">
+						<![CDATA[(* ========================================================================== 
+(* SIPRO - Siax M															  	
+(*                                                                            
+(* COMPANY:     JAM INTERNATIONAL                                             
+(*                                                                            
+(* NAME: Rinforzo                                                          
+(*
+(* TASK MAIN	 
+(*
+(* DESCRIPTION: Gestione rinforzo 
+(*
+(*                                                                             
+(* NOTE:                                NAME:           VER:    DATE:         
+(* -------------------------------------------------------------------------  
+(* Prima stesura                        Daniele         1.0     11/06/2024
+    
+(* Ultima modifica                                                            
+(* ========================================================================== *)
+if(Vn180_Device_Rinforzo = 2 or Vn180_Device_Rinforzo = 3) then
+	Ton_CricchettoRinforzo (in:=Vn181_Step_Rinforzo = 5,pt:=700);		
+	Ton_CricchettoRinforzoTaglio(in:=Vn181_Step_Rinforzo = 10, pt:=700);	
+	Ton_Cricchetto_riposo(in:=Vn181_Step_Rinforzo = 15, pt:=700);	
+	
+	case ( Vn181_Step_Rinforzo ) of
+	
+		0:	//abbasso i coltelli e metto il cricchetto nella posizione dietro pronta a trasportare
+			Rise_Vb115CricchettoRinforzo (in:= Vb115CricchettoRinforzo);
+			if(Rise_Vb115CricchettoRinforzo.q) then
+				Out_coltello_rinforzo	:= TRUE;	//TRUE = coltello basso
+				Out_rullo_rinforzo 	:= FALSE;	//uscita a FALSE il cilindro fa il movimento senza trasportare
+				Vn181_Step_Rinforzo := 5;
+			end_if;
+		5:	//dopo il tempo Ton_CricchettoRinforzo cricchetto per far avanzare il rinforzo
+			if(Ton_CricchettoRinforzo.q) then
+				Out_rullo_rinforzo 	:=TRUE;	//uscita a TRUE il cilindro fa il movimento e trasportare
+				Vn181_Step_Rinforzo := 10;
+			end_if;
+	
+		10:	//dopo tempo Ton_CricchettoRinforzoTaglio
+			if(Ton_CricchettoRinforzoTaglio.q) then
+				Out_coltello_rinforzo := FALSE;		//FALSE = coltello alto
+				Vb115CricchettoRinforzo := FALSE;	//pulisco la chiamata che ha scatenato questo ciclo
+				Vn181_Step_Rinforzo:=15;
+			end_if;
+	
+		15:
+			if(Ton_Cricchetto_riposo.q) then
+				Out_rullo_rinforzo := FALSE;		//FALSE = coltello alto
+				Vn181_Step_Rinforzo:=0;
+			end_if;
+	
+	else
+    	Vn181_Step_Rinforzo := 0; 
+		
+	end_case;		
+end_if;
+
+(* ============ Scelta uscite per tipo Turco con 3 schede Ethercat============================================================== *)
+if(Vn180_Device_Rinforzo = 2) then
+	if(Out_coltello_rinforzo) then 
+		Vb4168_AppMan_o36_coltello_rinforzo	:= TRUE;	//TRUE = coltello alto
+		Vb4368_AppAut_o36_coltello_rinforzo := TRUE;	//TRUE = coltello alto
+	else
+		Vb4168_AppMan_o36_coltello_rinforzo	:= FALSE;	//FALSE = coltello basso
+		Vb4368_AppAut_o36_coltello_rinforzo := FALSE;	//FALSE = coltello basso
+	end_if;	
+		
+	if(Out_rullo_rinforzo) then
+	
+		Vb4170_AppMan_o38_rullo_rinforzo 	:=TRUE;	//uscita a TRUE il cilindro fa il movimento e trasportare
+		Vb4370_AppAut_o38_rullo_rinforzo	:=TRUE;	//uscita a TRUE il cilindro fa il movimento e trasportare
+	else
+		Vb4170_AppMan_o38_rullo_rinforzo 	:= FALSE;	//uscita a FALSE il cilindro fa il movimento senza trasportare
+		Vb4370_AppAut_o38_rullo_rinforzo	:= FALSE;	//uscita a FALSE il cilindro fa il movimento senza trasportare
+			
+	end_if;
+				
+end_if;
+
+if(Vn180_Device_Rinforzo = 3) then
+	if(Out_coltello_rinforzo) then 
+		Vb4148_AppMan_o16_coltello_rinforzo	:= TRUE;	//TRUE = coltello alto
+		Vb4348_AppAut_o16_coltello_rinforzo := TRUE;	//TRUE = coltello alto
+	else
+		Vb4148_AppMan_o16_coltello_rinforzo	:= FALSE;	//FALSE = coltello basso
+		Vb4348_AppAut_o16_coltello_rinforzo := FALSE;	//FALSE = coltello basso
+	end_if;	
+		
+	if(Out_rullo_rinforzo) then
+	
+		Vb4162_AppMan_o30_rullo_rinforzo 	:=TRUE;	//uscita a TRUE il cilindro fa il movimento e trasportare
+		Vb4362_AppAut_o30_rullo_rinforzo	:=TRUE;	//uscita a TRUE il cilindro fa il movimento e trasportare
+	else
+		Vb4162_AppMan_o30_rullo_rinforzo 	:= FALSE;	//uscita a FALSE il cilindro fa il movimento senza trasportare
+		Vb4362_AppAut_o30_rullo_rinforzo	:= FALSE;	//uscita a FALSE il cilindro fa il movimento senza trasportare
+			
+	end_if;
+				
+end_if;
+
+(* HMI Android*)
+Rise_Vb116RinforzoGiu_HMI (in:=Vb116RinforzoGiu_HMI);
+Fall_Vb116RinforzoGiu_HMI (in:=Vb116RinforzoGiu_HMI);
+Fall_Vn3804_PageID (in:=  (VN_SYS_PAGE_ID = 1009));
+if(Rise_Vb116RinforzoGiu_HMI.q) then
+	Out_coltello_rinforzo :=TRUE;
+end_if;
+if(Fall_Vb116RinforzoGiu_HMI.q or Fall_Vn3804_PageID.q) then
+	Out_coltello_rinforzo :=FALSE;
+	Vb116RinforzoGiu_HMI := FALSE;
+end_if;
+
+
 ]]>
 					</sourceCode>
 				</program>
@@ -7764,7 +8013,7 @@ END_VAR
  *
  * MDPlc source file: DefCuci.PLL
  *
- * Date = "14/05/2024 09:31:07"
+ * Date = "22/07/2024 09:56:52"
  *)
 
 
@@ -8970,7 +9219,7 @@ END_VAR
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "14/05/2024 09:31:07"
+ * Date = "22/07/2024 09:56:52"
  *)
 
 
@@ -9062,6 +9311,8 @@ VAR_GLOBAL
     Vb93_RotazRevolver                      AT %MB300.93   : BOOL;         {DE:"vb93   - = 1 il revolver fa un passo di rotazione"}
     Vb94_Cambiare_revolver                  AT %MB300.94   : BOOL;         {DE:"vb94   - =1 è ora di cambiare il revolver"}
     Vb95_ResetConteggio                     AT %MB300.95   : BOOL;         {DE:"vb95   - tasto Reset HMI rimette il conteggio 1/7"}
+    Vb97_InversioneRetrattile               AT %MB300.97   : BOOL;         {DE:"vb97   - = 1 invertire i tubi aria dell'apri chiudi della retrattile"}
+    Vb98_ArrestaAssiQuick                   AT %MB300.98   : BOOL;         {DE:"vb98   - = 1 ferma tutti gli assi in quick mode"}
     VbTest                                  AT %MB300.99   : BOOL;         {DE:"vb99   - per test"}
     VbSimulaDbg                             AT %MB300.100  : BOOL;         {DE:"vb100  - Cucitrice simulata ( per debugger )"}
     VbSyncDbg                               AT %MB300.101  : BOOL;         {DE:"vb101  - Variabile di sync ( per debugger )"}
@@ -9070,6 +9321,11 @@ VAR_GLOBAL
     FronteSensIRQ1                          AT %MB300.110  : BOOL;         {DE:"vb110"}
     FronteSensIRQ2                          AT %MB300.111  : BOOL;         {DE:"vb111"}
     FronteSensIRQ3                          AT %MB300.112  : BOOL;         {DE:"vb112"}
+    Vb115CricchettoRinforzo                 AT %MB300.115  : BOOL;         {DE:"vb115  - ad ON lancia il ciclo per inserire la fettuccia nei rulli"}
+    Vb116RinforzoGiu_HMI                    AT %MB300.116  : BOOL;         {DE:"vb116  - ad ON HMI chiede al PLC di abbassare i coltelli del rinforzo"}
+    LeggoTemperaturaDriverAgo               AT %MB300.118  : BOOL;         {DE:"vb118  - 1 = il PLC tramite Ethercat legge la temperatura del driver Ago"}
+    LeggoTemperaturaDriverCro               AT %MB300.119  : BOOL;         {DE:"vb119  - 1 = il PLC tramite Ethercat legge la temperatura del driver Crochet"}
+    LeggoTemperaturaDriverCar               AT %MB300.120  : BOOL;         {DE:"vb120  - 1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore"}
     Vb4000_Automatico                       AT %MB300.4000 : BOOL;         {DE:"vb4000 - /// messa a ON da HMI sono in automatico"}
     Vb4001_StepPiegatore                    AT %MB300.4001 : BOOL;         {DE:"vb4001 - /// messa a ON da HMI il piegatore è passo passo"}
     Vb4002_StepPiegatoreStop                AT %MB300.4002 : BOOL;         {DE:"vb4002 - /// punto di stop piegatore"}
@@ -9169,7 +9425,7 @@ VAR_GLOBAL
     Vb4145_AppMan_o13_Valvolone             AT %MB300.4145 : BOOL;         {DE:"vb4145"}
     Vb4146_AppMan_o14_C1_rasafilo           AT %MB300.4146 : BOOL;         {DE:"vb4146"}
     Vb4147_AppMan_o15_EvAspiratore          AT %MB300.4147 : BOOL;         {DE:"vb4147"}
-    Vb4148_AppMan_o16                       AT %MB300.4148 : BOOL;         {DE:"vb4148"}
+    Vb4148_AppMan_o16_coltello_rinforzo     AT %MB300.4148 : BOOL;         {DE:"vb4148"}
     Vb4149_AppMan_o17_C1_Piedino            AT %MB300.4149 : BOOL;         {DE:"vb4149"}
     Vb4150_AppMan_o18_C1_Pinza_int          AT %MB300.4150 : BOOL;         {DE:"vb4150"}
     Vb4151_AppMan_o19_C1_Pinza_est          AT %MB300.4151 : BOOL;         {DE:"vb4151"}
@@ -9183,12 +9439,15 @@ VAR_GLOBAL
     Vb4159_AppMan_o27_C1_Ranocchia_retrat   AT %MB300.4159 : BOOL;         {DE:"vb4159"}
     Vb4160_AppMan_o28_Prima_barra           AT %MB300.4160 : BOOL;         {DE:"vb4160"}
     Vb4161_AppMan_o29_Seconda_barra         AT %MB300.4161 : BOOL;         {DE:"vb4161"}
-    Vb4162_AppMan_o30                       AT %MB300.4162 : BOOL;         {DE:"vb4162"}
+    Vb4162_AppMan_o30_rullo_rinforzo        AT %MB300.4162 : BOOL;         {DE:"vb4162"}
     Vb4163_AppMan_o31_bloccaFiloMagente     AT %MB300.4163 : BOOL;         {DE:"vb4163"}
     Vb4164_AppMan_o32_Enable_AssiXY_C1C2    AT %MB300.4164 : BOOL;         {DE:"vb4164"}
     Vb4165_AppMan_o33_Gancio_AutoBC         AT %MB300.4165 : BOOL;         {DE:"vb4165"}
     Vb4166_AppMan_o34_Rotaz_AutoBC          AT %MB300.4166 : BOOL;         {DE:"vb4166"}
     Vb4167_AppMan_o35_Braccio_AutoBC        AT %MB300.4167 : BOOL;         {DE:"vb4167"}
+    Vb4168_AppMan_o36_coltello_rinforzo     AT %MB300.4168 : BOOL;         {DE:"vb4168"}
+    Vb4169_AppMan_o37_calamita_rinforzo     AT %MB300.4169 : BOOL;         {DE:"vb4169"}
+    Vb4170_AppMan_o38_rullo_rinforzo        AT %MB300.4170 : BOOL;         {DE:"vb4170"}
     Vb4208_AppMagneteTensione               AT %MB300.4208 : BOOL;         {DE:"vb4208"}
     Vb4209_AppMagneteBloccaFilo             AT %MB300.4209 : BOOL;         {DE:"vb4209"}
     Vb4210_AppMagneteSopraPiegatore         AT %MB300.4210 : BOOL;         {DE:"vb4210"}
@@ -9208,7 +9467,7 @@ VAR_GLOBAL
     Vb4345_AppAut_o13_Valvolone             AT %MB300.4345 : BOOL;         {DE:"vb4345"}
     Vb4346_AppAut_o14_C1_rasafilo           AT %MB300.4346 : BOOL;         {DE:"vb4346"}
     Vb4347_AppAut_o15_EvAspiratore          AT %MB300.4347 : BOOL;         {DE:"vb4347"}
-    Vb4348_AppAut_o16                       AT %MB300.4348 : BOOL;         {DE:"vb4348"}
+    Vb4348_AppAut_o16_coltello_rinforzo     AT %MB300.4348 : BOOL;         {DE:"vb4348"}
     Vb4349_AppAut_o17_C1_Piedino            AT %MB300.4349 : BOOL;         {DE:"vb4349"}
     Vb4350_AppAut_o18_C1_Pinza_int          AT %MB300.4350 : BOOL;         {DE:"vb4350"}
     Vb4351_AppAut_o19_C1_Pinza_est          AT %MB300.4351 : BOOL;         {DE:"vb4351"}
@@ -9222,12 +9481,15 @@ VAR_GLOBAL
     Vb4359_AppAut_o27_C1_Ranocchia_retrat   AT %MB300.4359 : BOOL;         {DE:"vb4359"}
     Vb4360_AppAut_o28_Prima_barra           AT %MB300.4360 : BOOL;         {DE:"vb4360"}
     Vb4361_AppAut_o29_Seconda_barra         AT %MB300.4361 : BOOL;         {DE:"vb4361"}
-    Vb4362_AppAut_o30                       AT %MB300.4362 : BOOL;         {DE:"vb4362"}
+    Vb4362_AppAut_o30_rullo_rinforzo        AT %MB300.4362 : BOOL;         {DE:"vb4362"}
     Vb4363_AppAut_o31_bloccaFiloMagente     AT %MB300.4363 : BOOL;         {DE:"vb4363"}
     Vb4364_AppAut_o32_Enable_AssiXY_C1C2    AT %MB300.4364 : BOOL;         {DE:"vb4364"}
     Vb4365_AppAut_o33_Gancio_AutoBC         AT %MB300.4365 : BOOL;         {DE:"vb4365"}
     Vb4366_AppAut_o34_Rotaz_AutoBC          AT %MB300.4366 : BOOL;         {DE:"vb4366"}
     Vb4367_AppAut_o35_Braccio_AutoBC        AT %MB300.4367 : BOOL;         {DE:"vb4367"}
+    Vb4368_AppAut_o36_coltello_rinforzo     AT %MB300.4368 : BOOL;         {DE:"vb4368"}
+    Vb4369_AppAut_o37_calamita_rinforzo     AT %MB300.4369 : BOOL;         {DE:"vb4369"}
+    Vb4370_AppAut_o38_rullo_rinforzo        AT %MB300.4370 : BOOL;         {DE:"vb4370"}
     Vb4501_AppVbChn3StartHMI                AT %MB300.4501 : BOOL;         {DE:"vb4501 - app pulsante hmi start"}
     Vb4502_AppPosMacchinaPerZero            AT %MB300.4502 : BOOL;         {DE:"vb4502 - a ON tutte i cilindri sono posizionati correttamente per azzeramento"}
     Vb4503_CN_Allarme                       AT %MB300.4503 : BOOL;         {DE:"vb4503 - CN in allarme"}
@@ -9350,6 +9612,8 @@ VAR_GLOBAL
     Vn162_Read_anaout99                     AT %MW400.162  : INT;          {DE:"vn162"}
     Vn163_Read_anaout100                    AT %MW400.163  : INT;          {DE:"vn163"}
     Vn170_IdxAutoBobbinChanh                AT %MW400.170  : INT;          {DE:"vn170"}
+    Vn180_Device_Rinforzo                   AT %MW400.180  : INT;          {DE:"vn180  - 0= disabilitato, 1 = tipo JAM, 2 = tipo Turco con 3 schede IO Ethercat, 3 = tipo Turco con 3 schede IO Ethercat"}
+    Vn181_Step_Rinforzo                     AT %MW400.181  : INT;          {DE:"vn181"}
     Vn196_Tasca_DX_C1                       AT %MW400.196  : INT;          {DE:"vn196"}
     Vn197_Tasca_SX_C1                       AT %MW400.197  : INT;          {DE:"vn197"}
     Vn198_Tasca_DX_C2                       AT %MW400.198  : INT;          {DE:"vn198"}
@@ -9383,6 +9647,27 @@ VAR_GLOBAL
     vntest                                  AT %MW400.777  : INT;          {DE:"vn777"}
     vntest1                                 AT %MW400.778  : INT;          {DE:"vn778"}
     vntest2                                 AT %MW400.779  : INT;          {DE:"vn779"}
+    Fun301_ago_vn800_err                    AT %MW400.800  : INT;          {DE:"vn800"}
+    Fun301_ago_vn801_rete                   AT %MW400.801  : INT;          {DE:"vn801"}
+    Fun301_ago_vn802_noto                   AT %MW400.802  : INT;          {DE:"vn802"}
+    Fun301_ago_vn803_indice                 AT %MW400.803  : INT;          {DE:"vn803"}
+    Fun301_ago_vn804_sub                    AT %MW400.804  : INT;          {DE:"vn804"}
+    Fun301_ago_vn805_dim                    AT %MW400.805  : INT;          {DE:"vn805"}
+    Fun301_ago_vn806_idResult               AT %MW400.806  : INT;          {DE:"vn806"}
+    Fun301_Crochet_vn810_err                AT %MW400.810  : INT;          {DE:"vn810"}
+    Fun301_Crochet_vn811_rete               AT %MW400.811  : INT;          {DE:"vn811"}
+    Fun301_Crochet_vn812_noto               AT %MW400.812  : INT;          {DE:"vn812"}
+    Fun301_Crochet_vn813_indice             AT %MW400.813  : INT;          {DE:"vn813"}
+    Fun301_Crochet_vn814_sub                AT %MW400.814  : INT;          {DE:"vn814"}
+    Fun301_Crochet_vn815_dim                AT %MW400.815  : INT;          {DE:"vn815"}
+    Fun301_Crochet_vn816_idResult           AT %MW400.816  : INT;          {DE:"vn816"}
+    Fun301_Car_vn820_err                    AT %MW400.820  : INT;          {DE:"vn820"}
+    Fun301_Car_vn821_rete                   AT %MW400.821  : INT;          {DE:"vn821"}
+    Fun301_Car_vn822_noto                   AT %MW400.822  : INT;          {DE:"vn822"}
+    Fun301_Car_vn823_indice                 AT %MW400.823  : INT;          {DE:"vn823"}
+    Fun301_Car_vn824_sub                    AT %MW400.824  : INT;          {DE:"vn824"}
+    Fun301_Car_vn825_dim                    AT %MW400.825  : INT;          {DE:"vn825"}
+    Fun301_Car_vn826_idResult               AT %MW400.826  : INT;          {DE:"vn826"}
     VnOvdAx1                                AT %MW400.3001 : INT;          {DE:"vn3001 - Asse 1 - Override indipendente"}
     VnFaseZeroAx1                           AT %MW400.3011 : INT;          {DE:"vn3011 - Asse 1 - Fase azzeramento"}
     VnStatoAx1                              AT %MW400.3013 : INT;          {DE:"vn3013 - Asse 1 - Status asse"}
@@ -9390,6 +9675,7 @@ VAR_GLOBAL
     VnFaseZeroAx2                           AT %MW400.3031 : INT;          {DE:"vn3031 - Asse 2 - Fase azzeramento"}
     VnStatoAx2                              AT %MW400.3033 : INT;          {DE:"vn3033 - Asse 2 - Status asse"}
     VnOvdAx3                                AT %MW400.3041 : INT;          {DE:"vn3041 - Asse 3 - Override indipendente"}
+    VnSpeedJogAx3                           AT %MW400.3042 : INT;          {DE:"vn3042 - Asse 3 - Velocità Jog"}
     VnFaseZeroAx3                           AT %MW400.3051 : INT;          {DE:"vn3051 - Asse 3 - Fase azzeramento"}
     VnStatoAx3                              AT %MW400.3053 : INT;          {DE:"vn3053 - Asse 3 - Status asse"}
     VnOvdAx4                                AT %MW400.3061 : INT;          {DE:"vn3061 - Asse 4 - Override indipendente"}
@@ -9555,6 +9841,9 @@ VAR_GLOBAL
     Vq3144_RitPiegatore_4_ON                AT %MD500.3144 : DINT;         {DE:"vq3144 - variabile per memorizzare tempo su sequenza Curve5"}
     Vq3145_RitPiegatore_4_OFF               AT %MD500.3145 : DINT;         {DE:"vq3145 - variabile per memorizzare tempo su sequenza Curve5"}
     Vq3160_ContSensPiegatoreSu              AT %MD500.3160 : DINT;         {DE:"vq3160 - punti contati dalla molla rottura filo"}
+    Vq3162TemperaturaDriverAgo              AT %MD500.3162 : DINT;         {DE:"vq3162 - coontiene la temperatura del driver ago (si legge cone VB118)"}
+    Vq3163TemperaturaDriverCro              AT %MD500.3163 : DINT;         {DE:"vq3163 - coontiene la temperatura del driver crochet (si legge cone VB119)"}
+    Vq3164TemperaturaDriverCar              AT %MD500.3164 : DINT;         {DE:"vq3164 - coontiene la temperatura del driver caricatore (si legge cone VB120)"}
     Vq3500_PosizioneCaricRiposo             AT %MD500.3500 : DINT;         {DE:"vq3500 - posizione caricatore a riposo fuori ingombro"}
     Vq3501_PosizioneCaricCaricoTasca        AT %MD500.3501 : DINT;         {DE:"vq3501 - posizione caricatore carico tasca"}
     Vq3502_PosizioneCaricScaricoTasca       AT %MD500.3502 : DINT;         {DE:"vq3502 - posizione caricatore scarico tasca"}
@@ -9628,9 +9917,9 @@ VAR_GLOBAL
     i20_C1_FcMinAsseY                       AT %IX100.19   : BOOL;         {DE:"i20"}
     i21_Emg                                 AT %IX100.20   : BOOL;         {DE:"i21"}
     i22_C1_FcZeroAgo                        AT %IX100.21   : BOOL;         {DE:"i22"}
-    i23_C1_PinzaIntBassa                    AT %IX100.22   : BOOL;         {DE:"i23    - i28_Rinforzo_ready"}
+    i23_C1_PinzaIntBassa                    AT %IX100.22   : BOOL;         {DE:"i23"}
     i24_C1_PinzaEstAlta                     AT %IX100.23   : BOOL;         {DE:"i24"}
-    i25_PulsResetFolder                     AT %IX100.24   : BOOL;         {DE:"i25    - i27_Rinforzo_Attivo"}
+    i25_PulsResetFolder                     AT %IX100.24   : BOOL;         {DE:"i25"}
     i26_C1_PulsStopTesta                    AT %IX100.25   : BOOL;         {DE:"i26"}
     i27_Rinforzo_Attivo                     AT %IX100.26   : BOOL;         {DE:"i27"}
     i28_Rinforzo_ready                      AT %IX100.27   : BOOL;         {DE:"i28"}
@@ -9660,7 +9949,7 @@ VAR_GLOBAL
     o13_Valvolone                           AT %QX200.12   : BOOL;         {DE:"o13"}
     o14_C1_rasafilo                         AT %QX200.13   : BOOL;         {DE:"o14"}
     o15_EvAspiratore                        AT %QX200.14   : BOOL;         {DE:"o15"}
-    o16                                     AT %QX200.15   : BOOL;         {DE:"o16"}
+    o16_coltello_rinforzo                   AT %QX200.15   : BOOL;         {DE:"o16"}
     o17_C1_Piedino                          AT %QX200.16   : BOOL;         {DE:"o17"}
     o18_C1_Pinza_int                        AT %QX200.17   : BOOL;         {DE:"o18"}
     o19_C1_Pinza_est                        AT %QX200.18   : BOOL;         {DE:"o19"}
@@ -9674,12 +9963,15 @@ VAR_GLOBAL
     o27_C1_Ranocchia_retrat                 AT %QX200.26   : BOOL;         {DE:"o27"}
     o28_Prima_barra                         AT %QX200.27   : BOOL;         {DE:"o28"}
     o29_Seconda_barra                       AT %QX200.28   : BOOL;         {DE:"o29"}
-    o30                                     AT %QX200.29   : BOOL;         {DE:"o30"}
+    o30_rullo_rinforzo                      AT %QX200.29   : BOOL;         {DE:"o30"}
     o31_bloccaFiloMagente                   AT %QX200.30   : BOOL;         {DE:"o31"}
     o32_Enable_AssiXY_C1C2                  AT %QX200.31   : BOOL;         {DE:"o32"}
     o33_Gancio_AutoBC                       AT %QX200.32   : BOOL;         {DE:"o33    - AutoBobbinChanger"}
     o34_Rotaz_AutoBC                        AT %QX200.33   : BOOL;         {DE:"o34    - AutoBobbinChanger"}
     o35_Braciio_AutoBC                      AT %QX200.34   : BOOL;         {DE:"o35    - AutoBobbinChanger"}
+    o36_coltello_rinforzo                   AT %QX200.35   : BOOL;         {DE:"o36    - device rinforzo pneumatico"}
+    o37_calamita_rinforzo                   AT %QX200.36   : BOOL;         {DE:"o37    - device rinforzo pneumatico"}
+    o38_rullo_rinforzo                      AT %QX200.37   : BOOL;         {DE:"o38    - device rinforzo pneumatico"}
 
 END_VAR
 
@@ -9835,7 +10127,7 @@ END_VAR
 		</libraries>
 		<aux/>
 	</sources>
-	<codegen crossReference="false" crossReferenceOptions="0x3000001D" listing="true" saveEXPFile="true" saveEXPFileLibraries="false" saveTargetFiles="true" warningEnable="true" symMap="true" checkIndexType="false" waitExtension="false" allocateUnusedVariables="false" checkArrayBounds="false" checkDivisionByZero="false" checkPointers="1" checkReferences="false" checkInterfaces="false" ioVarsAsReferences="false" customTargetBINFileName="Cuci.bin" customTargetTSCFileName="Cuci_source.bin" customTargetTDSFileName="Cuci_debug.bin" generateCustomFilesName="false" initFunVarsWithZero="false">
+	<codegen crossReference="false" crossReferenceOptions="0x3000001D" listing="true" unusedObjs="false" saveEXPFile="true" saveEXPFileLibraries="false" saveTargetFiles="true" warningEnable="true" symMap="true" checkIndexType="false" waitExtension="false" allocateUnusedVariables="false" checkArrayBounds="false" checkDivisionByZero="false" checkPointers="1" checkReferences="false" checkInterfaces="false" ioVarsAsReferences="false" customTargetBINFileName="Cuci.bin" customTargetTSCFileName="Cuci_source.bin" customTargetTDSFileName="Cuci_debug.bin" generateCustomFilesName="false" initFunVarsWithZero="false" enablePreprocessDirectives="false">
 		<disabledWarnings/>
 		<applicationDataBlocks/>
 	</codegen>

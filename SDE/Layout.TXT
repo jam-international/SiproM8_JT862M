@@ -1,2 +1,5 @@
+VarTable|C:\Program Files (x86)\Sipro\SDE\CONFIG\VARTABLES\Empty.VTB
+DigitalIO|Output
+FileCommander
 PLC
-Programs||
+ParEdit|D:\GitHub\SiproM8_JT862M\param\par2kax.txt|Axes|1

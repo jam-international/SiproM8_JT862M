@@ -2,7 +2,7 @@
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "14/05/2024 18:39:46"
+ * Date = "22/07/2024 09:56:52"
  *)
 
 
@@ -94,6 +94,8 @@ VAR_GLOBAL
     Vb93_RotazRevolver                      AT %MB300.93   : BOOL;         {DE:"vb93   - = 1 il revolver fa un passo di rotazione"}
     Vb94_Cambiare_revolver                  AT %MB300.94   : BOOL;         {DE:"vb94   - =1 è ora di cambiare il revolver"}
     Vb95_ResetConteggio                     AT %MB300.95   : BOOL;         {DE:"vb95   - tasto Reset HMI rimette il conteggio 1/7"}
+    Vb97_InversioneRetrattile               AT %MB300.97   : BOOL;         {DE:"vb97   - = 1 invertire i tubi aria dell'apri chiudi della retrattile"}
+    Vb98_ArrestaAssiQuick                   AT %MB300.98   : BOOL;         {DE:"vb98   - = 1 ferma tutti gli assi in quick mode"}
     VbTest                                  AT %MB300.99   : BOOL;         {DE:"vb99   - per test"}
     VbSimulaDbg                             AT %MB300.100  : BOOL;         {DE:"vb100  - Cucitrice simulata ( per debugger )"}
     VbSyncDbg                               AT %MB300.101  : BOOL;         {DE:"vb101  - Variabile di sync ( per debugger )"}
@@ -102,6 +104,11 @@ VAR_GLOBAL
     FronteSensIRQ1                          AT %MB300.110  : BOOL;         {DE:"vb110"}
     FronteSensIRQ2                          AT %MB300.111  : BOOL;         {DE:"vb111"}
     FronteSensIRQ3                          AT %MB300.112  : BOOL;         {DE:"vb112"}
+    Vb115CricchettoRinforzo                 AT %MB300.115  : BOOL;         {DE:"vb115  - ad ON lancia il ciclo per inserire la fettuccia nei rulli"}
+    Vb116RinforzoGiu_HMI                    AT %MB300.116  : BOOL;         {DE:"vb116  - ad ON HMI chiede al PLC di abbassare i coltelli del rinforzo"}
+    LeggoTemperaturaDriverAgo               AT %MB300.118  : BOOL;         {DE:"vb118  - 1 = il PLC tramite Ethercat legge la temperatura del driver Ago"}
+    LeggoTemperaturaDriverCro               AT %MB300.119  : BOOL;         {DE:"vb119  - 1 = il PLC tramite Ethercat legge la temperatura del driver Crochet"}
+    LeggoTemperaturaDriverCar               AT %MB300.120  : BOOL;         {DE:"vb120  - 1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore"}
     Vb4000_Automatico                       AT %MB300.4000 : BOOL;         {DE:"vb4000 - /// messa a ON da HMI sono in automatico"}
     Vb4001_StepPiegatore                    AT %MB300.4001 : BOOL;         {DE:"vb4001 - /// messa a ON da HMI il piegatore è passo passo"}
     Vb4002_StepPiegatoreStop                AT %MB300.4002 : BOOL;         {DE:"vb4002 - /// punto di stop piegatore"}
@@ -201,7 +208,7 @@ VAR_GLOBAL
     Vb4145_AppMan_o13_Valvolone             AT %MB300.4145 : BOOL;         {DE:"vb4145"}
     Vb4146_AppMan_o14_C1_rasafilo           AT %MB300.4146 : BOOL;         {DE:"vb4146"}
     Vb4147_AppMan_o15_EvAspiratore          AT %MB300.4147 : BOOL;         {DE:"vb4147"}
-    Vb4148_AppMan_o16                       AT %MB300.4148 : BOOL;         {DE:"vb4148"}
+    Vb4148_AppMan_o16_coltello_rinforzo     AT %MB300.4148 : BOOL;         {DE:"vb4148"}
     Vb4149_AppMan_o17_C1_Piedino            AT %MB300.4149 : BOOL;         {DE:"vb4149"}
     Vb4150_AppMan_o18_C1_Pinza_int          AT %MB300.4150 : BOOL;         {DE:"vb4150"}
     Vb4151_AppMan_o19_C1_Pinza_est          AT %MB300.4151 : BOOL;         {DE:"vb4151"}
@@ -215,12 +222,15 @@ VAR_GLOBAL
     Vb4159_AppMan_o27_C1_Ranocchia_retrat   AT %MB300.4159 : BOOL;         {DE:"vb4159"}
     Vb4160_AppMan_o28_Prima_barra           AT %MB300.4160 : BOOL;         {DE:"vb4160"}
     Vb4161_AppMan_o29_Seconda_barra         AT %MB300.4161 : BOOL;         {DE:"vb4161"}
-    Vb4162_AppMan_o30                       AT %MB300.4162 : BOOL;         {DE:"vb4162"}
+    Vb4162_AppMan_o30_rullo_rinforzo        AT %MB300.4162 : BOOL;         {DE:"vb4162"}
     Vb4163_AppMan_o31_bloccaFiloMagente     AT %MB300.4163 : BOOL;         {DE:"vb4163"}
     Vb4164_AppMan_o32_Enable_AssiXY_C1C2    AT %MB300.4164 : BOOL;         {DE:"vb4164"}
     Vb4165_AppMan_o33_Gancio_AutoBC         AT %MB300.4165 : BOOL;         {DE:"vb4165"}
     Vb4166_AppMan_o34_Rotaz_AutoBC          AT %MB300.4166 : BOOL;         {DE:"vb4166"}
     Vb4167_AppMan_o35_Braccio_AutoBC        AT %MB300.4167 : BOOL;         {DE:"vb4167"}
+    Vb4168_AppMan_o36_coltello_rinforzo     AT %MB300.4168 : BOOL;         {DE:"vb4168"}
+    Vb4169_AppMan_o37_calamita_rinforzo     AT %MB300.4169 : BOOL;         {DE:"vb4169"}
+    Vb4170_AppMan_o38_rullo_rinforzo        AT %MB300.4170 : BOOL;         {DE:"vb4170"}
     Vb4208_AppMagneteTensione               AT %MB300.4208 : BOOL;         {DE:"vb4208"}
     Vb4209_AppMagneteBloccaFilo             AT %MB300.4209 : BOOL;         {DE:"vb4209"}
     Vb4210_AppMagneteSopraPiegatore         AT %MB300.4210 : BOOL;         {DE:"vb4210"}
@@ -240,7 +250,7 @@ VAR_GLOBAL
     Vb4345_AppAut_o13_Valvolone             AT %MB300.4345 : BOOL;         {DE:"vb4345"}
     Vb4346_AppAut_o14_C1_rasafilo           AT %MB300.4346 : BOOL;         {DE:"vb4346"}
     Vb4347_AppAut_o15_EvAspiratore          AT %MB300.4347 : BOOL;         {DE:"vb4347"}
-    Vb4348_AppAut_o16                       AT %MB300.4348 : BOOL;         {DE:"vb4348"}
+    Vb4348_AppAut_o16_coltello_rinforzo     AT %MB300.4348 : BOOL;         {DE:"vb4348"}
     Vb4349_AppAut_o17_C1_Piedino            AT %MB300.4349 : BOOL;         {DE:"vb4349"}
     Vb4350_AppAut_o18_C1_Pinza_int          AT %MB300.4350 : BOOL;         {DE:"vb4350"}
     Vb4351_AppAut_o19_C1_Pinza_est          AT %MB300.4351 : BOOL;         {DE:"vb4351"}
@@ -254,12 +264,15 @@ VAR_GLOBAL
     Vb4359_AppAut_o27_C1_Ranocchia_retrat   AT %MB300.4359 : BOOL;         {DE:"vb4359"}
     Vb4360_AppAut_o28_Prima_barra           AT %MB300.4360 : BOOL;         {DE:"vb4360"}
     Vb4361_AppAut_o29_Seconda_barra         AT %MB300.4361 : BOOL;         {DE:"vb4361"}
-    Vb4362_AppAut_o30                       AT %MB300.4362 : BOOL;         {DE:"vb4362"}
+    Vb4362_AppAut_o30_rullo_rinforzo        AT %MB300.4362 : BOOL;         {DE:"vb4362"}
     Vb4363_AppAut_o31_bloccaFiloMagente     AT %MB300.4363 : BOOL;         {DE:"vb4363"}
     Vb4364_AppAut_o32_Enable_AssiXY_C1C2    AT %MB300.4364 : BOOL;         {DE:"vb4364"}
     Vb4365_AppAut_o33_Gancio_AutoBC         AT %MB300.4365 : BOOL;         {DE:"vb4365"}
     Vb4366_AppAut_o34_Rotaz_AutoBC          AT %MB300.4366 : BOOL;         {DE:"vb4366"}
     Vb4367_AppAut_o35_Braccio_AutoBC        AT %MB300.4367 : BOOL;         {DE:"vb4367"}
+    Vb4368_AppAut_o36_coltello_rinforzo     AT %MB300.4368 : BOOL;         {DE:"vb4368"}
+    Vb4369_AppAut_o37_calamita_rinforzo     AT %MB300.4369 : BOOL;         {DE:"vb4369"}
+    Vb4370_AppAut_o38_rullo_rinforzo        AT %MB300.4370 : BOOL;         {DE:"vb4370"}
     Vb4501_AppVbChn3StartHMI                AT %MB300.4501 : BOOL;         {DE:"vb4501 - app pulsante hmi start"}
     Vb4502_AppPosMacchinaPerZero            AT %MB300.4502 : BOOL;         {DE:"vb4502 - a ON tutte i cilindri sono posizionati correttamente per azzeramento"}
     Vb4503_CN_Allarme                       AT %MB300.4503 : BOOL;         {DE:"vb4503 - CN in allarme"}
@@ -382,6 +395,8 @@ VAR_GLOBAL
     Vn162_Read_anaout99                     AT %MW400.162  : INT;          {DE:"vn162"}
     Vn163_Read_anaout100                    AT %MW400.163  : INT;          {DE:"vn163"}
     Vn170_IdxAutoBobbinChanh                AT %MW400.170  : INT;          {DE:"vn170"}
+    Vn180_Device_Rinforzo                   AT %MW400.180  : INT;          {DE:"vn180  - 0= disabilitato, 1 = tipo JAM, 2 = tipo Turco con 3 schede IO Ethercat, 3 = tipo Turco con 3 schede IO Ethercat"}
+    Vn181_Step_Rinforzo                     AT %MW400.181  : INT;          {DE:"vn181"}
     Vn196_Tasca_DX_C1                       AT %MW400.196  : INT;          {DE:"vn196"}
     Vn197_Tasca_SX_C1                       AT %MW400.197  : INT;          {DE:"vn197"}
     Vn198_Tasca_DX_C2                       AT %MW400.198  : INT;          {DE:"vn198"}
@@ -415,6 +430,27 @@ VAR_GLOBAL
     vntest                                  AT %MW400.777  : INT;          {DE:"vn777"}
     vntest1                                 AT %MW400.778  : INT;          {DE:"vn778"}
     vntest2                                 AT %MW400.779  : INT;          {DE:"vn779"}
+    Fun301_ago_vn800_err                    AT %MW400.800  : INT;          {DE:"vn800"}
+    Fun301_ago_vn801_rete                   AT %MW400.801  : INT;          {DE:"vn801"}
+    Fun301_ago_vn802_noto                   AT %MW400.802  : INT;          {DE:"vn802"}
+    Fun301_ago_vn803_indice                 AT %MW400.803  : INT;          {DE:"vn803"}
+    Fun301_ago_vn804_sub                    AT %MW400.804  : INT;          {DE:"vn804"}
+    Fun301_ago_vn805_dim                    AT %MW400.805  : INT;          {DE:"vn805"}
+    Fun301_ago_vn806_idResult               AT %MW400.806  : INT;          {DE:"vn806"}
+    Fun301_Crochet_vn810_err                AT %MW400.810  : INT;          {DE:"vn810"}
+    Fun301_Crochet_vn811_rete               AT %MW400.811  : INT;          {DE:"vn811"}
+    Fun301_Crochet_vn812_noto               AT %MW400.812  : INT;          {DE:"vn812"}
+    Fun301_Crochet_vn813_indice             AT %MW400.813  : INT;          {DE:"vn813"}
+    Fun301_Crochet_vn814_sub                AT %MW400.814  : INT;          {DE:"vn814"}
+    Fun301_Crochet_vn815_dim                AT %MW400.815  : INT;          {DE:"vn815"}
+    Fun301_Crochet_vn816_idResult           AT %MW400.816  : INT;          {DE:"vn816"}
+    Fun301_Car_vn820_err                    AT %MW400.820  : INT;          {DE:"vn820"}
+    Fun301_Car_vn821_rete                   AT %MW400.821  : INT;          {DE:"vn821"}
+    Fun301_Car_vn822_noto                   AT %MW400.822  : INT;          {DE:"vn822"}
+    Fun301_Car_vn823_indice                 AT %MW400.823  : INT;          {DE:"vn823"}
+    Fun301_Car_vn824_sub                    AT %MW400.824  : INT;          {DE:"vn824"}
+    Fun301_Car_vn825_dim                    AT %MW400.825  : INT;          {DE:"vn825"}
+    Fun301_Car_vn826_idResult               AT %MW400.826  : INT;          {DE:"vn826"}
     VnOvdAx1                                AT %MW400.3001 : INT;          {DE:"vn3001 - Asse 1 - Override indipendente"}
     VnFaseZeroAx1                           AT %MW400.3011 : INT;          {DE:"vn3011 - Asse 1 - Fase azzeramento"}
     VnStatoAx1                              AT %MW400.3013 : INT;          {DE:"vn3013 - Asse 1 - Status asse"}
@@ -422,6 +458,7 @@ VAR_GLOBAL
     VnFaseZeroAx2                           AT %MW400.3031 : INT;          {DE:"vn3031 - Asse 2 - Fase azzeramento"}
     VnStatoAx2                              AT %MW400.3033 : INT;          {DE:"vn3033 - Asse 2 - Status asse"}
     VnOvdAx3                                AT %MW400.3041 : INT;          {DE:"vn3041 - Asse 3 - Override indipendente"}
+    VnSpeedJogAx3                           AT %MW400.3042 : INT;          {DE:"vn3042 - Asse 3 - Velocità Jog"}
     VnFaseZeroAx3                           AT %MW400.3051 : INT;          {DE:"vn3051 - Asse 3 - Fase azzeramento"}
     VnStatoAx3                              AT %MW400.3053 : INT;          {DE:"vn3053 - Asse 3 - Status asse"}
     VnOvdAx4                                AT %MW400.3061 : INT;          {DE:"vn3061 - Asse 4 - Override indipendente"}
@@ -587,6 +624,9 @@ VAR_GLOBAL
     Vq3144_RitPiegatore_4_ON                AT %MD500.3144 : DINT;         {DE:"vq3144 - variabile per memorizzare tempo su sequenza Curve5"}
     Vq3145_RitPiegatore_4_OFF               AT %MD500.3145 : DINT;         {DE:"vq3145 - variabile per memorizzare tempo su sequenza Curve5"}
     Vq3160_ContSensPiegatoreSu              AT %MD500.3160 : DINT;         {DE:"vq3160 - punti contati dalla molla rottura filo"}
+    Vq3162TemperaturaDriverAgo              AT %MD500.3162 : DINT;         {DE:"vq3162 - coontiene la temperatura del driver ago (si legge cone VB118)"}
+    Vq3163TemperaturaDriverCro              AT %MD500.3163 : DINT;         {DE:"vq3163 - coontiene la temperatura del driver crochet (si legge cone VB119)"}
+    Vq3164TemperaturaDriverCar              AT %MD500.3164 : DINT;         {DE:"vq3164 - coontiene la temperatura del driver caricatore (si legge cone VB120)"}
     Vq3500_PosizioneCaricRiposo             AT %MD500.3500 : DINT;         {DE:"vq3500 - posizione caricatore a riposo fuori ingombro"}
     Vq3501_PosizioneCaricCaricoTasca        AT %MD500.3501 : DINT;         {DE:"vq3501 - posizione caricatore carico tasca"}
     Vq3502_PosizioneCaricScaricoTasca       AT %MD500.3502 : DINT;         {DE:"vq3502 - posizione caricatore scarico tasca"}
@@ -660,9 +700,9 @@ VAR_GLOBAL
     i20_C1_FcMinAsseY                       AT %IX100.19   : BOOL;         {DE:"i20"}
     i21_Emg                                 AT %IX100.20   : BOOL;         {DE:"i21"}
     i22_C1_FcZeroAgo                        AT %IX100.21   : BOOL;         {DE:"i22"}
-    i23_C1_PinzaIntBassa                    AT %IX100.22   : BOOL;         {DE:"i23    - i28_Rinforzo_ready"}
+    i23_C1_PinzaIntBassa                    AT %IX100.22   : BOOL;         {DE:"i23"}
     i24_C1_PinzaEstAlta                     AT %IX100.23   : BOOL;         {DE:"i24"}
-    i25_PulsResetFolder                     AT %IX100.24   : BOOL;         {DE:"i25    - i27_Rinforzo_Attivo"}
+    i25_PulsResetFolder                     AT %IX100.24   : BOOL;         {DE:"i25"}
     i26_C1_PulsStopTesta                    AT %IX100.25   : BOOL;         {DE:"i26"}
     i27_Rinforzo_Attivo                     AT %IX100.26   : BOOL;         {DE:"i27"}
     i28_Rinforzo_ready                      AT %IX100.27   : BOOL;         {DE:"i28"}
@@ -692,7 +732,7 @@ VAR_GLOBAL
     o13_Valvolone                           AT %QX200.12   : BOOL;         {DE:"o13"}
     o14_C1_rasafilo                         AT %QX200.13   : BOOL;         {DE:"o14"}
     o15_EvAspiratore                        AT %QX200.14   : BOOL;         {DE:"o15"}
-    o16                                     AT %QX200.15   : BOOL;         {DE:"o16"}
+    o16_coltello_rinforzo                   AT %QX200.15   : BOOL;         {DE:"o16"}
     o17_C1_Piedino                          AT %QX200.16   : BOOL;         {DE:"o17"}
     o18_C1_Pinza_int                        AT %QX200.17   : BOOL;         {DE:"o18"}
     o19_C1_Pinza_est                        AT %QX200.18   : BOOL;         {DE:"o19"}
@@ -706,12 +746,15 @@ VAR_GLOBAL
     o27_C1_Ranocchia_retrat                 AT %QX200.26   : BOOL;         {DE:"o27"}
     o28_Prima_barra                         AT %QX200.27   : BOOL;         {DE:"o28"}
     o29_Seconda_barra                       AT %QX200.28   : BOOL;         {DE:"o29"}
-    o30                                     AT %QX200.29   : BOOL;         {DE:"o30"}
+    o30_rullo_rinforzo                      AT %QX200.29   : BOOL;         {DE:"o30"}
     o31_bloccaFiloMagente                   AT %QX200.30   : BOOL;         {DE:"o31"}
     o32_Enable_AssiXY_C1C2                  AT %QX200.31   : BOOL;         {DE:"o32"}
     o33_Gancio_AutoBC                       AT %QX200.32   : BOOL;         {DE:"o33    - AutoBobbinChanger"}
     o34_Rotaz_AutoBC                        AT %QX200.33   : BOOL;         {DE:"o34    - AutoBobbinChanger"}
     o35_Braciio_AutoBC                      AT %QX200.34   : BOOL;         {DE:"o35    - AutoBobbinChanger"}
+    o36_coltello_rinforzo                   AT %QX200.35   : BOOL;         {DE:"o36    - device rinforzo pneumatico"}
+    o37_calamita_rinforzo                   AT %QX200.36   : BOOL;         {DE:"o37    - device rinforzo pneumatico"}
+    o38_rullo_rinforzo                      AT %QX200.37   : BOOL;         {DE:"o38    - device rinforzo pneumatico"}
 
 END_VAR
 

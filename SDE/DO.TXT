@@ -14,7 +14,7 @@
 13, o13_Valvolone
 14, o14_C1_rasafilo
 15, o15_EvAspiratore
-16, o16
+16, o16_coltello_rinforzo
 17, o17_C1_Piedino
 18, o18_C1_Pinza_int
 19, o19_C1_Pinza_est
@@ -28,10 +28,13 @@
 27, o27_C1_Ranocchia_retrat
 28, o28_Prima_barra
 29, o29_Seconda_barra
-30, o30
+30, o30_rullo_rinforzo
 31, o31_bloccaFiloMagente
 32, o32_Enable_AssiXY_C1C2
 33, o33_Gancio_AutoBC
 34, o34_Rotaz_AutoBC
 35, o35_Braciio_AutoBC
+36, o36_coltello_rinforzo
+37, o37_calamita_rinforzo
+38, o38_rullo_rinforzo
 [EndDO]

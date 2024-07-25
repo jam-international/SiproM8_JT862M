@@ -74,6 +74,8 @@ As2000 Simbols Table
 #vb93;Vb93_RotazRevolver;= 1 il revolver fa un passo di rotazione
 #vb94;Vb94_Cambiare_revolver;=1 è ora di cambiare il revolver
 #vb95;Vb95_ResetConteggio;tasto Reset HMI rimette il conteggio 1/7
+#vb97;Vb97_InversioneRetrattile;= 1 invertire i tubi aria dell'apri chiudi della retrattile
+#vb98;Vb98_ArrestaAssiQuick;= 1 ferma tutti gli assi in quick mode
 #vb99;VbTest;per test
 #vb100;VbSimulaDbg;Cucitrice simulata ( per debugger )
 #vb101;VbSyncDbg;Variabile di sync ( per debugger )
@@ -82,6 +84,10 @@ As2000 Simbols Table
 #vb110;FronteSensIRQ1;
 #vb111;FronteSensIRQ2;
 #vb112;FronteSensIRQ3;
+#vb115;Vb115CricchettoRinforzo;ad ON lancia il ciclo per inserire la fettuccia nei rulli
+#vb118;LeggoTemperaturaDriverAgo;1 = il PLC tramite Ethercat legge la temperatura del driver Ago
+#vb119;LeggoTemperaturaDriverCro;1 = il PLC tramite Ethercat legge la temperatura del driver Crochet
+#vb120;LeggoTemperaturaDriverCar;1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore
 #vb4000;Vb4000_Automatico;/// messa a ON da HMI sono in automatico
 #vb4001;Vb4001_StepPiegatore;/// messa a ON da HMI il piegatore è passo passo
 #vb4002;Vb4002_StepPiegatoreStop;/// punto di stop piegatore
@@ -181,7 +187,7 @@ As2000 Simbols Table
 #vb4145;Vb4145_AppMan_o13_Valvolone;
 #vb4146;Vb4146_AppMan_o14_C1_rasafilo;
 #vb4147;Vb4147_AppMan_o15_EvAspiratore;
-#vb4148;Vb4148_AppMan_o16;
+#vb4148;Vb4148_AppMan_o16_coltello_rinforzo;
 #vb4149;Vb4149_AppMan_o17_C1_Piedino;
 #vb4150;Vb4150_AppMan_o18_C1_Pinza_int;
 #vb4151;Vb4151_AppMan_o19_C1_Pinza_est;
@@ -195,12 +201,15 @@ As2000 Simbols Table
 #vb4159;Vb4159_AppMan_o27_C1_Ranocchia_retrat;
 #vb4160;Vb4160_AppMan_o28_Prima_barra;
 #vb4161;Vb4161_AppMan_o29_Seconda_barra;
-#vb4162;Vb4162_AppMan_o30;
+#vb4162;Vb4162_AppMan_o30_rullo_rinforzo;
 #vb4163;Vb4163_AppMan_o31_bloccaFiloMagente;
 #vb4164;Vb4164_AppMan_o32_Enable_AssiXY_C1C2;
 #vb4165;Vb4165_AppMan_o33_Gancio_AutoBC;
 #vb4166;Vb4166_AppMan_o34_Rotaz_AutoBC;
 #vb4167;Vb4167_AppMan_o35_Braccio_AutoBC;
+#vb4168;Vb4168_AppMan_o36_coltello_rinforzo;
+#vb4169;Vb4169_AppMan_o37_calamita_rinforzo;
+#vb4170;Vb4170_AppMan_o38_rullo_rinforzo;
 #vb4208;Vb4208_AppMagneteTensione;
 #vb4209;Vb4209_AppMagneteBloccaFilo;
 #vb4210;Vb4210_AppMagneteSopraPiegatore;
@@ -220,7 +229,7 @@ As2000 Simbols Table
 #vb4345;Vb4345_AppAut_o13_Valvolone;
 #vb4346;Vb4346_AppAut_o14_C1_rasafilo;
 #vb4347;Vb4347_AppAut_o15_EvAspiratore;
-#vb4348;Vb4348_AppAut_o16;
+#vb4348;Vb4348_AppAut_o16_coltello_rinforzo;
 #vb4349;Vb4349_AppAut_o17_C1_Piedino;
 #vb4350;Vb4350_AppAut_o18_C1_Pinza_int;
 #vb4351;Vb4351_AppAut_o19_C1_Pinza_est;
@@ -234,12 +243,15 @@ As2000 Simbols Table
 #vb4359;Vb4359_AppAut_o27_C1_Ranocchia_retrat;
 #vb4360;Vb4360_AppAut_o28_Prima_barra;
 #vb4361;Vb4361_AppAut_o29_Seconda_barra;
-#vb4362;Vb4362_AppAut_o30;
+#vb4362;Vb4362_AppAut_o30_rullo_rinforzo;
 #vb4363;Vb4363_AppAut_o31_bloccaFiloMagente;
 #vb4364;Vb4364_AppAut_o32_Enable_AssiXY_C1C2;
 #vb4365;Vb4365_AppAut_o33_Gancio_AutoBC;
 #vb4366;Vb4366_AppAut_o34_Rotaz_AutoBC;
 #vb4367;Vb4367_AppAut_o35_Braccio_AutoBC;
+#vb4368;Vb4368_AppAut_o36_coltello_rinforzo;
+#vb4369;Vb4369_AppAut_o37_calamita_rinforzo;
+#vb4370;Vb4370_AppAut_o38_rullo_rinforzo;
 #vb4501;Vb4501_AppVbChn3StartHMI;app pulsante hmi start
 #vb4502;Vb4502_AppPosMacchinaPerZero;a ON tutte i cilindri sono posizionati correttamente per azzeramento
 #vb4503;Vb4503_CN_Allarme;CN in allarme
@@ -360,6 +372,8 @@ As2000 Simbols Table
 #vn162;Vn162_Read_anaout99;
 #vn163;Vn163_Read_anaout100;
 #vn170;Vn170_IdxAutoBobbinChanh;
+#vn180;Vn180_Device_Rinforzo;0= disabilitato, 1 = tipo JAM, 2 = tipo Turco con 3 schede IO Ethercat, 3 = tipo Turco con 3 schede IO Ethercat
+#vn181;Vn181_Step_Rinforzo;
 #vn196;Vn196_Tasca_DX_C1;
 #vn197;Vn197_Tasca_SX_C1;
 #vn198;Vn198_Tasca_DX_C2;
@@ -393,6 +407,27 @@ As2000 Simbols Table
 #vn777;vntest;
 #vn778;vntest1;
 #vn779;vntest2;
+#vn800;Fun301_ago_vn800_err;
+#vn801;Fun301_ago_vn801_rete;
+#vn802;Fun301_ago_vn802_noto;
+#vn803;Fun301_ago_vn803_indice;
+#vn804;Fun301_ago_vn804_sub;
+#vn805;Fun301_ago_vn805_dim;
+#vn806;Fun301_ago_vn806_idResult;
+#vn810;Fun301_Crochet_vn810_err;
+#vn811;Fun301_Crochet_vn811_rete;
+#vn812;Fun301_Crochet_vn812_noto;
+#vn813;Fun301_Crochet_vn813_indice;
+#vn814;Fun301_Crochet_vn814_sub;
+#vn815;Fun301_Crochet_vn815_dim;
+#vn816;Fun301_Crochet_vn816_idResult;
+#vn820;Fun301_Car_vn820_err;
+#vn821;Fun301_Car_vn821_rete;
+#vn822;Fun301_Car_vn822_noto;
+#vn823;Fun301_Car_vn823_indice;
+#vn824;Fun301_Car_vn824_sub;
+#vn825;Fun301_Car_vn825_dim;
+#vn826;Fun301_Car_vn826_idResult;
 #vn3001;VnOvdAx1;Asse 1 - Override indipendente
 #vn3011;VnFaseZeroAx1;Asse 1 - Fase azzeramento
 #vn3013;VnStatoAx1;Asse 1 - Status asse
@@ -400,6 +435,7 @@ As2000 Simbols Table
 #vn3031;VnFaseZeroAx2;Asse 2 - Fase azzeramento
 #vn3033;VnStatoAx2;Asse 2 - Status asse
 #vn3041;VnOvdAx3;Asse 3 - Override indipendente
+#vn3042;VnSpeedJogAx3;Asse 3 - Velocità Jog
 #vn3051;VnFaseZeroAx3;Asse 3 - Fase azzeramento
 #vn3053;VnStatoAx3;Asse 3 - Status asse
 #vn3061;VnOvdAx4;Asse 4 - Override indipendente
@@ -510,7 +546,6 @@ As2000 Simbols Table
 #vq3060;Vq3060_;non utilizzato
 #vq3063;Vq3063_Tim_C2_Scartafilo;
 #vq3070;Vq3070_RitPinzaTraslatore_ON;
-#vq3079;Vq3079_RitBar2Off_Bar1Off;
 #vq3080;Vq3080_RitScaricatoreDxSx_ON_OK;
 #vq3081;Vq3081_RitScaricatoreDxSx_OFF;
 #vq3082;Vq3082_RitScaricatorePrimaBarra;
@@ -564,6 +599,9 @@ As2000 Simbols Table
 #vq3144;Vq3144_RitPiegatore_4_ON;variabile per memorizzare tempo su sequenza Curve5
 #vq3145;Vq3145_RitPiegatore_4_OFF;variabile per memorizzare tempo su sequenza Curve5
 #vq3160;Vq3160_ContSensPiegatoreSu;punti contati dalla molla rottura filo
+#vq3162;Vq3162TemperaturaDriverAgo;coontiene la temperatura del driver ago (si legge cone VB118)
+#vq3163;Vq3163TemperaturaDriverCro;coontiene la temperatura del driver crochet (si legge cone VB119)
+#vq3164;Vq3164TemperaturaDriverCar;coontiene la temperatura del driver caricatore (si legge cone VB120)
 #vq3500;Vq3500_PosizioneCaricRiposo;posizione caricatore a riposo fuori ingombro
 #vq3501;Vq3501_PosizioneCaricCaricoTasca;posizione caricatore carico tasca
 #vq3502;Vq3502_PosizioneCaricScaricoTasca;posizione caricatore scarico tasca
@@ -627,9 +665,9 @@ As2000 Simbols Table
 #i20;i20_C1_FcMinAsseY;
 #i21;i21_Emg;
 #i22;i22_C1_FcZeroAgo;
-#i23;i23_C1_PinzaIntBassa;i28_Rinforzo_ready
+#i23;i23_C1_PinzaIntBassa;
 #i24;i24_C1_PinzaEstAlta;
-#i25;i25_PulsResetFolder;i27_Rinforzo_Attivo
+#i25;i25_PulsResetFolder;
 #i26;i26_C1_PulsStopTesta;
 #i27;i27_Rinforzo_Attivo;
 #i28;i28_Rinforzo_ready;
@@ -657,7 +695,7 @@ As2000 Simbols Table
 #o13;o13_Valvolone;
 #o14;o14_C1_rasafilo;
 #o15;o15_EvAspiratore;
-#o16;o16;
+#o16;o16_coltello_rinforzo;
 #o17;o17_C1_Piedino;
 #o18;o18_C1_Pinza_int;
 #o19;o19_C1_Pinza_est;
@@ -671,9 +709,12 @@ As2000 Simbols Table
 #o27;o27_C1_Ranocchia_retrat;
 #o28;o28_Prima_barra;
 #o29;o29_Seconda_barra;
-#o30;o30;
+#o30;o30_rullo_rinforzo;
 #o31;o31_bloccaFiloMagente;
 #o32;o32_Enable_AssiXY_C1C2;
 #o33;o33_Gancio_AutoBC;AutoBobbinChanger
 #o34;o34_Rotaz_AutoBC;AutoBobbinChanger
 #o35;o35_Braciio_AutoBC;AutoBobbinChanger
+#o36;o36_coltello_rinforzo;device rinforzo pneumatico
+#o37;o37_calamita_rinforzo;device rinforzo pneumatico
+#o38;o38_rullo_rinforzo;device rinforzo pneumatico

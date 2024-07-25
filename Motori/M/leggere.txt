@@ -1,0 +1,6 @@
+CarT1_ver3  10/07/20244 = P0-07=16 posso leggere la temperatura del driver dal SDO Ethercat 
+			  P1-32=10 se premo emergenza il motore viene "lasciato" in modo da evitare botte di corrente sugli IGBT
+CroT1_ver3  10/07/20244 = P0-07=16 posso leggere la temperatura del driver dal SDO Ethercat 
+			  P1-32=10 se premo emergenza il motore viene "lasciato" in modo da evitare botte di corrente sugli IGBT
+NeedleT1_v3 10/07/20244 = P0-07=16 posso leggere la temperatura del driver dal SDO Ethercat 
+			  P1-32=10 se premo emergenza il motore viene "lasciato" in modo da evitare botte di corrente sugli IGBT

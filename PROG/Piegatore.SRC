@@ -49,6 +49,7 @@ sub ()
 ////	avanti piegatore on
 	Vn132_DebugPie = 101
 		Vb4342_AppAut_o10_Piegatore_AD = ON
+		Vb115CricchettoRinforzo = ON
 			Waitcond ( i7_FcPiegatore_AV )
 				Delays ( Vq3000_RitPiegatoreAD_ON )
 								///// stop piegatore
@@ -429,6 +430,7 @@ sub ()
 	Vn132_DebugPie = 114
 	
 	ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , C1_Udf_ValEletSotto * 100)
+	Vb4369_AppAut_o37_calamita_rinforzo = ON
 	Delays ( Vq3016_RitElettrocSotto_ON )
 			
 								///// stop piegatore
@@ -635,6 +637,7 @@ sub ()
 				Vb4347_AppAut_o15_EvAspiratore = OFF
 				Delays ( 0.2 )
 				ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , 0 )
+				Vb4369_AppAut_o37_calamita_rinforzo = OFF
 				if(Vb82BilanciereSu_RigheCN)
 					Delays ( 0.1 )
 					Vb4344_AppAut_o12_Bilanciere_Su_Giu = OFF
@@ -643,6 +646,7 @@ sub ()
 			else
 				Vb4347_AppAut_o15_EvAspiratore = ON
 				ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , C1_Udf_ValEletSotto * 100)
+				Vb4369_AppAut_o37_calamita_rinforzo = ON
 				Vb4344_AppAut_o12_Bilanciere_Su_Giu = ON
 			endif
 		loop
@@ -794,6 +798,7 @@ sub ()
 ////	elettrocalamita sotto off
 	Vn132_DebugPie = 119
          ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , 0 )
+	 Vb4369_AppAut_o37_calamita_rinforzo = OFF
 			Vb4347_AppAut_o15_EvAspiratore = OFF
 			Delays ( Vq3017_RitElettrocSotto_OFF )
 								///// stop piegatore
@@ -962,6 +967,7 @@ sub ()
 //////
 	Vn132_DebugPie = 152
 	ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , 0 )
+	Vb4369_AppAut_o37_calamita_rinforzo = OFF
 //////
 
 	Vn132_DebugPie = 154

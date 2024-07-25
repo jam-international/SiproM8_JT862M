@@ -108,11 +108,6 @@ sub ()
         // -----------------
         // Azzeramento X e Y
 
-        // Movimento asse Y fuori ingombro ( finecorsa avanti )	
-   // if ( VbSimulaDbg == 0 )
-//	AxAnt( C1_AsseY, 260 , -15, 2, 0 )
-  //  endif
-
 	
 :NO_ZERO_X_Y
         // Comando azzeramento AsseX
@@ -186,4 +181,5 @@ sub ()
 	C1_AssiAzzerati = ON
 	Vb52RichiestaZeroAxDaHmiC1 = OFF
 	Vb86In_Azzeramento_C1 = OFF
+	Vb87_FineCucituraSottoprogramma = ON
 endsub

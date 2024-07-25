@@ -49,6 +49,7 @@ sub ()
 ////	avanti piegatore on
 	Vn132_DebugPie = 101
 		Vb4342_AppAut_o10_Piegatore_AD = ON
+		Vb115CricchettoRinforzo = ON
 			Waitcond ( i7_FcPiegatore_AV )
 				Delays ( Vq3000_RitPiegatoreAD_ON )
 								///// stop piegatore
@@ -1015,6 +1016,12 @@ sub ()
 	Vb4334_AppAut_o2_Piegatore_2 = OFF
 	Vb4335_AppAut_o3_Piegatore_3 = OFF
 	Vb4336_AppAut_o4_Piegatore_4 = OFF
+
+	if(Vb22_device_lentezza_tasca)  //se è attivo il kit lentezza tasca lo faccio avanzare
+		Vb4355_AppAut_o23_Lentezza_Tasca_AD = ON
+	endif
+
+
 	goto EXIT_PROG
 
 

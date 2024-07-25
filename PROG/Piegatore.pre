@@ -49,6 +49,7 @@ sub ()
 ////	avanti piegatore on
 	vn132          = 101
 		Vb4342                         = 1 
+		vb115                   = 1 
 			Waitcond ( din7              )
 				Delays ( Vq3000                   )
 								///// stop piegatore
@@ -429,6 +430,7 @@ sub ()
 	vn132          = 114
 
 	ExecPlcFun( 140            , 99                       , vq1922              * 100)
+	Vb4369                              = 1 
 	Delays ( Vq3016                     )
 
 								///// stop piegatore
@@ -635,6 +637,7 @@ sub ()
 				Vb4347                         = 0  
 				Delays ( 0.2 )
 				ExecPlcFun( 140            , 99                       , 0 )
+				Vb4369                              = 0  
 				if(vb82                    )
 					Delays ( 0.1 )
 					Vb4344                              = 0  
@@ -643,6 +646,7 @@ sub ()
 			else
 				Vb4347                         = 1 
 				ExecPlcFun( 140            , 99                       , vq1922              * 100)
+				Vb4369                              = 1 
 				Vb4344                              = 1 
 			endif
 		loop
@@ -794,6 +798,7 @@ sub ()
 ////	elettrocalamita sotto off
 	vn132          = 119
          ExecPlcFun( 140            , 99                       , 0 )
+	 Vb4369                              = 0  
 			Vb4347                         = 0  
 			Delays ( Vq3017                      )
 								///// stop piegatore
@@ -962,6 +967,7 @@ sub ()
 //////
 	vn132          = 152
 	ExecPlcFun( 140            , 99                       , 0 )
+	Vb4369                              = 0  
 //////
 
 	vn132          = 154
