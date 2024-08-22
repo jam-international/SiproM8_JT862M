@@ -1,0 +1,19 @@
+[SDEProject]
+  ConnectionMode = cmEthernet
+  SerialPort = 3
+  BaudRate = 38400
+  SerialPollingPeriod = 200
+  SerialProjectPath = 
+  ARPReset = True
+  EthernetPollingPeriod = 200
+  EthernetProtocolType = Tcp
+  PLCType = plctypeLogicLab5
+  Ping = True
+  CompileMode = 1
+  PostBuildCommand = ""
+  PostBuildArguments = ""
+
+  [Units]
+    192.168.0.92:12006, 
+  [UnitsEnd]
+[SDEProjectEnd]

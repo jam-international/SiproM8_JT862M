@@ -188,6 +188,9 @@
 #define Vb22_device_lentezza_tasca	vb22		// ON = attivo
 #define Vb23_CmdRaffreddamentoAgo   vb23         // Vb comando raffreddamento ago
 
+#define Vb28_C1_ExeCucitura_Run		vb28		//=1 C1_ExeCucitura sta girando
+#define Vb39_C2_ExeCucitura_Run		vb29		//=1 C2_ExeCucitura sta girando
+
 #define Vb30_C1_InCucitura			vb30		//=1 sono all'iterno di una cucitura (anche se sono in HOLD)
 #define Vb31_C2_InCucitura			vb31		//=1 sono all'iterno di una cucitura (anche se sono in HOLD)
 #define Vb32_C1_StopCucitura		vb32		//=1 è stata fermata la cucitura (Stop o rottura filo)
@@ -271,6 +274,7 @@
 #define LeggoTemperaturaDriverAgo 	vb118		//1 = il PLC tramite Ethercat legge la temperatura del driver Ago
 #define LeggoTemperaturaDriverCro 	vb119		//1 = il PLC tramite Ethercat legge la temperatura del driver Crochet
 #define LeggoTemperaturaDriverCar 	vb120		//1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore
+#define Vb121_LanciaFuoriAuto		vb121		//1 = la lancia viene fuori senza premere la pedana
 //------------------------------------------------------------------------
 //
 // #######################################
@@ -755,6 +759,7 @@
 #define vntest						vn777
 #define vntest1						vn778
 #define vntest2						vn779
+#define vntest3						vn780
 // Leggo temperature motore Ago Delta
 #define Fun301_ago_vn800_err		vn800
 #define Fun301_ago_vn801_rete		vn801
@@ -1110,6 +1115,7 @@
 #define Vq3593_CNT_CicliAutomaticoVitaX100K				Vq3593		//  conteggio cicli automatico vita macchina x 100000		a 100000 di vq3592 incrementa valore 0.001
 
 //// contatori spole
+#define Vq3594_CopiaVq3596						vq3594				//mi serve per provare a risolvere problema che all'accensione mette numeri sbagliati
 #define    VqContatore							vq3595
 #define Vq3596_ContPuntiSpolaC1							Vq3596 		//  conteggio punti fatti
 #define Vq3597_ImpPuntiSpolaC1							Vq3597 		//  conteggio punti da fare
@@ -1127,8 +1133,6 @@
 #define GoAxPlcCariObj          	vq3601        // GoAx asse caricatore - quota obbiettivo
 #define GoAxPlcCaricVel           	vq3602        // GoAx asse caricatore - Velocita'
 #define GoAxPlcCaric            	vq3603        // GoAx asse caricatore - Libera
-
-
 
 
 

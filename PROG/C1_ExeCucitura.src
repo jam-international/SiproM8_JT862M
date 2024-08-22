@@ -19,6 +19,7 @@
 
 
 sub ()
+	Vb28_C1_ExeCucitura_Run = ON
         // Piedino su
     SyncVar( C1_CmdPiedinoSu )    
 
@@ -131,7 +132,9 @@ sub ()
 
 
     //aspetto autorizzazione a partire a cucire dal CicloAutomatico
+    //Vn16GoCuci =99
 do
+    
     if(Vn16GoCuci == 1 or Vn16GoCuci ==2)
 
         if(Vn16GoCuci ==2)
@@ -141,7 +144,7 @@ do
         exitdo
     endif
     loop
-vntest2 = 1
+
         // Movimento a posizione di inizio cucitura
     C1_VelFeed = C1_Udf_FeedG0
     ISO G1 X C1_FirstPt_X Y C1_FirstPt_Y F C1_VelFeed
@@ -175,7 +178,7 @@ vntest2 = 1
 
    
     do
-    vntest2 = 2
+
         ISO G280
 
             // Attesa
@@ -245,6 +248,10 @@ vntest2 = 1
     if ( C1_Udf_FeedG0 < C1_VelFeed )           // #M200717_1GF#
         C1_VelFeed = C1_Udf_FeedG0
     endif
+
+    Vb4802_PulsResetHmiC1 = 0 //per DACCA, in alcuni casi dopo essere tornato al punto di carico eseguiva erroneamente il movimento XY di reset
+    Vb4803_AppResetHmiC1 = 0 //per DACCA, in alcuni casi dopo essere tornato al punto di carico eseguiva erroneamente il movimento XY di reset
+    
     ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F C1_VelFeed    
     if(Vn14TipoScartafiloC1 == 1)
         Vb4038_Scatena_scartafilo = ON
@@ -252,4 +259,5 @@ vntest2 = 1
     Vb30_C1_InCucitura = OFF
    
     Vb88_TascaC1Completata = ON
+    Vb28_C1_ExeCucitura_Run = OFF
 endsub

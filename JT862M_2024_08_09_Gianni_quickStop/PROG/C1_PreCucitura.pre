@@ -1,0 +1,33 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_PreCucitura.src
+//              Operazioni prima di eseguire la cucitura
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+
+'#include "DefVar.h"
+
+
+
+sub ()
+
+        //// aspetto a cucire se ho il quarto XL
+    if ( vb4518             and vb4507            )
+        do
+            if ( ( vq60             < ( Vq3525                               + 10 ) and vb7928        == 0 ) or vb4507            == 0 )
+                Exitdo
+            endif
+        loop
+    endif
+
+endsub

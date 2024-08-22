@@ -1,0 +1,79 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_MainIniCustom.src
+//              Personalizzazioni all'inizio del programma Main    
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+#include "DefVar.h"
+
+
+
+sub ()
+	
+        // Centratura pinza con ago
+    if ( Vb4080_TestFcZeroC1 )
+        gosub "C1_TestPinzaAgo"
+        Vb4080_TestFcZeroC1 = OFF
+        Vb4078_TestHomeC1 = OFF
+        gosub "Halt.obj"
+    endif      
+
+        ///// dopo un reset riporto la pinza in posizione home
+    if ( Vb4803_AppResetHmiC1 )
+
+	    SyncVar( C1_CmdPiedinoSu )    
+		Delays (0.1)
+	
+	//C1_VelFeed = C1_Par_FeedG0Reset
+	//if ( C1_Udf_FeedG0 < C1_VelFeed )           // #M200717_1GF#
+	//	C1_VelFeed = C1_Udf_FeedG0
+	//endif
+
+	
+
+
+        fa[ C1_AsseX ] = Vq3054_C1_VelFeed_Reset
+        fa[ C1_AsseY ] = Vq3054_C1_VelFeed_Reset
+	if(Vn_ID_macchina == 862 )
+		ax[ C1_AsseY ] = 250        //// sposto tutto indietro
+	else
+		ax[ C1_AsseY ] = 200        //// sposto tutto indietro
+	endif
+        ax[ C1_AsseX ] = 0 
+        ax[ C1_AsseY ] = 0
+        ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F Vq3054_C1_VelFeed_Reset    
+        Delays (0.1)
+	Vb36_Clear_OPT1 = ON	//apro retrattile
+	Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
+	Vb38_Clear_OPT3 = ON	//disattivo salto piedino
+        Vb4350_AppAut_o18_C1_Pinza_int = ON
+        Vb4351_AppAut_o19_C1_Pinza_est = ON 
+
+	WaitCond ( i24_C1_PinzaEstAlta == 1)
+
+	Vb36_Clear_OPT1 = ON	//apro retrattile
+	Vb38_Clear_OPT3 = ON	//disattivo salto piedino
+
+	Vb4096_AppOnScartafiloC1 = ON
+	Vb4803_AppResetHmiC1 = OFF
+	Vb30_C1_InCucitura = OFF
+	C1_VbRunCuci = OFF
+	
+	C1_VqActPntCuci = 0	// azzero numero punti fatti 
+	
+		gosub "Halt.obj"						///// messo per non iniziare a cucire dopo il reset
+
+    endif
+        
+endsub
+

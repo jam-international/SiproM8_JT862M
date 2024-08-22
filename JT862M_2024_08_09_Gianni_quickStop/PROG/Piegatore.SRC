@@ -1,0 +1,1048 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: Piegatore.src   
+//
+// NOTE:                                NAME:          VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        Mauro          1.0     11/04/2019
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+#include "defvar.h"
+
+
+sub ()
+:INIZIO
+
+		do
+			Vn132_DebugPie = 1001
+				if ( Vb4004_AvvioPiegatore )				/// aspetto il plc che la rimette a zero4
+					Vn132_DebugPie = 99
+					Vb4010_PrgPiegatoreRun = ON
+					Vb4004_AvvioPiegatore = OFF
+					ExitDo
+				endif
+				
+				if ( Vb8_ExitAutomatico )
+					goto EXIT_PROG
+				endif 
+				
+		loop
+		
+///// set iniziale
+	if (  PosAx_C1_AsseCAR > Vq3500_PosizioneCaricRiposo + 1 )
+		fp[ C1_AsseCAR ] = Vq3510_VelocitaCaricRiposo
+		ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
+	endif
+	
+	
+	Vn132_DebugPie = 100
+	Vb4010_PrgPiegatoreRun = ON
+	Vb4011_TascaOk = OFF
+	Vb4012_FlagTascaPronta = OFF
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	avanti piegatore on
+	Vn132_DebugPie = 101
+		Vb4342_AppAut_o10_Piegatore_AD = ON
+		Vb115CricchettoRinforzo = ON
+			Waitcond ( i7_FcPiegatore_AV )
+				Delays ( Vq3000_RitPiegatoreAD_ON )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore basso on
+	Vn132_DebugPie = 102
+		 Vb4343_AppAut_o11_Piegatore_Su_Giu = ON
+			Waitcond ( i9_FcPiegatoreBasso )
+				Delays ( Vq3002_RitPiegatoreAlto_ON )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	elettrocalamita perno on
+	Vn132_DebugPie = 103
+         ExecPlcFun( PLC_AN_OUT_NUM , AO100_ValoreElettrocSopra ,  C1_Udf_ValEletSopra * 100)
+			Delays ( Vq3004_RitElettrocPerno_ON )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 1 on
+	Vn132_DebugPie = 104
+		if ( Vn101_Piegatore1_CH != 0 )
+			Vb4021_Piegatore1_ON = ON
+				Delays ( Vq3006_RitPiegatore_1_ON )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif	
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 2 on
+	Vn132_DebugPie = 105
+		if ( Vn102_Piegatore2_CH != 0 )
+			Vb4022_Piegatore2_ON = ON
+				Delays ( Vq3008_RitPiegatore_2_ON )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 3 on
+	Vn132_DebugPie = 106
+		if ( Vn103_Piegatore3_CH != 0 )
+			Vb4023_Piegatore3_ON = ON
+				Delays ( Vq3010_RitPiegatore_3_ON )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 4 on
+	Vn132_DebugPie = 107
+		if ( Vn104_Piegatore4_CH != 0 )
+			Vb4024_Piegatore4_ON = ON
+				Delays ( Vq3012_RitPiegatore_4_ON )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	elettrocalamita perno off
+	Vn132_DebugPie = 108
+         ExecPlcFun( PLC_AN_OUT_NUM , AO100_ValoreElettrocSopra , 0 )
+			Delays ( Vq3005_RitElettrocPerno_OFF )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	bilancere giu
+	Vn132_DebugPie = 109
+		 Vb4344_AppAut_o12_Bilanciere_Su_Giu = ON
+//			Waitcond ( i38_FcBilancereGiu )
+				Delays ( Vq3014_RitBilancere_ON )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 4 off
+	Vn132_DebugPie = 110
+		if ( Vn105_Piegatore1_AP != 0 )
+			Vb4025_Piegatore1_OFF = ON
+				Delays ( Vq3013_RitPiegatore_4_OFF )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 3 off
+	Vn132_DebugPie = 111
+		if ( Vn106_Piegatore2_AP != 0 )
+			Vb4026_Piegatore2_OFF = ON
+				Delays ( Vq3011_RitPiegatore_3_OFF )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 2 off
+	Vn132_DebugPie = 112
+		if ( Vn107_Piegatore3_AP != 0 )
+			Vb4027_Piegatore3_OFF = ON
+				Delays ( Vq3009_RitPiegatore_2_OFF )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 1 off
+	Vn132_DebugPie = 113
+		if ( Vn108_Piegatore4_AP != 0 )
+			Vb4028_Piegatore4_OFF = ON
+				if(Vq3007_RitPiegatore_1_OFF <0.1)
+					Vq3007_RitPiegatore_1_OFF = 0.1
+				endif
+				Delays ( Vq3007_RitPiegatore_1_OFF )
+				
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	elettrocalamita sotto on
+	Vn132_DebugPie = 114
+	
+	ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , C1_Udf_ValEletSotto * 100)
+	Vb4369_AppAut_o37_calamita_rinforzo = ON
+	Delays ( Vq3016_RitElettrocSotto_ON )
+			
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore basso off
+	Vn132_DebugPie = 115
+
+		//Per sicurezza, mi assicuro che tutte le lamelle del piegatore siano aperte altrimenti le apro
+		if( Vb4333_AppAut_o1_Piegatore_1 or Vb4334_AppAut_o2_Piegatore_2 or Vb4335_AppAut_o3_Piegatore_3 or Vb4336_AppAut_o4_Piegatore_4)
+			
+			Vb4333_AppAut_o1_Piegatore_1 = OFF
+			Vb4334_AppAut_o2_Piegatore_2 = OFF
+			Vb4335_AppAut_o3_Piegatore_3 = OFF
+			Vb4336_AppAut_o4_Piegatore_4 = OFF
+			
+
+			ExecPlcFun( PLC_AN_OUT_NUM , AO100_ValoreElettrocSopra , 0 )
+			Delays(1)
+		endif
+
+
+
+
+
+		 Vb4343_AppAut_o11_Piegatore_Su_Giu = OFF
+				Delays ( Vq3003_RitPiegatoreAlto_OFF )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	aspetto sensore piegatore alto
+	Vn132_DebugPie = 116
+	if(Vb84AbilitaSensAltoPieg) 
+		do
+			if(Vb83PiegatoreRisalito)
+							
+							
+				exitdo
+			endif
+		loop
+	endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	avanti piegatore off
+		Vb4342_AppAut_o10_Piegatore_AD = OFF
+		Vn132_DebugPie = 1161
+
+				Delays ( Vq3001_RitPiegatoreAD_OFF )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	etichetta sempre Vn111_EnbEtichetta = 1
+///////////////////////////////////////////////////////////////////////////////////////////	
+
+	if ( Vn111_EnbEtichetta == 1 and Vb4001_StepPiegatore == 0)
+		Vn132_DebugPie = 1116
+			Waitcond ( i1_Pulsanti_start or Vb4003_RqsStopPiegatore )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+	endif	
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	etichetta sempre Vn111_EnbEtichetta = 2
+///////////////////////////////////////////////////////////////////////////////////////////	
+
+	if ( Vn111_EnbEtichetta == 2 and Vn112_AppEtichettaMod_2 == 0  and Vb4001_StepPiegatore == 0)
+		Vn132_DebugPie = 1117
+		Vn112_AppEtichettaMod_2 = 1
+			Waitcond ( i1_Pulsanti_start or Vb4003_RqsStopPiegatore)
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+	else
+					Vn112_AppEtichettaMod_2 = 0
+	endif	
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	funzione Righe  Vn111_EnbEtichetta = 3
+///////////////////////////////////////////////////////////////////////////////////////////	
+
+	if ( Vn111_EnbEtichetta == 3  and Vb4001_StepPiegatore == 0)
+		Vn132_DebugPie = 1118
+
+		do
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+			if(i1_Pulsanti_start)	//se premo start continua 
+				exitdo
+			endif
+
+			if(i3_C1_PedanaPiegatore)	//se premo la pedana piegatore lascio il magnete
+
+				Vb4347_AppAut_o15_EvAspiratore = OFF
+				Delays ( 0.2 )
+				ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , 0 )
+				Vb4369_AppAut_o37_calamita_rinforzo = OFF
+				if(Vb82BilanciereSu_RigheCN)
+					Delays ( 0.1 )
+					Vb4344_AppAut_o12_Bilanciere_Su_Giu = OFF
+				endif
+
+			else
+				Vb4347_AppAut_o15_EvAspiratore = ON
+				ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , C1_Udf_ValEletSotto * 100)
+				Vb4369_AppAut_o37_calamita_rinforzo = ON
+				Vb4344_AppAut_o12_Bilanciere_Su_Giu = ON
+			endif
+		loop
+	endif
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+// aspetto che il sensore piegatore basso sia spento
+///////////////////////////////////////////////////////////////////////////////////////////	
+	do			// sensore piegatore basso spento
+					Vn132_DebugPie = 1171
+					//if ( !i9_FcPiegatoreBasso  ) 
+					if(Vb83PiegatoreRisalito and Vb84AbilitaSensAltoPieg)
+							exitdo
+					endif
+
+					if( Vb84AbilitaSensAltoPieg == OFF)
+							Delays (0.2)
+							Delays (Vq3024_RitCarSopraLancia)
+							exitdo
+					endif
+		
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		loop		
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	carico tasca
+	Vn132_DebugPie = 117
+	Vb9_ChiudePiegatore4 = ON
+	Waitcond ( i5_FcPinzaCaricoAlta )		/// pinza caricatore alta
+	Vb83PiegatoreRisalito = OFF
+	    fp[ C1_AsseCAR ] = Vq3510_VelocitaCaricRiposo
+	    if(Vq3501_PosizioneCaricCaricoTasca > 420 or Vq3501_PosizioneCaricCaricoTasca < 400) 
+			Vq3501_PosizioneCaricCaricoTasca = 407
+	    endif
+		ax[ C1_AsseCAR ] = Vq3501_PosizioneCaricCaricoTasca 
+				Delays ( Vq3018_RitPosCaricatoreCarico )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	 rinforzo
+	Vn132_DebugPie = 1181
+
+
+	if( i27_Rinforzo_Attivo == ON)
+
+		do
+			if (i28_Rinforzo_ready == ON)
+
+				exitdo
+
+			else
+				///// stop piegatore
+				if ( Vb4003_RqsStopPiegatore )
+					Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+						do
+							if ( i25_PulsResetFolder )		// reset piegatore
+								Vb4003_RqsStopPiegatore = OFF
+								goto RESET_PIEGATORE
+							endif	
+						loop
+				endif
+				if ( Vb4001_StepPiegatore )
+					Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+						do
+							if ( i25_PulsResetFolder )		// reset piegatore
+								goto RESET_PIEGATORE
+						endif	
+							if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+								exitdo
+							endif	
+						loop
+				endif
+				///// fine stop piegatore
+			endif
+		loop
+	endif	
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	 pinza caricatore ON
+	Vn132_DebugPie = 118
+		Vb4356_AppAut_o24_Pinza_carico_Su_Giu = ON
+			Waitcond ( i5_FcPinzaCaricoAlta == OFF )
+				Delays ( Vq3020_RitPinzaCaricatore_ON )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	elettrocalamita sotto off
+	Vn132_DebugPie = 119
+         ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , 0 )
+	 Vb4369_AppAut_o37_calamita_rinforzo = OFF
+			Vb4347_AppAut_o15_EvAspiratore = OFF
+			Delays ( Vq3017_RitElettrocSotto_OFF )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	lancia off
+	Vn132_DebugPie = 120
+		Vb4341_AppAut_o9_Lancia_AD = OFF
+		Vb4355_AppAut_o23_Lentezza_Tasca_AD = OFF
+			Waitcond ( i11_FcLancia_DI  )
+				Delays ( Vq3023_RitLancia_OFF )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	bilancere su
+	Vn132_DebugPie = 121
+		 Vb4344_AppAut_o12_Bilanciere_Su_Giu = OFF
+//			Waitcond ( i40_FcBilancereSu )
+				Vb9_ChiudePiegatore4 = OFF
+				Delays ( Vq3015_RitBilancere_OFF )
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	se sto cucendo porto la tasca in posizione aspetta fine cucitura oppure alla posizione di scarico
+	Vn132_DebugPie = 122
+	
+	
+		do			// attendo la cucitrice 1 libera
+					//if ( C1_VbRunCuci == OFF and i24_C1_PinzaEstAlta and i23_C1_PinzaIntBassa == 0  and ( PosAx_C2_AsseCAR < ( Vq3522_PosizioneTraslCaricoTascaC1 - 1 ))) 
+					if ( C1_VbRunCuci == OFF and i24_C1_PinzaEstAlta and i23_C1_PinzaIntBassa == 0 and i8_FcPiegatore_DI and Vb4033_RitardoAvanzataCaricatore == 0  and Vb4520_AppScaricoCortiConPinzaRunning == OFF) 
+						if(C1_Udf_VelCaric <= (Vq3511_VelocitaCaricLavoro *1000) and C1_Udf_VelCaric > 0)
+							Vq3513_VelCarAppoggio = C1_Udf_VelCaric
+						else 
+							Vq3513_VelCarAppoggio = 50000
+						endif
+
+						if(Vq3502_PosizioneCaricScaricoTasca > 985 or Vq3502_PosizioneCaricScaricoTasca < 960)
+							Vq3502_PosizioneCaricScaricoTasca = 978
+						endif
+
+
+						AxAnt( C1_AsseCAR, Vq3502_PosizioneCaricScaricoTasca , Vq3513_VelCarAppoggio, 2, 0 )  
+							exitdo
+					endif
+		
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		loop		
+			///// fine stop piegatore
+	////// 
+
+				
+		
+
+
+
+
+
+				
+	//// salto alla fine 
+			goto FINE
+
+///////////////////////////////////////////////////////////////////
+///// reset piegatore	
+
+
+
+:RESET_PIEGATORE
+// alzo la pinza caricatore e sposto alla posizione Vq3500_PosizioneCaricRiposo
+	Vb4356_AppAut_o24_Pinza_carico_Su_Giu = OFF
+	Waitcond ( i5_FcPinzaCaricoAlta )
+	// Imposta le velocita' e predispone gli assi caricatori
+	fp[ C1_AsseCAR ] = 5
+	ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
+// spengo aspirazione 
+	Vb4347_AppAut_o15_EvAspiratore = OFF
+	Vb4355_AppAut_o23_Lentezza_Tasca_AD = OFF
+
+
+//////
+	Vn132_DebugPie = 151
+	ExecPlcFun( PLC_AN_OUT_NUM , AO100_ValoreElettrocSopra , 0 )
+//////
+	Vn132_DebugPie = 152
+	ExecPlcFun( PLC_AN_OUT_NUM , AO99_ValoreElettrocSotto , 0 )
+	Vb4369_AppAut_o37_calamita_rinforzo = OFF
+//////
+
+	Vn132_DebugPie = 154
+ 	Vb9_ChiudePiegatore4 = OFF
+	Vb4028_Piegatore4_OFF = ON
+	Delays ( 0.1 )
+//////
+	Vn132_DebugPie = 155
+	Vb4027_Piegatore3_OFF = ON
+
+	Delays ( 0.2 )
+//////
+	Vn132_DebugPie = 156
+	Vb4026_Piegatore2_OFF = ON
+	Delays ( 0.2 )
+//////
+	Vn132_DebugPie = 157
+	 Vb4025_Piegatore1_OFF = ON
+	Delays ( 0.2 )
+//////
+	Vn132_DebugPie = 158
+	//Delays (0.2)
+	if ( i9_FcPiegatoreBasso )
+		Vb4343_AppAut_o11_Piegatore_Su_Giu = OFF
+		Waitcond ( i9_FcPiegatoreBasso == OFF )
+		Delays ( Vq3003_RitPiegatoreAlto_OFF )
+	else
+		Vb4343_AppAut_o11_Piegatore_Su_Giu = OFF
+	endif
+//////
+	Vn132_DebugPie = 159
+	Vb4342_AppAut_o10_Piegatore_AD = OFF
+	Waitcond ( i8_FcPiegatore_DI )
+
+	Vb4341_AppAut_o9_Lancia_AD = OFF
+	Vb4355_AppAut_o23_Lentezza_Tasca_AD = OFF
+	Waitcond ( i11_FcLancia_DI )
+//////	
+	Vn132_DebugPie = 153
+	Vb4344_AppAut_o12_Bilanciere_Su_Giu = OFF
+
+//////
+	Vn132_DebugPie = 160
+	Vb4003_RqsStopPiegatore = OFF
+	Vb4010_PrgPiegatoreRun = OFF
+	Vb4021_Piegatore1_ON = OFF
+	Vb4022_Piegatore2_ON = OFF
+	Vb4023_Piegatore3_ON = OFF
+	Vb4024_Piegatore4_ON = OFF
+	Vb4333_AppAut_o1_Piegatore_1 = OFF
+	Vb4334_AppAut_o2_Piegatore_2 = OFF
+	Vb4335_AppAut_o3_Piegatore_3 = OFF
+	Vb4336_AppAut_o4_Piegatore_4 = OFF
+
+	if(Vb22_device_lentezza_tasca)  //se è attivo il kit lentezza tasca lo faccio avanzare
+		Vb4355_AppAut_o23_Lentezza_Tasca_AD = ON
+	endif
+
+
+	goto EXIT_PROG
+
+
+
+:FINE	
+///// set finale
+	Vb4012_FlagTascaPronta = ON
+	Vb4013_DisableLancia = ON
+
+			Waitcond ( Vb4012_FlagTascaPronta == 0 and Vb4013_DisableLancia == 0 )
+	Vb4010_PrgPiegatoreRun = OFF
+	
+goto INIZIO
+
+:EXIT_PROG	
+	Vn132_DebugPie = 1000
+
+endsub
+

@@ -1,0 +1,157 @@
+[StartDoc]
+    [StartInfo]
+        SiaxLogNet Ver: 2.0.1.4
+        Date: 09/08/2024 09:17:49
+        Cn Engine Ver: 3.02
+        UsPerTick:  4000
+    [EndInfo]
+
+    [StartNote]
+    [EndNote]
+
+    [StartForm]
+        IsM32= 1
+        Left=  0
+        Top=  0
+        Width=  1361
+        Height=  826
+        PanelNoteCollapsed= True
+        PanelNoteSplitterDistance=  50
+        PanelDatiCollapsed= False
+        PanelDatiSplitterDistance=  885
+        PanelDatiHex= False
+        PanX= -9583.886
+        PanY=  0
+        ScalaX=  12.08479
+        ScalaY=  1
+    [EndForm]
+
+    [StartGeneral]
+        Normal= True
+        FreeRun= False
+        Retrigger= False
+        StepMode= 0
+        Pretrigger= 0
+        StepModeEnabled= False
+        PretriggerEnabled= False
+        AxTrigger= 1
+        Sync=  1
+        Prescaler=  1
+        MaxData= 102400
+    [EndGeneral]
+
+    [StartLogItems]
+        [StartLogItem]
+            Visible= True
+            Derivata= False
+            Tipo= 9
+            Indice= 3
+            Parametro= 16
+            Descrizione= ""
+            Colore= &HFF000000
+            PanY=  700
+            ScalaY= -2.230608E-05
+
+            [StartValues]
+            [EndValues]
+        [EndLogItem]
+        [StartLogItem]
+            Visible= True
+            Derivata= False
+            Tipo= 9
+            Indice= 4
+            Parametro= 16
+            Descrizione= ""
+            Colore= &HFF0000FF
+            PanY=  599
+            ScalaY= -2.230365E-05
+
+            [StartValues]
+            [EndValues]
+        [EndLogItem]
+        [StartLogItem]
+            Visible= True
+            Derivata= False
+            Tipo= 2
+            Indice= 3055
+            Parametro= 0
+            Descrizione= ""
+            Colore= &HFF008000
+            PanY=  507
+            ScalaY= -1.987649
+
+            [StartValues]
+            [EndValues]
+        [EndLogItem]
+        [StartLogItem]
+            Visible= True
+            Derivata= False
+            Tipo= 2
+            Indice= 3075
+            Parametro= 0
+            Descrizione= ""
+            Colore= &HFFFF0000
+            PanY=  407
+            ScalaY= -1.987649
+
+            [StartValues]
+            [EndValues]
+        [EndLogItem]
+        [StartLogItem]
+            Visible= True
+            Derivata= False
+            Tipo= 4
+            Indice= 21
+            Parametro= 0
+            Descrizione= ""
+            Colore= &HFFFF00FF
+            PanY=  306
+            ScalaY= -95.40714
+
+            [StartValues]
+            [EndValues]
+        [EndLogItem]
+        [StartLogItem]
+            Visible= True
+            Derivata= False
+            Tipo= 9
+            Indice= 3
+            Parametro= 18
+            Descrizione= ""
+            Colore= &HFFFF8080
+            PanY=  204
+            ScalaY= -9.835936E-05
+
+            [StartValues]
+            [EndValues]
+        [EndLogItem]
+        [StartLogItem]
+            Visible= True
+            Derivata= False
+            Tipo= 9
+            Indice= 4
+            Parametro= 18
+            Descrizione= ""
+            Colore= &HFFC0C0C0
+            PanY=  104
+            ScalaY= -2.186632E-05
+
+            [StartValues]
+            [EndValues]
+        [EndLogItem]
+        [StartLogItem]
+            Visible= True
+            Derivata= False
+            Tipo= 9
+            Indice= 3
+            Parametro= 32
+            Descrizione= ""
+            Colore= &HFF800000
+            PanY=  0
+            ScalaY=  1
+
+            [StartValues]
+            [EndValues]
+        [EndLogItem]
+    [EndLogItems]
+[EndDoc]

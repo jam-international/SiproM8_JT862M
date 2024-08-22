@@ -1,0 +1,47 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_Main.src   
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: non modificare questo file
+// ==========================================================================
+
+#include "DefVar.h"
+
+
+
+sub ()
+	vntest = 2
+        // Operazioni iniziali Custom 
+	gosub "C1_MainIniCustom.obj"    
+	
+        // Ciclo di azzeramento vado solo se serve 
+    if ( C1_AssiAzzerati == 0 )
+	C1_CmdLoadParam = 1
+	gosub "C1_Azzeramento.obj"
+	
+    else      
+	
+        gosub "C1_LoadProfilo.obj"    
+	vntest = 3
+    	gosub "C1_Parametri.obj"
+	vntest = 4
+        gosub "C1_PreCucitura.obj"
+	vntest = 5
+            // Esegue la cucitura
+        gosub "C1_ExeCucitura.obj"
+    
+            // Operazioni finali
+    	gosub "C1_MainEndCustom.obj"    
+    
+    endif
+    
+endsub
+

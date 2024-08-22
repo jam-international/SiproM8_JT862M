@@ -17,7 +17,7 @@
         UdfContext = 5
 		
         UseRotoTrasl = 1
-        CuciIsoMode  = 2
+        CuciIsoMode  = 1
 	    SglOffLimits = 20
         
         VbStartIdx   = 1951

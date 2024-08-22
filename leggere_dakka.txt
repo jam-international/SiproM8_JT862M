@@ -1,0 +1,1 @@
+se nel programma metto sui primi punti velocità lenta 1000, quando parte a cucire sbaglia, se metto 1100 va bene

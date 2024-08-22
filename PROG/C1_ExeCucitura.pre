@@ -19,6 +19,7 @@
 
 
 sub ()
+	vb28                    = 1 
         // Piedino su
     SyncVar( vb1003          )    
 
@@ -131,7 +132,9 @@ sub ()
 
 
     //aspetto autorizzazione a partire a cucire dal CicloAutomatico
+    //Vn16GoCuci =99
 do
+
     if(vn16       == 1 or vn16       ==2)
 
         if(vn16       ==2)
@@ -141,7 +144,7 @@ do
         exitdo
     endif
     loop
-vn779   = 1
+
         // Movimento a posizione di inizio cucitura
     vq1962     = vq1918       
     ISO G1 X vq1027       Y vq1028       F vq1962    
@@ -175,7 +178,7 @@ vn779   = 1
 
 
     do
-    vn779   = 2
+
         ISO G280
 
             // Attesa
@@ -245,6 +248,10 @@ vn779   = 1
     if ( vq1918        < vq1962     )           // #M200717_1GF#
         vq1962     = vq1918       
     endif
+
+    vb4802                = 0 //per DACCA, in alcuni casi dopo essere tornato al punto di carico eseguiva erroneamente il movimento XY di reset
+    vb4803               = 0 //per DACCA, in alcuni casi dopo essere tornato al punto di carico eseguiva erroneamente il movimento XY di reset
+
     ISO G1 X vq1911      Y vq1912      F vq1962        
     if(vn14                 == 1)
         vb4038                    = 1 
@@ -252,4 +259,5 @@ vn779   = 1
     vb30               = 0  
 
     vb88                   = 1 
+    vb28                    = 0  
 endsub

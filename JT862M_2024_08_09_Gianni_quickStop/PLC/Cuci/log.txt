@@ -1,0 +1,2 @@
+input: D:\Work\Applicativi\APP_M32\APP_AL5_CF\Cuci\JT862M_TestQuickStop\PLC\Cuci\Download\Cuci.bin
+exit error: 0 -OK-

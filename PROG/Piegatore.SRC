@@ -37,6 +37,7 @@ sub ()
 ///// set iniziale
 	if (  PosAx_C1_AsseCAR > Vq3500_PosizioneCaricRiposo + 1 )
 		fp[ C1_AsseCAR ] = Vq3510_VelocitaCaricRiposo
+		
 		ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
 	endif
 	
@@ -702,6 +703,7 @@ sub ()
 	    if(Vq3501_PosizioneCaricCaricoTasca > 420 or Vq3501_PosizioneCaricCaricoTasca < 400) 
 			Vq3501_PosizioneCaricCaricoTasca = 407
 	    endif
+	
 		ax[ C1_AsseCAR ] = Vq3501_PosizioneCaricCaricoTasca 
 				Delays ( Vq3018_RitPosCaricatoreCarico )
 								///// stop piegatore
@@ -889,23 +891,22 @@ sub ()
 	Vn132_DebugPie = 122
 	
 	
-		do			// attendo la cucitrice 1 libera
-					//if ( C1_VbRunCuci == OFF and i24_C1_PinzaEstAlta and i23_C1_PinzaIntBassa == 0  and ( PosAx_C2_AsseCAR < ( Vq3522_PosizioneTraslCaricoTascaC1 - 1 ))) 
-					if ( C1_VbRunCuci == OFF and i24_C1_PinzaEstAlta and i23_C1_PinzaIntBassa == 0 and i8_FcPiegatore_DI and Vb4033_RitardoAvanzataCaricatore == 0  and Vb4520_AppScaricoCortiConPinzaRunning == OFF) 
-						if(C1_Udf_VelCaric <= (Vq3511_VelocitaCaricLavoro *1000) and C1_Udf_VelCaric > 0)
-							Vq3513_VelCarAppoggio = C1_Udf_VelCaric
-						else 
-							Vq3513_VelCarAppoggio = 50000
-						endif
+	do	// attendo la cucitrice 1 libera
+		if ( C1_VbRunCuci == OFF and i24_C1_PinzaEstAlta and i23_C1_PinzaIntBassa == 0 and i8_FcPiegatore_DI and Vb4033_RitardoAvanzataCaricatore == 0  and Vb4520_AppScaricoCortiConPinzaRunning == OFF) 
+			if(C1_Udf_VelCaric <= (Vq3511_VelocitaCaricLavoro *1000) and C1_Udf_VelCaric > 0)
+				Vq3513_VelCarAppoggio = C1_Udf_VelCaric
+			else 
+				Vq3513_VelCarAppoggio = 50000
+			endif
 
-						if(Vq3502_PosizioneCaricScaricoTasca > 985 or Vq3502_PosizioneCaricScaricoTasca < 960)
-							Vq3502_PosizioneCaricScaricoTasca = 978
-						endif
+			if(Vq3502_PosizioneCaricScaricoTasca > 985 or Vq3502_PosizioneCaricScaricoTasca < 960)
+				Vq3502_PosizioneCaricScaricoTasca = 978
+			endif
 
 
-						AxAnt( C1_AsseCAR, Vq3502_PosizioneCaricScaricoTasca , Vq3513_VelCarAppoggio, 2, 0 )  
-							exitdo
-					endif
+			AxAnt( C1_AsseCAR, Vq3502_PosizioneCaricScaricoTasca , Vq3513_VelCarAppoggio, 2, 0 ) //lancia movimento e continua
+			exitdo
+		endif
 		
 								///// stop piegatore
 											if ( Vb4003_RqsStopPiegatore )
@@ -930,19 +931,56 @@ sub ()
 											endif
 								///// fine stop piegatore
 		loop		
-			///// fine stop piegatore
-	////// 
 
-				
+
+////	aspetto che il caricatore arrivi sotto le pinze di cucitura
+	Vn132_DebugPie = 123
+	do
+
+	if ( IsAxInQuote( C1_AsseCAR ) )
 		
+		exitdo
+	endif
+
+								///// stop piegatore
+											if ( Vb4003_RqsStopPiegatore )
+
+												ExecPlcFun( PLC_STOP_AX, (C1_AsseCAR * 100)+1 , 0 )  ///fermo asse caricatore
+												
+												Waitcond ( i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															Vb4003_RqsStopPiegatore = OFF
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001_StepPiegatore )
+												Waitcond ( i3_C1_PedanaPiegatore == OFF and i25_PulsResetFolder == OFF )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( i25_PulsResetFolder )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( i3_C1_PedanaPiegatore )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
 
 
+
+
+
+
+	loop
 
 
 
 				
 	//// salto alla fine 
-			goto FINE
+	Vn132_DebugPie = 999
+	goto FINE
 
 ///////////////////////////////////////////////////////////////////
 ///// reset piegatore	
@@ -950,11 +988,14 @@ sub ()
 
 
 :RESET_PIEGATORE
+Vn132_DebugPie = 150
+
 // alzo la pinza caricatore e sposto alla posizione Vq3500_PosizioneCaricRiposo
 	Vb4356_AppAut_o24_Pinza_carico_Su_Giu = OFF
 	Waitcond ( i5_FcPinzaCaricoAlta )
 	// Imposta le velocita' e predispone gli assi caricatori
 	fp[ C1_AsseCAR ] = 5
+	
 	ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
 // spengo aspirazione 
 	Vb4347_AppAut_o15_EvAspiratore = OFF
@@ -1025,7 +1066,9 @@ sub ()
 	if(Vb22_device_lentezza_tasca)  //se è attivo il kit lentezza tasca lo faccio avanzare
 		Vb4355_AppAut_o23_Lentezza_Tasca_AD = ON
 	endif
-
+	if(Vb121_LanciaFuoriAuto == ON and  Vb4001_StepPiegatore == OFF)
+		Vb4341_AppAut_o9_Lancia_AD = ON
+	endif
 
 	goto EXIT_PROG
 
@@ -1036,7 +1079,10 @@ sub ()
 	Vb4012_FlagTascaPronta = ON
 	Vb4013_DisableLancia = ON
 
-			Waitcond ( Vb4012_FlagTascaPronta == 0 and Vb4013_DisableLancia == 0 )
+	Waitcond ( Vb4012_FlagTascaPronta == 0 and Vb4013_DisableLancia == 0 )
+	
+
+
 	Vb4010_PrgPiegatoreRun = OFF
 	
 goto INIZIO

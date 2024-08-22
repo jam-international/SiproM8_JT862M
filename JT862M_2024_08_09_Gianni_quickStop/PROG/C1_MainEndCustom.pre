@@ -1,0 +1,87 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_MainEndCustom.src
+//              Personalizzazioni alla fine del programma Main    
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+'#include "DefVar.h"
+
+
+
+sub ()
+// se è attivo lo scaricatore pezzi corti mando la pinza dietro
+
+
+	if ( vb4515                   and vb4519                        )
+		vb4520                                = 1 
+		vb36            = 1 	//apro retrattile
+		vb37            = 1 	//abbasso perni ranocchia
+		vb38            = 1 	//disattivo salto piedino
+		Vb4350                         = 1 
+		Vb4351                         = 1  
+		WaitCond ( din24               == 1)
+		ISO G1 X vq1911      Y (vq1912      + Vq3084                           ) F vq1962    
+		Vb4350                         = 0  
+		Vb4351                         = 0   
+		WaitCond ( din23                == 1)
+		Delays (0.1)
+		ISO G1 X vq1911      Y vq1912      F vq1962    
+
+		if ( vb4515                   and (Vb4034                    == 0 or vb4519                         ==1 ))
+			Vb4032                        = 1 
+		endif
+		vb4520                                = 0  
+
+
+	endif
+
+
+
+// alzo le pinze dopo azzeramento
+	if ( vb4803               == 0 and vb4507            == 0 )
+		vb36            = 1 	//apro retrattile
+		vb37            = 1 	//abbasso perni ranocchia
+		vb38            = 1 	//disattivo salto piedino
+		Vb4350                         = 1 
+		Vb4351                         = 1  
+		Vb4096                   = 1 
+	//	WaitCond ( i24_C1_PinzaEstAlta == 1)
+	//	Vb36_Clear_OPT1 = ON	//apro retrattile
+	//	Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
+	//	Vb38_Clear_OPT3 = ON	//disattivo salto piedino
+
+	endif
+
+// azzero numero punti fatti 
+	vq1952          = 0
+
+
+// scaricatore
+
+	if ( vb4515                   and (Vb4034                    == 0 or vb4519                         ==1 ))
+		Waitcond ( Vb4031                     ) /// aspetto il tempo per lo spostamento dx sx dello scaricatore
+		Vb4032                        = 1 
+	endif
+
+// gestione tasca dx/sx
+	if(vb21            )
+		if(vn196             == 1 and vn197             == 0)
+			vn196             = 0
+			vn197             = 1
+		else
+			vn196             = 1
+			vn197             = 0
+		endif
+	endif
+	vb34                   = 1 	//segnalo che è finita la cucitura   
+endsub

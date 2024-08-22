@@ -84,7 +84,7 @@
 			<functions/>
 			<functionBlocks/>
 			<programs>
-				<program name="Emergenze" version="1.0.0" creationDate="0" lastModifiedDate="1721399451" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="Emergenze" version="1.0.0" creationDate="0" lastModifiedDate="1724053629" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="Rise_ciclo_emergenza_attivata" type="RiseEdge"/>
@@ -134,6 +134,8 @@ Rise_ciclo_emergenza_attivata (in :=Ciclo_emergenza_attivata);
 
 if(Rise_ciclo_emergenza_attivata.q) then
 	VN_SYS_PAGE_ID := 0;
+	Vb4072_AllarmeContSpolaC1 := FALSE;
+
 	Ciclo_emergenza_attivata := FALSE;
 		
 		(* Forza tutti gli assi non azzerati *)
@@ -422,17 +424,22 @@ end_if;
 Rise_i21_Emg ( in := i21_Emg) ;	
 if ( Rise_i21_Emg.q)then
 
+
+	Vn2CodiceAllarmeXHmi := 0;
+	VnMemCntGiri_C1 := C1_VnZeroCuci;
 	(*se ho il pulsante rest piegatore attivo allora alzo la pinza esterna per sbloccare le pinze*)
 	if(i25_PulsResetFolder ) then
 		Vb81PremutoResetAccensione := TRUE;   
 		Vb4351_AppAut_o19_C1_Pinza_est := TRUE;
 		Vb4075_GiraAgoFaiSpolaC1 := FALSE;
+		
 	//	o19_C1_Pinza_est := TRUE;
 	else
 		Vb81PremutoResetAccensione := FALSE;
 	end_if;
 end_if;
 /*****************Quick stop assi*****************************************/
+
 if(Vb98_ArrestaAssiQuick) then
 
 	vret := ExecPlcFun( 75, 102,0 );
@@ -443,6 +450,7 @@ if(Vb98_ArrestaAssiQuick) then
 	Vb98_ArrestaAssiQuick := FALSE;
 
 end_if;
+
 ]]>
 					</sourceCode>
 				</program>
@@ -714,7 +722,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Boot" version="1.0.0" creationDate="0" lastModifiedDate="1721637120" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="Boot" version="1.0.0" creationDate="0" lastModifiedDate="1724061237" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars/>
 					<iecDeclaration active="FALSE"/>
 					<sourceCode type="ST">
@@ -741,6 +749,9 @@ end_if;
 (*106.00 = aggiunto variabili per colpo e durata magnete tensione*)
 (*108.00 = aggiunto vb97 per invertire tubi chiusura retrattile + Rinforzo tipo Turco con 2 e 3 schede Ethercat*)
 (*109.00 = modifica su Fai Spola (Vb4075_GiraAgoFaiSpolaC1) + Invertito valvole Rinforzo tipo 3*)
+(*110.00 = migliorato la chiusura retrattile*)
+(*110.05 = Dakka spolina rossa  + reset su passo 49 del cicloautomatico*)
+(*110.07 = Dakka sistemato alcuni problemi su reset piegatore + intordotto *)
 
 	(* ------------------------------- *)
 	(* FLAG SIMULAZIONE - PER DEBUGGER *)
@@ -748,7 +759,7 @@ VbSimulaDbg := FALSE;
 
 	(* Versopne applicativo *)
 case(Vn_ID_macchina)of
-	862: App_Ver := 'JT862M - Ver 109.00 - 18.07.2024';	
+	862: App_Ver := 'JT862M - Ver 110.07 - 19.08.2024';	
 	860: App_Ver := 'JT862HM - Ver 32.00 - 29.11.2023';
 	882: App_Ver := 'JT882M - Ver 15.02 - 13.05.2021';
 end_case;
@@ -2058,7 +2069,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AppMainC3" version="1.0.0" creationDate="0" lastModifiedDate="1704984122" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="AppMainC3" version="1.0.0" creationDate="0" lastModifiedDate="1724061856" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseBootDone" type="RiseEdge"/>
@@ -2612,6 +2623,9 @@ Rise_Vb4509_AppEnbPiegatore(  in := Vb4509_AppEnbPiegatore  );
 		if(Vb22_device_lentezza_tasca) then
 			Vb4355_AppAut_o23_Lentezza_Tasca_AD := TRUE;
 		end_if;
+		if(Vb121_LanciaFuoriAuto) then
+			Vb4341_AppAut_o9_Lancia_AD := TRUE;
+		end_if;
 	end_if;
 
 	
@@ -2682,7 +2696,9 @@ case ( Vn_ID_macchina) of
 		end_if;
 		
 		temp2 := (( VnStatoCuci1 = 5 ) or ( VnStatoCuci1 = 100 ) );
-		if ( (AssiFermi and not VbChn1AutoRun and not VbChn2AutoRun and not Vb4015_PrgCaricatoreRun and not o9_Lancia_AD and not Vb4010_PrgPiegatoreRun and temp1 and temp2) or C1_FinitoSimulazione )then
+	//	if ( (AssiFermi and not VbChn1AutoRun and not VbChn2AutoRun and not Vb4015_PrgCaricatoreRun and not o9_Lancia_AD and not Vb4010_PrgPiegatoreRun and temp1 and temp2) or C1_FinitoSimulazione )then
+		if ( (AssiFermi and not VbChn1AutoRun and not VbChn2AutoRun and not Vb4015_PrgCaricatoreRun  and not Vb4010_PrgPiegatoreRun and temp1 and temp2) or C1_FinitoSimulazione )then
+	
 			Vb8_ExitAutomatico := TRUE ;
 		
 		else;
@@ -2849,7 +2865,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Piegatore" version="1.0.0" creationDate="0" lastModifiedDate="1715693334" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="Piegatore" version="1.0.0" creationDate="0" lastModifiedDate="1724051271" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseLanciaAvDi" type="RiseEdge"/>
@@ -3215,13 +3231,13 @@ if(Rise_i9_FcPiegatoreBasso.q) then
 	PiegatoreStaSalendo := FALSE;
 	Vb83PiegatoreRisalito := FALSE;
 	Vq3160_ContSensPiegatoreSu := 0;
-	Vb85debug := FALSE;
+
 end_if;
 
 				
 if(FallPiegatoreBasso.q) then
 	PiegatoreStaSalendo := TRUE;
-	Vb85debug := TRUE;
+
 end_if;	
 
 
@@ -3245,7 +3261,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Uscite" version="1.0.0" creationDate="0" lastModifiedDate="1720693448" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="Uscite" version="1.0.0" creationDate="0" lastModifiedDate="1722248776" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars/>
 					<iecDeclaration active="FALSE"/>
 					<sourceCode type="ST">
@@ -3508,7 +3524,36 @@ end_if;
 									(* OP1 testa 1 *)
 
 (* o20_C1_Retrattile_AC *)
+
+if( Vb97_InversioneRetrattile) then
+		
+
+	//tubi invertiti
 	if (( EnbManuale and Vb4152_AppMan_o20_C1_Retrattile_AC ) or ( Vb4352_AppAut_o20_C1_Retrattile_AC ))then 
+			
+				o20_C1_Retrattile_AC := FALSE ;
+		
+	else
+			if(i21_Emg) then
+				o20_C1_Retrattile_AC := TRUE ;	//TRUE invertito = aperta
+		
+			else
+				o20_C1_Retrattile_AC := FALSE ;
+			end_if;
+			
+	
+	end_if;
+else
+	//tubi non invertiti	
+	if (( EnbManuale and Vb4152_AppMan_o20_C1_Retrattile_AC ) or ( Vb4352_AppAut_o20_C1_Retrattile_AC ))then 
+		o20_C1_Retrattile_AC := TRUE ;
+	else
+		o20_C1_Retrattile_AC := FALSE ;
+	end_if;		
+	
+	
+end_if;	
+(*
 		if( Vb97_InversioneRetrattile) then
 			o20_C1_Retrattile_AC := FALSE ;
 		else
@@ -3521,7 +3566,7 @@ end_if;
 			o20_C1_Retrattile_AC := FALSE; ;
 		end_if;	
 	end_if;
-
+*)
 	
 									(* OP2 testa 1 *)
 
@@ -4251,7 +4296,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="OutAnalogicheT1" version="1.0.0" creationDate="0" lastModifiedDate="1715671899" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="OutAnalogicheT1" version="1.0.0" creationDate="0" lastModifiedDate="1722573347" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseVb4061_AppTensAumentaTesta1" type="RiseEdge"/>
@@ -4362,7 +4407,7 @@ TimeOutTensioneTesta1( in := ( AppON_TensioneTesta1 and not Vb4061_AppTensAument
 			5:
 			
 		 		if ( TimIniTensioneTesta1.q and not Vb30_C1_InCucitura )then
-		 			vntest1 :=3;
+		 		
 		 			vret := ExecPlcFun( PLC_AN_OUT_NUM , AO97_ValoreTensioneTesta1 , TO_INT( C1_Udf_ValTensione /20  ) );	//con alimentatore 48V
 		 			mc_stati_PiuMenoTensione :=10;
 				end_if;
@@ -4680,7 +4725,7 @@ Fall_Vb4209_AppMagneteBloccaFilo (in:= Vb4209_AppMagneteBloccaFilo and VN_SYS_PA
 ]]>
 					</sourceCode>
 				</program>
-				<program name="OpCodeT1" version="1.0.0" creationDate="0" lastModifiedDate="1704984283" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="OpCodeT1" version="1.0.0" creationDate="0" lastModifiedDate="1722247246" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseC1_VbRunCuci" type="RiseEdge"/>
@@ -4812,7 +4857,7 @@ Fall_Vb4209_AppMagneteBloccaFilo (in:= Vb4209_AppMagneteBloccaFilo and VN_SYS_PA
 		vret := ExecPlcFun( PLC_VCD_TO_VD, VD_TMP_OP_T1_IDX, VcdIdxOP );
 	
 		
-		if ( VdTmpOP_T1 = 1.0 )then
+		if ( VdTmpOP_T1 = 1.0  )then
 			Vb4352_AppAut_o20_C1_Retrattile_AC := TRUE;
 		else
 				
@@ -5650,7 +5695,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="RotturaFilo_Spola_C1" version="1.0.0" creationDate="0" lastModifiedDate="1721297061" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="RotturaFilo_Spola_C1" version="1.0.0" creationDate="0" lastModifiedDate="1724053629" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="CNT_N_PuntiRottFiloC1" type="DINT"/>
@@ -5663,7 +5708,6 @@ end_if;
 							<var name="FallAllSpolaC1" type="FallEdge"/>
 							<var name="Rise_Vb4075_GiraAgoFaiSpolaC1" type="RiseEdge"/>
 							<var name="Fall_Vb4075_GiraAgoFaiSpolaC1" type="FallEdge"/>
-							<var name="Ton_Vb4075_GiraAgoFaiSpolaC1" type="Ton"/>
 							<var name="Rise_paginaTest_IO" type="RiseEdge"/>
 							<var name="Fall_paginaTest_IO" type="FallEdge"/>
 							<var name="Rise_i18_RotturaFilo" type="RiseEdge"/>
@@ -5672,6 +5716,10 @@ end_if;
 							<var name="CNT_N_PuntiRottFiloC2" type="DINT"/>
 							<var name="OLD_ContPuntiRottFiloC2" type="DINT"/>
 							<var name="Rise_TestIRQ1" type="RiseEdge"/>
+							<var name="Rise_Vb4802_PulsResetHmiC1" type="RiseEdge"/>
+							<var name="Rise_i21_Emg" type="RiseEdge"/>
+							<var name="NONAME" type="BOOL"/>
+							<var name="rise_VN_SYS_PAGE_ID" type="RiseEdge"/>
 						</localVars>
 					</vars>
 					<iecDeclaration active="FALSE"/>
@@ -5694,9 +5742,10 @@ end_if;
 (* ========================================================================== *)
 RiseVb4_C1_InCucitura ( in:= Vb4_C1_InCucitura );
 FallVb4_C1_InCucitura ( in:= Vb4_C1_InCucitura );
+Rise_Vb4802_PulsResetHmiC1 (in:= Vb4802_PulsResetHmiC1);
 
 	(* se parto a cucire*)
-	if ( RiseVb4_C1_InCucitura.q )then 	 
+	if ( RiseVb4_C1_InCucitura.q or Rise_Vb4802_PulsResetHmiC1.q )then 	 
 		 CNT_N_PuntiRottFiloC1 :=0;
 	end_if;
 	
@@ -5723,31 +5772,59 @@ RiseStopC1(  in := ( VB_CHN_AUTO_RUNNING and not C1_CmdHoldRelease and Vb4090_En
 
 
 (* conteggio punti spola *)
+rise_VN_SYS_PAGE_ID (in :=VN_SYS_PAGE_ID >0);
+
+if(rise_VN_SYS_PAGE_ID.q) then
+	VnMemCntGiri_C1 := C1_VnZeroCuci;
+
+end_if;
+
+if( VN_SYS_PAGE_ID >0) then
+
 
     VnDeltaCntGiri_C1 := C1_VnZeroCuci - VnMemCntGiri_C1;
+   
     Rise_cnt_giro (in:= VnDeltaCntGiri_C1 >0);	//serve per rottura filo, non spostarlo da qui
 
     VnMemCntGiri_C1   := C1_VnZeroCuci;
 
     Vq3596_ContPuntiSpolaC1 := Vq3596_ContPuntiSpolaC1 + To_Dint( To_Udint( VnDeltaCntGiri_C1 ) );
+    
+
 
     Vq3596_ContPuntiSpolaC1 := ABS(Vq3596_ContPuntiSpolaC1);
 
     
+end_if;
+(* visto che quando faccio emergenza o spegno  
+Rise_i21_Emg ( in := i21_Emg) ;	
+if ( Rise_i21_Emg.q)then
+
+   if(Vq3596_ContPuntiSpolaC1 >= Vq3597_ImpPuntiSpolaC1 ) then
+		Vb4072_AllarmeContSpolaC1 := TRUE ;
+
+	else
+		Vb4072_AllarmeContSpolaC1 := FALSE; 
+
+	end_if;
+ end_if;   
+*) 
     
 
 
 
 (* allarme raggiunto numero punti spola *)
-RiseAllSpolaC1 ( in:= Vq3596_ContPuntiSpolaC1 >= Vq3597_ImpPuntiSpolaC1 );
+RiseAllSpolaC1 ( in:= Vq3596_ContPuntiSpolaC1 >= Vq3597_ImpPuntiSpolaC1  and  i21_Emg  );
 
-	if ( RiseAllSpolaC1.q and Vb4071_AbilitaContSpolaC1 )then
-		Vb4072_AllarmeContSpolaC1 := TRUE ; 
-		if(not Vb90_EnableAutoBobbinChang) then
-			Vn2CodiceAllarmeXHmi := 1;  (*Daniele HMI*)
-		end_if;	
-	end_if;
-
+//	if( VN_SYS_PAGE_ID = 1001) then
+			if ( RiseAllSpolaC1.q and Vb4071_AbilitaContSpolaC1 )then
+				Vb4072_AllarmeContSpolaC1 := TRUE ; 
+			
+				if(not Vb90_EnableAutoBobbinChang) then
+					Vn2CodiceAllarmeXHmi := 1;  (*Daniele HMI*)
+				end_if;	
+			end_if;
+//	end_if;
 	
 (* reset numero punti spola *)
 FallAllSpolaC1 ( in:= Vb4072_AllarmeContSpolaC1 );
@@ -5755,13 +5832,16 @@ FallAllSpolaC1 ( in:= Vb4072_AllarmeContSpolaC1 );
 		Vn2CodiceAllarmeXHmi := 0;  (*Daniele HMI*); 
 	end_if;
 
-	if ( FallAllSpolaC1.q or not Vb4071_AbilitaContSpolaC1 )then
-		Vq3596_ContPuntiSpolaC1 := 0 ;
-
+	if ( FallAllSpolaC1.q or not Vb4071_AbilitaContSpolaC1 and  i21_Emg )then
+		if (VN_SYS_PAGE_ID = 1001 ) then
+			Vq3596_ContPuntiSpolaC1 := 0 ;
+			vntest3 := 5;
+		end_if;
 	end_if;
 (* blocco allarme se sono disattivato *)
 	if (not Vb4071_AbilitaContSpolaC1 )then
 		Vb4072_AllarmeContSpolaC1 := FALSE ; 
+	
 	end_if;
 
 (* gira ago per spola *)
@@ -5780,7 +5860,7 @@ if(Rise_Vb4075_GiraAgoFaiSpolaC1.q) then
 end_if;
 
 if(Fall_Vb4075_GiraAgoFaiSpolaC1.q) then
-	
+
 	VB_AX3_JOG_PIU := FALSE;
 	VnSpeedJogAx3 := 0;
 	Vb4088_TestDisableRiposizionaAgo := FALSE;
@@ -6074,7 +6154,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AutoBobbinChanger" version="1.0.0" creationDate="1709657356" lastModifiedDate="1710422012" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="AutoBobbinChanger" version="1.0.0" creationDate="1709657356" lastModifiedDate="1724053629" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="mc_stati_un_passo_revolver" type="INT"/>
@@ -6205,7 +6285,7 @@ if (Vb91_RunCambioSpola and not cmd_RunCambioSpola) then
 	Vb91_RunCambioSpola := FALSE;
 end_if;
 
-vntest2 := mc_stati_ciclo_cambio_spola;
+
 
 if (cmd_RunCambioSpola) then
 	if( Vn5CodiceAllarmeCambioSpola <> 5 and Vn170_IdxAutoBobbinChanh <= 8 and not Vb94_Cambiare_revolver) then
@@ -8013,7 +8093,7 @@ END_VAR
  *
  * MDPlc source file: DefCuci.PLL
  *
- * Date = "22/07/2024 09:56:52"
+ * Date = "19/08/2024 11:51:07"
  *)
 
 
@@ -9219,7 +9299,7 @@ END_VAR
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "22/07/2024 09:56:52"
+ * Date = "19/08/2024 11:51:07"
  *)
 
 
@@ -9326,6 +9406,7 @@ VAR_GLOBAL
     LeggoTemperaturaDriverAgo               AT %MB300.118  : BOOL;         {DE:"vb118  - 1 = il PLC tramite Ethercat legge la temperatura del driver Ago"}
     LeggoTemperaturaDriverCro               AT %MB300.119  : BOOL;         {DE:"vb119  - 1 = il PLC tramite Ethercat legge la temperatura del driver Crochet"}
     LeggoTemperaturaDriverCar               AT %MB300.120  : BOOL;         {DE:"vb120  - 1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore"}
+    Vb121_LanciaFuoriAuto                   AT %MB300.121  : BOOL;         {DE:"vb121  - 1 = la lancia viene fuori senza premere la pedana"}
     Vb4000_Automatico                       AT %MB300.4000 : BOOL;         {DE:"vb4000 - /// messa a ON da HMI sono in automatico"}
     Vb4001_StepPiegatore                    AT %MB300.4001 : BOOL;         {DE:"vb4001 - /// messa a ON da HMI il piegatore è passo passo"}
     Vb4002_StepPiegatoreStop                AT %MB300.4002 : BOOL;         {DE:"vb4002 - /// punto di stop piegatore"}
@@ -9647,6 +9728,7 @@ VAR_GLOBAL
     vntest                                  AT %MW400.777  : INT;          {DE:"vn777"}
     vntest1                                 AT %MW400.778  : INT;          {DE:"vn778"}
     vntest2                                 AT %MW400.779  : INT;          {DE:"vn779"}
+    vntest3                                 AT %MW400.780  : INT;          {DE:"vn780"}
     Fun301_ago_vn800_err                    AT %MW400.800  : INT;          {DE:"vn800"}
     Fun301_ago_vn801_rete                   AT %MW400.801  : INT;          {DE:"vn801"}
     Fun301_ago_vn802_noto                   AT %MW400.802  : INT;          {DE:"vn802"}
@@ -9876,6 +9958,7 @@ VAR_GLOBAL
     Vq3591_CNT_CicliAutomaticoUser          AT %MD500.3591 : DINT;         {DE:"vq3591 - conteggio cicli automatico azzerabile da utente            valore 0.001"}
     Vq3592_CNT_CicliAutomaticoVita          AT %MD500.3592 : DINT;         {DE:"vq3592 - conteggio cicli automatico vita macchina                valore 0.001"}
     Vq3593_CNT_CicliAutomaticoVitaX100K     AT %MD500.3593 : DINT;         {DE:"vq3593 - conteggio cicli automatico vita macchina x 100000        a 100000 di vq3592 incrementa valore 0.001"}
+    Vq3594_CopiaVq3596                      AT %MD500.3594 : DINT;         {DE:"vq3594 - mi serve per provare a risolvere problema che all'accensione mette numeri sbagliati"}
     VqContatore                             AT %MD500.3595 : DINT;         {DE:"vq3595"}
     Vq3596_ContPuntiSpolaC1                 AT %MD500.3596 : DINT;         {DE:"vq3596 - conteggio punti fatti"}
     Vq3597_ImpPuntiSpolaC1                  AT %MD500.3597 : DINT;         {DE:"vq3597 - conteggio punti da fare"}

@@ -1,0 +1,56 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_CheckEndCuci.src   
+//              Verifica se la cucitura e' terminata
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: non modificare questo file
+// ==========================================================================
+
+#include "DefVar.h"
+
+
+
+sub ()
+    
+	// Verifica cucitura terminata
+	if ( C1_VqActPntCuci >= C1_VqTotPntCuci )
+		// Movimento a posizione di home ( coordinate macchina )
+		SyncVar( C1_CmdPiedinoSu )
+		Delays ( 0.3 )
+ 		Vb4805_AppStartCaricatoreC2 = ON
+		C1_VelFeed = C1_Par_FeedG0Reset
+		if ( C1_Udf_FeedG0 < C1_VelFeed )           // #M200717_1GF#
+			C1_VelFeed = C1_Udf_FeedG0
+		endif
+		ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F C1_VelFeed
+
+
+		//Daniele x fine test
+		Vb36_Clear_OPT1 = ON	//apro retrattile
+		Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
+		Vb38_Clear_OPT3 = ON	//disattivo salto piedino
+
+		Vb4350_AppAut_o18_C1_Pinza_int = ON
+		Vb4351_AppAut_o19_C1_Pinza_est = ON 
+
+		if(Vb4354_AppAut_o22_Scaric_dx_sx)	//se lo scaricatore è a sx (può succedere se ho usato Test cucitura)
+			Vb4032_AppScaricatoreStrBarre = ON
+			C1_VqActPntCuci = 0
+		endif
+
+		//WaitCond ( i24_C1_PinzaEstAlta == 1)
+
+		
+	
+		gosub "Halt.obj"
+	endif
+endsub
+

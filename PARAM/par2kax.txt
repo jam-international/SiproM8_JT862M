@@ -343,8 +343,8 @@
     VelRif = 4915200
     VelRifInd = 4915200
     EngineRPM = 4500
-    TimeAcc = 0.5
-    TimeDec = 0.5
+    TimeAcc = 0.3
+    TimeDec = 0.3
     MmRif = 40
     ImpRif = 65536
     InvDir = 0
@@ -396,7 +396,7 @@
     MaxErrInsDelayMs = 0
     TimeAccJog = 0.6
     TimeDecJog = 0.01
-    VelPPaJog = 20
+    VelPPaJog = 30
     VelPPdJog = 20
     TimeDecStop = 0
     VelPPdStop = 0

@@ -1,0 +1,23 @@
+[StartXcop]
+  #Version 1.0.6.12207
+  #CanAdd NetCanOpen
+
+  [StartNote]
+    Parametri Canopen di Default
+  [EndNote]
+
+
+  [StartCanOpenSystemPar]
+    #HIDETITLEPAR
+    NodeGuardingTime = 0.3
+    NodeLifeTime = 3
+    NodeGuardingMode = 0
+    NodeGuardingSendOnError = 0
+    EmergOnIOParamErr = 0
+    EmergCanopenBootErr = 1
+    NetDelayStartS = 0
+    FlexCanCntInfo = 0
+    CanopenWarningLevel = 0
+    CanopenDebugLevel = 0
+  [EndCanOpenSystemPar]
+[EndXcop]

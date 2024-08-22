@@ -1,0 +1,546 @@
+As2000 Simbols Table
+#vb1001;C1_VbEnableCamme;Comando di abilitazione camme della cucitrice 1
+#vb1002;C1_CmdInitCamme;Comando di inizializzazione delle camme digitali
+#vb1003;C1_CmdPiedinoSu;Comando per alzare il piedino
+#vb1004;C1_CmdPiedinoGiu;Comando per abbassare il piedino
+#vb1005;C1_CmdRiposiziona;Comando di riposizionamento sul punto di cucitura
+#vb1006;C1_CmdSimulaAva;Comando di Simula avanti
+#vb1007;C1_CmdSimulaInd;Comando di Simula indietro
+#vb1008;C1_CmdReloadTabellone;Comando di reload tabellone
+#vb1009;C1_CmdHoldRelease;Comando interno di Hold/Release
+#vb1010;C1_CmdHoldHMI;Comando Hold da HMI
+#vb1011;C1_CmdReleaseHMI;Comando Release da HMI
+#vb1012;C1_CmdSaveParam;Comando di save parametri
+#vb1013;C1_CmdGantryCrochet;Comando di aggancio inseguimento gantry crochet
+#vb1014;C1_CmdStdFollowCrochet;Comando di aggancio inseguimento standard crochet
+#vb1015;C1_CmdSganciaCrochet;Comando di sgancio  inseguimento crochet
+#vb1016;C1_CmdSetOffsetAgoTacca;Comando di set offset ago - tacca di zero
+#vb1017;C1_CmdGetOffsetAgoTacca;Comando di acquisizione offset ago - tacca di zero
+#vb1018;C1_CmdSbloccaAgo;Comando di sblocco dell'ago per movimento "a mano"
+#vb1019;C1_CmdForceLoadProfilo;Comando di forzatura load profilo
+#vb1020;C1_CmdSimulaAvaNpoint;Comando di Simula avanti n-punti
+#vb1021;C1_CmdSimulaIndNpoint;Comando di Simula indietro n-punti
+#vb1022;C1_CmdSimulaAvaCont;Comando di Simula avanti n-punti
+#vb1023;C1_CmdSimulaIndCont;Comando di Simula indietro n-punti
+#vb1024;C1_CmdLoadParam;Comando di load del file UDF dei parametri
+#vb1025;C1_ReloadParam;Forza il ricalcolo dei parametri
+#vb1026;C1_ModoSimulaNpoint;Modo di Simulazione n-punti (0=tutti i punti  1=ultimo punto)
+#vb1027;C1_CmdSimulaPedaleVel;Pedale per alta velocita' simulazione continua
+#vb1028;C1_CuciBufRewind;Comando Rewind nella ripartenza
+#vb1030;C1_AgoFuoriIngombro;Flag segnalazione asse in camma fuori ingombro
+#vb1031;C1_AsseAgoFermo;Flag segnalazione asse ago fermo
+#vb1032;C1_AssiAzzerati;Flag segnalazione assi azzerati
+#vb1033;C1_VbFlgCuciOrMove;Flag FlgCuciOrMove ( 1=cuci  0=move )
+#vb1034;C1_CuciSimulaAuto;Esecuzione cucitura simulata per il CNC
+#vb1035;C1_CuciLastPoint;Esecuzione ultimo punto di cucitura
+#vb1036;C1_CuciLastPointEnaStop;Consenso stop su ago alto ( last point )
+#vb1037;C1_CammaStopAgoAlto;Camma per stop ago alto
+#vb1038;C1_VbFlgG280Running;Flag FlgG280Running
+#vb1039;C1_VbEnableCammeIni;Comando di abilitazione camme della cucitrice 1 start asse
+#vb1040;C1_CuciLastPointAxC;Last point: gestione hold asse C
+#vb1041;C1_VbFlgJtaskRunning;Flag JTask running
+#vb1042;C1_VbFlgJtaskLoopHold;Flag JTask loop hold
+#vb1043;C1_FinitoSimulazione;il comando Simula è arrivato all'ultimo punto
+#vb1850;C1_VbStEnIrqBit;Stato abilitazione IRQ
+#vb1851;C1_VbStEnMovBit;Stato abilitazione movimento cucitura
+#vb1852;C1_VbStDisAlarmBit;Stato generazione allarme ( 1=disab 0=enab )
+#vb1853;C1_VbStAlarmBit;Stato allarme cucitrice
+#vb1854;C1_VbStIrqBit;Stato IRQ cucitrice
+#vb1855;C1_VbStCamMovBit;Stato camma movimento
+#vb1856;C1_VbStSelEnc0Bit;Stato bit 0 selezione encoder
+#vb1857;C1_VbStSelEnc1Bit;Stato bit 1 selezione encoder
+#vb1858;C1_VbStAxMovBit;Stato asse in movimento
+#vb1859;C1_VbStBit9;Stato bit 9
+#vb1860;C1_VbStBit10;Stato bit 10
+#vb1861;C1_VbStBit11;Stato bit 11
+#vb1862;C1_VbStBit12;Stato bit 12
+#vb1863;C1_VbStBit13;Stato bit 13
+#vb1864;C1_VbStBit14;Stato bit 14
+#vb1865;C1_VbStBit15;Stato bit 15
+#vb1951;C1_VbStartCuci;
+#vb1952;C1_VbHoldCuci;
+#vb1953;C1_VbReleaseCuci;
+#vb1954;C1_VbEndCuci;
+#vb1955;C1_VbRunCuci;
+#vb1956;C1_VbRallCuci;
+#vb1957;C1_VbRasafCuci;
+#vb1958;C1_VbAgoAzzCuci;
+#vb1959;C1_VbCamMovCuci;
+#vb1960;C1_VbAxMovCuci;
+#vb1961;C1_VbLastPnt;
+#vb1962;C1_VbSuspendCuci;
+#vb1963;C1_VbCuciIsoActive;
+#vb1964;C1_VbCuciGoto;
+#vb2001;C2_VbEnableCamme;Comando di abilitazione camme della cucitrice 2
+#vb2002;C2_CmdInitCamme;Comando di inizializzazione delle camme digitali
+#vb2003;C2_CmdPiedinoSu;Comando per alzare il piedino
+#vb2004;C2_CmdPiedinoGiu;Comando per abbassare il piedino
+#vb2005;C2_CmdRiposiziona;Comando di riposizionamento sul punto di cucitura
+#vb2006;C2_CmdSimulaAva;Comando di Simula avanti
+#vb2007;C2_CmdSimulaInd;Comando di Simula indietro
+#vb2008;C2_CmdReloadTabellone;Comando di reload tabellone
+#vb2009;C2_CmdHoldRelease;Comando interno di Hold/Release
+#vb2010;C2_CmdHoldHMI;Comando Hold da HMI
+#vb2011;C2_CmdReleaseHMI;Comando Release da HMI
+#vb2012;C2_CmdSaveParam;Comando di save parametri
+#vb2013;C2_CmdGantryCrochet;Comando di aggancio inseguimento gantry crochet
+#vb2014;C2_CmdStdFollowCrochet;Comando di aggancio inseguimento standard crochet
+#vb2015;C2_CmdSganciaCrochet;Comando di sgancio  inseguimento crochet
+#vb2016;C2_CmdSetOffsetAgoTacca;Comando di set offset ago - tacca di zero
+#vb2017;C2_CmdGetOffsetAgoTacca;Comando di acquisizione offset ago - tacca di zero
+#vb2018;C2_CmdSbloccaAgo;Comando di sblocco dell'ago per movimento "a mano"
+#vb2019;C2_CmdForceLoadProfilo;Comando di forzatura load profilo
+#vb2020;C2_CmdSimulaAvaNpoint;Comando di Simula avanti n-punti
+#vb2021;C2_CmdSimulaIndNpoint;Comando di Simula indietro n-punti
+#vb2022;C2_CmdSimulaAvaCont;Comando di Simula avanti n-punti
+#vb2023;C2_CmdSimulaIndCont;Comando di Simula indietro n-punti
+#vb2024;C2_CmdLoadParam;Comando di load del file UDF dei parametri
+#vb2025;C2_ReloadParam;Forza il ricalcolo dei parametri
+#vb2026;C2_ModoSimulaNpoint;Modo di Simulazione n-punti (0=tutti i punti  1=ultimo punto)
+#vb2027;C2_CmdSimulaPedaleVel;Pedale per alta velocita' simulazione continua
+#vb2028;C2_CuciBufRewind;Comando Rewind nella ripartenza
+#vb2030;C2_AgoFuoriIngombro;Flag segnalazione asse in camma fuori ingombro
+#vb2031;C2_AsseAgoFermo;Flag segnalazione asse ago fermo
+#vb2032;C2_AssiAzzerati;Flag segnalazione assi azzerati
+#vb2033;C2_VbFlgCuciOrMove;Flag FlgCuciOrMove ( 1=cuci  0=move )
+#vb2034;C2_CuciSimulaAuto;Esecuzione cucitura simulata per il CNC
+#vb2035;C2_CuciLastPoint;Esecuzione ultimo punto di cucitura
+#vb2036;C2_CuciLastPointEnaStop;Consenso stop su ago alto ( last point )
+#vb2037;C2_CammaStopAgoAlto;Camma per stop ago alto
+#vb2038;C2_VbFlgG280Running;Flag FlgG280Running
+#vb2039;C2_VbEnableCammeIni;Comando di abilitazione camme della cucitrice 2 start asse
+#vb2040;C2_CuciLastPointAxC;Last point: gestione hold asse C
+#vb2041;C2_VbFlgJtaskRunning;Flag JTask running
+#vb2042;C2_VbFlgJtaskLoopHold;Flag JTask loop hold
+#vb2043;C2_FinitoSimulazione;il comando Simula è arrivato all'ultimo punto
+#vb2850;C2_VbStEnIrqBit;Stato abilitazione IRQ
+#vb2851;C2_VbStEnMovBit;Stato abilitazione movimento cucitura
+#vb2852;C2_VbStDisAlarmBit;Stato generazione allarme ( 1=disab 0=enab )
+#vb2853;C2_VbStAlarmBit;Stato allarme cucitrice
+#vb2854;C2_VbStIrqBit;Stato IRQ cucitrice
+#vb2855;C2_VbStCamMovBit;Stato camma movimento
+#vb2856;C2_VbStSelEnc0Bit;Stato bit 0 selezione encoder
+#vb2857;C2_VbStSelEnc1Bit;Stato bit 1 selezione encoder
+#vb2858;C2_VbStAxMovBit;Stato asse in movimento
+#vb2859;C2_VbStBit9;Stato bit 9
+#vb2860;C2_VbStBit10;Stato bit 10
+#vb2861;C2_VbStBit11;Stato bit 11
+#vb2862;C2_VbStBit12;Stato bit 12
+#vb2863;C2_VbStBit13;Stato bit 13
+#vb2864;C2_VbStBit14;Stato bit 14
+#vb2865;C2_VbStBit15;Stato bit 15
+#vb2951;C2_VbStartCuci;
+#vb2952;C2_VbHoldCuci;
+#vb2953;C2_VbReleaseCuci;
+#vb2954;C2_VbEndCuci;
+#vb2955;C2_VbRunCuci;
+#vb2956;C2_VbRallCuci;
+#vb2957;C2_VbRasafCuci;
+#vb2958;C2_VbAgoAzzCuci;
+#vb2959;C2_VbCamMovCuci;
+#vb2960;C2_VbAxMovCuci;
+#vb2961;C2_VbLastPnt;
+#vb2962;C2_VbSuspendCuci;
+#vb2963;C2_VbCuciIsoActive;
+#vb2964;C2_VbCuciGoto;
+#vn1001;C1_TabParContext;Contesto pr UDF cucitrice
+#vn1002;C1_VelLavRPM;Velocita' di lavoro ( per FunPlc )
+#vn1003;C1_VelLimitRPM;Limitazione RPM Ago
+#vn1004;C1_PlcStatoAgo;Stato Ago ( macchina a stati PLC )
+#vn1005;C1_PlcStatoScartafilo;Stato scartafilo  ( macchina a stati PLC )
+#vn1006;C1_MovAxCStatus;Stato asse C ( macchina a stati PLC )
+#vn1010;C1_NextCode;Codice prossimo movimento simulato ( fun 281 cmd 48 e 49 )
+#vn1011;C1_StepNum;Numero del passo da scrivere
+#vn1012;C1_MtxNum;Numero della matrice di base
+#vn1020;mc_stati_C1CmdSimula;indice macchina stati per gestione piedino durante simula
+#vn1021;mc_stati_C1CmdSimulaCont;indice macchina stati per gestione piedino durante simula continuo
+#vn1680;C1_SDO_ErrCode;Error Code
+#vn1681;C1_SDO_Network;Rete
+#vn1682;C1_SDO_Node;Nodo
+#vn1683;C1_SDO_ObjIndex;Index
+#vn1684;C1_SDO_SubIndex;SubIndex
+#vn1685;C1_SDO_Size;Size
+#vn1686;C1_SDO_VqDataIdx;Vq data index
+#vn1690;C1_SetParamStatus;Status
+#vn1691;C1_SetParamErrCode;ErrorCode
+#vn1692;C1_SetParamCmd;Cmd  1=rd  2=wr
+#vn1693;C1_SetParamAxNum;Axis Number [1,2,...]
+#vn1694;C1_SetParamCat;Categoria di parametri
+#vn1695;C1_SetParamIdx;Indice del parametro
+#vn1696;C1_SetParamSize;Size del parametro [ 1=byte  2=word  4=long ]
+#vn1901;C1_BaseOpCode;Op code ( matrice di base )
+#vn1951;C1_VnErrCuci;Error code
+#vn1952;C1_VnStatusCuci;Vn status
+#vn1953;C1_VnZeroCuci;Contatore tacche di zero
+#vn1954;C1_VnPntRallCuci;Punti di rallentamento
+#vn1955;C1_VnOvdAxAgo;Override asse ago
+#vn1956;C1_VnRpmMaxAgo;Vel max ago
+#vn1957;C1_VnInfoPoint;Info point
+#vn2001;C2_TabParContext;Contesto pr UDF cucitrice
+#vn2002;C2_VelLavRPM;Velocita' di lavoro ( per FunPlc )
+#vn2003;C2_VelLimitRPM;Limitazione RPM Ago
+#vn2004;C2_PlcStatoAgo;Stato Ago ( macchina a stati PLC )
+#vn2005;C2_PlcStatoScartafilo;Stato scartafilo  ( macchina a stati PLC )
+#vn2006;C2_MovAxCStatus;Stato asse C ( macchina a stati PLC )
+#vn2010;C2_NextCode;Codice prossimo movimento simulato ( fun 281 cmd 48 e 49 )
+#vn2011;C2_StepNum;Numero del passo da scrivere
+#vn2012;C2_MtxNum;Numero della matrice di base
+#vn2020;mc_stati_C2CmdSimula;
+#vn2021;mc_stati_C2CmdSimulaCont;
+#vn2901;C2_BaseOpCode;Op code ( matrice di base )
+#vn2951;C2_VnErrCuci;Error code
+#vn2952;C2_VnStatusCuci;Vn status
+#vn2953;C2_VnZeroCuci;Contatore tacche di zero
+#vn2954;C2_VnPntRallCuci;Punti di rallentamento
+#vn2955;C2_VnOvdAxAgo;Override asse ago
+#vn2956;C2_VnRpmMaxAgo;Vel max ago
+#vn2957;C2_VnInfoPoint;Info point
+#vq1001;C1_VelRifAgo;Velocita' riferimento asse ago
+#vq1002;C1_ImpRifAgo;Impulsi riferimento asse ago
+#vq1003;C1_MmRifAgo;Mm riferimento asse ago
+#vq1004;C1_PtIni;Punti iniziali
+#vq1005;C1_RpmIni;RPM punti iniziali
+#vq1006;C1_PtRall;Punti finali
+#vq1007;C1_RpmRall;RPM punti finali
+#vq1008;C1_VelMaxAgoRPM;Vel max RPM AGO
+#vq1009;C1_CntApritens;Contatore impulsi uscita apritensione
+#vq1010;C1_CntColtello;Contatore impulsi uscita coltello
+#vq1011;C1_SimulaNumPoint;Numero di punti simulazione
+#vq1012;C1_SimulaNumPointVel;Vel [%] simulazione npoint
+#vq1013;C1_SimulaNumPointMsk;Maschera simulazione npoint
+#vq1015;C1_SimulaContVbIdx;Indice Vb
+#vq1016;C1_SimulaContVel1;Vel [%] simulazione continua
+#vq1017;C1_SimulaContVel2;Vel [%] simulazione continua
+#vq1018;C1_SimulaContVel3;Vel [%] simulazione continua
+#vq1019;C1_SimulaContPt12;N. punti cambio da Vel1 a Vel2
+#vq1020;C1_SimulaContPt23;N. punti cambio da Vel2 a Vel3
+#vq1021;C1_SimulaContVbPedale;Indice VB pedale per alta velocita'
+#vq1022;C1_SimulaContVelPedale;Vel pedale alta velocita'[%] simulazione continua
+#vq1025;C1_FirstPtContext;Contesto UDF per calcolo primo punto
+#vq1026;C1_FirstPtValid;Flag primo punto valido
+#vq1027;C1_FirstPt_X;Coordinata X del primo punto
+#vq1028;C1_FirstPt_Y;Coordinata Y del primo punto
+#vq1029;C1_FirstPt_C;Coordinata C iniziale
+#vq1030;C1_GantryErrAct;Errore istantaneo
+#vq1031;C1_GantryErrMax;Errore massimo
+#vq1032;C1_GantryErrReset;Reset errore massimo
+#vq1035;C1_CalcBufContext;Contesto ( dato di input )
+#vq1036;C1_CalcBufErrCode;Codice di errore
+#vq1037;C1_CalcBufErrStepNum;N. passo UDF dove e' avventuto l'errore
+#vq1038;C1_CalcBufErrPar;Parametro aggiuntivo dell'errore
+#vq1040;C1_WarningFlg;Flag Warning
+#vq1041;C1_WarningAntXMm;Mm per il calcolo dell'anticipo  X
+#vq1042;C1_WarningAntXRpm;RPM per il calcolo dell'anticipo X
+#vq1043;C1_WarningAntXPassoUdf;Passo UDF per il calcolo dell'anticipo X
+#vq1044;C1_WarningAntYMm;Mm per il calcolo dell'anticipo  Y
+#vq1045;C1_WarningAntYRpm;RPM per il calcolo dell'anticipo Y
+#vq1046;C1_WarningAntYPassoUdf;Passo UDF per il calcolo dell'anticipo Y
+#vq1047;C1_WarningFreqXMm;Mm per il calcolo delle frequenze X
+#vq1048;C1_WarningFreqXRpm;RPM per il calcolo delle frequenze X
+#vq1049;C1_WarningFreqXPassoUdf;Passo UDF per il calcolo delle frequenze X
+#vq1050;C1_WarningFreqYMm;Mm per il calcolo delle frequenze Y
+#vq1051;C1_WarningFreqYRpm;RPM per il calcolo delle frequenze Y
+#vq1052;C1_WarningFreqYPassoUdf;Passo UDF per il calcolo delle frequenze Y
+#vq1053;C1_CntBloccoFiloINI;Contatore impulsi uscita BloccoFiloINI
+#vq1054;C1_CntBloccoFiloEND;Contatore impulsi uscita BloccoFiloEND
+#vq1060;C1_Fun74_RetCode;RetCode
+#vq1061;C1_Fun74_QuoObj;Quota obiettivo
+#vq1062;C1_Fun74_VelObj;Velocita'
+#vq1063;C1_Fun74_Future;Future
+#vq1063;C1_Fun74_Acc;Accelerazione ( polinomio grado 5 )
+#vq1064;C1_Fun74_Tmov;Tempo di movimento ( polinomio grado 5 )
+#vq1065;C1_Fun74_Offs;Offset anticipo start ( polinomio grado 5 )
+#vq1070;C1_FaseAxAgo;Fase asse ago
+#vq1071;C1_FaseAxC;Fase asse C
+#vq1075;C1_CmdQuoAbsRet;RetCode
+#vq1076;C1_CmdQuoAbsX;QuoAbs X
+#vq1077;C1_CmdQuoAbsY;QuoAbs Y
+#vq1078;C1_CmdQuoAbsC;QuoAbs C
+#vq1100;C1_RpmAgoInProfilo;Rpm ago impostati da istruzione del profile ( Vcd1 )
+#vq1101;C1_TensioneInProfilo;tensione impostata da istruzione del profile ( Vcd2 )
+#vq1110;C1_VelRiduzioneRPM;Ulteriore limite RPM Ago ( #M200710_1GF# )
+#vq1120;C1_CmdMoveAxC;Comando di movimento asse C
+#vq1121;C1_QuoObjAxC;Quota obiettivo asse C
+#vq1122;C1_NumPtMoveAxC;Punti di cucitura - movimento asse C
+#vq1123;C1_RpmMoveAxC;Rpm ago durante il movimento dell'asse C
+#vq1124;C1_IrqNumMoveAxC;IrqNumber interpretazione movimento dell'asse C
+#vq1127;C1_IrqCnt;Contatore Irq ( Fun 281 cmd 63 )
+#vq1130;C1_MovePlcAxCErrCode;Mov. asse C - ErrorCode
+#vq1131;C1_MovePlcAxCQuoObj;Mov. asse C - Quota obiettivo
+#vq1132;C1_MovePlcAxCVel;Mov. asse C - Velocita'
+#vq1133;C1_MovePlcAxCAcc;Mov. asse C - Accelerazione
+#vq1134;C1_MovePlcAxCTime;Mov. asse C - Tempo di movimento
+#vq1135;C1_MovePlcAxCAnt;Mov. asse C - Anticipo
+#vq1651;C1_InfoCntPunti;Contatore punti di cucitura
+#vq1652;C1_InfoAnticipoMm;Mm per il calcolo dell'anticipo
+#vq1653;C1_InfoAnticipoRpm;RPM per il calcolo dell'anticipo
+#vq1654;C1_InfoAnticipoPassoUdf;Passo UDF per il calcolo dell'anticipo
+#vq1655;C1_InfoFreqXMm;Mm per il calcolo delle frequenze X
+#vq1656;C1_InfoFreqXRpm;RPM per il calcolo delle frequenze X
+#vq1657;C1_InfoFreqXPassoUdf;Passo UDF per il calcolo delle frequenze X
+#vq1658;C1_InfoFreqYMm;Mm per il calcolo delle frequenze Y
+#vq1659;C1_InfoFreqYRpm;RPM per il calcolo delle frequenze Y
+#vq1660;C1_InfoFreqYPassoUdf;Passo UDF per il calcolo delle frequenze Y
+#vq1690;C1_SDO_VqRwData;Vq dato letto o da scrivere
+#vq1701;C1_SogliaStart;Soglia start movimento [gradi]
+#vq1702;C1_SogliaStop;Soglia stop  movimento [gradi]
+#vq1703;C1_AgoAlto;Ago alto [gradi]
+#vq1704;C1_StartApriTens;Start camma apritensione [gradi]
+#vq1705;C1_StopApriTens;Stop  camma apritensione [gradi]
+#vq1706;C1_StartColtello;Start camma coltello [gradi]
+#vq1707;C1_StopColtello;Stop  camma coltello [gradi]
+#vq1708;C1_TSalitaPiedino;Tempo salita piedino [s]
+#vq1709;C1_TDiscesaPiedino;Tempo discesa piedino [s]
+#vq1710;C1_ParVelLavRPM;Vel. lavoro ago [RPM]
+#vq1711;C1_ParPuntiVelIni;Punti iniziali (no fix3)
+#vq1712;C1_ParVelIniRPM;Vel iniziale ago [RPM]
+#vq1713;C1_ParPuntiVelRall;Punti rallentamento (no fix3)
+#vq1714;C1_ParVelRallRPM;Vel rallentamento ago [RPM]
+#vq1715;C1_StopAgo;Quota stop dell'ago (prima del movimento ad ago alto)
+#vq1716;C1_OffsetAgoTacca;Offset di fase tran la quota dell'ago e la tacca di zero
+#vq1717;C1_Par_FeedG0Reset;Feed nei movimenti G0 per azzeramento o reset [mm/min] fix3
+#vq1718;C1_StartBloccoFiloINI;Start camma blocco filo inizio cucitura [gradi]
+#vq1719;C1_StopBloccoFiloINI;Stop camma blocco filo inizio cucitura [gradi]
+#vq1720;C1_StartBloccoFiloEND;Start camma blocco filo fine cucitura [gradi]
+#vq1721;C1_StopBloccoFiloEND;Stop camma blocco filo fine cucitura [gradi]
+#vq1722;C1_ParVelRotazione;Velocita' asse C rotazione [%] fix3 movimento iniziale
+#vq1723;C1_Par_23;
+#vq1724;C1_Par_24;
+#vq1725;C1_Par_25;
+#vq1726;C1_Par_26;
+#vq1727;C1_Par_27;
+#vq1728;C1_Par_28;
+#vq1729;C1_Par_29;
+#vq1730;C1_Par_30;
+#vq1731;C1_Par_31;
+#vq1732;C1_Par_32;
+#vq1733;C1_Par_33;
+#vq1734;C1_Par_34;
+#vq1735;C1_Par_35;
+#vq1736;C1_Par_36;
+#vq1737;C1_Par_37;
+#vq1738;C1_Par_38;
+#vq1739;C1_Par_39;
+#vq1740;C1_Par_40;
+#vq1851;C1_TabSpostamentoMm;Spostamento [mm]
+#vq1852;C1_TabVelAgoRPM;Vel. ago [RPM]
+#vq1853;C1_AnticipoX;Anticipo start stop X [gradi]
+#vq1854;C1_AnticipoY;Anticipo start stop Y [gradi]
+#vq1855;C1_FrqLavX;Frequenza di lavoro X [KHz]
+#vq1856;C1_StpAccX;Step di accelerazione X
+#vq1857;C1_FrqAccX;Frequenza accelerazione X [KHz]
+#vq1858;C1_StpDecX;Step di decelerazione X
+#vq1859;C1_FrqDecX;Frequenza decelerazione X [KHz]
+#vq1860;C1_FrqLavY;Frequenza di lavoro Y [KHz]
+#vq1861;C1_StpAccY;Step di accelerazione Y
+#vq1862;C1_FrqAccY;Frequenza accelerazione Y [KHz]
+#vq1863;C1_StpDecY;Step di decelerazione Y
+#vq1864;C1_FrqDecY;Frequenza decelerazione Y [KHz]
+#vq1901;C1_BaseParam1;Parametro 1
+#vq1902;C1_BaseParam2;Parametro 2
+#vq1911;C1_QuoHomeX;Quota Home X
+#vq1912;C1_QuoHomeY;Quota Home Y
+#vq1913;C1_UdfVelLavRPM;Vel lavoro ago [RPM]
+#vq1914;C1_UdfPuntiVelIni;Punti iniziali (no fix3)
+#vq1915;C1_UdfVelIniRPM;Vel iniziale ago [RPM]
+#vq1916;C1_UdfPuntiVelRall;Punti rallentamento (no fix3)
+#vq1917;C1_UdfVelRallRPM;Vel rallentamento ago [RPM]
+#vq1918;C1_Udf_FeedG0;Feed nei movimenti G0 [mm/min] fix3
+#vq1919;C1_Udf_ValTensione;Valore Tensione Testa 1
+#vq1920;C1_Udf_20;
+#vq1921;C1_Udf_ValEletSopra;Valore Uscita magnete Sopra
+#vq1922;C1_Udf_ValEletSotto;Valore Uscita magnete Sotto
+#vq1923;C1_Udf_VelCaric;Valore velocità ultimo tratto caricatore
+#vq1924;C1_Udf_24;
+#vq1925;C1_Udf_25;
+#vq1926;C1_Udf_26;
+#vq1927;C1_Udf_27;
+#vq1928;C1_Udf_28;
+#vq1929;C1_Udf_29;
+#vq1930;C1_Udf_30;
+#vq1951;C1_VqTotPntCuci;Punti totali cucitura
+#vq1952;C1_VqActPntCuci;Punto corrente cucitura
+#vq1953;C1_VqEncImpCuci;Lettura encoder ago [imp]
+#vq1954;C1_VqEncMmCuci;Lettura encoder ago [mm]
+#vq1955;C1_VqRpmAgoCuci;Velocita' ago [RPM]
+#vq1956;C1_VqActStartCuci;Lettura quota start [gradi] (con anticipo)
+#vq1957;C1_VqActStopCuci;Lettura quota stop  [gradi] (con anticipo)
+#vq1958;C1_VqAgoStartCuci;Lettura hw quota start [gradi]
+#vq1959;C1_VqAgoStopCuci;Lettura hw quota stop  [gradi]
+#vq1960;C1_VqTotParzPnt;N. punti cucitura parziale
+#vq1961;C1_VqActParzPnt;Punto corrente cucitura parziale
+#vq1962;C1_VelFeed;Velocità esecuzione Feed
+#vq2001;C2_VelRifAgo;Velocita' riferimento asse ago
+#vq2002;C2_ImpRifAgo;Impulsi riferimento asse ago
+#vq2003;C2_MmRifAgo;Mm riferimento asse ago
+#vq2004;C2_PtIni;Punti iniziali
+#vq2005;C2_RpmIni;RPM punti iniziali
+#vq2006;C2_PtRall;Punti finali
+#vq2007;C2_RpmRall;RPM punti finali
+#vq2008;C2_VelMaxAgoRPM;Vel max RPM AGO
+#vq2009;C2_CntApritens;Contatore impulsi uscita apritensione
+#vq2010;C2_CntColtello;Contatore impulsi uscita coltello
+#vq2011;C2_SimulaNumPoint;Numero di punti simulazione
+#vq2012;C2_SimulaNumPointVel;Vel [%] simulazione npoint
+#vq2013;C2_SimulaNumPointMsk;Maschera simulazione npoint
+#vq2015;C2_SimulaContVbIdx;Indice Vb
+#vq2016;C2_SimulaContVel1;Vel [%] simulazione continua
+#vq2017;C2_SimulaContVel2;Vel [%] simulazione continua
+#vq2018;C2_SimulaContVel3;Vel [%] simulazione continua
+#vq2019;C2_SimulaContPt12;N. punti cambio da Vel1 a Vel2
+#vq2020;C2_SimulaContPt23;N. punti cambio da Vel2 a Vel3
+#vq2021;C2_SimulaContVbPedale;Indice VB pedale per alta velocita'
+#vq2022;C2_SimulaContVelPedale;Vel pedale alta velocita'[%] simulazione continua
+#vq2025;C2_FirstPtContext;Contesto UDF per calcolo primo punto
+#vq2026;C2_FirstPtValid;Flag primo punto valido
+#vq2027;C2_FirstPt_X;Coordinata X del primo punto
+#vq2028;C2_FirstPt_Y;Coordinata Y del primo punto
+#vq2029;C2_FirstPt_C;Coordinata C iniziale
+#vq2030;C2_GantryErrAct;Errore istantaneo
+#vq2031;C2_GantryErrMax;Errore massimo
+#vq2032;C2_GantryErrReset;Reset errore massimo
+#vq2035;C2_CalcBufContext;Contesto ( dato di input )
+#vq2036;C2_CalcBufErrCode;Codice di errore
+#vq2037;C2_CalcBufErrStepNum;N. passo UDF dove e' avventuto l'errore
+#vq2038;C2_CalcBufErrPar;Parametro aggiuntivo dell'errore
+#vq2040;C2_WarningFlg;Flag Warning
+#vq2041;C2_WarningAntXMm;Mm per il calcolo dell'anticipo  X
+#vq2042;C2_WarningAntXRpm;RPM per il calcolo dell'anticipo X
+#vq2043;C2_WarningAntXPassoUdf;Passo UDF per il calcolo dell'anticipo X
+#vq2044;C2_WarningAntYMm;Mm per il calcolo dell'anticipo  Y
+#vq2045;C2_WarningAntYRpm;RPM per il calcolo dell'anticipo Y
+#vq2046;C2_WarningAntYPassoUdf;Passo UDF per il calcolo dell'anticipo Y
+#vq2047;C2_WarningFreqXMm;Mm per il calcolo delle frequenze X
+#vq2048;C2_WarningFreqXRpm;RPM per il calcolo delle frequenze X
+#vq2049;C2_WarningFreqXPassoUdf;Passo UDF per il calcolo delle frequenze X
+#vq2050;C2_WarningFreqYMm;Mm per il calcolo delle frequenze Y
+#vq2051;C2_WarningFreqYRpm;RPM per il calcolo delle frequenze Y
+#vq2052;C2_WarningFreqYPassoUdf;Passo UDF per il calcolo delle frequenze Y
+#vq2053;C2_CntBloccoFiloINI;Contatore impulsi uscita BloccoFiloINI
+#vq2054;C2_CntBloccoFiloEND;Contatore impulsi uscita BloccoFiloEND
+#vq2060;C2_Fun74_RetCode;RetCode
+#vq2061;C2_Fun74_QuoObj;Quota obiettivo
+#vq2062;C2_Fun74_VelObj;Velocita'
+#vq2063;C2_Fun74_Future;Future
+#vq2063;C2_Fun74_Acc;Accelerazione ( polinomio grado 5 )
+#vq2064;C2_Fun74_Tmov;Tempo di movimento ( polinomio grado 5 )
+#vq2065;C2_Fun74_Offs;Offset anticipo start ( polinomio grado 5 )
+#vq2070;C2_FaseAxAgo;Fase asse ago
+#vq2071;C2_FaseAxC;Fase asse C
+#vq2075;C2_CmdQuoAbsRet;RetCode
+#vq2076;C2_CmdQuoAbsX;QuoAbs X
+#vq2077;C2_CmdQuoAbsY;QuoAbs Y
+#vq2078;C2_CmdQuoAbsC;QuoAbs C
+#vq2100;C2_RpmAgoInProfilo;Rpm ago impostati da istruzione del profile ( Vcd1 )
+#vq2101;C2_TensioneInProfilo;tensione impostata da istruzione del profile ( Vcd2 )
+#vq2110;C2_VelRiduzioneRPM;Ulteriore limite RPM Ago ( #M200710_1GF# )
+#vq2120;C2_CmdMoveAxC;Comando di movimento asse C
+#vq2121;C2_QuoObjAxC;Quota obiettivo asse C
+#vq2122;C2_NumPtMoveAxC;Punti di cucitura - movimento asse C
+#vq2123;C2_RpmMoveAxC;Rpm ago durante il movimento dell'asse C
+#vq2124;C2_IrqNumMoveAxC;IrqNumber interpretazione movimento dell'asse C
+#vq2127;C2_IrqCnt;Contatore Irq ( Fun 281 cmd 63 )
+#vq2130;C2_MovePlcAxCErrCode;Mov. asse C - ErrorCode
+#vq2131;C2_MovePlcAxCQuoObj;Mov. asse C - Quota obiettivo
+#vq2132;C2_MovePlcAxCVel;Mov. asse C - Velocita'
+#vq2133;C2_MovePlcAxCAcc;Mov. asse C - Accelerazione
+#vq2134;C2_MovePlcAxCTime;Mov. asse C - Tempo di movimento
+#vq2135;C2_MovePlcAxCAnt;Mov. asse C - Anticipo
+#vq2651;C2_InfoCntPunti;Contatore punti di cucitura
+#vq2652;C2_InfoAnticipoMm;Mm per il calcolo dell'anticipo
+#vq2653;C2_InfoAnticipoRpm;RPM per il calcolo dell'anticipo
+#vq2654;C2_InfoAnticipoPassoUdf;Passo UDF per il calcolo dell'anticipo
+#vq2655;C2_InfoFreqXMm;Mm per il calcolo delle frequenze X
+#vq2656;C2_InfoFreqXRpm;RPM per il calcolo delle frequenze X
+#vq2657;C2_InfoFreqXPassoUdf;Passo UDF per il calcolo delle frequenze X
+#vq2658;C2_InfoFreqYMm;Mm per il calcolo delle frequenze Y
+#vq2659;C2_InfoFreqYRpm;RPM per il calcolo delle frequenze Y
+#vq2660;C2_InfoFreqYPassoUdf;Passo UDF per il calcolo delle frequenze Y
+#vq2701;C2_SogliaStart;Soglia start movimento [gradi]
+#vq2702;C2_SogliaStop;Soglia stop  movimento [gradi]
+#vq2703;C2_AgoAlto;Ago alto [gradi]
+#vq2704;C2_StartApriTens;Start camma apritensione [gradi]
+#vq2705;C2_StopApriTens;Stop  camma apritensione [gradi]
+#vq2706;C2_StartColtello;Start camma coltello [gradi]
+#vq2707;C2_StopColtello;Stop  camma coltello [gradi]
+#vq2708;C2_TSalitaPiedino;Tempo salita piedino [s]
+#vq2709;C2_TDiscesaPiedino;Tempo discesa piedino [s]
+#vq2710;C2_ParVelLavRPM;Vel. lavoro ago [RPM]
+#vq2711;C2_ParPuntiVelIni;Punti iniziali (no fix3)
+#vq2712;C2_ParVelIniRPM;Vel iniziale ago [RPM]
+#vq2713;C2_ParPuntiVelRall;Punti rallentamento (no fix3)
+#vq2714;C2_ParVelRallRPM;Vel rallentamento ago [RPM]
+#vq2715;C2_StopAgo;Quota stop dell'ago (prima del movimento ad ago alto)
+#vq2716;C2_OffsetAgoTacca;Offset di fase tran la quota dell'ago e la tacca di zero
+#vq2717;C2_Par_FeedG0Reset;Feed nei movimenti G0 per azzeramento o reset [mm/min] fix3
+#vq2718;C2_StartBloccoFiloINI;Start camma blocco filo inizio cucitura [gradi]
+#vq2719;C2_StopBloccoFiloINI;Stop camma blocco filo inizio cucitura [gradi]
+#vq2720;C2_StartBloccoFiloEND;Start camma blocco filo fine cucitura [gradi]
+#vq2721;C2_StopBloccoFiloEND;Stop camma blocco filo fine cucitura [gradi]
+#vq2722;C2_ParVelRotazione;Velocita' asse C rotazione [%] fix3 movimento iniziale
+#vq2723;C2_Par_23;
+#vq2724;C2_Par_24;
+#vq2725;C2_Par_25;
+#vq2726;C2_Par_26;
+#vq2727;C2_Par_27;
+#vq2728;C2_Par_28;
+#vq2729;C2_Par_29;
+#vq2730;C2_Par_30;
+#vq2731;C2_Par_31;
+#vq2732;C2_Par_32;
+#vq2733;C2_Par_33;
+#vq2734;C2_Par_34;
+#vq2735;C2_Par_35;
+#vq2736;C2_Par_36;
+#vq2737;C2_Par_37;
+#vq2738;C2_Par_38;
+#vq2739;C2_Par_39;
+#vq2740;C2_Par_40;
+#vq2851;C2_TabSpostamentoMm;Spostamento [mm]
+#vq2852;C2_TabVelAgoRPM;Vel. ago [RPM]
+#vq2853;C2_AnticipoX;Anticipo start stop X [gradi]
+#vq2854;C2_AnticipoY;Anticipo start stop Y [gradi]
+#vq2855;C2_FrqLavX;Frequenza di lavoro X [KHz]
+#vq2856;C2_StpAccX;Step di accelerazione X
+#vq2857;C2_FrqAccX;Frequenza accelerazione X [KHz]
+#vq2858;C2_StpDecX;Step di decelerazione X
+#vq2859;C2_FrqDecX;Frequenza decelerazione X [KHz]
+#vq2860;C2_FrqLavY;Frequenza di lavoro Y [KHz]
+#vq2861;C2_StpAccY;Step di accelerazione Y
+#vq2862;C2_FrqAccY;Frequenza accelerazione Y [KHz]
+#vq2863;C2_StpDecY;Step di decelerazione Y
+#vq2864;C2_FrqDecY;Frequenza decelerazione Y [KHz]
+#vq2901;C2_BaseParam1;Parametro 1
+#vq2902;C2_BaseParam2;Parametro 2
+#vq2911;C2_QuoHomeX;Quota Home X
+#vq2912;C2_QuoHomeY;Quota Home Y
+#vq2913;C2_UdfVelLavRPM;Vel lavoro ago [RPM]
+#vq2914;C2_UdfPuntiVelIni;Punti iniziali (no fix3)
+#vq2915;C2_UdfVelIniRPM;Vel iniziale ago [RPM]
+#vq2916;C2_UdfPuntiVelRall;Punti rallentamento (no fix3)
+#vq2917;C2_UdfVelRallRPM;Vel rallentamento ago [RPM]
+#vq2918;C2_Udf_FeedG0;Feed nei movimenti G0 [mm/min] fix3
+#vq2919;C2_Udf_ValTensione;Valore Tensione Testa 1 ( non utilizzato )
+#vq2920;C2_Udf_20;
+#vq2921;C2_Udf_ValEletSopra;Valore Uscita magnete Sopra ( non utilizzato )
+#vq2922;C2_Udf_ValEletSotto;Valore Uscita magnete Sotto  ( non utilizzato )
+#vq2923;C2_Udf_23;
+#vq2924;C2_Udf_24;
+#vq2925;C2_Udf_25;
+#vq2926;C2_Udf_26;
+#vq2927;C2_Udf_27;
+#vq2928;C2_Udf_28;
+#vq2929;C2_Udf_29;
+#vq2930;C2_Udf_30;
+#vq2951;C2_VqTotPntCuci;Punti totali cucitura
+#vq2952;C2_VqActPntCuci;Punto corrente cucitura
+#vq2953;C2_VqEncImpCuci;Lettura encoder ago [imp]
+#vq2954;C2_VqEncMmCuci;Lettura encoder ago [mm]
+#vq2955;C2_VqRpmAgoCuci;Velocita' ago [RPM]
+#vq2956;C2_VqActStartCuci;Lettura quota start [gradi] (con anticipo)
+#vq2957;C2_VqActStopCuci;Lettura quota stop  [gradi] (con anticipo)
+#vq2958;C2_VqAgoStartCuci;Lettura hw quota start [gradi]
+#vq2959;C2_VqAgoStopCuci;Lettura hw quota stop  [gradi]
+#vq2960;C2_VqTotParzPnt;N. punti cucitura parziale
+#vq2961;C2_VqActParzPnt;Punto corrente cucitura parziale
+#vq2962;C2_VelFeed;Velocità esecuzione Feed

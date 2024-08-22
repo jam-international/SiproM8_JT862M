@@ -1,0 +1,115 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: TestManutenzione.src   
+//
+// NOTE:                                NAME:          VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        Mauro          1.0     27/02/2020
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+'#include "defvar.h"
+
+
+sub ()
+
+    // lancio automatico per centrare la caricatore su pinza cucitrice
+    if ( Vb4081                       )
+		// lancio l'azzeramento pinza C1
+		Vb4078            = 1   //dopo azzeramento vai su PC
+		Vb4080              = 1 
+		vb7901      = 1
+
+			/// abbasso la pinza cucitrice
+				Vb4350                         = 0  
+				Vb4351                         = 0   
+				Delays (0.1)
+			/// alzo la pinza caricatore
+				Vb4356                                = 0  
+				WaitCond ( din5                 )
+			//	WaitCond ( Vb52RichiestaZeroAxDaHmiC1 == 0 )
+				Delays (0.2)
+						fp[ 5          ] = 20    
+						ax[ 5          ] = Vq3502                            
+						Delays ( 0.5 )
+						Vb4356                                = 1 
+						Delays (0.5)
+			WaitCond ( Vb4081                       == 0 )
+						Vb4356                                = 0  
+						WaitCond ( din5                 )
+						Delays (0.5)
+						fp[ 5          ] = 20    
+						ax[ 5          ] = Vq3500                      
+		Vb4081                       = 0  			
+			goto FINE
+	endif
+ ///  per centrare la pinza del caricatore sulla lancia 1
+	if ( Vb4082                        )
+				Vb4136                       = 1 
+				Vb4356                                = 0  
+				Waitcond ( din5                 )
+
+				fp[ 5          ] = 20    
+				ax[ 5          ] = Vq3500                      
+				Delays ( 0.5 )
+				Vb4341                     = 1 
+				Delays ( 1 )
+				Vb4344                              = 1 
+
+				//	WaitCond ( i38_FcBilancereGiu )
+				Delays ( 1 )
+
+			fp[ 5          ] = 20    
+			ax[ 5          ] = Vq3501                           
+						Delays ( 0.5 )
+					Vb4356                                = 1 
+					Waitcond ( din5                 == 0 )
+						Delays (0.5)
+			WaitCond ( Vb4082                        == 0 )
+					Vb4356                                = 0  
+					Waitcond ( din5                 )
+				Delays ( 0.5 )
+				fp[ 5          ] = 20    
+				ax[ 5          ] = Vq3500                      
+					Vb4344                              = 0  
+					Vb4136                       = 0  
+					//	WaitCond ( i40_FcBilancereSu )
+					//	Delays ( 0.2 )
+					Vb4341                     = 0  
+						WaitCond ( din11           )
+						Delays ( 0.2 )
+		Vb4082                        = 0  			
+			goto FINE
+	endif
+
+ ///  utilizzato per gestire l'anticipo tra pinza caricatore e C1
+	if ( Vb4087                           )
+			Vb4356                                = 0  
+				Waitcond ( din5                 )
+			Vb4351                         = 1 
+				Delays ( 0.1 )
+			fp[ 5          ] = Vq3510                    
+			ax[ 5          ] = Vq3502                            
+				Delays ( 1.5 )
+			AxAnt( 5         , Vq3500                      , -Vq3510                    , 2, 0 )  
+				do
+	                if ( vq55             < Vq3504                                )
+						Vb4351                         = 0  
+						Exitdo
+					endif 
+				loop
+
+				WaitCond ( IsAxInQuote( 5          ) )
+				Vb4351                         = 1 
+			goto FINE
+	endif
+
+
+:FINE
+
+endsub

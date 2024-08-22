@@ -1,0 +1,1047 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: Piegatore.src   
+//
+// NOTE:                                NAME:          VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        Mauro          1.0     11/04/2019
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+'#include "defvar.h"
+
+
+sub ()
+:INIZIO
+
+		do
+			vn132          = 1001
+				if ( Vb4004                )				/// aspetto il plc che la rimette a zero4
+					vn132          = 99
+					Vb4010                 = 1 
+					Vb4004                = 0  
+					ExitDo
+				endif
+
+				if ( vb8                )
+					goto EXIT_PROG
+				endif 
+
+		loop
+
+///// set iniziale
+	if (  vq55             > Vq3500                      + 1 )
+		fp[ 5          ] = Vq3510                    
+		ax[ 5          ] = Vq3500                      
+	endif
+
+
+	vn132          = 100
+	Vb4010                 = 1 
+	Vb4011         = 0  
+	Vb4012                 = 0  
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	avanti piegatore on
+	vn132          = 101
+		Vb4342                         = 1 
+		vb115                   = 1 
+			Waitcond ( din7              )
+				Delays ( Vq3000                   )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore basso on
+	vn132          = 102
+		 Vb4343                             = 1 
+			Waitcond ( din9                )
+				Delays ( Vq3002                     )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	elettrocalamita perno on
+	vn132          = 103
+         ExecPlcFun( 140            , 100                       ,  vq1921              * 100)
+			Delays ( Vq3004                     )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 1 on
+	vn132          = 104
+		if ( Vn101               != 0 )
+			Vb4021               = 1 
+				Delays ( Vq3006                   )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif	
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 2 on
+	vn132          = 105
+		if ( Vn102               != 0 )
+			Vb4022               = 1 
+				Delays ( Vq3008                   )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 3 on
+	vn132          = 106
+		if ( Vn103               != 0 )
+			Vb4023               = 1 
+				Delays ( Vq3010                   )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 4 on
+	vn132          = 107
+		if ( Vn104               != 0 )
+			Vb4024               = 1 
+				Delays ( Vq3012                   )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	elettrocalamita perno off
+	vn132          = 108
+         ExecPlcFun( 140            , 100                       , 0 )
+			Delays ( Vq3005                      )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	bilancere giu
+	vn132          = 109
+		 Vb4344                              = 1 
+//			Waitcond ( i38_FcBilancereGiu )
+				Delays ( Vq3014                 )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 4 off
+	vn132          = 110
+		if ( Vn105               != 0 )
+			Vb4025                = 1 
+				Delays ( Vq3013                    )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 3 off
+	vn132          = 111
+		if ( Vn106               != 0 )
+			Vb4026                = 1 
+				Delays ( Vq3011                    )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 2 off
+	vn132          = 112
+		if ( Vn107               != 0 )
+			Vb4027                = 1 
+				Delays ( Vq3009                    )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore 1 off
+	vn132          = 113
+		if ( Vn108               != 0 )
+			Vb4028                = 1 
+				if(Vq3007                    <0.1)
+					Vq3007                    = 0.1
+				endif
+				Delays ( Vq3007                    )
+
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	elettrocalamita sotto on
+	vn132          = 114
+
+	ExecPlcFun( 140            , 99                       , vq1922              * 100)
+	Vb4369                              = 1 
+	Delays ( Vq3016                     )
+
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	piegatore basso off
+	vn132          = 115
+
+		//Per sicurezza, mi assicuro che tutte le lamelle del piegatore siano aperte altrimenti le apro
+		if( Vb4333                       or Vb4334                       or Vb4335                       or Vb4336                      )
+
+			Vb4333                       = 0  
+			Vb4334                       = 0  
+			Vb4335                       = 0  
+			Vb4336                       = 0  
+
+
+			ExecPlcFun( 140            , 100                       , 0 )
+			Delays(1)
+		endif
+
+
+
+
+
+		 Vb4343                             = 0  
+				Delays ( Vq3003                      )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	aspetto sensore piegatore alto
+	vn132          = 116
+	if(vb84                   ) 
+		do
+			if(vb83                 )
+
+
+				exitdo
+			endif
+		loop
+	endif
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	avanti piegatore off
+		Vb4342                         = 0  
+		vn132          = 1161
+
+				Delays ( Vq3001                    )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	etichetta sempre Vn111_EnbEtichetta = 1
+///////////////////////////////////////////////////////////////////////////////////////////	
+
+	if ( vn111              == 1 and Vb4001               == 0)
+		vn132          = 1116
+			Waitcond ( din1              or Vb4003                  )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+	endif	
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	etichetta sempre Vn111_EnbEtichetta = 2
+///////////////////////////////////////////////////////////////////////////////////////////	
+
+	if ( vn111              == 2 and vn112                   == 0  and Vb4001               == 0)
+		vn132          = 1117
+		vn112                   = 1
+			Waitcond ( din1              or Vb4003                 )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+	else
+					vn112                   = 0
+	endif	
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	funzione Righe  Vn111_EnbEtichetta = 3
+///////////////////////////////////////////////////////////////////////////////////////////	
+
+	if ( vn111              == 3  and Vb4001               == 0)
+		vn132          = 1118
+
+		do
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+			if(din1             )	//se premo start continua 
+				exitdo
+			endif
+
+			if(din3                 )	//se premo la pedana piegatore lascio il magnete
+
+				Vb4347                         = 0  
+				Delays ( 0.2 )
+				ExecPlcFun( 140            , 99                       , 0 )
+				Vb4369                              = 0  
+				if(vb82                    )
+					Delays ( 0.1 )
+					Vb4344                              = 0  
+				endif
+
+			else
+				Vb4347                         = 1 
+				ExecPlcFun( 140            , 99                       , vq1922              * 100)
+				Vb4369                              = 1 
+				Vb4344                              = 1 
+			endif
+		loop
+	endif
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+// aspetto che il sensore piegatore basso sia spento
+///////////////////////////////////////////////////////////////////////////////////////////	
+	do			// sensore piegatore basso spento
+					vn132          = 1171
+					//if ( !i9_FcPiegatoreBasso  ) 
+					if(vb83                  and vb84                   )
+							exitdo
+					endif
+
+					if( vb84                    == 0  )
+							Delays (0.2)
+							Delays (Vq3024                  )
+							exitdo
+					endif
+
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		loop		
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	carico tasca
+	vn132          = 117
+	vb9                  = 1 
+	Waitcond ( din5                 )		/// pinza caricatore alta
+	vb83                  = 0  
+	    fp[ 5          ] = Vq3510                    
+	    if(Vq3501                           > 420 or Vq3501                           < 400) 
+			Vq3501                           = 407
+	    endif
+		ax[ 5          ] = Vq3501                           
+				Delays ( Vq3018                        )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	 rinforzo
+	vn132          = 1181
+
+
+	if( din27               == 1 )
+
+		do
+			if (din28              == 1 )
+
+				exitdo
+
+			else
+				///// stop piegatore
+				if ( Vb4003                  )
+					Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+						do
+							if ( din25               )		// reset piegatore
+								Vb4003                  = 0  
+								goto RESET_PIEGATORE
+							endif	
+						loop
+				endif
+				if ( Vb4001               )
+					Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+						do
+							if ( din25               )		// reset piegatore
+								goto RESET_PIEGATORE
+						endif	
+							if ( din3                  )		// riparti piegatore
+								exitdo
+							endif	
+						loop
+				endif
+				///// fine stop piegatore
+			endif
+		loop
+	endif	
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	 pinza caricatore ON
+	vn132          = 118
+		Vb4356                                = 1 
+			Waitcond ( din5                 == 0   )
+				Delays ( Vq3020                       )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	elettrocalamita sotto off
+	vn132          = 119
+         ExecPlcFun( 140            , 99                       , 0 )
+	 Vb4369                              = 0  
+			Vb4347                         = 0  
+			Delays ( Vq3017                      )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	lancia off
+	vn132          = 120
+		Vb4341                     = 0  
+		Vb4355                              = 0  
+			Waitcond ( din11            )
+				Delays ( Vq3023               )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	bilancere su
+	vn132          = 121
+		 Vb4344                              = 0  
+//			Waitcond ( i40_FcBilancereSu )
+				vb9                  = 0  
+				Delays ( Vq3015                  )
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+
+///////////////////////////////////////////////////////////////////////////////////////////	
+////	se sto cucendo porto la tasca in posizione aspetta fine cucitura oppure alla posizione di scarico
+	vn132          = 122
+
+
+		do			// attendo la cucitrice 1 libera
+					//if ( C1_VbRunCuci == OFF and i24_C1_PinzaEstAlta and i23_C1_PinzaIntBassa == 0  and ( PosAx_C2_AsseCAR < ( Vq3522_PosizioneTraslCaricoTascaC1 - 1 ))) 
+					if ( vb1955       == 0   and din24               and din23                == 0 and din8              and Vb4033                           == 0  and vb4520                                == 0  ) 
+						if(vq1923          <= (Vq3511                     *1000) and vq1923          > 0)
+							Vq3513                = vq1923         
+						else 
+							Vq3513                = 50000
+						endif
+
+						if(Vq3502                            > 985 or Vq3502                            < 960)
+							Vq3502                            = 978
+						endif
+
+
+						AxAnt( 5         , Vq3502                            , Vq3513               , 2, 0 )  
+							exitdo
+					endif
+
+								///// stop piegatore
+											if ( Vb4003                  )
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
+		loop		
+			///// fine stop piegatore
+	////// 
+
+
+
+
+
+
+
+
+
+	//// salto alla fine 
+			goto FINE
+
+///////////////////////////////////////////////////////////////////
+///// reset piegatore	
+
+
+
+:RESET_PIEGATORE
+// alzo la pinza caricatore e sposto alla posizione Vq3500_PosizioneCaricRiposo
+	Vb4356                                = 0  
+	Waitcond ( din5                 )
+	// Imposta le velocita' e predispone gli assi caricatori
+	fp[ 5          ] = 5
+	ax[ 5          ] = Vq3500                      
+// spengo aspirazione 
+	Vb4347                         = 0  
+	Vb4355                              = 0  
+
+
+//////
+	vn132          = 151
+	ExecPlcFun( 140            , 100                       , 0 )
+//////
+	vn132          = 152
+	ExecPlcFun( 140            , 99                       , 0 )
+	Vb4369                              = 0  
+//////
+
+	vn132          = 154
+ 	vb9                  = 0  
+	Vb4028                = 1 
+	Delays ( 0.1 )
+//////
+	vn132          = 155
+	Vb4027                = 1 
+
+	Delays ( 0.2 )
+//////
+	vn132          = 156
+	Vb4026                = 1 
+	Delays ( 0.2 )
+//////
+	vn132          = 157
+	 Vb4025                = 1 
+	Delays ( 0.2 )
+//////
+	vn132          = 158
+	//Delays (0.2)
+	if ( din9                )
+		Vb4343                             = 0  
+		Waitcond ( din9                == 0   )
+		Delays ( Vq3003                      )
+	else
+		Vb4343                             = 0  
+	endif
+//////
+	vn132          = 159
+	Vb4342                         = 0  
+	Waitcond ( din8              )
+
+	Vb4341                     = 0  
+	Vb4355                              = 0  
+	Waitcond ( din11           )
+//////	
+	vn132          = 153
+	Vb4344                              = 0  
+
+//////
+	vn132          = 160
+	Vb4003                  = 0  
+	Vb4010                 = 0  
+	Vb4021               = 0  
+	Vb4022               = 0  
+	Vb4023               = 0  
+	Vb4024               = 0  
+	Vb4333                       = 0  
+	Vb4334                       = 0  
+	Vb4335                       = 0  
+	Vb4336                       = 0  
+
+	if(vb22                      )  //se è attivo il kit lentezza tasca lo faccio avanzare
+		Vb4355                              = 1 
+	endif
+
+
+	goto EXIT_PROG
+
+
+
+:FINE	
+///// set finale
+	Vb4012                 = 1 
+	Vb4013               = 1 
+
+			Waitcond ( Vb4012                 == 0 and Vb4013               == 0 )
+	Vb4010                 = 0  
+
+goto INIZIO
+
+:EXIT_PROG	
+	vn132          = 1000
+
+endsub

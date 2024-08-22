@@ -1,0 +1,116 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: TestManutenzione.src   
+//
+// NOTE:                                NAME:          VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        Mauro          1.0     27/02/2020
+// Ultima modifica
+//
+// NOTA: il file puo' essere personalizzato 
+// ==========================================================================
+
+#include "defvar.h"
+
+
+sub ()
+
+    // lancio automatico per centrare la caricatore su pinza cucitrice
+    if ( Vb4081_TestCaricatorePinzaC1 )
+		// lancio l'azzeramento pinza C1
+		Vb4078_TestHomeC1 = ON  //dopo azzeramento vai su PC
+		Vb4080_TestFcZeroC1 = ON
+		VbChn1Start = 1
+	
+			/// abbasso la pinza cucitrice
+				Vb4350_AppAut_o18_C1_Pinza_int = OFF
+				Vb4351_AppAut_o19_C1_Pinza_est = OFF 
+				Delays (0.1)
+			/// alzo la pinza caricatore
+				Vb4370_AppAut_o24_Pinza_carico_Su_Giu = OFF
+				WaitCond ( i5_FcPinzaCaricoAlta )
+			//	WaitCond ( Vb52RichiestaZeroAxDaHmiC1 == 0 )
+				Delays (0.2)
+						fp[ C1_AsseCAR ] = 20    
+						ax[ C1_AsseCAR ] = Vq3502_PosizioneCaricScaricoTasca 
+						Delays ( 0.5 )
+						Vb4370_AppAut_o24_Pinza_carico_Su_Giu = ON
+						Delays (0.5)
+			WaitCond ( Vb4081_TestCaricatorePinzaC1 == 0 )
+						Vb4370_AppAut_o24_Pinza_carico_Su_Giu = OFF
+						WaitCond ( i5_FcPinzaCaricoAlta )
+						Delays (0.5)
+						fp[ C1_AsseCAR ] = 20    
+						ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
+		Vb4081_TestCaricatorePinzaC1 = OFF			
+			goto FINE
+	endif
+ ///  per centrare la pinza del caricatore sulla lancia 1
+	if ( Vb4082_TestCaricatoreLanciaC1 )
+				Vb4136_AppMan_o4_Piegatore_4 = ON
+				Vb4370_AppAut_o24_Pinza_carico_Su_Giu = OFF
+				Waitcond ( i5_FcPinzaCaricoAlta )
+
+				fp[ C1_AsseCAR ] = 20    
+				ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
+				Delays ( 0.5 )
+				Vb4341_AppAut_o9_Lancia_AD = ON
+				Delays ( 1 )
+				Vb4344_AppAut_o12_Bilanciere_Su_Giu = ON
+					
+				//	WaitCond ( i38_FcBilancereGiu )
+				Delays ( 1 )
+					
+			fp[ C1_AsseCAR ] = 20    
+			ax[ C1_AsseCAR ] = Vq3501_PosizioneCaricCaricoTasca 
+						Delays ( 0.5 )
+					Vb4370_AppAut_o24_Pinza_carico_Su_Giu = ON
+					Waitcond ( i5_FcPinzaCaricoAlta == 0 )
+						Delays (0.5)
+			WaitCond ( Vb4082_TestCaricatoreLanciaC1 == 0 )
+					Vb4370_AppAut_o24_Pinza_carico_Su_Giu = OFF
+					Waitcond ( i5_FcPinzaCaricoAlta )
+				Delays ( 0.5 )
+				fp[ C1_AsseCAR ] = 20    
+				ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
+					Vb4344_AppAut_o12_Bilanciere_Su_Giu = OFF
+					Vb4136_AppMan_o4_Piegatore_4 = OFF
+					//	WaitCond ( i40_FcBilancereSu )
+					//	Delays ( 0.2 )
+					Vb4341_AppAut_o9_Lancia_AD = OFF
+						WaitCond ( i11_FcLancia_DI )
+						Delays ( 0.2 )
+		Vb4082_TestCaricatoreLanciaC1 = OFF			
+			goto FINE
+	endif
+
+ ///  utilizzato per gestire l'anticipo tra pinza caricatore e C1
+	if ( Vb4087_TestLiberaPinzaCaricatore )
+			Vb4370_AppAut_o24_Pinza_carico_Su_Giu = OFF
+				Waitcond ( i5_FcPinzaCaricoAlta )
+			Vb4351_AppAut_o19_C1_Pinza_est = ON
+				Delays ( 0.1 )
+			fp[ C1_AsseCAR ] = Vq3510_VelocitaCaricRiposo
+			ax[ C1_AsseCAR ] = Vq3502_PosizioneCaricScaricoTasca 
+				Delays ( 1.5 )
+			AxAnt( C1_AsseCAR, Vq3500_PosizioneCaricRiposo , -Vq3510_VelocitaCaricRiposo, 2, 0 )  
+				do
+	                if ( PosAx_C1_AsseCAR < Vq3504_AppPosizioneCaricLiberaPinzaC1 )
+						Vb4351_AppAut_o19_C1_Pinza_est = OFF
+						Exitdo
+					endif 
+				loop
+
+				WaitCond ( IsAxInQuote( C1_AsseCAR ) )
+				Vb4351_AppAut_o19_C1_Pinza_est = ON
+			goto FINE
+	endif
+
+
+:FINE
+
+endsub
+

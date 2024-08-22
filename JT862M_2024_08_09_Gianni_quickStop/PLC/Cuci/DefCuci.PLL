@@ -1,0 +1,647 @@
+(*
+ *
+ * MDPlc source file: DefCuci.PLL
+ *
+ * Date = "09/08/2024 18:03:36"
+ *)
+
+
+VAR_GLOBAL
+
+
+    {G:"Application_Variables"}
+
+    C1_VbEnableCamme           AT %MB300.1001 : BOOL;         {DE:"vb1001 - Comando di abilitazione camme della cucitrice 1"}
+    C1_CmdInitCamme            AT %MB300.1002 : BOOL;         {DE:"vb1002 - Comando di inizializzazione delle camme digitali"}
+    C1_CmdPiedinoSu            AT %MB300.1003 : BOOL;         {DE:"vb1003 - Comando per alzare il piedino"}
+    C1_CmdPiedinoGiu           AT %MB300.1004 : BOOL;         {DE:"vb1004 - Comando per abbassare il piedino"}
+    C1_CmdRiposiziona          AT %MB300.1005 : BOOL;         {DE:"vb1005 - Comando di riposizionamento sul punto di cucitura"}
+    C1_CmdSimulaAva            AT %MB300.1006 : BOOL;         {DE:"vb1006 - Comando di Simula avanti"}
+    C1_CmdSimulaInd            AT %MB300.1007 : BOOL;         {DE:"vb1007 - Comando di Simula indietro"}
+    C1_CmdReloadTabellone      AT %MB300.1008 : BOOL;         {DE:"vb1008 - Comando di reload tabellone"}
+    C1_CmdHoldRelease          AT %MB300.1009 : BOOL;         {DE:"vb1009 - Comando interno di Hold/Release"}
+    C1_CmdHoldHMI              AT %MB300.1010 : BOOL;         {DE:"vb1010 - Comando Hold da HMI"}
+    C1_CmdReleaseHMI           AT %MB300.1011 : BOOL;         {DE:"vb1011 - Comando Release da HMI"}
+    C1_CmdSaveParam            AT %MB300.1012 : BOOL;         {DE:"vb1012 - Comando di save parametri"}
+    C1_CmdGantryCrochet        AT %MB300.1013 : BOOL;         {DE:"vb1013 - Comando di aggancio inseguimento gantry crochet"}
+    C1_CmdStdFollowCrochet     AT %MB300.1014 : BOOL;         {DE:"vb1014 - Comando di aggancio inseguimento standard crochet"}
+    C1_CmdSganciaCrochet       AT %MB300.1015 : BOOL;         {DE:"vb1015 - Comando di sgancio  inseguimento crochet"}
+    C1_CmdSetOffsetAgoTacca    AT %MB300.1016 : BOOL;         {DE:"vb1016 - Comando di set offset ago - tacca di zero"}
+    C1_CmdGetOffsetAgoTacca    AT %MB300.1017 : BOOL;         {DE:"vb1017 - Comando di acquisizione offset ago - tacca di zero"}
+    C1_CmdSbloccaAgo           AT %MB300.1018 : BOOL;         {DE:"vb1018 - Comando di sblocco dell'ago per movimento 'a mano'"}
+    C1_CmdForceLoadProfilo     AT %MB300.1019 : BOOL;         {DE:"vb1019 - Comando di forzatura load profilo"}
+    C1_CmdSimulaAvaNpoint      AT %MB300.1020 : BOOL;         {DE:"vb1020 - Comando di Simula avanti n-punti"}
+    C1_CmdSimulaIndNpoint      AT %MB300.1021 : BOOL;         {DE:"vb1021 - Comando di Simula indietro n-punti"}
+    C1_CmdSimulaAvaCont        AT %MB300.1022 : BOOL;         {DE:"vb1022 - Comando di Simula avanti n-punti"}
+    C1_CmdSimulaIndCont        AT %MB300.1023 : BOOL;         {DE:"vb1023 - Comando di Simula indietro n-punti"}
+    C1_CmdLoadParam            AT %MB300.1024 : BOOL;         {DE:"vb1024 - Comando di load del file UDF dei parametri"}
+    C1_ReloadParam             AT %MB300.1025 : BOOL;         {DE:"vb1025 - Forza il ricalcolo dei parametri"}
+    C1_ModoSimulaNpoint        AT %MB300.1026 : BOOL;         {DE:"vb1026 - Modo di Simulazione n-punti (0=tutti i punti  1=ultimo punto)"}
+    C1_CmdSimulaPedaleVel      AT %MB300.1027 : BOOL;         {DE:"vb1027 - Pedale per alta velocita' simulazione continua"}
+    C1_CuciBufRewind           AT %MB300.1028 : BOOL;         {DE:"vb1028 - Comando Rewind nella ripartenza"}
+    C1_AgoFuoriIngombro        AT %MB300.1030 : BOOL;         {DE:"vb1030 - Flag segnalazione asse in camma fuori ingombro"}
+    C1_AsseAgoFermo            AT %MB300.1031 : BOOL;         {DE:"vb1031 - Flag segnalazione asse ago fermo"}
+    C1_AssiAzzerati            AT %MB300.1032 : BOOL;         {DE:"vb1032 - Flag segnalazione assi azzerati"}
+    C1_VbFlgCuciOrMove         AT %MB300.1033 : BOOL;         {DE:"vb1033 - Flag FlgCuciOrMove ( 1=cuci  0=move )"}
+    C1_CuciSimulaAuto          AT %MB300.1034 : BOOL;         {DE:"vb1034 - Esecuzione cucitura simulata per il CNC"}
+    C1_CuciLastPoint           AT %MB300.1035 : BOOL;         {DE:"vb1035 - Esecuzione ultimo punto di cucitura"}
+    C1_CuciLastPointEnaStop    AT %MB300.1036 : BOOL;         {DE:"vb1036 - Consenso stop su ago alto ( last point )"}
+    C1_CammaStopAgoAlto        AT %MB300.1037 : BOOL;         {DE:"vb1037 - Camma per stop ago alto"}
+    C1_VbFlgG280Running        AT %MB300.1038 : BOOL;         {DE:"vb1038 - Flag FlgG280Running"}
+    C1_VbEnableCammeIni        AT %MB300.1039 : BOOL;         {DE:"vb1039 - Comando di abilitazione camme della cucitrice 1 start asse"}
+    C1_CuciLastPointAxC        AT %MB300.1040 : BOOL;         {DE:"vb1040 - Last point: gestione hold asse C"}
+    C1_VbFlgJtaskRunning       AT %MB300.1041 : BOOL;         {DE:"vb1041 - Flag JTask running"}
+    C1_VbFlgJtaskLoopHold      AT %MB300.1042 : BOOL;         {DE:"vb1042 - Flag JTask loop hold"}
+    C1_FinitoSimulazione       AT %MB300.1043 : BOOL;         {DE:"vb1043 - il comando Simula è arrivato all'ultimo punto"}
+    C1_VbStEnIrqBit            AT %MB300.1850 : BOOL;         {DE:"vb1850 - Stato abilitazione IRQ"}
+    C1_VbStEnMovBit            AT %MB300.1851 : BOOL;         {DE:"vb1851 - Stato abilitazione movimento cucitura"}
+    C1_VbStDisAlarmBit         AT %MB300.1852 : BOOL;         {DE:"vb1852 - Stato generazione allarme ( 1=disab 0=enab )"}
+    C1_VbStAlarmBit            AT %MB300.1853 : BOOL;         {DE:"vb1853 - Stato allarme cucitrice"}
+    C1_VbStIrqBit              AT %MB300.1854 : BOOL;         {DE:"vb1854 - Stato IRQ cucitrice"}
+    C1_VbStCamMovBit           AT %MB300.1855 : BOOL;         {DE:"vb1855 - Stato camma movimento"}
+    C1_VbStSelEnc0Bit          AT %MB300.1856 : BOOL;         {DE:"vb1856 - Stato bit 0 selezione encoder"}
+    C1_VbStSelEnc1Bit          AT %MB300.1857 : BOOL;         {DE:"vb1857 - Stato bit 1 selezione encoder"}
+    C1_VbStAxMovBit            AT %MB300.1858 : BOOL;         {DE:"vb1858 - Stato asse in movimento"}
+    C1_VbStBit9                AT %MB300.1859 : BOOL;         {DE:"vb1859 - Stato bit 9"}
+    C1_VbStBit10               AT %MB300.1860 : BOOL;         {DE:"vb1860 - Stato bit 10"}
+    C1_VbStBit11               AT %MB300.1861 : BOOL;         {DE:"vb1861 - Stato bit 11"}
+    C1_VbStBit12               AT %MB300.1862 : BOOL;         {DE:"vb1862 - Stato bit 12"}
+    C1_VbStBit13               AT %MB300.1863 : BOOL;         {DE:"vb1863 - Stato bit 13"}
+    C1_VbStBit14               AT %MB300.1864 : BOOL;         {DE:"vb1864 - Stato bit 14"}
+    C1_VbStBit15               AT %MB300.1865 : BOOL;         {DE:"vb1865 - Stato bit 15"}
+    C1_VbStartCuci             AT %MB300.1951 : BOOL;         {DE:"vb1951"}
+    C1_VbHoldCuci              AT %MB300.1952 : BOOL;         {DE:"vb1952"}
+    C1_VbReleaseCuci           AT %MB300.1953 : BOOL;         {DE:"vb1953"}
+    C1_VbEndCuci               AT %MB300.1954 : BOOL;         {DE:"vb1954"}
+    C1_VbRunCuci               AT %MB300.1955 : BOOL;         {DE:"vb1955"}
+    C1_VbRallCuci              AT %MB300.1956 : BOOL;         {DE:"vb1956"}
+    C1_VbRasafCuci             AT %MB300.1957 : BOOL;         {DE:"vb1957"}
+    C1_VbAgoAzzCuci            AT %MB300.1958 : BOOL;         {DE:"vb1958"}
+    C1_VbCamMovCuci            AT %MB300.1959 : BOOL;         {DE:"vb1959"}
+    C1_VbAxMovCuci             AT %MB300.1960 : BOOL;         {DE:"vb1960"}
+    C1_VbLastPnt               AT %MB300.1961 : BOOL;         {DE:"vb1961"}
+    C1_VbSuspendCuci           AT %MB300.1962 : BOOL;         {DE:"vb1962"}
+    C1_VbCuciIsoActive         AT %MB300.1963 : BOOL;         {DE:"vb1963"}
+    C1_VbCuciGoto              AT %MB300.1964 : BOOL;         {DE:"vb1964"}
+    C2_VbEnableCamme           AT %MB300.2001 : BOOL;         {DE:"vb2001 - Comando di abilitazione camme della cucitrice 2"}
+    C2_CmdInitCamme            AT %MB300.2002 : BOOL;         {DE:"vb2002 - Comando di inizializzazione delle camme digitali"}
+    C2_CmdPiedinoSu            AT %MB300.2003 : BOOL;         {DE:"vb2003 - Comando per alzare il piedino"}
+    C2_CmdPiedinoGiu           AT %MB300.2004 : BOOL;         {DE:"vb2004 - Comando per abbassare il piedino"}
+    C2_CmdRiposiziona          AT %MB300.2005 : BOOL;         {DE:"vb2005 - Comando di riposizionamento sul punto di cucitura"}
+    C2_CmdSimulaAva            AT %MB300.2006 : BOOL;         {DE:"vb2006 - Comando di Simula avanti"}
+    C2_CmdSimulaInd            AT %MB300.2007 : BOOL;         {DE:"vb2007 - Comando di Simula indietro"}
+    C2_CmdReloadTabellone      AT %MB300.2008 : BOOL;         {DE:"vb2008 - Comando di reload tabellone"}
+    C2_CmdHoldRelease          AT %MB300.2009 : BOOL;         {DE:"vb2009 - Comando interno di Hold/Release"}
+    C2_CmdHoldHMI              AT %MB300.2010 : BOOL;         {DE:"vb2010 - Comando Hold da HMI"}
+    C2_CmdReleaseHMI           AT %MB300.2011 : BOOL;         {DE:"vb2011 - Comando Release da HMI"}
+    C2_CmdSaveParam            AT %MB300.2012 : BOOL;         {DE:"vb2012 - Comando di save parametri"}
+    C2_CmdGantryCrochet        AT %MB300.2013 : BOOL;         {DE:"vb2013 - Comando di aggancio inseguimento gantry crochet"}
+    C2_CmdStdFollowCrochet     AT %MB300.2014 : BOOL;         {DE:"vb2014 - Comando di aggancio inseguimento standard crochet"}
+    C2_CmdSganciaCrochet       AT %MB300.2015 : BOOL;         {DE:"vb2015 - Comando di sgancio  inseguimento crochet"}
+    C2_CmdSetOffsetAgoTacca    AT %MB300.2016 : BOOL;         {DE:"vb2016 - Comando di set offset ago - tacca di zero"}
+    C2_CmdGetOffsetAgoTacca    AT %MB300.2017 : BOOL;         {DE:"vb2017 - Comando di acquisizione offset ago - tacca di zero"}
+    C2_CmdSbloccaAgo           AT %MB300.2018 : BOOL;         {DE:"vb2018 - Comando di sblocco dell'ago per movimento 'a mano'"}
+    C2_CmdForceLoadProfilo     AT %MB300.2019 : BOOL;         {DE:"vb2019 - Comando di forzatura load profilo"}
+    C2_CmdSimulaAvaNpoint      AT %MB300.2020 : BOOL;         {DE:"vb2020 - Comando di Simula avanti n-punti"}
+    C2_CmdSimulaIndNpoint      AT %MB300.2021 : BOOL;         {DE:"vb2021 - Comando di Simula indietro n-punti"}
+    C2_CmdSimulaAvaCont        AT %MB300.2022 : BOOL;         {DE:"vb2022 - Comando di Simula avanti n-punti"}
+    C2_CmdSimulaIndCont        AT %MB300.2023 : BOOL;         {DE:"vb2023 - Comando di Simula indietro n-punti"}
+    C2_CmdLoadParam            AT %MB300.2024 : BOOL;         {DE:"vb2024 - Comando di load del file UDF dei parametri"}
+    C2_ReloadParam             AT %MB300.2025 : BOOL;         {DE:"vb2025 - Forza il ricalcolo dei parametri"}
+    C2_ModoSimulaNpoint        AT %MB300.2026 : BOOL;         {DE:"vb2026 - Modo di Simulazione n-punti (0=tutti i punti  1=ultimo punto)"}
+    C2_CmdSimulaPedaleVel      AT %MB300.2027 : BOOL;         {DE:"vb2027 - Pedale per alta velocita' simulazione continua"}
+    C2_CuciBufRewind           AT %MB300.2028 : BOOL;         {DE:"vb2028 - Comando Rewind nella ripartenza"}
+    C2_AgoFuoriIngombro        AT %MB300.2030 : BOOL;         {DE:"vb2030 - Flag segnalazione asse in camma fuori ingombro"}
+    C2_AsseAgoFermo            AT %MB300.2031 : BOOL;         {DE:"vb2031 - Flag segnalazione asse ago fermo"}
+    C2_AssiAzzerati            AT %MB300.2032 : BOOL;         {DE:"vb2032 - Flag segnalazione assi azzerati"}
+    C2_VbFlgCuciOrMove         AT %MB300.2033 : BOOL;         {DE:"vb2033 - Flag FlgCuciOrMove ( 1=cuci  0=move )"}
+    C2_CuciSimulaAuto          AT %MB300.2034 : BOOL;         {DE:"vb2034 - Esecuzione cucitura simulata per il CNC"}
+    C2_CuciLastPoint           AT %MB300.2035 : BOOL;         {DE:"vb2035 - Esecuzione ultimo punto di cucitura"}
+    C2_CuciLastPointEnaStop    AT %MB300.2036 : BOOL;         {DE:"vb2036 - Consenso stop su ago alto ( last point )"}
+    C2_CammaStopAgoAlto        AT %MB300.2037 : BOOL;         {DE:"vb2037 - Camma per stop ago alto"}
+    C2_VbFlgG280Running        AT %MB300.2038 : BOOL;         {DE:"vb2038 - Flag FlgG280Running"}
+    C2_VbEnableCammeIni        AT %MB300.2039 : BOOL;         {DE:"vb2039 - Comando di abilitazione camme della cucitrice 2 start asse"}
+    C2_CuciLastPointAxC        AT %MB300.2040 : BOOL;         {DE:"vb2040 - Last point: gestione hold asse C"}
+    C2_VbFlgJtaskRunning       AT %MB300.2041 : BOOL;         {DE:"vb2041 - Flag JTask running"}
+    C2_VbFlgJtaskLoopHold      AT %MB300.2042 : BOOL;         {DE:"vb2042 - Flag JTask loop hold"}
+    C2_FinitoSimulazione       AT %MB300.2043 : BOOL;         {DE:"vb2043 - il comando Simula è arrivato all'ultimo punto"}
+    C2_VbStEnIrqBit            AT %MB300.2850 : BOOL;         {DE:"vb2850 - Stato abilitazione IRQ"}
+    C2_VbStEnMovBit            AT %MB300.2851 : BOOL;         {DE:"vb2851 - Stato abilitazione movimento cucitura"}
+    C2_VbStDisAlarmBit         AT %MB300.2852 : BOOL;         {DE:"vb2852 - Stato generazione allarme ( 1=disab 0=enab )"}
+    C2_VbStAlarmBit            AT %MB300.2853 : BOOL;         {DE:"vb2853 - Stato allarme cucitrice"}
+    C2_VbStIrqBit              AT %MB300.2854 : BOOL;         {DE:"vb2854 - Stato IRQ cucitrice"}
+    C2_VbStCamMovBit           AT %MB300.2855 : BOOL;         {DE:"vb2855 - Stato camma movimento"}
+    C2_VbStSelEnc0Bit          AT %MB300.2856 : BOOL;         {DE:"vb2856 - Stato bit 0 selezione encoder"}
+    C2_VbStSelEnc1Bit          AT %MB300.2857 : BOOL;         {DE:"vb2857 - Stato bit 1 selezione encoder"}
+    C2_VbStAxMovBit            AT %MB300.2858 : BOOL;         {DE:"vb2858 - Stato asse in movimento"}
+    C2_VbStBit9                AT %MB300.2859 : BOOL;         {DE:"vb2859 - Stato bit 9"}
+    C2_VbStBit10               AT %MB300.2860 : BOOL;         {DE:"vb2860 - Stato bit 10"}
+    C2_VbStBit11               AT %MB300.2861 : BOOL;         {DE:"vb2861 - Stato bit 11"}
+    C2_VbStBit12               AT %MB300.2862 : BOOL;         {DE:"vb2862 - Stato bit 12"}
+    C2_VbStBit13               AT %MB300.2863 : BOOL;         {DE:"vb2863 - Stato bit 13"}
+    C2_VbStBit14               AT %MB300.2864 : BOOL;         {DE:"vb2864 - Stato bit 14"}
+    C2_VbStBit15               AT %MB300.2865 : BOOL;         {DE:"vb2865 - Stato bit 15"}
+    C2_VbStartCuci             AT %MB300.2951 : BOOL;         {DE:"vb2951"}
+    C2_VbHoldCuci              AT %MB300.2952 : BOOL;         {DE:"vb2952"}
+    C2_VbReleaseCuci           AT %MB300.2953 : BOOL;         {DE:"vb2953"}
+    C2_VbEndCuci               AT %MB300.2954 : BOOL;         {DE:"vb2954"}
+    C2_VbRunCuci               AT %MB300.2955 : BOOL;         {DE:"vb2955"}
+    C2_VbRallCuci              AT %MB300.2956 : BOOL;         {DE:"vb2956"}
+    C2_VbRasafCuci             AT %MB300.2957 : BOOL;         {DE:"vb2957"}
+    C2_VbAgoAzzCuci            AT %MB300.2958 : BOOL;         {DE:"vb2958"}
+    C2_VbCamMovCuci            AT %MB300.2959 : BOOL;         {DE:"vb2959"}
+    C2_VbAxMovCuci             AT %MB300.2960 : BOOL;         {DE:"vb2960"}
+    C2_VbLastPnt               AT %MB300.2961 : BOOL;         {DE:"vb2961"}
+    C2_VbSuspendCuci           AT %MB300.2962 : BOOL;         {DE:"vb2962"}
+    C2_VbCuciIsoActive         AT %MB300.2963 : BOOL;         {DE:"vb2963"}
+    C2_VbCuciGoto              AT %MB300.2964 : BOOL;         {DE:"vb2964"}
+
+
+    C1_TabParContext           AT %MW400.1001 : INT;          {DE:"vn1001 - Contesto pr UDF cucitrice"}
+    C1_VelLavRPM               AT %MW400.1002 : INT;          {DE:"vn1002 - Velocita' di lavoro ( per FunPlc )"}
+    C1_VelLimitRPM             AT %MW400.1003 : INT;          {DE:"vn1003 - Limitazione RPM Ago"}
+    C1_PlcStatoAgo             AT %MW400.1004 : INT;          {DE:"vn1004 - Stato Ago ( macchina a stati PLC )"}
+    C1_PlcStatoScartafilo      AT %MW400.1005 : INT;          {DE:"vn1005 - Stato scartafilo  ( macchina a stati PLC )"}
+    C1_MovAxCStatus            AT %MW400.1006 : INT;          {DE:"vn1006 - Stato asse C ( macchina a stati PLC )"}
+    C1_NextCode                AT %MW400.1010 : INT;          {DE:"vn1010 - Codice prossimo movimento simulato ( fun 281 cmd 48 e 49 )"}
+    C1_StepNum                 AT %MW400.1011 : INT;          {DE:"vn1011 - Numero del passo da scrivere"}
+    C1_MtxNum                  AT %MW400.1012 : INT;          {DE:"vn1012 - Numero della matrice di base"}
+    mc_stati_C1CmdSimula       AT %MW400.1020 : INT;          {DE:"vn1020 - indice macchina stati per gestione piedino durante simula"}
+    mc_stati_C1CmdSimulaCont   AT %MW400.1021 : INT;          {DE:"vn1021 - indice macchina stati per gestione piedino durante simula continuo"}
+    C1_SDO_ErrCode             AT %MW400.1680 : INT;          {DE:"vn1680 - Error Code"}
+    C1_SDO_Network             AT %MW400.1681 : INT;          {DE:"vn1681 - Rete"}
+    C1_SDO_Node                AT %MW400.1682 : INT;          {DE:"vn1682 - Nodo"}
+    C1_SDO_ObjIndex            AT %MW400.1683 : INT;          {DE:"vn1683 - Index"}
+    C1_SDO_SubIndex            AT %MW400.1684 : INT;          {DE:"vn1684 - SubIndex"}
+    C1_SDO_Size                AT %MW400.1685 : INT;          {DE:"vn1685 - Size"}
+    C1_SDO_VqDataIdx           AT %MW400.1686 : INT;          {DE:"vn1686 - Vq data index"}
+    C1_SetParamStatus          AT %MW400.1690 : INT;          {DE:"vn1690 - Status"}
+    C1_SetParamErrCode         AT %MW400.1691 : INT;          {DE:"vn1691 - ErrorCode"}
+    C1_SetParamCmd             AT %MW400.1692 : INT;          {DE:"vn1692 - Cmd  1=rd  2=wr"}
+    C1_SetParamAxNum           AT %MW400.1693 : INT;          {DE:"vn1693 - Axis Number [1,2,...]"}
+    C1_SetParamCat             AT %MW400.1694 : INT;          {DE:"vn1694 - Categoria di parametri"}
+    C1_SetParamIdx             AT %MW400.1695 : INT;          {DE:"vn1695 - Indice del parametro"}
+    C1_SetParamSize            AT %MW400.1696 : INT;          {DE:"vn1696 - Size del parametro [ 1=byte  2=word  4=long ]"}
+    C1_BaseOpCode              AT %MW400.1901 : INT;          {DE:"vn1901 - Op code ( matrice di base )"}
+    C1_VnErrCuci               AT %MW400.1951 : INT;          {DE:"vn1951 - Error code"}
+    C1_VnStatusCuci            AT %MW400.1952 : INT;          {DE:"vn1952 - Vn status"}
+    C1_VnZeroCuci              AT %MW400.1953 : INT;          {DE:"vn1953 - Contatore tacche di zero"}
+    C1_VnPntRallCuci           AT %MW400.1954 : INT;          {DE:"vn1954 - Punti di rallentamento"}
+    C1_VnOvdAxAgo              AT %MW400.1955 : INT;          {DE:"vn1955 - Override asse ago"}
+    C1_VnRpmMaxAgo             AT %MW400.1956 : INT;          {DE:"vn1956 - Vel max ago"}
+    C1_VnInfoPoint             AT %MW400.1957 : INT;          {DE:"vn1957 - Info point"}
+    C2_TabParContext           AT %MW400.2001 : INT;          {DE:"vn2001 - Contesto pr UDF cucitrice"}
+    C2_VelLavRPM               AT %MW400.2002 : INT;          {DE:"vn2002 - Velocita' di lavoro ( per FunPlc )"}
+    C2_VelLimitRPM             AT %MW400.2003 : INT;          {DE:"vn2003 - Limitazione RPM Ago"}
+    C2_PlcStatoAgo             AT %MW400.2004 : INT;          {DE:"vn2004 - Stato Ago ( macchina a stati PLC )"}
+    C2_PlcStatoScartafilo      AT %MW400.2005 : INT;          {DE:"vn2005 - Stato scartafilo  ( macchina a stati PLC )"}
+    C2_MovAxCStatus            AT %MW400.2006 : INT;          {DE:"vn2006 - Stato asse C ( macchina a stati PLC )"}
+    C2_NextCode                AT %MW400.2010 : INT;          {DE:"vn2010 - Codice prossimo movimento simulato ( fun 281 cmd 48 e 49 )"}
+    C2_StepNum                 AT %MW400.2011 : INT;          {DE:"vn2011 - Numero del passo da scrivere"}
+    C2_MtxNum                  AT %MW400.2012 : INT;          {DE:"vn2012 - Numero della matrice di base"}
+    mc_stati_C2CmdSimula       AT %MW400.2020 : INT;          {DE:"vn2020"}
+    mc_stati_C2CmdSimulaCont   AT %MW400.2021 : INT;          {DE:"vn2021"}
+    C2_BaseOpCode              AT %MW400.2901 : INT;          {DE:"vn2901 - Op code ( matrice di base )"}
+    C2_VnErrCuci               AT %MW400.2951 : INT;          {DE:"vn2951 - Error code"}
+    C2_VnStatusCuci            AT %MW400.2952 : INT;          {DE:"vn2952 - Vn status"}
+    C2_VnZeroCuci              AT %MW400.2953 : INT;          {DE:"vn2953 - Contatore tacche di zero"}
+    C2_VnPntRallCuci           AT %MW400.2954 : INT;          {DE:"vn2954 - Punti di rallentamento"}
+    C2_VnOvdAxAgo              AT %MW400.2955 : INT;          {DE:"vn2955 - Override asse ago"}
+    C2_VnRpmMaxAgo             AT %MW400.2956 : INT;          {DE:"vn2956 - Vel max ago"}
+    C2_VnInfoPoint             AT %MW400.2957 : INT;          {DE:"vn2957 - Info point"}
+
+
+    C1_VelRifAgo               AT %MD500.1001 : DINT;         {DE:"vq1001 - Velocita' riferimento asse ago"}
+    C1_ImpRifAgo               AT %MD500.1002 : DINT;         {DE:"vq1002 - Impulsi riferimento asse ago"}
+    C1_MmRifAgo                AT %MD500.1003 : DINT;         {DE:"vq1003 - Mm riferimento asse ago"}
+    C1_PtIni                   AT %MD500.1004 : DINT;         {DE:"vq1004 - Punti iniziali"}
+    C1_RpmIni                  AT %MD500.1005 : DINT;         {DE:"vq1005 - RPM punti iniziali"}
+    C1_PtRall                  AT %MD500.1006 : DINT;         {DE:"vq1006 - Punti finali"}
+    C1_RpmRall                 AT %MD500.1007 : DINT;         {DE:"vq1007 - RPM punti finali"}
+    C1_VelMaxAgoRPM            AT %MD500.1008 : DINT;         {DE:"vq1008 - Vel max RPM AGO"}
+    C1_CntApritens             AT %MD500.1009 : DINT;         {DE:"vq1009 - Contatore impulsi uscita apritensione"}
+    C1_CntColtello             AT %MD500.1010 : DINT;         {DE:"vq1010 - Contatore impulsi uscita coltello"}
+    C1_SimulaNumPoint          AT %MD500.1011 : DINT;         {DE:"vq1011 - Numero di punti simulazione"}
+    C1_SimulaNumPointVel       AT %MD500.1012 : DINT;         {DE:"vq1012 - Vel [%] simulazione npoint"}
+    C1_SimulaNumPointMsk       AT %MD500.1013 : DINT;         {DE:"vq1013 - Maschera simulazione npoint"}
+    C1_SimulaContVbIdx         AT %MD500.1015 : DINT;         {DE:"vq1015 - Indice Vb"}
+    C1_SimulaContVel1          AT %MD500.1016 : DINT;         {DE:"vq1016 - Vel [%] simulazione continua"}
+    C1_SimulaContVel2          AT %MD500.1017 : DINT;         {DE:"vq1017 - Vel [%] simulazione continua"}
+    C1_SimulaContVel3          AT %MD500.1018 : DINT;         {DE:"vq1018 - Vel [%] simulazione continua"}
+    C1_SimulaContPt12          AT %MD500.1019 : DINT;         {DE:"vq1019 - N. punti cambio da Vel1 a Vel2"}
+    C1_SimulaContPt23          AT %MD500.1020 : DINT;         {DE:"vq1020 - N. punti cambio da Vel2 a Vel3"}
+    C1_SimulaContVbPedale      AT %MD500.1021 : DINT;         {DE:"vq1021 - Indice VB pedale per alta velocita'"}
+    C1_SimulaContVelPedale     AT %MD500.1022 : DINT;         {DE:"vq1022 - Vel pedale alta velocita'[%] simulazione continua"}
+    C1_FirstPtContext          AT %MD500.1025 : DINT;         {DE:"vq1025 - Contesto UDF per calcolo primo punto"}
+    C1_FirstPtValid            AT %MD500.1026 : DINT;         {DE:"vq1026 - Flag primo punto valido"}
+    C1_FirstPt_X               AT %MD500.1027 : DINT;         {DE:"vq1027 - Coordinata X del primo punto"}
+    C1_FirstPt_Y               AT %MD500.1028 : DINT;         {DE:"vq1028 - Coordinata Y del primo punto"}
+    C1_FirstPt_C               AT %MD500.1029 : DINT;         {DE:"vq1029 - Coordinata C iniziale"}
+    C1_GantryErrAct            AT %MD500.1030 : DINT;         {DE:"vq1030 - Errore istantaneo"}
+    C1_GantryErrMax            AT %MD500.1031 : DINT;         {DE:"vq1031 - Errore massimo"}
+    C1_GantryErrReset          AT %MD500.1032 : DINT;         {DE:"vq1032 - Reset errore massimo"}
+    C1_CalcBufContext          AT %MD500.1035 : DINT;         {DE:"vq1035 - Contesto ( dato di input )"}
+    C1_CalcBufErrCode          AT %MD500.1036 : DINT;         {DE:"vq1036 - Codice di errore"}
+    C1_CalcBufErrStepNum       AT %MD500.1037 : DINT;         {DE:"vq1037 - N. passo UDF dove e' avventuto l'errore"}
+    C1_CalcBufErrPar           AT %MD500.1038 : DINT;         {DE:"vq1038 - Parametro aggiuntivo dell'errore"}
+    C1_WarningFlg              AT %MD500.1040 : DINT;         {DE:"vq1040 - Flag Warning"}
+    C1_WarningAntXMm           AT %MD500.1041 : DINT;         {DE:"vq1041 - Mm per il calcolo dell'anticipo  X"}
+    C1_WarningAntXRpm          AT %MD500.1042 : DINT;         {DE:"vq1042 - RPM per il calcolo dell'anticipo X"}
+    C1_WarningAntXPassoUdf     AT %MD500.1043 : DINT;         {DE:"vq1043 - Passo UDF per il calcolo dell'anticipo X"}
+    C1_WarningAntYMm           AT %MD500.1044 : DINT;         {DE:"vq1044 - Mm per il calcolo dell'anticipo  Y"}
+    C1_WarningAntYRpm          AT %MD500.1045 : DINT;         {DE:"vq1045 - RPM per il calcolo dell'anticipo Y"}
+    C1_WarningAntYPassoUdf     AT %MD500.1046 : DINT;         {DE:"vq1046 - Passo UDF per il calcolo dell'anticipo Y"}
+    C1_WarningFreqXMm          AT %MD500.1047 : DINT;         {DE:"vq1047 - Mm per il calcolo delle frequenze X"}
+    C1_WarningFreqXRpm         AT %MD500.1048 : DINT;         {DE:"vq1048 - RPM per il calcolo delle frequenze X"}
+    C1_WarningFreqXPassoUdf    AT %MD500.1049 : DINT;         {DE:"vq1049 - Passo UDF per il calcolo delle frequenze X"}
+    C1_WarningFreqYMm          AT %MD500.1050 : DINT;         {DE:"vq1050 - Mm per il calcolo delle frequenze Y"}
+    C1_WarningFreqYRpm         AT %MD500.1051 : DINT;         {DE:"vq1051 - RPM per il calcolo delle frequenze Y"}
+    C1_WarningFreqYPassoUdf    AT %MD500.1052 : DINT;         {DE:"vq1052 - Passo UDF per il calcolo delle frequenze Y"}
+    C1_CntBloccoFiloINI        AT %MD500.1053 : DINT;         {DE:"vq1053 - Contatore impulsi uscita BloccoFiloINI"}
+    C1_CntBloccoFiloEND        AT %MD500.1054 : DINT;         {DE:"vq1054 - Contatore impulsi uscita BloccoFiloEND"}
+    C1_Fun74_RetCode           AT %MD500.1060 : DINT;         {DE:"vq1060 - RetCode"}
+    C1_Fun74_QuoObj            AT %MD500.1061 : DINT;         {DE:"vq1061 - Quota obiettivo"}
+    C1_Fun74_VelObj            AT %MD500.1062 : DINT;         {DE:"vq1062 - Velocita'"}
+    C1_Fun74_Future            AT %MD500.1063 : DINT;         {DE:"vq1063 - Future"}
+    C1_Fun74_Acc               AT %MD500.1063 : DINT;         {DE:"vq1063 - Accelerazione ( polinomio grado 5 )"}
+    C1_Fun74_Tmov              AT %MD500.1064 : DINT;         {DE:"vq1064 - Tempo di movimento ( polinomio grado 5 )"}
+    C1_Fun74_Offs              AT %MD500.1065 : DINT;         {DE:"vq1065 - Offset anticipo start ( polinomio grado 5 )"}
+    C1_FaseAxAgo               AT %MD500.1070 : DINT;         {DE:"vq1070 - Fase asse ago"}
+    C1_FaseAxC                 AT %MD500.1071 : DINT;         {DE:"vq1071 - Fase asse C"}
+    C1_CmdQuoAbsRet            AT %MD500.1075 : DINT;         {DE:"vq1075 - RetCode"}
+    C1_CmdQuoAbsX              AT %MD500.1076 : DINT;         {DE:"vq1076 - QuoAbs X"}
+    C1_CmdQuoAbsY              AT %MD500.1077 : DINT;         {DE:"vq1077 - QuoAbs Y"}
+    C1_CmdQuoAbsC              AT %MD500.1078 : DINT;         {DE:"vq1078 - QuoAbs C"}
+    C1_RpmAgoInProfilo         AT %MD500.1100 : DINT;         {DE:"vq1100 - Rpm ago impostati da istruzione del profile ( Vcd1 )"}
+    C1_TensioneInProfilo       AT %MD500.1101 : DINT;         {DE:"vq1101 - tensione impostata da istruzione del profile ( Vcd2 )"}
+    C1_VelRiduzioneRPM         AT %MD500.1110 : DINT;         {DE:"vq1110 - Ulteriore limite RPM Ago ( #M200710_1GF# )"}
+    C1_CmdMoveAxC              AT %MD500.1120 : DINT;         {DE:"vq1120 - Comando di movimento asse C"}
+    C1_QuoObjAxC               AT %MD500.1121 : DINT;         {DE:"vq1121 - Quota obiettivo asse C"}
+    C1_NumPtMoveAxC            AT %MD500.1122 : DINT;         {DE:"vq1122 - Punti di cucitura - movimento asse C"}
+    C1_RpmMoveAxC              AT %MD500.1123 : DINT;         {DE:"vq1123 - Rpm ago durante il movimento dell'asse C"}
+    C1_IrqNumMoveAxC           AT %MD500.1124 : DINT;         {DE:"vq1124 - IrqNumber interpretazione movimento dell'asse C"}
+    C1_IrqCnt                  AT %MD500.1127 : DINT;         {DE:"vq1127 - Contatore Irq ( Fun 281 cmd 63 )"}
+    C1_MovePlcAxCErrCode       AT %MD500.1130 : DINT;         {DE:"vq1130 - Mov. asse C - ErrorCode"}
+    C1_MovePlcAxCQuoObj        AT %MD500.1131 : DINT;         {DE:"vq1131 - Mov. asse C - Quota obiettivo"}
+    C1_MovePlcAxCVel           AT %MD500.1132 : DINT;         {DE:"vq1132 - Mov. asse C - Velocita'"}
+    C1_MovePlcAxCAcc           AT %MD500.1133 : DINT;         {DE:"vq1133 - Mov. asse C - Accelerazione"}
+    C1_MovePlcAxCTime          AT %MD500.1134 : DINT;         {DE:"vq1134 - Mov. asse C - Tempo di movimento"}
+    C1_MovePlcAxCAnt           AT %MD500.1135 : DINT;         {DE:"vq1135 - Mov. asse C - Anticipo"}
+    C1_InfoCntPunti            AT %MD500.1651 : DINT;         {DE:"vq1651 - Contatore punti di cucitura"}
+    C1_InfoAnticipoMm          AT %MD500.1652 : DINT;         {DE:"vq1652 - Mm per il calcolo dell'anticipo"}
+    C1_InfoAnticipoRpm         AT %MD500.1653 : DINT;         {DE:"vq1653 - RPM per il calcolo dell'anticipo"}
+    C1_InfoAnticipoPassoUdf    AT %MD500.1654 : DINT;         {DE:"vq1654 - Passo UDF per il calcolo dell'anticipo"}
+    C1_InfoFreqXMm             AT %MD500.1655 : DINT;         {DE:"vq1655 - Mm per il calcolo delle frequenze X"}
+    C1_InfoFreqXRpm            AT %MD500.1656 : DINT;         {DE:"vq1656 - RPM per il calcolo delle frequenze X"}
+    C1_InfoFreqXPassoUdf       AT %MD500.1657 : DINT;         {DE:"vq1657 - Passo UDF per il calcolo delle frequenze X"}
+    C1_InfoFreqYMm             AT %MD500.1658 : DINT;         {DE:"vq1658 - Mm per il calcolo delle frequenze Y"}
+    C1_InfoFreqYRpm            AT %MD500.1659 : DINT;         {DE:"vq1659 - RPM per il calcolo delle frequenze Y"}
+    C1_InfoFreqYPassoUdf       AT %MD500.1660 : DINT;         {DE:"vq1660 - Passo UDF per il calcolo delle frequenze Y"}
+    C1_SDO_VqRwData            AT %MD500.1690 : DINT;         {DE:"vq1690 - Vq dato letto o da scrivere"}
+    C1_SogliaStart             AT %MD500.1701 : DINT;         {DE:"vq1701 - Soglia start movimento [gradi]"}
+    C1_SogliaStop              AT %MD500.1702 : DINT;         {DE:"vq1702 - Soglia stop  movimento [gradi]"}
+    C1_AgoAlto                 AT %MD500.1703 : DINT;         {DE:"vq1703 - Ago alto [gradi]"}
+    C1_StartApriTens           AT %MD500.1704 : DINT;         {DE:"vq1704 - Start camma apritensione [gradi]"}
+    C1_StopApriTens            AT %MD500.1705 : DINT;         {DE:"vq1705 - Stop  camma apritensione [gradi]"}
+    C1_StartColtello           AT %MD500.1706 : DINT;         {DE:"vq1706 - Start camma coltello [gradi]"}
+    C1_StopColtello            AT %MD500.1707 : DINT;         {DE:"vq1707 - Stop  camma coltello [gradi]"}
+    C1_TSalitaPiedino          AT %MD500.1708 : DINT;         {DE:"vq1708 - Tempo salita piedino [s]"}
+    C1_TDiscesaPiedino         AT %MD500.1709 : DINT;         {DE:"vq1709 - Tempo discesa piedino [s]"}
+    C1_ParVelLavRPM            AT %MD500.1710 : DINT;         {DE:"vq1710 - Vel. lavoro ago [RPM]"}
+    C1_ParPuntiVelIni          AT %MD500.1711 : DINT;         {DE:"vq1711 - Punti iniziali (no fix3)"}
+    C1_ParVelIniRPM            AT %MD500.1712 : DINT;         {DE:"vq1712 - Vel iniziale ago [RPM]"}
+    C1_ParPuntiVelRall         AT %MD500.1713 : DINT;         {DE:"vq1713 - Punti rallentamento (no fix3)"}
+    C1_ParVelRallRPM           AT %MD500.1714 : DINT;         {DE:"vq1714 - Vel rallentamento ago [RPM]"}
+    C1_StopAgo                 AT %MD500.1715 : DINT;         {DE:"vq1715 - Quota stop dell'ago (prima del movimento ad ago alto)"}
+    C1_OffsetAgoTacca          AT %MD500.1716 : DINT;         {DE:"vq1716 - Offset di fase tran la quota dell'ago e la tacca di zero"}
+    C1_Par_FeedG0Reset         AT %MD500.1717 : DINT;         {DE:"vq1717 - Feed nei movimenti G0 per azzeramento o reset [mm/min] fix3"}
+    C1_StartBloccoFiloINI      AT %MD500.1718 : DINT;         {DE:"vq1718 - Start camma blocco filo inizio cucitura [gradi]"}
+    C1_StopBloccoFiloINI       AT %MD500.1719 : DINT;         {DE:"vq1719 - Stop camma blocco filo inizio cucitura [gradi]"}
+    C1_StartBloccoFiloEND      AT %MD500.1720 : DINT;         {DE:"vq1720 - Start camma blocco filo fine cucitura [gradi]"}
+    C1_StopBloccoFiloEND       AT %MD500.1721 : DINT;         {DE:"vq1721 - Stop camma blocco filo fine cucitura [gradi]"}
+    C1_ParVelRotazione         AT %MD500.1722 : DINT;         {DE:"vq1722 - Velocita' asse C rotazione [%] fix3 movimento iniziale"}
+    C1_Par_23                  AT %MD500.1723 : DINT;         {DE:"vq1723"}
+    C1_Par_24                  AT %MD500.1724 : DINT;         {DE:"vq1724"}
+    C1_Par_25                  AT %MD500.1725 : DINT;         {DE:"vq1725"}
+    C1_Par_26                  AT %MD500.1726 : DINT;         {DE:"vq1726"}
+    C1_Par_27                  AT %MD500.1727 : DINT;         {DE:"vq1727"}
+    C1_Par_28                  AT %MD500.1728 : DINT;         {DE:"vq1728"}
+    C1_Par_29                  AT %MD500.1729 : DINT;         {DE:"vq1729"}
+    C1_Par_30                  AT %MD500.1730 : DINT;         {DE:"vq1730"}
+    C1_Par_31                  AT %MD500.1731 : DINT;         {DE:"vq1731"}
+    C1_Par_32                  AT %MD500.1732 : DINT;         {DE:"vq1732"}
+    C1_Par_33                  AT %MD500.1733 : DINT;         {DE:"vq1733"}
+    C1_Par_34                  AT %MD500.1734 : DINT;         {DE:"vq1734"}
+    C1_Par_35                  AT %MD500.1735 : DINT;         {DE:"vq1735"}
+    C1_Par_36                  AT %MD500.1736 : DINT;         {DE:"vq1736"}
+    C1_Par_37                  AT %MD500.1737 : DINT;         {DE:"vq1737"}
+    C1_Par_38                  AT %MD500.1738 : DINT;         {DE:"vq1738"}
+    C1_Par_39                  AT %MD500.1739 : DINT;         {DE:"vq1739"}
+    C1_Par_40                  AT %MD500.1740 : DINT;         {DE:"vq1740"}
+    C1_TabSpostamentoMm        AT %MD500.1851 : DINT;         {DE:"vq1851 - Spostamento [mm]"}
+    C1_TabVelAgoRPM            AT %MD500.1852 : DINT;         {DE:"vq1852 - Vel. ago [RPM]"}
+    C1_AnticipoX               AT %MD500.1853 : DINT;         {DE:"vq1853 - Anticipo start stop X [gradi]"}
+    C1_AnticipoY               AT %MD500.1854 : DINT;         {DE:"vq1854 - Anticipo start stop Y [gradi]"}
+    C1_FrqLavX                 AT %MD500.1855 : DINT;         {DE:"vq1855 - Frequenza di lavoro X [KHz]"}
+    C1_StpAccX                 AT %MD500.1856 : DINT;         {DE:"vq1856 - Step di accelerazione X"}
+    C1_FrqAccX                 AT %MD500.1857 : DINT;         {DE:"vq1857 - Frequenza accelerazione X [KHz]"}
+    C1_StpDecX                 AT %MD500.1858 : DINT;         {DE:"vq1858 - Step di decelerazione X"}
+    C1_FrqDecX                 AT %MD500.1859 : DINT;         {DE:"vq1859 - Frequenza decelerazione X [KHz]"}
+    C1_FrqLavY                 AT %MD500.1860 : DINT;         {DE:"vq1860 - Frequenza di lavoro Y [KHz]"}
+    C1_StpAccY                 AT %MD500.1861 : DINT;         {DE:"vq1861 - Step di accelerazione Y"}
+    C1_FrqAccY                 AT %MD500.1862 : DINT;         {DE:"vq1862 - Frequenza accelerazione Y [KHz]"}
+    C1_StpDecY                 AT %MD500.1863 : DINT;         {DE:"vq1863 - Step di decelerazione Y"}
+    C1_FrqDecY                 AT %MD500.1864 : DINT;         {DE:"vq1864 - Frequenza decelerazione Y [KHz]"}
+    C1_BaseParam1              AT %MD500.1901 : DINT;         {DE:"vq1901 - Parametro 1"}
+    C1_BaseParam2              AT %MD500.1902 : DINT;         {DE:"vq1902 - Parametro 2"}
+    C1_QuoHomeX                AT %MD500.1911 : DINT;         {DE:"vq1911 - Quota Home X"}
+    C1_QuoHomeY                AT %MD500.1912 : DINT;         {DE:"vq1912 - Quota Home Y"}
+    C1_UdfVelLavRPM            AT %MD500.1913 : DINT;         {DE:"vq1913 - Vel lavoro ago [RPM]"}
+    C1_UdfPuntiVelIni          AT %MD500.1914 : DINT;         {DE:"vq1914 - Punti iniziali (no fix3)"}
+    C1_UdfVelIniRPM            AT %MD500.1915 : DINT;         {DE:"vq1915 - Vel iniziale ago [RPM]"}
+    C1_UdfPuntiVelRall         AT %MD500.1916 : DINT;         {DE:"vq1916 - Punti rallentamento (no fix3)"}
+    C1_UdfVelRallRPM           AT %MD500.1917 : DINT;         {DE:"vq1917 - Vel rallentamento ago [RPM]"}
+    C1_Udf_FeedG0              AT %MD500.1918 : DINT;         {DE:"vq1918 - Feed nei movimenti G0 [mm/min] fix3"}
+    C1_Udf_ValTensione         AT %MD500.1919 : DINT;         {DE:"vq1919 - Valore Tensione Testa 1"}
+    C1_Udf_20                  AT %MD500.1920 : DINT;         {DE:"vq1920"}
+    C1_Udf_ValEletSopra        AT %MD500.1921 : DINT;         {DE:"vq1921 - Valore Uscita magnete Sopra"}
+    C1_Udf_ValEletSotto        AT %MD500.1922 : DINT;         {DE:"vq1922 - Valore Uscita magnete Sotto"}
+    C1_Udf_VelCaric            AT %MD500.1923 : DINT;         {DE:"vq1923 - Valore velocità ultimo tratto caricatore"}
+    C1_Udf_24                  AT %MD500.1924 : DINT;         {DE:"vq1924"}
+    C1_Udf_25                  AT %MD500.1925 : DINT;         {DE:"vq1925"}
+    C1_Udf_26                  AT %MD500.1926 : DINT;         {DE:"vq1926"}
+    C1_Udf_27                  AT %MD500.1927 : DINT;         {DE:"vq1927"}
+    C1_Udf_28                  AT %MD500.1928 : DINT;         {DE:"vq1928"}
+    C1_Udf_29                  AT %MD500.1929 : DINT;         {DE:"vq1929"}
+    C1_Udf_30                  AT %MD500.1930 : DINT;         {DE:"vq1930"}
+    C1_VqTotPntCuci            AT %MD500.1951 : DINT;         {DE:"vq1951 - Punti totali cucitura"}
+    C1_VqActPntCuci            AT %MD500.1952 : DINT;         {DE:"vq1952 - Punto corrente cucitura"}
+    C1_VqEncImpCuci            AT %MD500.1953 : DINT;         {DE:"vq1953 - Lettura encoder ago [imp]"}
+    C1_VqEncMmCuci             AT %MD500.1954 : DINT;         {DE:"vq1954 - Lettura encoder ago [mm]"}
+    C1_VqRpmAgoCuci            AT %MD500.1955 : DINT;         {DE:"vq1955 - Velocita' ago [RPM]"}
+    C1_VqActStartCuci          AT %MD500.1956 : DINT;         {DE:"vq1956 - Lettura quota start [gradi] (con anticipo)"}
+    C1_VqActStopCuci           AT %MD500.1957 : DINT;         {DE:"vq1957 - Lettura quota stop  [gradi] (con anticipo)"}
+    C1_VqAgoStartCuci          AT %MD500.1958 : DINT;         {DE:"vq1958 - Lettura hw quota start [gradi]"}
+    C1_VqAgoStopCuci           AT %MD500.1959 : DINT;         {DE:"vq1959 - Lettura hw quota stop  [gradi]"}
+    C1_VqTotParzPnt            AT %MD500.1960 : DINT;         {DE:"vq1960 - N. punti cucitura parziale"}
+    C1_VqActParzPnt            AT %MD500.1961 : DINT;         {DE:"vq1961 - Punto corrente cucitura parziale"}
+    C1_VelFeed                 AT %MD500.1962 : DINT;         {DE:"vq1962 - Velocità esecuzione Feed"}
+    C2_VelRifAgo               AT %MD500.2001 : DINT;         {DE:"vq2001 - Velocita' riferimento asse ago"}
+    C2_ImpRifAgo               AT %MD500.2002 : DINT;         {DE:"vq2002 - Impulsi riferimento asse ago"}
+    C2_MmRifAgo                AT %MD500.2003 : DINT;         {DE:"vq2003 - Mm riferimento asse ago"}
+    C2_PtIni                   AT %MD500.2004 : DINT;         {DE:"vq2004 - Punti iniziali"}
+    C2_RpmIni                  AT %MD500.2005 : DINT;         {DE:"vq2005 - RPM punti iniziali"}
+    C2_PtRall                  AT %MD500.2006 : DINT;         {DE:"vq2006 - Punti finali"}
+    C2_RpmRall                 AT %MD500.2007 : DINT;         {DE:"vq2007 - RPM punti finali"}
+    C2_VelMaxAgoRPM            AT %MD500.2008 : DINT;         {DE:"vq2008 - Vel max RPM AGO"}
+    C2_CntApritens             AT %MD500.2009 : DINT;         {DE:"vq2009 - Contatore impulsi uscita apritensione"}
+    C2_CntColtello             AT %MD500.2010 : DINT;         {DE:"vq2010 - Contatore impulsi uscita coltello"}
+    C2_SimulaNumPoint          AT %MD500.2011 : DINT;         {DE:"vq2011 - Numero di punti simulazione"}
+    C2_SimulaNumPointVel       AT %MD500.2012 : DINT;         {DE:"vq2012 - Vel [%] simulazione npoint"}
+    C2_SimulaNumPointMsk       AT %MD500.2013 : DINT;         {DE:"vq2013 - Maschera simulazione npoint"}
+    C2_SimulaContVbIdx         AT %MD500.2015 : DINT;         {DE:"vq2015 - Indice Vb"}
+    C2_SimulaContVel1          AT %MD500.2016 : DINT;         {DE:"vq2016 - Vel [%] simulazione continua"}
+    C2_SimulaContVel2          AT %MD500.2017 : DINT;         {DE:"vq2017 - Vel [%] simulazione continua"}
+    C2_SimulaContVel3          AT %MD500.2018 : DINT;         {DE:"vq2018 - Vel [%] simulazione continua"}
+    C2_SimulaContPt12          AT %MD500.2019 : DINT;         {DE:"vq2019 - N. punti cambio da Vel1 a Vel2"}
+    C2_SimulaContPt23          AT %MD500.2020 : DINT;         {DE:"vq2020 - N. punti cambio da Vel2 a Vel3"}
+    C2_SimulaContVbPedale      AT %MD500.2021 : DINT;         {DE:"vq2021 - Indice VB pedale per alta velocita'"}
+    C2_SimulaContVelPedale     AT %MD500.2022 : DINT;         {DE:"vq2022 - Vel pedale alta velocita'[%] simulazione continua"}
+    C2_FirstPtContext          AT %MD500.2025 : DINT;         {DE:"vq2025 - Contesto UDF per calcolo primo punto"}
+    C2_FirstPtValid            AT %MD500.2026 : DINT;         {DE:"vq2026 - Flag primo punto valido"}
+    C2_FirstPt_X               AT %MD500.2027 : DINT;         {DE:"vq2027 - Coordinata X del primo punto"}
+    C2_FirstPt_Y               AT %MD500.2028 : DINT;         {DE:"vq2028 - Coordinata Y del primo punto"}
+    C2_FirstPt_C               AT %MD500.2029 : DINT;         {DE:"vq2029 - Coordinata C iniziale"}
+    C2_GantryErrAct            AT %MD500.2030 : DINT;         {DE:"vq2030 - Errore istantaneo"}
+    C2_GantryErrMax            AT %MD500.2031 : DINT;         {DE:"vq2031 - Errore massimo"}
+    C2_GantryErrReset          AT %MD500.2032 : DINT;         {DE:"vq2032 - Reset errore massimo"}
+    C2_CalcBufContext          AT %MD500.2035 : DINT;         {DE:"vq2035 - Contesto ( dato di input )"}
+    C2_CalcBufErrCode          AT %MD500.2036 : DINT;         {DE:"vq2036 - Codice di errore"}
+    C2_CalcBufErrStepNum       AT %MD500.2037 : DINT;         {DE:"vq2037 - N. passo UDF dove e' avventuto l'errore"}
+    C2_CalcBufErrPar           AT %MD500.2038 : DINT;         {DE:"vq2038 - Parametro aggiuntivo dell'errore"}
+    C2_WarningFlg              AT %MD500.2040 : DINT;         {DE:"vq2040 - Flag Warning"}
+    C2_WarningAntXMm           AT %MD500.2041 : DINT;         {DE:"vq2041 - Mm per il calcolo dell'anticipo  X"}
+    C2_WarningAntXRpm          AT %MD500.2042 : DINT;         {DE:"vq2042 - RPM per il calcolo dell'anticipo X"}
+    C2_WarningAntXPassoUdf     AT %MD500.2043 : DINT;         {DE:"vq2043 - Passo UDF per il calcolo dell'anticipo X"}
+    C2_WarningAntYMm           AT %MD500.2044 : DINT;         {DE:"vq2044 - Mm per il calcolo dell'anticipo  Y"}
+    C2_WarningAntYRpm          AT %MD500.2045 : DINT;         {DE:"vq2045 - RPM per il calcolo dell'anticipo Y"}
+    C2_WarningAntYPassoUdf     AT %MD500.2046 : DINT;         {DE:"vq2046 - Passo UDF per il calcolo dell'anticipo Y"}
+    C2_WarningFreqXMm          AT %MD500.2047 : DINT;         {DE:"vq2047 - Mm per il calcolo delle frequenze X"}
+    C2_WarningFreqXRpm         AT %MD500.2048 : DINT;         {DE:"vq2048 - RPM per il calcolo delle frequenze X"}
+    C2_WarningFreqXPassoUdf    AT %MD500.2049 : DINT;         {DE:"vq2049 - Passo UDF per il calcolo delle frequenze X"}
+    C2_WarningFreqYMm          AT %MD500.2050 : DINT;         {DE:"vq2050 - Mm per il calcolo delle frequenze Y"}
+    C2_WarningFreqYRpm         AT %MD500.2051 : DINT;         {DE:"vq2051 - RPM per il calcolo delle frequenze Y"}
+    C2_WarningFreqYPassoUdf    AT %MD500.2052 : DINT;         {DE:"vq2052 - Passo UDF per il calcolo delle frequenze Y"}
+    C2_CntBloccoFiloINI        AT %MD500.2053 : DINT;         {DE:"vq2053 - Contatore impulsi uscita BloccoFiloINI"}
+    C2_CntBloccoFiloEND        AT %MD500.2054 : DINT;         {DE:"vq2054 - Contatore impulsi uscita BloccoFiloEND"}
+    C2_Fun74_RetCode           AT %MD500.2060 : DINT;         {DE:"vq2060 - RetCode"}
+    C2_Fun74_QuoObj            AT %MD500.2061 : DINT;         {DE:"vq2061 - Quota obiettivo"}
+    C2_Fun74_VelObj            AT %MD500.2062 : DINT;         {DE:"vq2062 - Velocita'"}
+    C2_Fun74_Future            AT %MD500.2063 : DINT;         {DE:"vq2063 - Future"}
+    C2_Fun74_Acc               AT %MD500.2063 : DINT;         {DE:"vq2063 - Accelerazione ( polinomio grado 5 )"}
+    C2_Fun74_Tmov              AT %MD500.2064 : DINT;         {DE:"vq2064 - Tempo di movimento ( polinomio grado 5 )"}
+    C2_Fun74_Offs              AT %MD500.2065 : DINT;         {DE:"vq2065 - Offset anticipo start ( polinomio grado 5 )"}
+    C2_FaseAxAgo               AT %MD500.2070 : DINT;         {DE:"vq2070 - Fase asse ago"}
+    C2_FaseAxC                 AT %MD500.2071 : DINT;         {DE:"vq2071 - Fase asse C"}
+    C2_CmdQuoAbsRet            AT %MD500.2075 : DINT;         {DE:"vq2075 - RetCode"}
+    C2_CmdQuoAbsX              AT %MD500.2076 : DINT;         {DE:"vq2076 - QuoAbs X"}
+    C2_CmdQuoAbsY              AT %MD500.2077 : DINT;         {DE:"vq2077 - QuoAbs Y"}
+    C2_CmdQuoAbsC              AT %MD500.2078 : DINT;         {DE:"vq2078 - QuoAbs C"}
+    C2_RpmAgoInProfilo         AT %MD500.2100 : DINT;         {DE:"vq2100 - Rpm ago impostati da istruzione del profile ( Vcd1 )"}
+    C2_TensioneInProfilo       AT %MD500.2101 : DINT;         {DE:"vq2101 - tensione impostata da istruzione del profile ( Vcd2 )"}
+    C2_VelRiduzioneRPM         AT %MD500.2110 : DINT;         {DE:"vq2110 - Ulteriore limite RPM Ago ( #M200710_1GF# )"}
+    C2_CmdMoveAxC              AT %MD500.2120 : DINT;         {DE:"vq2120 - Comando di movimento asse C"}
+    C2_QuoObjAxC               AT %MD500.2121 : DINT;         {DE:"vq2121 - Quota obiettivo asse C"}
+    C2_NumPtMoveAxC            AT %MD500.2122 : DINT;         {DE:"vq2122 - Punti di cucitura - movimento asse C"}
+    C2_RpmMoveAxC              AT %MD500.2123 : DINT;         {DE:"vq2123 - Rpm ago durante il movimento dell'asse C"}
+    C2_IrqNumMoveAxC           AT %MD500.2124 : DINT;         {DE:"vq2124 - IrqNumber interpretazione movimento dell'asse C"}
+    C2_IrqCnt                  AT %MD500.2127 : DINT;         {DE:"vq2127 - Contatore Irq ( Fun 281 cmd 63 )"}
+    C2_MovePlcAxCErrCode       AT %MD500.2130 : DINT;         {DE:"vq2130 - Mov. asse C - ErrorCode"}
+    C2_MovePlcAxCQuoObj        AT %MD500.2131 : DINT;         {DE:"vq2131 - Mov. asse C - Quota obiettivo"}
+    C2_MovePlcAxCVel           AT %MD500.2132 : DINT;         {DE:"vq2132 - Mov. asse C - Velocita'"}
+    C2_MovePlcAxCAcc           AT %MD500.2133 : DINT;         {DE:"vq2133 - Mov. asse C - Accelerazione"}
+    C2_MovePlcAxCTime          AT %MD500.2134 : DINT;         {DE:"vq2134 - Mov. asse C - Tempo di movimento"}
+    C2_MovePlcAxCAnt           AT %MD500.2135 : DINT;         {DE:"vq2135 - Mov. asse C - Anticipo"}
+    C2_InfoCntPunti            AT %MD500.2651 : DINT;         {DE:"vq2651 - Contatore punti di cucitura"}
+    C2_InfoAnticipoMm          AT %MD500.2652 : DINT;         {DE:"vq2652 - Mm per il calcolo dell'anticipo"}
+    C2_InfoAnticipoRpm         AT %MD500.2653 : DINT;         {DE:"vq2653 - RPM per il calcolo dell'anticipo"}
+    C2_InfoAnticipoPassoUdf    AT %MD500.2654 : DINT;         {DE:"vq2654 - Passo UDF per il calcolo dell'anticipo"}
+    C2_InfoFreqXMm             AT %MD500.2655 : DINT;         {DE:"vq2655 - Mm per il calcolo delle frequenze X"}
+    C2_InfoFreqXRpm            AT %MD500.2656 : DINT;         {DE:"vq2656 - RPM per il calcolo delle frequenze X"}
+    C2_InfoFreqXPassoUdf       AT %MD500.2657 : DINT;         {DE:"vq2657 - Passo UDF per il calcolo delle frequenze X"}
+    C2_InfoFreqYMm             AT %MD500.2658 : DINT;         {DE:"vq2658 - Mm per il calcolo delle frequenze Y"}
+    C2_InfoFreqYRpm            AT %MD500.2659 : DINT;         {DE:"vq2659 - RPM per il calcolo delle frequenze Y"}
+    C2_InfoFreqYPassoUdf       AT %MD500.2660 : DINT;         {DE:"vq2660 - Passo UDF per il calcolo delle frequenze Y"}
+    C2_SogliaStart             AT %MD500.2701 : DINT;         {DE:"vq2701 - Soglia start movimento [gradi]"}
+    C2_SogliaStop              AT %MD500.2702 : DINT;         {DE:"vq2702 - Soglia stop  movimento [gradi]"}
+    C2_AgoAlto                 AT %MD500.2703 : DINT;         {DE:"vq2703 - Ago alto [gradi]"}
+    C2_StartApriTens           AT %MD500.2704 : DINT;         {DE:"vq2704 - Start camma apritensione [gradi]"}
+    C2_StopApriTens            AT %MD500.2705 : DINT;         {DE:"vq2705 - Stop  camma apritensione [gradi]"}
+    C2_StartColtello           AT %MD500.2706 : DINT;         {DE:"vq2706 - Start camma coltello [gradi]"}
+    C2_StopColtello            AT %MD500.2707 : DINT;         {DE:"vq2707 - Stop  camma coltello [gradi]"}
+    C2_TSalitaPiedino          AT %MD500.2708 : DINT;         {DE:"vq2708 - Tempo salita piedino [s]"}
+    C2_TDiscesaPiedino         AT %MD500.2709 : DINT;         {DE:"vq2709 - Tempo discesa piedino [s]"}
+    C2_ParVelLavRPM            AT %MD500.2710 : DINT;         {DE:"vq2710 - Vel. lavoro ago [RPM]"}
+    C2_ParPuntiVelIni          AT %MD500.2711 : DINT;         {DE:"vq2711 - Punti iniziali (no fix3)"}
+    C2_ParVelIniRPM            AT %MD500.2712 : DINT;         {DE:"vq2712 - Vel iniziale ago [RPM]"}
+    C2_ParPuntiVelRall         AT %MD500.2713 : DINT;         {DE:"vq2713 - Punti rallentamento (no fix3)"}
+    C2_ParVelRallRPM           AT %MD500.2714 : DINT;         {DE:"vq2714 - Vel rallentamento ago [RPM]"}
+    C2_StopAgo                 AT %MD500.2715 : DINT;         {DE:"vq2715 - Quota stop dell'ago (prima del movimento ad ago alto)"}
+    C2_OffsetAgoTacca          AT %MD500.2716 : DINT;         {DE:"vq2716 - Offset di fase tran la quota dell'ago e la tacca di zero"}
+    C2_Par_FeedG0Reset         AT %MD500.2717 : DINT;         {DE:"vq2717 - Feed nei movimenti G0 per azzeramento o reset [mm/min] fix3"}
+    C2_StartBloccoFiloINI      AT %MD500.2718 : DINT;         {DE:"vq2718 - Start camma blocco filo inizio cucitura [gradi]"}
+    C2_StopBloccoFiloINI       AT %MD500.2719 : DINT;         {DE:"vq2719 - Stop camma blocco filo inizio cucitura [gradi]"}
+    C2_StartBloccoFiloEND      AT %MD500.2720 : DINT;         {DE:"vq2720 - Start camma blocco filo fine cucitura [gradi]"}
+    C2_StopBloccoFiloEND       AT %MD500.2721 : DINT;         {DE:"vq2721 - Stop camma blocco filo fine cucitura [gradi]"}
+    C2_ParVelRotazione         AT %MD500.2722 : DINT;         {DE:"vq2722 - Velocita' asse C rotazione [%] fix3 movimento iniziale"}
+    C2_Par_23                  AT %MD500.2723 : DINT;         {DE:"vq2723"}
+    C2_Par_24                  AT %MD500.2724 : DINT;         {DE:"vq2724"}
+    C2_Par_25                  AT %MD500.2725 : DINT;         {DE:"vq2725"}
+    C2_Par_26                  AT %MD500.2726 : DINT;         {DE:"vq2726"}
+    C2_Par_27                  AT %MD500.2727 : DINT;         {DE:"vq2727"}
+    C2_Par_28                  AT %MD500.2728 : DINT;         {DE:"vq2728"}
+    C2_Par_29                  AT %MD500.2729 : DINT;         {DE:"vq2729"}
+    C2_Par_30                  AT %MD500.2730 : DINT;         {DE:"vq2730"}
+    C2_Par_31                  AT %MD500.2731 : DINT;         {DE:"vq2731"}
+    C2_Par_32                  AT %MD500.2732 : DINT;         {DE:"vq2732"}
+    C2_Par_33                  AT %MD500.2733 : DINT;         {DE:"vq2733"}
+    C2_Par_34                  AT %MD500.2734 : DINT;         {DE:"vq2734"}
+    C2_Par_35                  AT %MD500.2735 : DINT;         {DE:"vq2735"}
+    C2_Par_36                  AT %MD500.2736 : DINT;         {DE:"vq2736"}
+    C2_Par_37                  AT %MD500.2737 : DINT;         {DE:"vq2737"}
+    C2_Par_38                  AT %MD500.2738 : DINT;         {DE:"vq2738"}
+    C2_Par_39                  AT %MD500.2739 : DINT;         {DE:"vq2739"}
+    C2_Par_40                  AT %MD500.2740 : DINT;         {DE:"vq2740"}
+    C2_TabSpostamentoMm        AT %MD500.2851 : DINT;         {DE:"vq2851 - Spostamento [mm]"}
+    C2_TabVelAgoRPM            AT %MD500.2852 : DINT;         {DE:"vq2852 - Vel. ago [RPM]"}
+    C2_AnticipoX               AT %MD500.2853 : DINT;         {DE:"vq2853 - Anticipo start stop X [gradi]"}
+    C2_AnticipoY               AT %MD500.2854 : DINT;         {DE:"vq2854 - Anticipo start stop Y [gradi]"}
+    C2_FrqLavX                 AT %MD500.2855 : DINT;         {DE:"vq2855 - Frequenza di lavoro X [KHz]"}
+    C2_StpAccX                 AT %MD500.2856 : DINT;         {DE:"vq2856 - Step di accelerazione X"}
+    C2_FrqAccX                 AT %MD500.2857 : DINT;         {DE:"vq2857 - Frequenza accelerazione X [KHz]"}
+    C2_StpDecX                 AT %MD500.2858 : DINT;         {DE:"vq2858 - Step di decelerazione X"}
+    C2_FrqDecX                 AT %MD500.2859 : DINT;         {DE:"vq2859 - Frequenza decelerazione X [KHz]"}
+    C2_FrqLavY                 AT %MD500.2860 : DINT;         {DE:"vq2860 - Frequenza di lavoro Y [KHz]"}
+    C2_StpAccY                 AT %MD500.2861 : DINT;         {DE:"vq2861 - Step di accelerazione Y"}
+    C2_FrqAccY                 AT %MD500.2862 : DINT;         {DE:"vq2862 - Frequenza accelerazione Y [KHz]"}
+    C2_StpDecY                 AT %MD500.2863 : DINT;         {DE:"vq2863 - Step di decelerazione Y"}
+    C2_FrqDecY                 AT %MD500.2864 : DINT;         {DE:"vq2864 - Frequenza decelerazione Y [KHz]"}
+    C2_BaseParam1              AT %MD500.2901 : DINT;         {DE:"vq2901 - Parametro 1"}
+    C2_BaseParam2              AT %MD500.2902 : DINT;         {DE:"vq2902 - Parametro 2"}
+    C2_QuoHomeX                AT %MD500.2911 : DINT;         {DE:"vq2911 - Quota Home X"}
+    C2_QuoHomeY                AT %MD500.2912 : DINT;         {DE:"vq2912 - Quota Home Y"}
+    C2_UdfVelLavRPM            AT %MD500.2913 : DINT;         {DE:"vq2913 - Vel lavoro ago [RPM]"}
+    C2_UdfPuntiVelIni          AT %MD500.2914 : DINT;         {DE:"vq2914 - Punti iniziali (no fix3)"}
+    C2_UdfVelIniRPM            AT %MD500.2915 : DINT;         {DE:"vq2915 - Vel iniziale ago [RPM]"}
+    C2_UdfPuntiVelRall         AT %MD500.2916 : DINT;         {DE:"vq2916 - Punti rallentamento (no fix3)"}
+    C2_UdfVelRallRPM           AT %MD500.2917 : DINT;         {DE:"vq2917 - Vel rallentamento ago [RPM]"}
+    C2_Udf_FeedG0              AT %MD500.2918 : DINT;         {DE:"vq2918 - Feed nei movimenti G0 [mm/min] fix3"}
+    C2_Udf_ValTensione         AT %MD500.2919 : DINT;         {DE:"vq2919 - Valore Tensione Testa 1 ( non utilizzato )"}
+    C2_Udf_20                  AT %MD500.2920 : DINT;         {DE:"vq2920"}
+    C2_Udf_ValEletSopra        AT %MD500.2921 : DINT;         {DE:"vq2921 - Valore Uscita magnete Sopra ( non utilizzato )"}
+    C2_Udf_ValEletSotto        AT %MD500.2922 : DINT;         {DE:"vq2922 - Valore Uscita magnete Sotto  ( non utilizzato )"}
+    C2_Udf_23                  AT %MD500.2923 : DINT;         {DE:"vq2923"}
+    C2_Udf_24                  AT %MD500.2924 : DINT;         {DE:"vq2924"}
+    C2_Udf_25                  AT %MD500.2925 : DINT;         {DE:"vq2925"}
+    C2_Udf_26                  AT %MD500.2926 : DINT;         {DE:"vq2926"}
+    C2_Udf_27                  AT %MD500.2927 : DINT;         {DE:"vq2927"}
+    C2_Udf_28                  AT %MD500.2928 : DINT;         {DE:"vq2928"}
+    C2_Udf_29                  AT %MD500.2929 : DINT;         {DE:"vq2929"}
+    C2_Udf_30                  AT %MD500.2930 : DINT;         {DE:"vq2930"}
+    C2_VqTotPntCuci            AT %MD500.2951 : DINT;         {DE:"vq2951 - Punti totali cucitura"}
+    C2_VqActPntCuci            AT %MD500.2952 : DINT;         {DE:"vq2952 - Punto corrente cucitura"}
+    C2_VqEncImpCuci            AT %MD500.2953 : DINT;         {DE:"vq2953 - Lettura encoder ago [imp]"}
+    C2_VqEncMmCuci             AT %MD500.2954 : DINT;         {DE:"vq2954 - Lettura encoder ago [mm]"}
+    C2_VqRpmAgoCuci            AT %MD500.2955 : DINT;         {DE:"vq2955 - Velocita' ago [RPM]"}
+    C2_VqActStartCuci          AT %MD500.2956 : DINT;         {DE:"vq2956 - Lettura quota start [gradi] (con anticipo)"}
+    C2_VqActStopCuci           AT %MD500.2957 : DINT;         {DE:"vq2957 - Lettura quota stop  [gradi] (con anticipo)"}
+    C2_VqAgoStartCuci          AT %MD500.2958 : DINT;         {DE:"vq2958 - Lettura hw quota start [gradi]"}
+    C2_VqAgoStopCuci           AT %MD500.2959 : DINT;         {DE:"vq2959 - Lettura hw quota stop  [gradi]"}
+    C2_VqTotParzPnt            AT %MD500.2960 : DINT;         {DE:"vq2960 - N. punti cucitura parziale"}
+    C2_VqActParzPnt            AT %MD500.2961 : DINT;         {DE:"vq2961 - Punto corrente cucitura parziale"}
+    C2_VelFeed                 AT %MD500.2962 : DINT;         {DE:"vq2962 - Velocità esecuzione Feed"}
+
+END_VAR
+
+VAR_GLOBAL CONSTANT
+
+
+    {G:"Application_Constant"}
+
+    C1_PROFILO_CNTX            : INT := 1; { DE:"Cucitrice 1 - contesto profilo udf di cucitura" }
+    C2_PROFILO_CNTX            : INT := 2; { DE:"Cucitrice 2 - contesto profilo udf di cucitura" }
+    C1_PAR_CNTX                : INT := 3; { DE:"Cucitrice 1 - contesto parametri ( C1_Param.udf )" }
+    C2_PAR_CNTX                : INT := 4; { DE:"Cucitrice 2 - contesto parametri ( C2_Param.udf )" }
+    C1_PAR_BASE_MTX            : INT := 101; { DE:"Matrice di base dei parametri ( C1_Param.udf )" }
+    C1_TAB_BASE_MTX            : INT := 102; { DE:"Matrice di base del tabellone dei parametri dinamici" }
+    C1_PROF_BASE_MTX           : INT := 111; { DE:"Matrice di base del profilo udf di cucitura" }
+    C1_PROF_HDR_MTX            : INT := 112; { DE:"Matrice di header del profilo udf di cucitura" }
+    C2_PAR_BASE_MTX            : INT := 201; { DE:"Matrice di base dei parametri ( C2_Param.udf )" }
+    C2_TAB_BASE_MTX            : INT := 202; { DE:"Matrice di base del tabellone dei parametri dinamici" }
+    C2_PROF_BASE_MTX           : INT := 211; { DE:"Matrice di base del profilo udf di cucitura" }
+    C2_PROF_HDR_MTX            : INT := 212; { DE:"Matrice di header del profilo udf di cucitura" }
+    C1_SIMULA_AVA_CONT_IDX     : INT := 1022;
+    C1_SIMULA_IND_CONT_IDX     : INT := 1023;
+    C1_AGO_FUORI_ING_IDX       : INT := 1030;
+    C1_FLG_CUCI_OR_MOVE_IDX    : INT := 1033;
+    C1_AGO_ALTO_STOP_IDX       : INT := 1037;
+    C1_FLG_G280_RUNNING_IDX    : INT := 1038;
+    C1_FLG_JTASK_INFO_IDX      : INT := 1041;
+    C1_STATUS_WORD_BIT_IDX     : INT := 1850; { DE:"STATUS_WORD_BIT_IDX" }
+    C2_SIMULA_AVA_CONT_IDX     : INT := 2022;
+    C2_SIMULA_IND_CONT_IDX     : INT := 2023;
+    C2_AGO_FUORI_ING_IDX       : INT := 2030;
+    C2_FLG_CUCI_OR_MOVE_IDX    : INT := 2033;
+    C2_AGO_ALTO_STOP_IDX       : INT := 2037;
+    C2_FLG_G280_RUNNING_IDX    : INT := 2038;
+    C2_FLG_JTASK_INFO_IDX      : INT := 2041;
+    C2_STATUS_WORD_BIT_IDX     : INT := 2850; { DE:"STATUS_WORD_BIT_IDX" }
+    C1_TAB_CONTEXT_IDX         : INT := 1001;
+    C1_RD_NEXT_CODE_IDX        : INT := 1010;
+    C1_WRITE_PAR_IDX           : INT := 1011;
+    C1_SDO_ERRCODE_IDX         : INT := 1680; { DE:"Servizio SDO - ErrorCode" }
+    C1_SDO_RW_PAR_IDX          : INT := 1681; { DE:"Servizio SDO - Parametri" }
+    C1_VN_STATUS_CUCI_IDX      : INT := 1952; { DE:"Status cucitrice" }
+    C2_TAB_CONTEXT_IDX         : INT := 2001;
+    C2_RD_NEXT_CODE_IDX        : INT := 2010;
+    C2_WRITE_PAR_IDX           : INT := 2011;
+    C2_VN_STATUS_CUCI_IDX      : INT := 2952; { DE:"Status cucitrice" }
+    C1_SIMULA_NPOINT_IDX       : INT := 1011;
+    C1_SIMULA_CONT_IDX         : INT := 1015;
+    C1_FIRST_PT_IDX            : INT := 1025;
+    C1_GANTRY_INFO_IDX         : INT := 1030;
+    C1_CALC_BUF_IDX            : INT := 1035;
+    C1_WARNING_INFO_IDX        : INT := 1040;
+    C1_FUN74_IDX               : INT := 1060;
+    C1_FASE_AX_AGO_IDX         : INT := 1070;
+    C1_FASE_AX_C_IDX           : INT := 1071;
+    C1_CMD_QUO_ABS_IDX         : INT := 1075;
+    C1_RPM_AGO_PROFILO_IDX     : INT := 1100;
+    C1_TENSIONE_PROFILO_IDX    : INT := 1101;
+    C1_CMD_MOVE_AX_C_IDX       : INT := 1120;
+    C1_CMD_GET_IRQ_CNT_IDX     : INT := 1127;
+    C1_MOVE_PLC_AX_C_IDX       : INT := 1130;
+    C1_SDO_VQ_DATA_IDX         : INT := 1690; { DE:"Servizio SDO - Vq dato letto o da scrivere" }
+    C1_SGL_START_STOP_IDX      : INT := 1701;
+    C1_OFFSET_AGO_TACCA_IDX    : INT := 1716;
+    C1_FEED_G0_IDX             : INT := 1918; { DE:"Indice Vq Feed movimento G0" }
+    C2_SIMULA_NPOINT_IDX       : INT := 2011;
+    C2_SIMULA_CONT_IDX         : INT := 2015;
+    C2_FIRST_PT_IDX            : INT := 2025;
+    C2_GANTRY_INFO_IDX         : INT := 2030;
+    C2_CALC_BUF_IDX            : INT := 2035;
+    C2_WARNING_INFO_IDX        : INT := 2040;
+    C2_FUN74_IDX               : INT := 2060;
+    C2_FASE_AX_AGO_IDX         : INT := 2070;
+    C2_FASE_AX_C_IDX           : INT := 2071;
+    C2_CMD_QUO_ABS_IDX         : INT := 2075;
+    C2_RPM_AGO_PROFILO_IDX     : INT := 2100;
+    C2_TENSIONE_PROFILO_IDX    : INT := 2101;
+    C2_CMD_MOVE_AX_C_IDX       : INT := 2120;
+    C2_CMD_GET_IRQ_CNT_IDX     : INT := 2127;
+    C2_MOVE_PLC_AX_C_IDX       : INT := 2130;
+    C2_SGL_START_STOP_IDX      : INT := 2701;
+    C2_OFFSET_AGO_TACCA_IDX    : INT := 2716;
+    C2_FEED_G0_IDX             : INT := 2918; { DE:"Indice Vq Feed movimento G0" }
+
+END_VAR

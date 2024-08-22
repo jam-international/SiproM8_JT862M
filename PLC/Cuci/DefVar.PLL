@@ -2,7 +2,7 @@
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "22/07/2024 09:56:52"
+ * Date = "19/08/2024 12:29:08"
  *)
 
 
@@ -39,6 +39,8 @@ VAR_GLOBAL
     Vb21_Tasca_dx_sx                        AT %MB300.21   : BOOL;         {DE:"vb21   - ON = Attiva alternanza programma Dx e Sx"}
     Vb22_device_lentezza_tasca              AT %MB300.22   : BOOL;         {DE:"vb22   - ON = attivo"}
     Vb23_CmdRaffreddamentoAgo               AT %MB300.23   : BOOL;         {DE:"vb23   - Vb comando raffreddamento ago"}
+    Vb28_C1_ExeCucitura_Run                 AT %MB300.28   : BOOL;         {DE:"vb28   - =1 C1_ExeCucitura sta girando"}
+    Vb39_C2_ExeCucitura_Run                 AT %MB300.29   : BOOL;         {DE:"vb29   - =1 C2_ExeCucitura sta girando"}
     Vb30_C1_InCucitura                      AT %MB300.30   : BOOL;         {DE:"vb30   - =1 sono all'iterno di una cucitura (anche se sono in HOLD)"}
     Vb31_C2_InCucitura                      AT %MB300.31   : BOOL;         {DE:"vb31   - =1 sono all'iterno di una cucitura (anche se sono in HOLD)"}
     Vb32_C1_StopCucitura                    AT %MB300.32   : BOOL;         {DE:"vb32   - =1 è stata fermata la cucitura (Stop o rottura filo)"}
@@ -109,6 +111,7 @@ VAR_GLOBAL
     LeggoTemperaturaDriverAgo               AT %MB300.118  : BOOL;         {DE:"vb118  - 1 = il PLC tramite Ethercat legge la temperatura del driver Ago"}
     LeggoTemperaturaDriverCro               AT %MB300.119  : BOOL;         {DE:"vb119  - 1 = il PLC tramite Ethercat legge la temperatura del driver Crochet"}
     LeggoTemperaturaDriverCar               AT %MB300.120  : BOOL;         {DE:"vb120  - 1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore"}
+    Vb121_LanciaFuoriAuto                   AT %MB300.121  : BOOL;         {DE:"vb121  - 1 = la lancia viene fuori senza premere la pedana"}
     Vb4000_Automatico                       AT %MB300.4000 : BOOL;         {DE:"vb4000 - /// messa a ON da HMI sono in automatico"}
     Vb4001_StepPiegatore                    AT %MB300.4001 : BOOL;         {DE:"vb4001 - /// messa a ON da HMI il piegatore è passo passo"}
     Vb4002_StepPiegatoreStop                AT %MB300.4002 : BOOL;         {DE:"vb4002 - /// punto di stop piegatore"}
@@ -430,6 +433,7 @@ VAR_GLOBAL
     vntest                                  AT %MW400.777  : INT;          {DE:"vn777"}
     vntest1                                 AT %MW400.778  : INT;          {DE:"vn778"}
     vntest2                                 AT %MW400.779  : INT;          {DE:"vn779"}
+    vntest3                                 AT %MW400.780  : INT;          {DE:"vn780"}
     Fun301_ago_vn800_err                    AT %MW400.800  : INT;          {DE:"vn800"}
     Fun301_ago_vn801_rete                   AT %MW400.801  : INT;          {DE:"vn801"}
     Fun301_ago_vn802_noto                   AT %MW400.802  : INT;          {DE:"vn802"}
@@ -659,6 +663,7 @@ VAR_GLOBAL
     Vq3591_CNT_CicliAutomaticoUser          AT %MD500.3591 : DINT;         {DE:"vq3591 - conteggio cicli automatico azzerabile da utente            valore 0.001"}
     Vq3592_CNT_CicliAutomaticoVita          AT %MD500.3592 : DINT;         {DE:"vq3592 - conteggio cicli automatico vita macchina                valore 0.001"}
     Vq3593_CNT_CicliAutomaticoVitaX100K     AT %MD500.3593 : DINT;         {DE:"vq3593 - conteggio cicli automatico vita macchina x 100000        a 100000 di vq3592 incrementa valore 0.001"}
+    Vq3594_CopiaVq3596                      AT %MD500.3594 : DINT;         {DE:"vq3594 - mi serve per provare a risolvere problema che all'accensione mette numeri sbagliati"}
     VqContatore                             AT %MD500.3595 : DINT;         {DE:"vq3595"}
     Vq3596_ContPuntiSpolaC1                 AT %MD500.3596 : DINT;         {DE:"vq3596 - conteggio punti fatti"}
     Vq3597_ImpPuntiSpolaC1                  AT %MD500.3597 : DINT;         {DE:"vq3597 - conteggio punti da fare"}

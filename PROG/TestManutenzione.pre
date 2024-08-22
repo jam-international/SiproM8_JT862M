@@ -35,6 +35,7 @@ sub ()
 			//	WaitCond ( Vb52RichiestaZeroAxDaHmiC1 == 0 )
 				Delays (0.2)
 						fp[ 5          ] = 20    
+
 						ax[ 5          ] = Vq3502                            
 						Delays ( 0.5 )
 						Vb4356                                = 1 
@@ -43,6 +44,7 @@ sub ()
 						Vb4356                                = 0  
 						WaitCond ( din5                 )
 						Delays (0.5)
+
 						fp[ 5          ] = 20    
 						ax[ 5          ] = Vq3500                      
 		Vb4081                       = 0  			
@@ -74,6 +76,7 @@ sub ()
 					Vb4356                                = 0  
 					Waitcond ( din5                 )
 				Delays ( 0.5 )
+
 				fp[ 5          ] = 20    
 				ax[ 5          ] = Vq3500                      
 					Vb4344                              = 0  
@@ -93,6 +96,7 @@ sub ()
 				Waitcond ( din5                 )
 			Vb4351                         = 1 
 				Delays ( 0.1 )
+
 			fp[ 5          ] = Vq3510                    
 			ax[ 5          ] = Vq3502                            
 				Delays ( 1.5 )

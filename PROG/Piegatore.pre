@@ -37,6 +37,7 @@ sub ()
 ///// set iniziale
 	if (  vq55             > Vq3500                      + 1 )
 		fp[ 5          ] = Vq3510                    
+
 		ax[ 5          ] = Vq3500                      
 	endif
 
@@ -702,6 +703,7 @@ sub ()
 	    if(Vq3501                           > 420 or Vq3501                           < 400) 
 			Vq3501                           = 407
 	    endif
+
 		ax[ 5          ] = Vq3501                           
 				Delays ( Vq3018                        )
 								///// stop piegatore
@@ -889,23 +891,22 @@ sub ()
 	vn132          = 122
 
 
-		do			// attendo la cucitrice 1 libera
-					//if ( C1_VbRunCuci == OFF and i24_C1_PinzaEstAlta and i23_C1_PinzaIntBassa == 0  and ( PosAx_C2_AsseCAR < ( Vq3522_PosizioneTraslCaricoTascaC1 - 1 ))) 
-					if ( vb1955       == 0   and din24               and din23                == 0 and din8              and Vb4033                           == 0  and vb4520                                == 0  ) 
-						if(vq1923          <= (Vq3511                     *1000) and vq1923          > 0)
-							Vq3513                = vq1923         
-						else 
-							Vq3513                = 50000
-						endif
+	do	// attendo la cucitrice 1 libera
+		if ( vb1955       == 0   and din24               and din23                == 0 and din8              and Vb4033                           == 0  and vb4520                                == 0  ) 
+			if(vq1923          <= (Vq3511                     *1000) and vq1923          > 0)
+				Vq3513                = vq1923         
+			else 
+				Vq3513                = 50000
+			endif
 
-						if(Vq3502                            > 985 or Vq3502                            < 960)
-							Vq3502                            = 978
-						endif
+			if(Vq3502                            > 985 or Vq3502                            < 960)
+				Vq3502                            = 978
+			endif
 
 
-						AxAnt( 5         , Vq3502                            , Vq3513               , 2, 0 )  
-							exitdo
-					endif
+			AxAnt( 5         , Vq3502                            , Vq3513               , 2, 0 ) //lancia movimento e continua
+			exitdo
+		endif
 
 								///// stop piegatore
 											if ( Vb4003                  )
@@ -930,19 +931,56 @@ sub ()
 											endif
 								///// fine stop piegatore
 		loop		
-			///// fine stop piegatore
-	////// 
+
+
+////	aspetto che il caricatore arrivi sotto le pinze di cucitura
+	vn132          = 123
+	do
+
+	if ( IsAxInQuote( 5          ) )
+
+		exitdo
+	endif
+
+								///// stop piegatore
+											if ( Vb4003                  )
+
+												ExecPlcFun( 75         , (5          * 100)+1 , 0 )  ///fermo asse caricatore
+
+												Waitcond ( din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															Vb4003                  = 0  
+															goto RESET_PIEGATORE
+														endif	
+													loop
+											endif
+											if ( Vb4001               )
+												Waitcond ( din3                  == 0   and din25               == 0   )			///// aspetto il rilascio dei pulsanti 
+													do
+														if ( din25               )		// reset piegatore
+															goto RESET_PIEGATORE
+													endif	
+														if ( din3                  )		// riparti piegatore
+															exitdo
+														endif	
+													loop
+											endif
+								///// fine stop piegatore
 
 
 
 
 
+
+	loop
 
 
 
 
 	//// salto alla fine 
-			goto FINE
+	vn132          = 999
+	goto FINE
 
 ///////////////////////////////////////////////////////////////////
 ///// reset piegatore	
@@ -950,11 +988,14 @@ sub ()
 
 
 :RESET_PIEGATORE
+vn132          = 150
+
 // alzo la pinza caricatore e sposto alla posizione Vq3500_PosizioneCaricRiposo
 	Vb4356                                = 0  
 	Waitcond ( din5                 )
 	// Imposta le velocita' e predispone gli assi caricatori
 	fp[ 5          ] = 5
+
 	ax[ 5          ] = Vq3500                      
 // spengo aspirazione 
 	Vb4347                         = 0  
@@ -1025,7 +1066,9 @@ sub ()
 	if(vb22                      )  //se è attivo il kit lentezza tasca lo faccio avanzare
 		Vb4355                              = 1 
 	endif
-
+	if(vb121                 == 1  and  Vb4001               == 0  )
+		Vb4341                     = 1 
+	endif
 
 	goto EXIT_PROG
 
@@ -1036,7 +1079,10 @@ sub ()
 	Vb4012                 = 1 
 	Vb4013               = 1 
 
-			Waitcond ( Vb4012                 == 0 and Vb4013               == 0 )
+	Waitcond ( Vb4012                 == 0 and Vb4013               == 0 )
+
+
+
 	Vb4010                 = 0  
 
 goto INIZIO

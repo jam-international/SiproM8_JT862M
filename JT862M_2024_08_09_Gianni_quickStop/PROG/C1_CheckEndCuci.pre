@@ -1,0 +1,55 @@
+// ==========================================================================
+// SIPRO - Siax M
+//
+// COMPANY:     JAM INTERNATIONAL
+//
+// DESCRIPTION: C1_CheckEndCuci.src   
+//              Verifica se la cucitura e' terminata
+//
+// NOTE:                                NAME:           VER:    DATE:
+// -------------------------------------------------------------------------
+// Prima stesura                        gf              1.0     04/03/2021
+// Ultima modifica
+//
+// NOTA: non modificare questo file
+// ==========================================================================
+
+'#include "DefVar.h"
+
+
+
+sub ()
+
+	// Verifica cucitura terminata
+	if ( vq1952          >= vq1951          )
+		// Movimento a posizione di home ( coordinate macchina )
+		SyncVar( vb1003          )
+		Delays ( 0.3 )
+ 		vb4805                      = 1 
+		vq1962     = vq1717            
+		if ( vq1918        < vq1962     )           // #M200717_1GF#
+			vq1962     = vq1918       
+		endif
+		ISO G1 X vq1911      Y vq1912      F vq1962    
+
+
+		//Daniele x fine test
+		vb36            = 1 	//apro retrattile
+		vb37            = 1 	//abbasso perni ranocchia
+		vb38            = 1 	//disattivo salto piedino
+
+		Vb4350                         = 1 
+		Vb4351                         = 1  
+
+		if(Vb4354                        )	//se lo scaricatore è a sx (può succedere se ho usato Test cucitura)
+			Vb4032                        = 1 
+			vq1952          = 0
+		endif
+
+		//WaitCond ( i24_C1_PinzaEstAlta == 1)
+
+
+
+		gosub "Halt.obj"
+	endif
+endsub

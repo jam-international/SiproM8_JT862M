@@ -72,7 +72,7 @@ if ( MacchinaAzzerata == 0 )
 
 	////// caricatore per piegatore o manuale
 	if( Vb4509_AppEnbPiegatore )
-		
+	
 		ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
 		
 	
@@ -158,11 +158,13 @@ fp[ C1_AsseCAR ] = Vq3510_VelocitaCaricRiposo
 
 // posizioni caricatore per piegatore o manuale
 if( Vb4507_AppManAuto and Vb4509_AppEnbPiegatore )
+	
 	ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo
 
 endif
 // posizione caricatore per ciclo solo caricatore
 if( Vb4507_AppManAuto and Vb4511_AppEnbCaricatore )
+	
 	ax[ C1_AsseCAR ] = Vq3501_PosizioneCaricCaricoTasca
 	
 endif
@@ -344,7 +346,8 @@ switch ( VnStatoCuci1 )
 
 
 	case 30// parto a cucire
-
+		Vb4802_PulsResetHmiC1 = 0 //per DACCA, in alcuni casi effettuava lo spostamento al primo punto di cucitura e poi tornava al punto di carico.
+		Vb4803_AppResetHmiC1 = 0 //per DACCA, in alcuni casi effettuava lo spostamento al primo punto di cucitura e poi tornava al punto di carico.
 		Vn16GoCuci = 1
 			
 		VnStatoCuci1 = 31
@@ -374,6 +377,9 @@ switch ( VnStatoCuci1 )
 					Vb4013_DisableLancia = OFF
 					if(Vb22_device_lentezza_tasca)  //se è attivo il kit lentezza tasca lo faccio avanzare
 						Vb4355_AppAut_o23_Lentezza_Tasca_AD = ON
+						if(Vb121_LanciaFuoriAuto == ON and Vb4001_StepPiegatore == OFF)
+							Vb4341_AppAut_o9_Lancia_AD = ON
+						endif
 					endif
 				endif
 				if ( Vb4507_AppManAuto and Vb4511_AppEnbCaricatore )	//se Caricatore acceso lancio il suo Fork
@@ -400,16 +406,11 @@ switch ( VnStatoCuci1 )
 			
 		endif
 
-
-
-//		if(C1_CmdHoldRelease == 1 or Vb4802_PulsResetHmiC1 == 1)
-//			C1_CmdSimulaAva = 1
-//			VbChn1Reset = ON
-//			if(Vb4802_PulsResetHmiC1 == 1)
-//				Vb4803_AppResetHmiC1 = ON 
-//				VnStatoCuci1 = 5
-//			endif
-//		endif
+		if(Vb4802_PulsResetHmiC1 == 1 or Vb4803_AppResetHmiC1 == 1)			//DAKKA sto aspettando che la cucitrice è partita, se premo reset torno in cima altrimenti rimane bloccato qui
+			Vb4803_AppResetHmiC1 = ON		//DAKKA
+			VnStatoCuci1 = 5			//DAKKA
+			VbChn1Reset = ON
+		endif						//DAKKA
 
 		break
 
@@ -421,6 +422,10 @@ switch ( VnStatoCuci1 )
 		if (Vb4805_AppStartCaricatoreC2) 	//se la cucitura è finita
 			if (  VbChn1AutoRun == 0 and Vb4803_AppResetHmiC1 == 0 ) //se il canale della cucitura ha finito e non è stato premuto il reset cucitura ...
 				Vb4805_AppStartCaricatoreC2 = OFF
+				Vb36_Clear_OPT1 = ON	//apro retrattile
+				Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
+				Vb38_Clear_OPT3 = ON	//disattivo salto piedino
+
 				Vb4350_AppAut_o18_C1_Pinza_int = ON
 				Vb4351_AppAut_o19_C1_Pinza_est = ON 
 				Vb4096_AppOnScartafiloC1 = ON

@@ -1,0 +1,103 @@
+[StartCncSys]
+  #Version 1.0.6.12207
+  [StartNote]
+    Parametri di sistema del cnc - 03.04.2009
+  [EndNote]
+
+
+  [StartCncRtc]
+    #HIDETITLEPAR
+    [StartNote]
+      ================================================
+      Attenzione: la modifica di questo parametro puo
+      compromettere il funzionamento del sistema
+      ================================================
+    [EndNote]
+
+    CncUsPerTick = 4000
+  [EndCncRtc]
+
+  [StartPlcPrescaler]
+    #HIDETITLEPAR
+    [StartNote]
+      ===================================================
+      Multipli del tick di sistema di attivazione del plc
+      ===================================================
+    [EndNote]
+
+    PlcPrescaler = 0
+  [EndPlcPrescaler]
+
+  [StartPowerFail]
+    EnablePowerFail = 0
+  [EndPowerFail]
+
+  [StartEmergMode]
+    #HIDETITLEPAR
+    EmergMode = 0
+    AlarmMode = 0
+  [EndEmergMode]
+
+  [StartNetParam]
+    #HIDETITLEPAR
+    #CanAdd TcpSockParam
+    TcpSetDefaultAliveTout = 1
+    UdpToutS = -1
+    WebServerPort = 80
+    PingPeriodS = 0
+    PingDestIP = "0.0.0.0"
+    VbPingEnabIdx = 0
+    VqPingCountIdx = 0
+  [EndNetParam]
+
+  [StartChronolog]
+    #HIDETITLEPAR
+    ChronologAlarmFlags = 0
+  [EndChronolog]
+
+  [StartPlcFlags]
+    #HIDETITLEPAR
+    PlcRtcFlags = 1
+    PlcConfFlags = 0
+  [EndPlcFlags]
+
+  [StartSysConf]
+    #HIDETITLEPAR
+    NumOsEventMonitorCode = 0
+    StoreOsEventMonitorCode = 0
+    OsEventMonitorExcludeMask = 0
+  [EndSysConf]
+
+  [StartGestIo]
+    #HIDETITLEPAR
+    FirstCopDigGrp16 = 0
+    FirstEcatDigGrp16 = 0
+    FirstCustomEcatDigGrp16 = 0
+    FirstOnBoardDigGrp16 = 0
+    MaxNumDigGrp16 = 0
+    CpuIrqDinGrp16 = 0
+    FirstEcatM8Ai = 65
+  [EndGestIo]
+
+  [StartSysLog]
+    #HIDETITLEPAR
+    SysLogBMaxSizeCode = 0
+    SysDbgBMaxSizeCode = 0
+    FlagsAutoCopyLogToUsb = 1
+    LogStartAutoIntervalMin = 0
+  [EndSysLog]
+
+  [StartSysDebug]
+    DbgToTcp = 1
+  [EndSysDebug]
+
+  [StartGestStepper]
+    #HIDETITLEPAR
+    Stepper1InvDirDelayNs = -1
+    Stepper1FactStep = 16
+  [EndGestStepper]
+
+  [StartSysWDog]
+    EnableSysWatchDog = 1
+  [EndSysWDog]
+[EndCncSys]

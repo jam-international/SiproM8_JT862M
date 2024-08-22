@@ -158,11 +158,13 @@ fp[ 5          ] = Vq3510
 
 // posizioni caricatore per piegatore o manuale
 if( vb4507            and vb4509                 )
+
 	ax[ 5          ] = Vq3500                     
 
 endif
 // posizione caricatore per ciclo solo caricatore
 if( vb4507            and vb4511                  )
+
 	ax[ 5          ] = Vq3501                          
 
 endif
@@ -344,7 +346,8 @@ switch ( vn11         )
 
 
 	case 30// parto a cucire
-
+		vb4802                = 0 //per DACCA, in alcuni casi effettuava lo spostamento al primo punto di cucitura e poi tornava al punto di carico.
+		vb4803               = 0 //per DACCA, in alcuni casi effettuava lo spostamento al primo punto di cucitura e poi tornava al punto di carico.
 		vn16       = 1
 
 		vn11         = 31
@@ -374,6 +377,9 @@ switch ( vn11         )
 					Vb4013               = 0  
 					if(vb22                      )  //se è attivo il kit lentezza tasca lo faccio avanzare
 						Vb4355                              = 1 
+						if(vb121                 == 1  and Vb4001               == 0  )
+							Vb4341                     = 1 
+						endif
 					endif
 				endif
 				if ( vb4507            and vb4511                  )	//se Caricatore acceso lancio il suo Fork
@@ -400,21 +406,21 @@ switch ( vn11         )
 
 		endif
 
-
-
-//		if(C1_CmdHoldRelease == 1 or Vb4802_PulsResetHmiC1 == 1)
-//			C1_CmdSimulaAva = 1
-//			VbChn1Reset = ON
-//			if(Vb4802_PulsResetHmiC1 == 1)
-//				Vb4803_AppResetHmiC1 = ON 
-//				VnStatoCuci1 = 5
-//			endif
-//		endif
+		if(vb4802                == 1 or vb4803               == 1)			//DAKKA sto aspettando che la cucitrice è partita, se premo reset torno in cima altrimenti rimane bloccato qui
+			vb4803               = 1 		//DAKKA
+			vn11         = 5			//DAKKA
+			vb7903      = 1 
+		endif						//DAKKA
 
 		break
 
 
 	case 50	//aspetto la fine della cucitura
+		if( vb4507            and vb4509                 )
+			if ( IsForkActive( vn201                 ) == 0 )
+				vn201                 = ForkProg ( "Piegatore", 1 )
+			endif
+		endif
 		if ( vb4803               == 1 )	//se ho premuto reset cucitura torno al passo 5
 			vn11         = 5			
 		endif

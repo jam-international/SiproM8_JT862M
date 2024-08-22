@@ -17,12 +17,18 @@
 
 sub ()
 ///// in base a dove mi ero fermato resetto le pinze e il caricatore
+//
+	if( vb28                   )
+		vn16       = 2
+	endif
 	if ( vn10               == 10)
 		WaitCond ( Vb4049                 )
 		fp[ 5          ] = 5
 		if(vb4511                  == 1 ) 
+
 			ax[ 5          ] = Vq3501                            
 		else
+
 			ax[ 5          ] = Vq3500                      
 
 		endif
@@ -41,10 +47,13 @@ sub ()
 		Vb4356                                = 0  
 		WaitCond ( din5                 )
 		WaitCond ( Vb4049                 )
+
 		fp[ 5          ] = 5
 		if(vb4511                  == 1 ) 
+
 			ax[ 5          ] = Vq3501                           
 		else
+
 			ax[ 5          ] = Vq3500                      
 
 		endif
@@ -59,7 +68,15 @@ sub ()
 	endif
 
 
+
 :FINE
+	if(vb22                      )  //se è attivo il kit lentezza tasca lo faccio avanzare
+		Vb4355                              = 1 
+	endif
+	if(vb121                 == 1  and  Vb4001               == 0  )
+		Vb4341                     = 1 
+	endif
+
 	Vb4012                 = 0  
 	Vb4013               = 0  
 	Vb4003                  = 0  

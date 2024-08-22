@@ -19,6 +19,8 @@ As2000 Simbols Table
 #vb21;Vb21_Tasca_dx_sx;ON = Attiva alternanza programma Dx e Sx
 #vb22;Vb22_device_lentezza_tasca;ON = attivo
 #vb23;Vb23_CmdRaffreddamentoAgo;Vb comando raffreddamento ago
+#vb28;Vb28_C1_ExeCucitura_Run;=1 C1_ExeCucitura sta girando
+#vb29;Vb39_C2_ExeCucitura_Run;=1 C2_ExeCucitura sta girando
 #vb30;Vb30_C1_InCucitura;=1 sono all'iterno di una cucitura (anche se sono in HOLD)
 #vb31;Vb31_C2_InCucitura;=1 sono all'iterno di una cucitura (anche se sono in HOLD)
 #vb32;Vb32_C1_StopCucitura;=1 è stata fermata la cucitura (Stop o rottura filo)
@@ -85,9 +87,11 @@ As2000 Simbols Table
 #vb111;FronteSensIRQ2;
 #vb112;FronteSensIRQ3;
 #vb115;Vb115CricchettoRinforzo;ad ON lancia il ciclo per inserire la fettuccia nei rulli
+#vb116;Vb116RinforzoGiu_HMI;ad ON HMI chiede al PLC di abbassare i coltelli del rinforzo
 #vb118;LeggoTemperaturaDriverAgo;1 = il PLC tramite Ethercat legge la temperatura del driver Ago
 #vb119;LeggoTemperaturaDriverCro;1 = il PLC tramite Ethercat legge la temperatura del driver Crochet
 #vb120;LeggoTemperaturaDriverCar;1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore
+#vb121;Vb121_LanciaFuoriAuto;1 = la lancia viene fuori senza premere la pedana
 #vb4000;Vb4000_Automatico;/// messa a ON da HMI sono in automatico
 #vb4001;Vb4001_StepPiegatore;/// messa a ON da HMI il piegatore è passo passo
 #vb4002;Vb4002_StepPiegatoreStop;/// punto di stop piegatore
@@ -407,6 +411,7 @@ As2000 Simbols Table
 #vn777;vntest;
 #vn778;vntest1;
 #vn779;vntest2;
+#vn780;vntest3;
 #vn800;Fun301_ago_vn800_err;
 #vn801;Fun301_ago_vn801_rete;
 #vn802;Fun301_ago_vn802_noto;
@@ -634,6 +639,7 @@ As2000 Simbols Table
 #vq3591;Vq3591_CNT_CicliAutomaticoUser;conteggio cicli automatico azzerabile da utente            valore 0.001
 #vq3592;Vq3592_CNT_CicliAutomaticoVita;conteggio cicli automatico vita macchina                valore 0.001
 #vq3593;Vq3593_CNT_CicliAutomaticoVitaX100K;conteggio cicli automatico vita macchina x 100000        a 100000 di vq3592 incrementa valore 0.001
+#vq3594;Vq3594_CopiaVq3596;mi serve per provare a risolvere problema che all'accensione mette numeri sbagliati
 #vq3595;VqContatore;
 #vq3596;Vq3596_ContPuntiSpolaC1;conteggio punti fatti
 #vq3597;Vq3597_ImpPuntiSpolaC1;conteggio punti da fare

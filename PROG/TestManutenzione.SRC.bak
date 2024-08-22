@@ -30,19 +30,21 @@ sub ()
 				Vb4351_AppAut_o19_C1_Pinza_est = OFF 
 				Delays (0.1)
 			/// alzo la pinza caricatore
-				Vb4370_AppAut_o24_Pinza_carico_Su_Giu = OFF
+				Vb4356_AppAut_o24_Pinza_carico_Su_Giu = OFF
 				WaitCond ( i5_FcPinzaCaricoAlta )
 			//	WaitCond ( Vb52RichiestaZeroAxDaHmiC1 == 0 )
 				Delays (0.2)
 						fp[ C1_AsseCAR ] = 20    
+						vntest2 = 13
 						ax[ C1_AsseCAR ] = Vq3502_PosizioneCaricScaricoTasca 
 						Delays ( 0.5 )
-						Vb4370_AppAut_o24_Pinza_carico_Su_Giu = ON
+						Vb4356_AppAut_o24_Pinza_carico_Su_Giu = ON
 						Delays (0.5)
 			WaitCond ( Vb4081_TestCaricatorePinzaC1 == 0 )
-						Vb4370_AppAut_o24_Pinza_carico_Su_Giu = OFF
+						Vb4356_AppAut_o24_Pinza_carico_Su_Giu = OFF
 						WaitCond ( i5_FcPinzaCaricoAlta )
 						Delays (0.5)
+						vntest2 = 14
 						fp[ C1_AsseCAR ] = 20    
 						ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
 		Vb4081_TestCaricatorePinzaC1 = OFF			
@@ -51,9 +53,9 @@ sub ()
  ///  per centrare la pinza del caricatore sulla lancia 1
 	if ( Vb4082_TestCaricatoreLanciaC1 )
 				Vb4136_AppMan_o4_Piegatore_4 = ON
-				Vb4370_AppAut_o24_Pinza_carico_Su_Giu = OFF
+				Vb4356_AppAut_o24_Pinza_carico_Su_Giu = OFF
 				Waitcond ( i5_FcPinzaCaricoAlta )
-
+vntest2 = 15
 				fp[ C1_AsseCAR ] = 20    
 				ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
 				Delays ( 0.5 )
@@ -63,17 +65,18 @@ sub ()
 					
 				//	WaitCond ( i38_FcBilancereGiu )
 				Delays ( 1 )
-					
+			vntest2 = 16		
 			fp[ C1_AsseCAR ] = 20    
 			ax[ C1_AsseCAR ] = Vq3501_PosizioneCaricCaricoTasca 
 						Delays ( 0.5 )
-					Vb4370_AppAut_o24_Pinza_carico_Su_Giu = ON
+					Vb4356_AppAut_o24_Pinza_carico_Su_Giu = ON
 					Waitcond ( i5_FcPinzaCaricoAlta == 0 )
 						Delays (0.5)
 			WaitCond ( Vb4082_TestCaricatoreLanciaC1 == 0 )
-					Vb4370_AppAut_o24_Pinza_carico_Su_Giu = OFF
+					Vb4356_AppAut_o24_Pinza_carico_Su_Giu = OFF
 					Waitcond ( i5_FcPinzaCaricoAlta )
 				Delays ( 0.5 )
+				vntest2 = 17
 				fp[ C1_AsseCAR ] = 20    
 				ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
 					Vb4344_AppAut_o12_Bilanciere_Su_Giu = OFF
@@ -89,10 +92,11 @@ sub ()
 
  ///  utilizzato per gestire l'anticipo tra pinza caricatore e C1
 	if ( Vb4087_TestLiberaPinzaCaricatore )
-			Vb4370_AppAut_o24_Pinza_carico_Su_Giu = OFF
+			Vb4356_AppAut_o24_Pinza_carico_Su_Giu = OFF
 				Waitcond ( i5_FcPinzaCaricoAlta )
 			Vb4351_AppAut_o19_C1_Pinza_est = ON
 				Delays ( 0.1 )
+				vntest2 = 18
 			fp[ C1_AsseCAR ] = Vq3510_VelocitaCaricRiposo
 			ax[ C1_AsseCAR ] = Vq3502_PosizioneCaricScaricoTasca 
 				Delays ( 1.5 )
