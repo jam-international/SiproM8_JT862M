@@ -377,9 +377,11 @@ switch ( VnStatoCuci1 )
 					Vb4013_DisableLancia = OFF
 					if(Vb22_device_lentezza_tasca)  //se è attivo il kit lentezza tasca lo faccio avanzare
 						Vb4355_AppAut_o23_Lentezza_Tasca_AD = ON
-						if(Vb121_LanciaFuoriAuto == ON and Vb4001_StepPiegatore == OFF)
-							Vb4341_AppAut_o9_Lancia_AD = ON
-						endif
+						
+					endif
+					if(Vb121_LanciaFuoriAuto == ON and Vb4001_StepPiegatore == OFF)
+						Vb4341_AppAut_o9_Lancia_AD = ON
+						Vb4347_AppAut_o15_EvAspiratore = ON
 					endif
 				endif
 				if ( Vb4507_AppManAuto and Vb4511_AppEnbCaricatore )	//se Caricatore acceso lancio il suo Fork

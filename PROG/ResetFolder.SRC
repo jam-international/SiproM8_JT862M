@@ -75,6 +75,7 @@ sub ()
 	endif
 	if(Vb121_LanciaFuoriAuto == ON and  Vb4001_StepPiegatore == OFF)
 		Vb4341_AppAut_o9_Lancia_AD = ON
+		Vb4347_AppAut_o15_EvAspiratore = ON
 	endif
 
 	Vb4012_FlagTascaPronta = OFF

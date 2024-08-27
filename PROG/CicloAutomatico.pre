@@ -377,9 +377,11 @@ switch ( vn11         )
 					Vb4013               = 0  
 					if(vb22                      )  //se è attivo il kit lentezza tasca lo faccio avanzare
 						Vb4355                              = 1 
-						if(vb121                 == 1  and Vb4001               == 0  )
-							Vb4341                     = 1 
-						endif
+
+					endif
+					if(vb121                 == 1  and Vb4001               == 0  )
+						Vb4341                     = 1 
+						Vb4347                         = 1 
 					endif
 				endif
 				if ( vb4507            and vb4511                  )	//se Caricatore acceso lancio il suo Fork

@@ -32,6 +32,7 @@ As2000 Simbols Table
 #vb38;Vb38_Clear_OPT3;=1 clear uscita OPT3 (salto piedino)
 #vb42;Vb42_PrimaTasca;=1 macchina appena accesa e non ho mai cucito
 #vb43;Vb43_TestCuciPrimaTasca;=1 ho premuto test cucitura sulla prima tasca senza mai aver cucito
+#vb44;Vb44_WriteDebugSuHmi;=1 chiede al HMI Android di scrivere le variabili di debug nel file debugsys.txt
 #vb50;MacchinaAzzerata;Flag macchina azzerata
 #vb51;RichiestaStartCuci2;Richiesta di start cucitrice 2
 #vb52;Vb52RichiestaZeroAxDaHmiC1;Richiesta di azzeramento pinza X + Y da parte dell'interfaccia C1

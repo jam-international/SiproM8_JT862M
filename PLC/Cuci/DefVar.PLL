@@ -2,7 +2,7 @@
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "19/08/2024 12:29:08"
+ * Date = "27/08/2024 11:31:46"
  *)
 
 
@@ -52,6 +52,7 @@ VAR_GLOBAL
     Vb38_Clear_OPT3                         AT %MB300.38   : BOOL;         {DE:"vb38   - =1 clear uscita OPT3 (salto piedino)"}
     Vb42_PrimaTasca                         AT %MB300.42   : BOOL;         {DE:"vb42   - =1 macchina appena accesa e non ho mai cucito"}
     Vb43_TestCuciPrimaTasca                 AT %MB300.43   : BOOL;         {DE:"vb43   - =1 ho premuto test cucitura sulla prima tasca senza mai aver cucito"}
+    Vb44_WriteDebugSuHmi                    AT %MB300.44   : BOOL;         {DE:"vb44   - =1 chiede al HMI Android di scrivere le variabili di debug nel file debugsys.txt"}
     MacchinaAzzerata                        AT %MB300.50   : BOOL;         {DE:"vb50   - Flag macchina azzerata"}
     RichiestaStartCuci2                     AT %MB300.51   : BOOL;         {DE:"vb51   - Richiesta di start cucitrice 2"}
     Vb52RichiestaZeroAxDaHmiC1              AT %MB300.52   : BOOL;         {DE:"vb52   - Richiesta di azzeramento pinza X + Y da parte dell'interfaccia C1"}

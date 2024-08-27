@@ -722,7 +722,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Boot" version="1.0.0" creationDate="0" lastModifiedDate="1724061237" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="Boot" version="1.0.0" creationDate="0" lastModifiedDate="1724745621" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars/>
 					<iecDeclaration active="FALSE"/>
 					<sourceCode type="ST">
@@ -752,6 +752,7 @@ end_if;
 (*110.00 = migliorato la chiusura retrattile*)
 (*110.05 = Dakka spolina rossa  + reset su passo 49 del cicloautomatico*)
 (*110.07 = Dakka sistemato alcuni problemi su reset piegatore + intordotto *)
+(*110.08 + HMI3.2 = modifica CN+PLC per evitare cucitura spostata dopo RESET + inserito Debug VQ3564 + lancia fuori automatico + migliorata pagina debug *)
 
 	(* ------------------------------- *)
 	(* FLAG SIMULAZIONE - PER DEBUGGER *)
@@ -759,7 +760,7 @@ VbSimulaDbg := FALSE;
 
 	(* Versopne applicativo *)
 case(Vn_ID_macchina)of
-	862: App_Ver := 'JT862M - Ver 110.07 - 19.08.2024';	
+	862: App_Ver := 'JT862M - Ver 110.08 - 27.08.2024';	
 	860: App_Ver := 'JT862HM - Ver 32.00 - 29.11.2023';
 	882: App_Ver := 'JT882M - Ver 15.02 - 13.05.2021';
 end_case;
@@ -912,7 +913,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="C1_Cucitrice" version="1.0.0" creationDate="0" lastModifiedDate="1713347212" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="C1_Cucitrice" version="1.0.0" creationDate="0" lastModifiedDate="1724748889" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="FallPrgRun" type="FallEdge"/>
@@ -1174,6 +1175,7 @@ if ( C1_CmdHoldRelease and VB_CHN_AUTO_RUNNING and ( C1_FaseAxAgo = 0 ) ) then
 	
 		1:
 			C1_CuciBufRewind :=FALSE;
+				Vq3564_Debug := Vq3564_Debug +2048000;   //	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit11
 			if(Forwards = TRUE and Backwards = FALSE) then
 				vret := ExecPlcFun( PLC_CUCI_CMD, 148, C1_RD_NEXT_CODE_IDX );   (* #M210616_1GF# *)
 				mc_stati_C1CmdSimula := 2;
@@ -1273,8 +1275,8 @@ if ( C1_CmdHoldRelease and VB_CHN_AUTO_RUNNING and ( C1_FaseAxAgo = 0 ) ) then
 
 			
     if ( RiseAvaCont.q ) then 
-    
-
+    	Vq3564_Debug := Vq3564_Debug +4096000;   //	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit12
+		C1_CuciBufRewind :=FALSE;	//DA 27/08/2024 risolve problema sposta cucitura dopo Reset da TEST
     	Forwards := TRUE;
     	Backwards := FALSE;
 
@@ -1288,8 +1290,8 @@ if ( C1_CmdHoldRelease and VB_CHN_AUTO_RUNNING and ( C1_FaseAxAgo = 0 ) ) then
     end_if;
     
     if ( RiseIndCont.q ) then
-    
-
+        Vq3564_Debug := Vq3564_Debug +4096000;   //	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit12
+		C1_CuciBufRewind :=FALSE;	//DA 27/08/2024 risolve problema sposta cucitura dopo Reset da TEST
     	Forwards := FALSE;
     	Backwards := TRUE;
 
@@ -2069,7 +2071,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AppMainC3" version="1.0.0" creationDate="0" lastModifiedDate="1724061856" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="AppMainC3" version="1.0.0" creationDate="0" lastModifiedDate="1724751037" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseBootDone" type="RiseEdge"/>
@@ -2625,6 +2627,7 @@ Rise_Vb4509_AppEnbPiegatore(  in := Vb4509_AppEnbPiegatore  );
 		end_if;
 		if(Vb121_LanciaFuoriAuto) then
 			Vb4341_AppAut_o9_Lancia_AD := TRUE;
+			Vb4347_AppAut_o15_EvAspiratore := TRUE;
 		end_if;
 	end_if;
 
@@ -3709,7 +3712,7 @@ Rit_i23_C1_PinzaIntBassa( in := ( not i23_C1_PinzaIntBassa and ( VnStatoCuci2 = 
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AppMainC1" version="1.0.0" creationDate="0" lastModifiedDate="1710422303" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="AppMainC1" version="1.0.0" creationDate="0" lastModifiedDate="1724668443" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RisePinzeC1" type="RiseEdge"/>
@@ -3821,15 +3824,15 @@ RiseReleaseC1(  in := (VB_CHN_AUTO_RUNNING and C1_CmdHoldRelease and not C1_Cuci
 (* comando reset/abort C1 *)
 RiseAbortC1(  in := (VB_CHN_AUTO_RUNNING and C1_CmdHoldRelease and Vb4802_PulsResetHmiC1 ));
 	if ( RiseAbortC1.q )then
-	
-		
+		Vq3564_Debug := Vq3564_Debug +1024000;   //	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit10
+		Vb44_WriteDebugSuHmi := TRUE;
 		VbChn1Reset := TRUE ;
 		Vb4803_AppResetHmiC1 := TRUE ; 
 		Vb4802_PulsResetHmiC1 := FALSE ;
 		if(Vn2CodiceAllarmeXHmi = 2) then 
 			Vn2CodiceAllarmeXHmi :=0;   (*Daniele HMI*)
 		end_if;
-		vret := ExecPlcFun( PLC_CUCI_CMD, 153,0);   (*Daniele Restart estrazione punti dal buffer di cucitura*)
+	//	vret := ExecPlcFun( PLC_CUCI_CMD, 153,0);   (*Daniele Restart estrazione punti dal buffer di cucitura*)
 		Vb4354_AppAut_o22_Scaric_dx_sx := FALSE; (*se lo scaricatore era a Sx lo riporto a DX*)
 	end_if;
 	
@@ -8093,7 +8096,7 @@ END_VAR
  *
  * MDPlc source file: DefCuci.PLL
  *
- * Date = "19/08/2024 11:51:07"
+ * Date = "26/08/2024 15:46:15"
  *)
 
 
@@ -9299,7 +9302,7 @@ END_VAR
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "19/08/2024 11:51:07"
+ * Date = "26/08/2024 15:46:15"
  *)
 
 
@@ -9336,6 +9339,8 @@ VAR_GLOBAL
     Vb21_Tasca_dx_sx                        AT %MB300.21   : BOOL;         {DE:"vb21   - ON = Attiva alternanza programma Dx e Sx"}
     Vb22_device_lentezza_tasca              AT %MB300.22   : BOOL;         {DE:"vb22   - ON = attivo"}
     Vb23_CmdRaffreddamentoAgo               AT %MB300.23   : BOOL;         {DE:"vb23   - Vb comando raffreddamento ago"}
+    Vb28_C1_ExeCucitura_Run                 AT %MB300.28   : BOOL;         {DE:"vb28   - =1 C1_ExeCucitura sta girando"}
+    Vb39_C2_ExeCucitura_Run                 AT %MB300.29   : BOOL;         {DE:"vb29   - =1 C2_ExeCucitura sta girando"}
     Vb30_C1_InCucitura                      AT %MB300.30   : BOOL;         {DE:"vb30   - =1 sono all'iterno di una cucitura (anche se sono in HOLD)"}
     Vb31_C2_InCucitura                      AT %MB300.31   : BOOL;         {DE:"vb31   - =1 sono all'iterno di una cucitura (anche se sono in HOLD)"}
     Vb32_C1_StopCucitura                    AT %MB300.32   : BOOL;         {DE:"vb32   - =1 è stata fermata la cucitura (Stop o rottura filo)"}
@@ -9347,6 +9352,7 @@ VAR_GLOBAL
     Vb38_Clear_OPT3                         AT %MB300.38   : BOOL;         {DE:"vb38   - =1 clear uscita OPT3 (salto piedino)"}
     Vb42_PrimaTasca                         AT %MB300.42   : BOOL;         {DE:"vb42   - =1 macchina appena accesa e non ho mai cucito"}
     Vb43_TestCuciPrimaTasca                 AT %MB300.43   : BOOL;         {DE:"vb43   - =1 ho premuto test cucitura sulla prima tasca senza mai aver cucito"}
+    Vb44_WriteDebugSuHmi                    AT %MB300.44   : BOOL;         {DE:"vb44   - =1 chiede al HMI Android di scrivere le variabili di debug nel file debugsys.txt"}
     MacchinaAzzerata                        AT %MB300.50   : BOOL;         {DE:"vb50   - Flag macchina azzerata"}
     RichiestaStartCuci2                     AT %MB300.51   : BOOL;         {DE:"vb51   - Richiesta di start cucitrice 2"}
     Vb52RichiestaZeroAxDaHmiC1              AT %MB300.52   : BOOL;         {DE:"vb52   - Richiesta di azzeramento pinza X + Y da parte dell'interfaccia C1"}

@@ -75,6 +75,7 @@ sub ()
 	endif
 	if(vb121                 == 1  and  Vb4001               == 0  )
 		Vb4341                     = 1 
+		Vb4347                         = 1 
 	endif
 
 	Vb4012                 = 0  

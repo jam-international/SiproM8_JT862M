@@ -25,7 +25,7 @@ sub ()
 
             // Attesa rilascio hold          
         WaitCond( C1_CmdHoldRelease == 0 )
-   
+   	Vq3564_Debug = Vq3564_Debug + 16	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit4
            // Per evitare di chiamare furiosamente la FUN 150
         DelayS( 0.1 )
 
@@ -33,7 +33,7 @@ sub ()
 		Vb43_TestCuciPrimaTasca = OFF
             exitdo
         endif
-
+	Vq3564_Debug = Vq3564_Debug + 32	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit5
             // Movimento simulato avanti fino a ripresa o fine cucitura
         ExecPlcFun( PLC_CUCI_CMD, 150, 10 )  
 
@@ -58,9 +58,11 @@ sub ()
         // Verifica se necessario riposizionare gli indici di estrazione del buffer            
     if ( C1_CuciBufRewind )
         ISO G281 P CA_MD_NO_RES_NO_INS X C1_FirstPt_X Y C1_FirstPt_Y			//riparte dall'inizio del programma
+	Vq3564_Debug = Vq3564_Debug + 64	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit6
     else
         ISO G281 P CA_MD_NO_RES_NO_INS_NO_REW X C1_FirstPt_X Y C1_FirstPt_Y		//continua dal punto in cui era
+	Vq3564_Debug = Vq3564_Debug + 256	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit8
     endif
-    
+    Vb44_WriteDebugSuHmi = ON	//	<<<<<<<<<--------------------chiede al HMI di scrivere il file debugsys.txt con le variabili di debug------
 endsub
 

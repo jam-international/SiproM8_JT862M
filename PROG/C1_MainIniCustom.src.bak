@@ -31,18 +31,16 @@ sub ()
         ///// dopo un reset riporto la pinza in posizione home
     if ( Vb4803_AppResetHmiC1 )
 
-	    SyncVar( C1_CmdPiedinoSu )    
-		Delays (0.1)
 	
-	//C1_VelFeed = C1_Par_FeedG0Reset
-	//if ( C1_Udf_FeedG0 < C1_VelFeed )           // #M200717_1GF#
-	//	C1_VelFeed = C1_Udf_FeedG0
-	//endif
+	// ##### DA 26/08/2024 prova per problema programma spostato se riparto dopo RESET  ########
+	C1_CmdHoldRelease = 0					//mi assicuro di spegnere Hold (TEST cucitura)
+	ISO G281 P CA_MD_NO_RES_NO_INS X C1_FirstPt_X Y C1_FirstPt_Y	//resetto il buffer di cucitura e parto dall'inizio
+	Delays (0.3)
+	// ##### DA 26/08/2024 FINE ######
 
-	Vb36_Clear_OPT1 = ON	//apro retrattile
-	Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
-	Vb38_Clear_OPT3 = ON	//disattivo salto piedino
-
+	SyncVar( C1_CmdPiedinoSu )    
+	Delays (0.1)
+	
 
         fa[ C1_AsseX ] = Vq3054_C1_VelFeed_Reset
         fa[ C1_AsseY ] = Vq3054_C1_VelFeed_Reset
@@ -55,6 +53,9 @@ sub ()
         ax[ C1_AsseY ] = 0
         ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F Vq3054_C1_VelFeed_Reset    
         Delays (0.1)
+	Vb36_Clear_OPT1 = ON	//apro retrattile
+	Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
+	Vb38_Clear_OPT3 = ON	//disattivo salto piedino
         Vb4350_AppAut_o18_C1_Pinza_int = ON
         Vb4351_AppAut_o19_C1_Pinza_est = ON 
 
@@ -70,7 +71,14 @@ sub ()
 	
 	C1_VqActPntCuci = 0	// azzero numero punti fatti 
 	
+	
+
+
+
+	
 		gosub "Halt.obj"						///// messo per non iniziare a cucire dopo il reset
+
+	
 
     endif
         

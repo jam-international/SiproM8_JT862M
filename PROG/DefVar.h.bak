@@ -188,6 +188,9 @@
 #define Vb22_device_lentezza_tasca	vb22		// ON = attivo
 #define Vb23_CmdRaffreddamentoAgo   vb23         // Vb comando raffreddamento ago
 
+#define Vb28_C1_ExeCucitura_Run		vb28		//=1 C1_ExeCucitura sta girando
+#define Vb39_C2_ExeCucitura_Run		vb29		//=1 C2_ExeCucitura sta girando
+
 #define Vb30_C1_InCucitura			vb30		//=1 sono all'iterno di una cucitura (anche se sono in HOLD)
 #define Vb31_C2_InCucitura			vb31		//=1 sono all'iterno di una cucitura (anche se sono in HOLD)
 #define Vb32_C1_StopCucitura		vb32		//=1 è stata fermata la cucitura (Stop o rottura filo)
@@ -200,6 +203,7 @@
 
 #define Vb42_PrimaTasca				vb42		//=1 macchina appena accesa e non ho mai cucito
 #define Vb43_TestCuciPrimaTasca		vb43		//=1 ho premuto test cucitura sulla prima tasca senza mai aver cucito
+#define Vb44_WriteDebugSuHmi		vb44		//=1 chiede al HMI Android di scrivere le variabili di debug nel file debugsys.txt 
 
     // Ciclo Automatico
 #define MacchinaAzzerata        	vb50        // Flag macchina azzerata

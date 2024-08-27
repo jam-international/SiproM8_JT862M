@@ -203,6 +203,7 @@
 
 #define Vb42_PrimaTasca				vb42		//=1 macchina appena accesa e non ho mai cucito
 #define Vb43_TestCuciPrimaTasca		vb43		//=1 ho premuto test cucitura sulla prima tasca senza mai aver cucito
+#define Vb44_WriteDebugSuHmi		vb44		//=1 chiede al HMI Android di scrivere le variabili di debug nel file debugsys.txt 
 
     // Ciclo Automatico
 #define MacchinaAzzerata        	vb50        // Flag macchina azzerata
@@ -760,6 +761,7 @@
 #define vntest1						vn778
 #define vntest2						vn779
 #define vntest3						vn780
+
 // Leggo temperature motore Ago Delta
 #define Fun301_ago_vn800_err		vn800
 #define Fun301_ago_vn801_rete		vn801

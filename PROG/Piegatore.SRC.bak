@@ -1070,14 +1070,6 @@ Vn132_DebugPie = 150
 		Vb4341_AppAut_o9_Lancia_AD = ON
 	endif
 
-
-	if( Vb4507_AppManAuto and Vb4509_AppEnbPiegatore )
-		if ( IsForkActive( Vn201PrgForkPiegatore ) == 0 )
-			Vn201PrgForkPiegatore = ForkProg ( "Piegatore", 1 )
-		endif
-	endif
-
-
 	goto EXIT_PROG
 
 
