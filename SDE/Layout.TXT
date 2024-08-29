@@ -1,6 +1,1 @@
 PLC
-Programs||
-Debug|9|675|28|988|737
-VarTable|D:\GitHub\SiproM8_JT862M\sde\HoldRelease.VTB
-Alarms
-PLC

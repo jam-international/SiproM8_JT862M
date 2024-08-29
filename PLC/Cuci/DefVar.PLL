@@ -2,7 +2,7 @@
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "27/08/2024 11:31:46"
+ * Date = "27/08/2024 14:29:45"
  *)
 
 
@@ -113,6 +113,8 @@ VAR_GLOBAL
     LeggoTemperaturaDriverCro               AT %MB300.119  : BOOL;         {DE:"vb119  - 1 = il PLC tramite Ethercat legge la temperatura del driver Crochet"}
     LeggoTemperaturaDriverCar               AT %MB300.120  : BOOL;         {DE:"vb120  - 1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore"}
     Vb121_LanciaFuoriAuto                   AT %MB300.121  : BOOL;         {DE:"vb121  - 1 = la lancia viene fuori senza premere la pedana"}
+    QuickStopOnEmerg                        AT %MB300.150  : BOOL;         {DE:"vb150  - 1=QuickStop su evento di emergenza - #M240809_1GF#"}
+    QuickStopInProgress                     AT %MB300.151  : BOOL;         {DE:"vb151  - Quick stop in progress"}
     Vb4000_Automatico                       AT %MB300.4000 : BOOL;         {DE:"vb4000 - /// messa a ON da HMI sono in automatico"}
     Vb4001_StepPiegatore                    AT %MB300.4001 : BOOL;         {DE:"vb4001 - /// messa a ON da HMI il piegatore è passo passo"}
     Vb4002_StepPiegatoreStop                AT %MB300.4002 : BOOL;         {DE:"vb4002 - /// punto di stop piegatore"}
@@ -375,6 +377,7 @@ VAR_GLOBAL
     Fun202VnParIndx_1                       AT %MW400.21   : INT;          {DE:"vn21   - FunId – identificativo della funzione"}
     Fun202VnParIndx_2                       AT %MW400.22   : INT;          {DE:"vn22   - Indice vb abilitazione della funzione"}
     Fun202VnParIndx_3                       AT %MW400.23   : INT;          {DE:"vn23   - Indice vq contatore"}
+    QuickStopEmergCode                      AT %MW400.50   : INT;          {DE:"vn50   - Codice di emergenza gestione QuickStop - #M240809_1GF#"}
     Vn101_Piegatore1_CH                     AT %MW400.101  : INT;          {DE:"vn101  - Numero Primo piegatore attivato"}
     Vn102_Piegatore2_CH                     AT %MW400.102  : INT;          {DE:"vn102  - Numero Secondo piegatore attivato"}
     Vn103_Piegatore3_CH                     AT %MW400.103  : INT;          {DE:"vn103  - Numero Terzo piegatore attivato"}

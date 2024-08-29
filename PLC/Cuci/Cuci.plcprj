@@ -84,7 +84,7 @@
 			<functions/>
 			<functionBlocks/>
 			<programs>
-				<program name="Emergenze" version="1.0.0" creationDate="0" lastModifiedDate="1724053629" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="Emergenze" version="1.0.0" creationDate="0" lastModifiedDate="1724915770" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="Rise_ciclo_emergenza_attivata" type="RiseEdge"/>
@@ -97,6 +97,7 @@
 							<var name="VcdIdxOP" type="INT"/>
 							<var name="Rise_i21_Emg" type="RiseEdge"/>
 							<var name="Riti12_Pressostato" type="Ton"/>
+							<var name="TonQs" type="Ton"/>
 						</localVars>
 					</vars>
 					<iecDeclaration active="FALSE"/>
@@ -126,10 +127,16 @@ ResetEmgOFF( in := RitResetEmgOFF.q );
 	
 	(* Emergenza *)			
 if ( ResetEmgOFF.q or ResetPrimoCiclo )then
-		(* Set Emergenza *)					
-	vret := ExecPlcFun( PLC_SET_EMERGENZA, 2, 0 );
-	Ciclo_emergenza_attivata := TRUE;
+		(* Set Emergenza *)
+	if QuickStopOnEmerg then							(* #M240809_1GF# *)
+		Vb98_ArrestaAssiQuick := TRUE;
+		QuickStopEmergCode := 2;
+	else						
+		vret := ExecPlcFun( PLC_SET_EMERGENZA, 2, 0 );
+		Ciclo_emergenza_attivata := TRUE;
+	end_if;
 end_if;
+
 Rise_ciclo_emergenza_attivata (in :=Ciclo_emergenza_attivata);
 
 if(Rise_ciclo_emergenza_attivata.q) then
@@ -373,8 +380,13 @@ Riti12_Pressostato( in := ( not Vb4503_CN_Allarme and  i12_Pressostato and i21_E
 			
 if ( Riti12_Pressostato.q )then
 		(* Set Emergenza pressostato*)					
-	vret := ExecPlcFun( PLC_SET_EMERGENZA, 3, 0 );
-	Ciclo_emergenza_attivata := TRUE;
+	if QuickStopOnEmerg then							(* #M240809_1GF# *)
+		Vb98_ArrestaAssiQuick := TRUE;
+		QuickStopEmergCode := 3;
+	else
+		vret := ExecPlcFun( PLC_SET_EMERGENZA, 3, 0 );
+		Ciclo_emergenza_attivata := TRUE;
+	end_if;
 end_if;
 
 if(Vn_ID_macchina = 862 or Vn_ID_macchina = 860)then
@@ -382,15 +394,30 @@ if(Vn_ID_macchina = 862 or Vn_ID_macchina = 860)then
 	(* Allarme driver X *)
 	Rise_AllarmeDriver_X ( in := (Rit_Driver.q and not i31_C1_ReadyAsseX));
 	if ( Rise_AllarmeDriver_X.q )then
+	
+		if QuickStopOnEmerg then							(* #M240809_1GF# *)
+			Vb98_ArrestaAssiQuick := TRUE;
+			QuickStopEmergCode := 4;
+		else	
 			Vn4CodiceWarning := 1;
 			vret := ExecPlcFun( PLC_SET_EMERGENZA, 4, 0 );
+			Ciclo_emergenza_attivata := TRUE;
+		end_if;
 	end_if;
+
 	(* Allarme driver Y *)
 		Rise_AllarmeDriver_Y ( in := (Rit_Driver.q and not i32_C1_ReadyAsseY));
 	if ( Rise_AllarmeDriver_Y.q )then
-		Vn4CodiceWarning := 2;
-		vret := ExecPlcFun( PLC_SET_EMERGENZA, 5, 0 );
-		Ciclo_emergenza_attivata := TRUE;
+
+		if QuickStopOnEmerg then							(* #M240809_1GF# *)
+			Vb98_ArrestaAssiQuick := TRUE;
+			QuickStopEmergCode := 5;
+		else	
+			Vn4CodiceWarning := 2;
+			vret := ExecPlcFun( PLC_SET_EMERGENZA, 5, 0 );
+			Ciclo_emergenza_attivata := TRUE;
+		end_if;
+
 	end_if;
 
 end_if;
@@ -440,16 +467,48 @@ if ( Rise_i21_Emg.q)then
 end_if;
 /*****************Quick stop assi*****************************************/
 
-if(Vb98_ArrestaAssiQuick) then
+/***************** Quick stop assi*****************************************/
+(* #M240809_1GF# *)
 
-	vret := ExecPlcFun( 75, 102,0 );
-	vret := ExecPlcFun( 75, 202,0 );
-	vret := ExecPlcFun( 75, 302,0 );
-	vret := ExecPlcFun( 75, 402,0 );
-	vret := ExecPlcFun( 75, 502,0 );
-	Vb98_ArrestaAssiQuick := FALSE;
+TonQs( in := QuickStopInProgress, pt := 200 );
+
+if Vb98_ArrestaAssiQuick then
+	
+	if ( not QuickStopInProgress ) then
+		vret := ExecPlcFun( 75, 302,0 );	(* Ago *)
+		vret := ExecPlcFun( 75, 502,0 );	(* Caricatore *)
+		QuickStopInProgress := TRUE;
+	end_if;
+		
+	if ( TonQs.q ) then
+
+		vret := ExecPlcFun( PLC_SET_EMERGENZA, QuickStopEmergCode, 0 );
+		
+		if ( QuickStopEmergCode = 2 ) then		(* Fungo *) 
+			Ciclo_emergenza_attivata := TRUE;
+		end_if;		
+		
+		if ( QuickStopEmergCode = 3 ) then		(* Aria *) 
+			Ciclo_emergenza_attivata := TRUE;
+		end_if;		
+
+		if ( QuickStopEmergCode = 4 ) then		(* Asse X *) 
+			Vn4CodiceWarning := 1;
+			Ciclo_emergenza_attivata := TRUE;
+		end_if;		
+
+		if ( QuickStopEmergCode = 5 ) then		(* Asse Y *) 
+			Vn4CodiceWarning := 2;
+			Ciclo_emergenza_attivata := TRUE;
+		end_if;		
+
+		QuickStopEmergCode := 0;
+		QuickStopInProgress := FALSE;
+		Vb98_ArrestaAssiQuick := FALSE;
+	end_if;	
 
 end_if;
+
 
 ]]>
 					</sourceCode>
@@ -722,7 +781,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Boot" version="1.0.0" creationDate="0" lastModifiedDate="1724745621" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="Boot" version="1.0.0" creationDate="0" lastModifiedDate="1724852041" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars/>
 					<iecDeclaration active="FALSE"/>
 					<sourceCode type="ST">
@@ -753,14 +812,14 @@ end_if;
 (*110.05 = Dakka spolina rossa  + reset su passo 49 del cicloautomatico*)
 (*110.07 = Dakka sistemato alcuni problemi su reset piegatore + intordotto *)
 (*110.08 + HMI3.2 = modifica CN+PLC per evitare cucitura spostata dopo RESET + inserito Debug VQ3564 + lancia fuori automatico + migliorata pagina debug *)
-
+(*111.00 = quickstop asse ago e crochet, vedi QuickStopOnEmerg e (* #M240809_1GF# *)  
 	(* ------------------------------- *)
 	(* FLAG SIMULAZIONE - PER DEBUGGER *)
 VbSimulaDbg := FALSE;
 
 	(* Versopne applicativo *)
 case(Vn_ID_macchina)of
-	862: App_Ver := 'JT862M - Ver 110.08 - 27.08.2024';	
+	862: App_Ver := 'JT862M - Ver 111.00 - 27.08.2024';	
 	860: App_Ver := 'JT862HM - Ver 32.00 - 29.11.2023';
 	882: App_Ver := 'JT882M - Ver 15.02 - 13.05.2021';
 end_case;
@@ -804,6 +863,14 @@ Fun202VnParIndx_1 := 202;
 Fun202VnParIndx_2 := EnbCountIRQPiegatore_Su_IDX;
 Fun202VnParIndx_3 := ContIRQSensPiegatore_su_IDX;
 vret := ExecPlcFun( PLC_ADD_FUN_IRQ, 31, 1000 ); 
+
+	(* Gestione QuickStop su evento di emergenza - #M240809_1GF# *)
+	(* TRUE  -> quick stop e poi emergenza						 *)
+	(* FALSE -> emergenza senza QuickStop						 *)
+QuickStopOnEmerg := TRUE;	
+Vb98_ArrestaAssiQuick := FALSE;
+QuickStopInProgress := FALSE;
+QuickStopEmergCode := 0;
 ]]>
 					</sourceCode>
 				</program>
@@ -2071,7 +2138,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AppMainC3" version="1.0.0" creationDate="0" lastModifiedDate="1724751037" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="AppMainC3" version="1.0.0" creationDate="0" lastModifiedDate="1724915770" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseBootDone" type="RiseEdge"/>
@@ -2094,6 +2161,9 @@ end_if;
 							<var name="temp1" type="BOOL"/>
 							<var name="temp2" type="BOOL"/>
 							<var name="Rise_Vb4007_MemoriaAvviaCaric" type="RiseEdge"/>
+							<var name="NONAME" type="BOOL"/>
+							<var name="Ritardo_Valvolone_off" type="Ton"/>
+							<var name="Ritardo_Valvolone_on" type="RiseEdge"/>
 						</localVars>
 					</vars>
 					<iecDeclaration active="FALSE"/>
@@ -2774,9 +2844,33 @@ end_case;
 
 
 (* uscita valvolone *)
-Vb4145_AppMan_o13_Valvolone := not VbSimulaDbg and VB_SYS_CNC_ENABLED and VB_SYS_ECAT_OPERATIONAL;
-Vb4345_AppAut_o13_Valvolone := not VbSimulaDbg and VB_SYS_CNC_ENABLED and VB_SYS_ECAT_OPERATIONAL;
+if QuickStopOnEmerg then	
+	Ritardo_Valvolone_off ( in:= not VB_SYS_CNC_ENABLED or not VB_SYS_ECAT_OPERATIONAL,pt:=200 );	
+	Ritardo_Valvolone_on  ( in:= not VbSimulaDbg and VB_SYS_CNC_ENABLED and VB_SYS_ECAT_OPERATIONAL );
+	if(Ritardo_Valvolone_on.q) then
+		Vb4145_AppMan_o13_Valvolone := TRUE;
+		Vb4345_AppAut_o13_Valvolone := TRUE;
+		
+	end_if;
+	
+	if(Ritardo_Valvolone_off.q) then
+		Vb4145_AppMan_o13_Valvolone := FALSE;
+		Vb4345_AppAut_o13_Valvolone := FALSE;
+		
+	end_if;
+else
 
+	Vb4145_AppMan_o13_Valvolone := not VbSimulaDbg and VB_SYS_CNC_ENABLED and VB_SYS_ECAT_OPERATIONAL;
+	Vb4345_AppAut_o13_Valvolone := not VbSimulaDbg and VB_SYS_CNC_ENABLED and VB_SYS_ECAT_OPERATIONAL;
+	
+end_if;	
+
+
+
+(*
+Vb4145_AppMan_o13_Valvolone := not VbSimulaDbg and VB_SYS_CNC_ENABLED and VB_SYS_ECAT_OPERATIONAL and not Vb98_ArrestaAssiQuick;
+Vb4345_AppAut_o13_Valvolone := not VbSimulaDbg and VB_SYS_CNC_ENABLED and VB_SYS_ECAT_OPERATIONAL and not Vb98_ArrestaAssiQuick;
+*)
 
 
 (* Emergenza orologio*)	
@@ -8096,7 +8190,7 @@ END_VAR
  *
  * MDPlc source file: DefCuci.PLL
  *
- * Date = "26/08/2024 15:46:15"
+ * Date = "27/08/2024 14:29:45"
  *)
 
 
@@ -9302,7 +9396,7 @@ END_VAR
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "26/08/2024 15:46:15"
+ * Date = "27/08/2024 14:29:45"
  *)
 
 
@@ -9413,6 +9507,8 @@ VAR_GLOBAL
     LeggoTemperaturaDriverCro               AT %MB300.119  : BOOL;         {DE:"vb119  - 1 = il PLC tramite Ethercat legge la temperatura del driver Crochet"}
     LeggoTemperaturaDriverCar               AT %MB300.120  : BOOL;         {DE:"vb120  - 1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore"}
     Vb121_LanciaFuoriAuto                   AT %MB300.121  : BOOL;         {DE:"vb121  - 1 = la lancia viene fuori senza premere la pedana"}
+    QuickStopOnEmerg                        AT %MB300.150  : BOOL;         {DE:"vb150  - 1=QuickStop su evento di emergenza - #M240809_1GF#"}
+    QuickStopInProgress                     AT %MB300.151  : BOOL;         {DE:"vb151  - Quick stop in progress"}
     Vb4000_Automatico                       AT %MB300.4000 : BOOL;         {DE:"vb4000 - /// messa a ON da HMI sono in automatico"}
     Vb4001_StepPiegatore                    AT %MB300.4001 : BOOL;         {DE:"vb4001 - /// messa a ON da HMI il piegatore è passo passo"}
     Vb4002_StepPiegatoreStop                AT %MB300.4002 : BOOL;         {DE:"vb4002 - /// punto di stop piegatore"}
@@ -9675,6 +9771,7 @@ VAR_GLOBAL
     Fun202VnParIndx_1                       AT %MW400.21   : INT;          {DE:"vn21   - FunId – identificativo della funzione"}
     Fun202VnParIndx_2                       AT %MW400.22   : INT;          {DE:"vn22   - Indice vb abilitazione della funzione"}
     Fun202VnParIndx_3                       AT %MW400.23   : INT;          {DE:"vn23   - Indice vq contatore"}
+    QuickStopEmergCode                      AT %MW400.50   : INT;          {DE:"vn50   - Codice di emergenza gestione QuickStop - #M240809_1GF#"}
     Vn101_Piegatore1_CH                     AT %MW400.101  : INT;          {DE:"vn101  - Numero Primo piegatore attivato"}
     Vn102_Piegatore2_CH                     AT %MW400.102  : INT;          {DE:"vn102  - Numero Secondo piegatore attivato"}
     Vn103_Piegatore3_CH                     AT %MW400.103  : INT;          {DE:"vn103  - Numero Terzo piegatore attivato"}

@@ -93,6 +93,8 @@ As2000 Simbols Table
 #vb119;LeggoTemperaturaDriverCro;1 = il PLC tramite Ethercat legge la temperatura del driver Crochet
 #vb120;LeggoTemperaturaDriverCar;1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore
 #vb121;Vb121_LanciaFuoriAuto;1 = la lancia viene fuori senza premere la pedana
+#vb150;QuickStopOnEmerg;1=QuickStop su evento di emergenza - #M240809_1GF#
+#vb151;QuickStopInProgress;Quick stop in progress
 #vb4000;Vb4000_Automatico;/// messa a ON da HMI sono in automatico
 #vb4001;Vb4001_StepPiegatore;/// messa a ON da HMI il piegatore è passo passo
 #vb4002;Vb4002_StepPiegatoreStop;/// punto di stop piegatore
@@ -353,6 +355,7 @@ As2000 Simbols Table
 #vn21;Fun202VnParIndx_1;FunId – identificativo della funzione
 #vn22;Fun202VnParIndx_2;Indice vb abilitazione della funzione
 #vn23;Fun202VnParIndx_3;Indice vq contatore
+#vn50;QuickStopEmergCode;Codice di emergenza gestione QuickStop - #M240809_1GF#
 #vn101;Vn101_Piegatore1_CH;Numero Primo piegatore attivato
 #vn102;Vn102_Piegatore2_CH;Numero Secondo piegatore attivato
 #vn103;Vn103_Piegatore3_CH;Numero Terzo piegatore attivato

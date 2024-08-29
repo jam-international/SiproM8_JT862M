@@ -276,6 +276,9 @@
 #define LeggoTemperaturaDriverCro 	vb119		//1 = il PLC tramite Ethercat legge la temperatura del driver Crochet
 #define LeggoTemperaturaDriverCar 	vb120		//1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore
 #define Vb121_LanciaFuoriAuto		vb121		//1 = la lancia viene fuori senza premere la pedana
+
+#define QuickStopOnEmerg		 	vb150		// 1=QuickStop su evento di emergenza - #M240809_1GF#
+#define QuickStopInProgress			vb151		// Quick stop in progress
 //------------------------------------------------------------------------
 //
 // #######################################
@@ -670,7 +673,7 @@
 #define Fun202VnParIndx_2		vn22		// Indice vb abilitazione della funzione
 #define Fun202VnParIndx_3		vn23		// Indice vq contatore
 
-
+#define QuickStopEmergCode		vn50	 	// Codice di emergenza gestione QuickStop - #M240809_1GF#
 
 //------------------------------------------------------------------------
 // VN da utilizzare per il ciclo automatico Vn100-Vn999
