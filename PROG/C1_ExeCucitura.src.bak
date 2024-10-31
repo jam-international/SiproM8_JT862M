@@ -144,32 +144,31 @@ do
         exitdo
     endif
     loop
-Vq3564_Debug  = 1	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit1
-        // Movimento a posizione di inizio cucitura
+Vq3564_Debug  = 1	//	<<<<<<<<<--------------------variabile di Debug 1000.0  ------------------------------ bit0
+vntest2 = 1
+	// Movimento a posizione di inizio cucitura
     C1_VelFeed = C1_Udf_FeedG0
     ISO G1 X C1_FirstPt_X Y C1_FirstPt_Y F C1_VelFeed
 
-        // Solo se presente l'asse di rotazione
-    if ( C1_AsseC != AX_NULL )    
-            // Aspetta Asse C fermo - #M200724_1GF#
-        WaitCond( IsAxInStop( C1_AsseC ) ) 
-    endif
+    WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
 
         // Verifica se parto con il TEST premuto : viene forzato Hold
     if ( C1_CuciSimulaAuto == 1 )
-    Vq3564_Debug = Vq3564_Debug + 2	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit2
+    Vq3564_Debug = Vq3564_Debug + 2	//	<<<<<<<<<--------------------variabile di Debug 3000.0------------------------------ bit1
         C1_CmdHoldRelease = 1		//il TEST è premuto quindi attivo Hold
+	vntest2 = 2
     endif
     
 
     if ( C1_CmdHoldRelease == 0 )					//se non ho hold resetto il buffer di cucitura e parto dall'inizio
         ISO G281 P CA_MD_NO_RES_NO_INS X C1_FirstPt_X Y C1_FirstPt_Y	//resetto il buffer di cucitura e parto dall'inizio
-
-	Vq3564_Debug = Vq3564_Debug + 4	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit3
+	vntest2 = 3
+	Vq3564_Debug = Vq3564_Debug + 4	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit2
     else
 	//se parto con TEST, chiamo ripartenza con il rewind del programma di cucitura
         C1_CuciBufRewind = ON   // #M230406_1GF# - force rewind flag in C1_Ripartenza
-	Vq3564_Debug = Vq3564_Debug + 8	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit4
+	Vq3564_Debug = Vq3564_Debug + 8	//	<<<<<<<<<--------------------variabile di Debug 11000.0------------------------------ bit3
+	vntest2 = 4
         gosub "C1_Ripartenza"
     endif
 
@@ -180,10 +179,11 @@ Vq3564_Debug  = 1	//	<<<<<<<<<--------------------variabile di Debug -----------
         // Esecuzione cucitura
     Vb30_C1_InCucitura = ON 
 
-   
-    do
-	Vq3564_Debug = Vq3564_Debug + 512	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit9
+	Vq3564_Debug = Vq3564_Debug + 512	//	<<<<<<<<<--------------------variabile di Debug 603000.0------------------------------ bit9
 	Vb44_WriteDebugSuHmi = ON	//	<<<<<<<<<--------------------chiede al HMI di scrivere il file debugsys.txt con le variabili di debug------
+	vntest2 = 5
+    do
+	
         ISO G280
 
             // Attesa
@@ -196,7 +196,7 @@ Vq3564_Debug  = 1	//	<<<<<<<<<--------------------variabile di Debug -----------
         if ( C1_CmdHoldRelease == 0 )
             exitdo
         endif            
-	Vq3564_Debug = 1	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit1
+	Vq3564_Debug = Vq3564_Debug +1024	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit10
             // Ripartenza cucitura
         gosub "C1_Ripartenza"
 

@@ -25,7 +25,7 @@ sub ()
 
             // Attesa rilascio hold          
         WaitCond( C1_CmdHoldRelease == 0 )
-   	Vq3564_Debug = Vq3564_Debug + 16	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit5
+   	Vq3564_Debug = Vq3564_Debug + 16	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit4
            // Per evitare di chiamare furiosamente la FUN 150
         DelayS( 0.1 )
 
@@ -33,7 +33,7 @@ sub ()
 		Vb43_TestCuciPrimaTasca = OFF
             exitdo
         endif
-	Vq3564_Debug = Vq3564_Debug + 32	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit6
+	Vq3564_Debug = Vq3564_Debug + 32	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit5
             // Movimento simulato avanti fino a ripresa o fine cucitura
         ExecPlcFun( PLC_CUCI_CMD, 150, 10 )  
 

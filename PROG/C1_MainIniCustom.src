@@ -31,17 +31,10 @@ sub ()
         ///// dopo un reset riporto la pinza in posizione home
     if ( Vb4803_AppResetHmiC1 )
 
-	
-	// ##### DA 26/08/2024 prova per problema programma spostato se riparto dopo RESET  ########
-	C1_CmdHoldRelease = 0					//mi assicuro di spegnere Hold (TEST cucitura)
-	C1_CuciSimulaAuto = 0
-	ISO G281 P CA_MD_NO_RES_NO_INS X C1_FirstPt_X Y C1_FirstPt_Y	//resetto il buffer di cucitura e parto dall'inizio
-	Delays (0.3)
-	// ##### DA 26/08/2024 FINE ######
 
 	SyncVar( C1_CmdPiedinoSu )    
 	Delays (0.1)
-	
+
 
         fa[ C1_AsseX ] = Vq3054_C1_VelFeed_Reset
         fa[ C1_AsseY ] = Vq3054_C1_VelFeed_Reset
@@ -50,10 +43,64 @@ sub ()
 	else
 		ax[ C1_AsseY ] = 200        //// sposto tutto indietro
 	endif
-        ax[ C1_AsseX ] = 0 
-        ax[ C1_AsseY ] = 0
-        ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F Vq3054_C1_VelFeed_Reset    
-        Delays (0.1)
+
+	ax[ C1_AsseX ] = 0 
+	ax[ C1_AsseY ] = 0
+
+	
+
+	
+
+
+// ##### DA 26/08/2024 prova per problema programma spostato se riparto dopo RESET  ########
+
+//	VbFlgAzzAx1 = 0
+//	VbFlgAzzAx2 = 0
+
+	// Comando azzeramento AsseX
+
+//	VbCmdAzzAx1 = 1
+	// Attende fine azzeramento asse AsseX 
+//	WaitCond ( ( VbFlgAzzAx1 == 1 ) and ( VnFaseZeroAx1 >= 7 ) )
+
+	// Verifica se azzeramento completato con errore
+//	if ( VnFaseZeroAx1 > 7 )
+//		Vn2CodiceAllarmeXHmi = 7
+//		gosub "Halt.obj"
+//	endif
+
+	// Comando azzeramento AsseY
+//	VbCmdAzzAx2 = 1
+
+	// Attende fine azzeramento asse AsseY
+//	WaitCond ( ( VbFlgAzzAx2 == 1 ) and ( VnFaseZeroAx2 >= 7 ) )
+
+//	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
+	
+//	C1_AssiAzzerati = ON
+
+//	Delays (0.5)
+
+
+	C1_CmdHoldRelease = 0					//mi assicuro di spegnere Hold (TEST cucitura)
+	C1_CuciSimulaAuto = 0
+	ISO G281 P CA_MD_NO_RES_NO_INS X C1_FirstPt_X Y C1_FirstPt_Y	//resetto il buffer di cucitura e parto dall'inizio
+	Delays (0.3)
+
+
+
+	//ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F Vq3054_C1_VelFeed_Reset
+
+
+	fa[ C1_AsseX ] = Vq3054_C1_VelFeed_Reset
+	fa[ C1_AsseY ] = Vq3054_C1_VelFeed_Reset
+
+	ax[ C1_AsseX ] = C1_QuoHomeX ax[ C1_AsseY ] = C1_QuoHomeY
+
+	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
+	Delays (0.1)
+
+
 	Vb36_Clear_OPT1 = ON	//apro retrattile
 	Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
 	Vb38_Clear_OPT3 = ON	//disattivo salto piedino

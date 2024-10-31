@@ -673,7 +673,7 @@
 #define Fun202VnParIndx_2		vn22		// Indice vb abilitazione della funzione
 #define Fun202VnParIndx_3		vn23		// Indice vq contatore
 
-
+#define QuickStopEmergCode		vn50	 	// Codice di emergenza gestione QuickStop - #M240809_1GF#
 
 //------------------------------------------------------------------------
 // VN da utilizzare per il ciclo automatico Vn100-Vn999
@@ -975,7 +975,7 @@
 #define Vq3022_RitLancia_ON				Vq3022				//////// non utilizzato
 #define Vq3023_RitLancia_OFF			Vq3023
 #define Vq3024_RitCarSopraLancia		Vq3024
-#define Vq3025_RitCarRispettoBarra2		Vq3025	
+#define Vq3025_RitCarRispettoBarra2		Vq3025
 
 // cucitrice 1
 #define Vq3050_RitC1_Pinza_est_ON			Vq3050				// non utilizzato
@@ -1064,6 +1064,8 @@
 #define Vq3162TemperaturaDriverAgo		Vq3162		//coontiene la temperatura del driver ago (si legge cone VB118)
 #define Vq3163TemperaturaDriverCro		Vq3163		//coontiene la temperatura del driver crochet (si legge cone VB119)
 #define Vq3164TemperaturaDriverCar		Vq3164		//coontiene la temperatura del driver caricatore (si legge cone VB120)
+
+#define Vq3165_RitPressostato			Vq3165
 //------------------------------------------------------------------------
 // VQ da utilizzare per il ciclo automatico pos ax Vq3500-Vq3599
 //------------------------------------------------------------------------

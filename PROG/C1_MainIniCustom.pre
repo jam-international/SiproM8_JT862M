@@ -32,13 +32,6 @@ sub ()
     if ( vb4803               )
 
 
-	// ##### DA 26/08/2024 prova per problema programma spostato se riparto dopo RESET  ########
-	vb1009            = 0					//mi assicuro di spegnere Hold (TEST cucitura)
-	vb1034            = 0
-	ISO G281 P 10                  X vq1027       Y vq1028      	//resetto il buffer di cucitura e parto dall'inizio
-	Delays (0.3)
-	// ##### DA 26/08/2024 FINE ######
-
 	SyncVar( vb1003          )    
 	Delays (0.1)
 
@@ -50,10 +43,64 @@ sub ()
 	else
 		ax[ 2        ] = 200        //// sposto tutto indietro
 	endif
-        ax[ 1        ] = 0 
-        ax[ 2        ] = 0
-        ISO G1 X vq1911      Y vq1912      F vq3054                     
-        Delays (0.1)
+
+	ax[ 1        ] = 0 
+	ax[ 2        ] = 0
+
+
+
+
+
+
+// ##### DA 26/08/2024 prova per problema programma spostato se riparto dopo RESET  ########
+
+//	VbFlgAzzAx1 = 0
+//	VbFlgAzzAx2 = 0
+
+	// Comando azzeramento AsseX
+
+//	VbCmdAzzAx1 = 1
+	// Attende fine azzeramento asse AsseX 
+//	WaitCond ( ( VbFlgAzzAx1 == 1 ) and ( VnFaseZeroAx1 >= 7 ) )
+
+	// Verifica se azzeramento completato con errore
+//	if ( VnFaseZeroAx1 > 7 )
+//		Vn2CodiceAllarmeXHmi = 7
+//		gosub "Halt.obj"
+//	endif
+
+	// Comando azzeramento AsseY
+//	VbCmdAzzAx2 = 1
+
+	// Attende fine azzeramento asse AsseY
+//	WaitCond ( ( VbFlgAzzAx2 == 1 ) and ( VnFaseZeroAx2 >= 7 ) )
+
+//	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
+
+//	C1_AssiAzzerati = ON
+
+//	Delays (0.5)
+
+
+	vb1009            = 0					//mi assicuro di spegnere Hold (TEST cucitura)
+	vb1034            = 0
+	ISO G281 P 10                  X vq1027       Y vq1028      	//resetto il buffer di cucitura e parto dall'inizio
+	Delays (0.3)
+
+
+
+	//ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F Vq3054_C1_VelFeed_Reset
+
+
+	fa[ 1        ] = vq3054                 
+	fa[ 2        ] = vq3054                 
+
+	ax[ 1        ] = vq1911      ax[ 2        ] = vq1912     
+
+	WaitCond ( Vb4045             and Vb4046             )
+	Delays (0.1)
+
+
 	vb36            = 1 	//apro retrattile
 	vb37            = 1 	//abbasso perni ranocchia
 	vb38            = 1 	//disattivo salto piedino

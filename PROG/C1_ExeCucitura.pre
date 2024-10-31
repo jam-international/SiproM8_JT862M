@@ -144,32 +144,31 @@ do
         exitdo
     endif
     loop
-Vq3564        = 1	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit0
-        // Movimento a posizione di inizio cucitura
+Vq3564        = 1	//	<<<<<<<<<--------------------variabile di Debug 1000.0  ------------------------------ bit0
+vn779   = 1
+	// Movimento a posizione di inizio cucitura
     vq1962     = vq1918       
     ISO G1 X vq1027       Y vq1028       F vq1962    
 
-        // Solo se presente l'asse di rotazione
-    if ( 0        != 0       )    
-            // Aspetta Asse C fermo - #M200724_1GF#
-        WaitCond( IsAxInStop( 0        ) ) 
-    endif
+    WaitCond ( Vb4045             and Vb4046             )
 
         // Verifica se parto con il TEST premuto : viene forzato Hold
     if ( vb1034            == 1 )
-    Vq3564       = Vq3564       + 2	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit1
+    Vq3564       = Vq3564       + 2	//	<<<<<<<<<--------------------variabile di Debug 3000.0------------------------------ bit1
         vb1009            = 1		//il TEST è premuto quindi attivo Hold
+	vn779   = 2
     endif
 
 
     if ( vb1009            == 0 )					//se non ho hold resetto il buffer di cucitura e parto dall'inizio
         ISO G281 P 10                  X vq1027       Y vq1028      	//resetto il buffer di cucitura e parto dall'inizio
-
+	vn779   = 3
 	Vq3564       = Vq3564       + 4	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit2
     else
 	//se parto con TEST, chiamo ripartenza con il rewind del programma di cucitura
         vb1028           = 1    // #M230406_1GF# - force rewind flag in C1_Ripartenza
-	Vq3564       = Vq3564       + 8	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit3
+	Vq3564       = Vq3564       + 8	//	<<<<<<<<<--------------------variabile di Debug 11000.0------------------------------ bit3
+	vn779   = 4
         gosub "C1_Ripartenza"
     endif
 
@@ -180,10 +179,11 @@ Vq3564        = 1	//	<<<<<<<<<--------------------variabile di Debug -----------
         // Esecuzione cucitura
     vb30               = 1  
 
-
-    do
-	Vq3564       = Vq3564       + 512	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit9
+	Vq3564       = Vq3564       + 512	//	<<<<<<<<<--------------------variabile di Debug 603000.0------------------------------ bit9
 	vb44                 = 1 	//	<<<<<<<<<--------------------chiede al HMI di scrivere il file debugsys.txt con le variabili di debug------
+	vn779   = 5
+    do
+
         ISO G280
 
             // Attesa
@@ -196,7 +196,7 @@ Vq3564        = 1	//	<<<<<<<<<--------------------variabile di Debug -----------
         if ( vb1009            == 0 )
             exitdo
         endif            
-	Vq3564       = 1	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit1
+	Vq3564       = Vq3564       +8192	//	<<<<<<<<<--------------------variabile di Debug ------------------------------ bit13
             // Ripartenza cucitura
         gosub "C1_Ripartenza"
 

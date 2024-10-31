@@ -2,7 +2,7 @@
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "27/08/2024 14:29:45"
+ * Date = "15/09/2024 10:25:01"
  *)
 
 
@@ -635,6 +635,7 @@ VAR_GLOBAL
     Vq3162TemperaturaDriverAgo              AT %MD500.3162 : DINT;         {DE:"vq3162 - coontiene la temperatura del driver ago (si legge cone VB118)"}
     Vq3163TemperaturaDriverCro              AT %MD500.3163 : DINT;         {DE:"vq3163 - coontiene la temperatura del driver crochet (si legge cone VB119)"}
     Vq3164TemperaturaDriverCar              AT %MD500.3164 : DINT;         {DE:"vq3164 - coontiene la temperatura del driver caricatore (si legge cone VB120)"}
+    Vq3165_RitPressostato                   AT %MD500.3165 : DINT;         {DE:"vq3165"}
     Vq3500_PosizioneCaricRiposo             AT %MD500.3500 : DINT;         {DE:"vq3500 - posizione caricatore a riposo fuori ingombro"}
     Vq3501_PosizioneCaricCaricoTasca        AT %MD500.3501 : DINT;         {DE:"vq3501 - posizione caricatore carico tasca"}
     Vq3502_PosizioneCaricScaricoTasca       AT %MD500.3502 : DINT;         {DE:"vq3502 - posizione caricatore scarico tasca"}

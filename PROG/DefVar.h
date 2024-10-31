@@ -717,7 +717,7 @@
 
 #define Vn170_IdxAutoBobbinChanh		vn170
 
-#define Vn180_Device_Rinforzo			vn180	// 0= disabilitato, 1 = tipo JAM, 2 = tipo Turco con 3 schede IO Ethercat, 3 = tipo Turco con 3 schede IO Ethercat
+#define Vn180_Device_Rinforzo			vn180	// 0= disabilitato, 1 = tipo JAM, 2 = tipo Turco con 3 schede IO Ethercat, 3 = tipo Turco con 2 schede IO Ethercat
 #define Vn181_Step_Rinforzo				vn181
 
 
@@ -975,7 +975,7 @@
 #define Vq3022_RitLancia_ON				Vq3022				//////// non utilizzato
 #define Vq3023_RitLancia_OFF			Vq3023
 #define Vq3024_RitCarSopraLancia		Vq3024
-#define Vq3025_RitCarRispettoBarra2		Vq3025	
+#define Vq3025_RitCarRispettoBarra2		Vq3025
 
 // cucitrice 1
 #define Vq3050_RitC1_Pinza_est_ON			Vq3050				// non utilizzato
@@ -1064,6 +1064,8 @@
 #define Vq3162TemperaturaDriverAgo		Vq3162		//coontiene la temperatura del driver ago (si legge cone VB118)
 #define Vq3163TemperaturaDriverCro		Vq3163		//coontiene la temperatura del driver crochet (si legge cone VB119)
 #define Vq3164TemperaturaDriverCar		Vq3164		//coontiene la temperatura del driver caricatore (si legge cone VB120)
+
+#define Vq3165_RitPressostato			Vq3165
 //------------------------------------------------------------------------
 // VQ da utilizzare per il ciclo automatico pos ax Vq3500-Vq3599
 //------------------------------------------------------------------------

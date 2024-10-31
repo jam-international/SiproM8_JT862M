@@ -611,6 +611,7 @@ As2000 Simbols Table
 #vq3162;Vq3162TemperaturaDriverAgo;coontiene la temperatura del driver ago (si legge cone VB118)
 #vq3163;Vq3163TemperaturaDriverCro;coontiene la temperatura del driver crochet (si legge cone VB119)
 #vq3164;Vq3164TemperaturaDriverCar;coontiene la temperatura del driver caricatore (si legge cone VB120)
+#vq3165;Vq3165_RitPressostato;
 #vq3500;Vq3500_PosizioneCaricRiposo;posizione caricatore a riposo fuori ingombro
 #vq3501;Vq3501_PosizioneCaricCaricoTasca;posizione caricatore carico tasca
 #vq3502;Vq3502_PosizioneCaricScaricoTasca;posizione caricatore scarico tasca

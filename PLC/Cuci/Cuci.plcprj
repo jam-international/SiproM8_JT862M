@@ -84,11 +84,10 @@
 			<functions/>
 			<functionBlocks/>
 			<programs>
-				<program name="Emergenze" version="1.0.0" creationDate="0" lastModifiedDate="1724915770" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="Emergenze" version="1.0.0" creationDate="0" lastModifiedDate="1726474966" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="Rise_ciclo_emergenza_attivata" type="RiseEdge"/>
-							<var name="Rise_Emg_pressostato" type="RiseEdge"/>
 							<var name="Rit_Driver" type="Ton"/>
 							<var name="Rise_AllarmeDriver_X" type="RiseEdge"/>
 							<var name="Rise_AllarmeDriver_Y" type="RiseEdge"/>
@@ -98,6 +97,8 @@
 							<var name="Rise_i21_Emg" type="RiseEdge"/>
 							<var name="Riti12_Pressostato" type="Ton"/>
 							<var name="TonQs" type="Ton"/>
+							<var name="TimePressostato" type="INT"/>
+							<var name="TonAccensionePressostato" type="Ton"/>
 						</localVars>
 					</vars>
 					<iecDeclaration active="FALSE"/>
@@ -182,8 +183,9 @@ if(Rise_ciclo_emergenza_attivata.q) then
 	(* azzera OPT *)
 
 
-	
-	Vb36_Clear_OPT1 := TRUE;
+	if(not Vb97_InversioneRetrattile) then   
+		Vb36_Clear_OPT1 := TRUE;
+	end_if;
 	Vb37_Clear_OPT2 := TRUE;
 	Vb38_Clear_OPT3 := TRUE;
 		
@@ -255,8 +257,11 @@ if(Rise_ciclo_emergenza_attivata.q) then
 	Vb4348_AppAut_o16_coltello_rinforzo		:= FALSE ;
 	Vb4349_AppAut_o17_C1_Piedino           	:= FALSE ;		      
 	Vb4350_AppAut_o18_C1_Pinza_int		   	:= FALSE ;		      
-	Vb4351_AppAut_o19_C1_Pinza_est         	:= FALSE ;	     
-	Vb4352_AppAut_o20_C1_Retrattile_AC     	:= FALSE ;		   
+	Vb4351_AppAut_o19_C1_Pinza_est         	:= FALSE ;	 
+	if(not Vb97_InversioneRetrattile) then   
+		Vb4352_AppAut_o20_C1_Retrattile_AC     	:= FALSE ;		   
+	end_if;	
+
 	Vb4353_AppAut_o21_C1_RaffreddamentoAgo	:= FALSE ;
 	Vb4354_AppAut_o22_Scaric_dx_sx        	:= FALSE ;	
 	Vb4355_AppAut_o23_Lentezza_Tasca_AD	   	:= FALSE ;		 
@@ -375,8 +380,19 @@ end_if;
 
 
 	(* Emergenza pressostato*)
-Riti12_Pressostato( in := ( not Vb4503_CN_Allarme and  i12_Pressostato and i21_Emg ), pt := 2000 );	
-//Rise_Emg_pressostato ( in := i12_Pressostato );
+TimePressostato := 2000;  //tempo pressostato iniziale per accensione	
+
+if (Vq3165_RitPressostato< 500) then	//non permetto di mettere un valore di tempo pressostato sotto a 0.5sec
+	Vq3165_RitPressostato := 500;
+end_if;
+//dopo l'accensione aspetto 2sec poi carico il tempo pressostato come da Vq3165_RitPressostato
+TonAccensionePressostato (in:=( not Vb4503_CN_Allarme  and i21_Emg ), pt := 2000  );	
+if(TonAccensionePressostato.q) then
+	TimePressostato := TO_INT(Vq3165_RitPressostato);
+end_if;
+//controllo il pressostato con il tempo TimePressostato (all'accensione è fisso a 2 sec poi prende il valore della Vq3165_RitPressostato
+Riti12_Pressostato( in := ( not Vb4503_CN_Allarme and  i12_Pressostato and i21_Emg ), pt := TimePressostato  );	
+
 			
 if ( Riti12_Pressostato.q )then
 		(* Set Emergenza pressostato*)					
@@ -781,7 +797,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="Boot" version="1.0.0" creationDate="0" lastModifiedDate="1724852041" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="Boot" version="1.0.0" creationDate="0" lastModifiedDate="1729500182" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars/>
 					<iecDeclaration active="FALSE"/>
 					<sourceCode type="ST">
@@ -813,13 +829,17 @@ end_if;
 (*110.07 = Dakka sistemato alcuni problemi su reset piegatore + intordotto *)
 (*110.08 + HMI3.2 = modifica CN+PLC per evitare cucitura spostata dopo RESET + inserito Debug VQ3564 + lancia fuori automatico + migliorata pagina debug *)
 (*111.00 = quickstop asse ago e crochet, vedi QuickStopOnEmerg e (* #M240809_1GF# *)  
+(*112.00 = mezzo azzeramento assi su C1_Main_Ini_Custom dopo aver premuto RESET cucitura *)  
+(*113.00 = PER CAPIRE (ma poi tolto con ver 114) ax[ C1_AsseX ] = C1_QuoHomeX ax[ C1_AsseY ] = C1_QuoHomeY invece che ISO G1 per spsotarsi al punto di carico in C1_MainIniCustom  *)
+(*114.00 = sistemato problema punto carico dopo Reset (vedi: C1_MainIniCustom)  + messo doppio tempo su pressostato*)
+(*115.00 = in C1_MainIniCustom faccio il movimento al punto di carico con comandi CN invece che ISO*)
 	(* ------------------------------- *)
 	(* FLAG SIMULAZIONE - PER DEBUGGER *)
 VbSimulaDbg := FALSE;
 
 	(* Versopne applicativo *)
 case(Vn_ID_macchina)of
-	862: App_Ver := 'JT862M - Ver 111.00 - 27.08.2024';	
+	862: App_Ver := 'JT862M - Ver 115.00 - 21.10.2024';	
 	860: App_Ver := 'JT862HM - Ver 32.00 - 29.11.2023';
 	882: App_Ver := 'JT882M - Ver 15.02 - 13.05.2021';
 end_case;
@@ -980,7 +1000,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="C1_Cucitrice" version="1.0.0" creationDate="0" lastModifiedDate="1724748889" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="C1_Cucitrice" version="1.0.0" creationDate="0" lastModifiedDate="1729240279" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="FallPrgRun" type="FallEdge"/>
@@ -2138,7 +2158,7 @@ end_if;
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AppMainC3" version="1.0.0" creationDate="0" lastModifiedDate="1724915770" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="AppMainC3" version="1.0.0" creationDate="0" lastModifiedDate="1726468328" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RiseBootDone" type="RiseEdge"/>
@@ -2292,9 +2312,7 @@ end_if;
 
 (* dopo emergenza controllo lo stato macchina prima di lanciare l'azzeramento *)
 (* ritardo pressostato *)
-//Riti4_Pressostato( in := (not i4_Pressostato and i21_Emg ), pt := 500 );
 
-//if (Riti106_Pressostato.q) then
 	case ( Vn_ID_macchina ) of
 	
 	
@@ -3806,7 +3824,7 @@ Rit_i23_C1_PinzaIntBassa( in := ( not i23_C1_PinzaIntBassa and ( VnStatoCuci2 = 
 ]]>
 					</sourceCode>
 				</program>
-				<program name="AppMainC1" version="1.0.0" creationDate="0" lastModifiedDate="1724668443" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
+				<program name="AppMainC1" version="1.0.0" creationDate="0" lastModifiedDate="1729240279" excludeFromBuild="FALSE" excludeFromBuildIfNotDef="">
 					<vars>
 						<localVars>
 							<var name="RisePinzeC1" type="RiseEdge"/>
@@ -8190,7 +8208,7 @@ END_VAR
  *
  * MDPlc source file: DefCuci.PLL
  *
- * Date = "27/08/2024 14:29:45"
+ * Date = "15/09/2024 10:25:01"
  *)
 
 
@@ -9396,7 +9414,7 @@ END_VAR
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "27/08/2024 14:29:45"
+ * Date = "15/09/2024 10:25:01"
  *)
 
 
@@ -10029,6 +10047,7 @@ VAR_GLOBAL
     Vq3162TemperaturaDriverAgo              AT %MD500.3162 : DINT;         {DE:"vq3162 - coontiene la temperatura del driver ago (si legge cone VB118)"}
     Vq3163TemperaturaDriverCro              AT %MD500.3163 : DINT;         {DE:"vq3163 - coontiene la temperatura del driver crochet (si legge cone VB119)"}
     Vq3164TemperaturaDriverCar              AT %MD500.3164 : DINT;         {DE:"vq3164 - coontiene la temperatura del driver caricatore (si legge cone VB120)"}
+    Vq3165_RitPressostato                   AT %MD500.3165 : DINT;         {DE:"vq3165"}
     Vq3500_PosizioneCaricRiposo             AT %MD500.3500 : DINT;         {DE:"vq3500 - posizione caricatore a riposo fuori ingombro"}
     Vq3501_PosizioneCaricCaricoTasca        AT %MD500.3501 : DINT;         {DE:"vq3501 - posizione caricatore carico tasca"}
     Vq3502_PosizioneCaricScaricoTasca       AT %MD500.3502 : DINT;         {DE:"vq3502 - posizione caricatore scarico tasca"}

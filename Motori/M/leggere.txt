@@ -1,6 +1,14 @@
 CarT1_ver3  10/07/20244 = P0-07=16 posso leggere la temperatura del driver dal SDO Ethercat 
 			  P1-32=10 se premo emergenza il motore viene "lasciato" in modo da evitare botte di corrente sugli IGBT
 CroT1_ver3  10/07/20244 = P0-07=16 posso leggere la temperatura del driver dal SDO Ethercat 
+
 			  P1-32=10 se premo emergenza il motore viene "lasciato" in modo da evitare botte di corrente sugli IGBT
 NeedleT1_v3 10/07/20244 = P0-07=16 posso leggere la temperatura del driver dal SDO Ethercat 
 			  P1-32=10 se premo emergenza il motore viene "lasciato" in modo da evitare botte di corrente sugli IGBT
+
+X_03_08_24_FIN_862.C5P = diminuito rumore vibrazioni
+y_03_08_24_FIN_862.C5P = diminuito rumore vibrazioni
+
+x_30_10_24.C5P = nuovo tabellone, cinghie tirate diversamente per ridurre le vibrazioni
+y_30_10_24.C5P = nuovo tabellone, cinghie tirate diversamente per ridurre le vibrazioni
+
