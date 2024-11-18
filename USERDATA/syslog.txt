@@ -1,0 +1,726 @@
+CM 10:45:43 ChronoAlarmFlags: 0000  SysLogBMaxKb: 0  SysDbgBMaxKb: 0
+CM 10:45:43 FlagsCopy: 0001  IP: 192.168.0.92  LogStartAutoMin: 0
+CM 10:45:43 WatchDogFlags: 0007  UsbChipCode: 1
+CM 10:45:43 Start task JOG cucitrice n.2 TaskId=17
+SW 10:45:43 E#010000009 Com4: RS485
+CF 10:45:43 E#030800001 *** PLC EMERGENCY n. 1 - Chn 0 ***
+CF 10:45:43 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 10:45:43 NumStartupFun: 2 ID: 991 992
+CM 10:45:46 ecat net1 file: C:\cnc/param\ecat_Delta_x3_Microchip_x2_Delta_x3_Microchip_x1.xml - 9 nodes
+CM 10:45:46 Ethercat: NumSlave: 9 SysTimer: GPT1 NetLoopOffs: 0 [ms] EcatDcs: 0
+CM 10:46:02 Tk5164 ECAT: OPERATIONAL
+TS 13/11/2024 10:46:12 TS 0   Tk7501
+SM 10:46:19 Tk9255 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 39860)
+SM 10:46:19 Tk9255 [GestCncSockProt] - COM21 sock 3 port 12001
+SM 10:46:19 Tk9358 COM21 LocPort 12001 Sock 12 - client 192.168.0.90 connected (port 39868)
+SM 10:46:19 Tk9360 [GestCncSockProt] - COM21 sock 12 port 12001
+CM 10:47:29 Tk26794 *** Emergency RESET ***
+CF 10:50:16 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 10:50:22 Tk70235 *** Emergency RESET ***
+CF 10:51:02 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 10:51:05 Tk80870 *** Emergency RESET ***
+CF 10:52:14 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 10:53:08 Tk111665 *** Emergency RESET ***
+CF 10:53:59 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 10:54:03 Tk125446 *** Emergency RESET ***
+CF 10:54:52 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 10:55:27 Tk146434 *** Emergency RESET ***
+CM 10:55:31 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.1)
+CM 10:55:31 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.1)
+CM 10:55:31 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.1)
+CM 10:55:37 EXIT  AutoId 2002
+CM 10:55:42 EXIT  AutoId 1001
+CM 10:55:42 BREAK  AutoId 3003
+CF 10:59:19 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 11:04:06 Tk276078 *** Emergency RESET ***
+SM 11:07:57 Tk333931 COM27 LocPort 12006 Sock 10 - client 192.168.0.102 connected (port 64978)
+SM 11:07:57 Tk333934 [GestCncSockProt] - COM27 sock 10 port 12006
+SM 11:07:58 Tk334031 COM23 LocPort 12003 Sock 5 - client 192.168.0.102 connected (port 64981)
+SM 11:07:58 Tk334033 [GestCncSockProt] - COM23 sock 5 port 12003
+SM 11:07:59 Tk334382 COM29 LocPort 12006 Sock 3 - client 192.168.0.102 connected (port 64984)
+SM 11:07:59 Tk334385 [GestCncSockProt] - COM29 sock 3 port 12006
+CM 11:08:22 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.2)
+CM 11:08:23 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.2)
+CM 11:08:23 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.2)
+CM 11:08:28 EXIT  AutoId 2002
+CF 11:08:39 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CE 11:08:39 E#340045900 (AutoId 3003 ProgId 1) Line 94, File c:/cnc/prog/CicloAutomatico.obj
+CE 11:08:39 E#140045900 (AutoId 1001 ProgId 4) Line 129, File C:\cnc/prog\C1_Azzeramento.obj
+CE 11:08:39 E#150002132 ZeroAxTask (42): zero procedure interrupted (2)
+CM 11:08:42 Tk345248 *** Emergency RESET ***
+CM 11:08:44 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.3)
+CM 11:08:44 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.3)
+CM 11:08:44 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.3)
+CM 11:08:50 EXIT  AutoId 2002
+CE 11:08:57 E#340045900 (AutoId 3003 ProgId 1) Line 94, File c:/cnc/prog/CicloAutomatico.obj
+CE 11:08:57 E#150002132 ZeroAxTask (36): zero procedure interrupted (2)
+CE 11:08:57 E#140045900 (AutoId 1001 ProgId 4) Line 129, File C:\cnc/prog\C1_Azzeramento.obj
+CF 11:08:58 E#062050101 ETHERCAT FAULT Node: 1 ErrReg: 0 ErrCode: 0x3130
+CF 11:08:58 E#062050102 ETHERCAT FAULT Node: 2 ErrReg: 0 ErrCode: 0x3130
+CF 11:08:58 E#062050103 ETHERCAT FAULT Node: 3 ErrReg: 0 ErrCode: 0x3130
+CF 11:08:58 E#062050106 ETHERCAT FAULT Node: 6 ErrReg: 0 ErrCode: 0x3130
+CF 11:08:58 E#062050107 ETHERCAT FAULT Node: 7 ErrReg: 0 ErrCode: 0x3130
+CF 11:08:58 E#062050108 ETHERCAT FAULT Node: 8 ErrReg: 0 ErrCode: 0x3130
+BT 13/11/2024 11:09:04 DM32_0001 - Ver. 1.09.001 - Sep 13 2021  09:29:05 - B3
+SM 11:09:05 S368030    SN2117942  10  0  0
+CM 11:09:05 Boot Flash: 16 Mb Code Flash: 16 Mb Bank0 Sdram: 64 Mb
+BT 13/11/2024 11:09:13 DM32_0004 - Ver. 2.10.005 - Aug 10 2024  09:41:19 - C2
+CM 11:09:13 boot file: m32_0004_V2_10_x05_01_c2.bin
+SM 11:09:13 M32 - C2++STD >>FCT<< Spc: 34
+PF 11:09:14 Tk5 Last power fail time: 29/10/2024 08:42:17 - PfTick: 434201
+CM 11:09:14 Start task cucitrice n.1 TaskId=14
+CM 11:09:14 Start task JOG cucitrice n.1 TaskId=15
+CM 11:09:14 Start task cucitrice n.2 TaskId=16
+CM 11:09:14 NumChn: 3  NumGrpIntp: 2  EmergMode: 0
+CM 11:09:14 CpuCode: 65 UsPerTick: 4000 ParUsPerTick: 4000 (GPT1)
+CM 11:09:14 Cpld/Fpga Ver: 0x11 Type: 77 PlcCode: 4 PlcMs: 4
+CM 11:09:14 ChronoAlarmFlags: 0000  SysLogBMaxKb: 0  SysDbgBMaxKb: 0
+CM 11:09:14 FlagsCopy: 0001  IP: 192.168.0.92  LogStartAutoMin: 0
+CM 11:09:14 WatchDogFlags: 0007  UsbChipCode: 1
+CM 11:09:14 Start task JOG cucitrice n.2 TaskId=17
+SW 11:09:14 E#010000009 Com4: RS485
+CF 11:09:14 E#030800001 *** PLC EMERGENCY n. 1 - Chn 0 ***
+CF 11:09:14 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CF 11:09:14 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 11:09:14 NumStartupFun: 2 ID: 991 992
+CM 11:09:17 ecat net1 file: C:\cnc/param\ecat_Delta_x3_Microchip_x2_Delta_x3_Microchip_x1.xml - 9 nodes
+CM 11:09:17 Ethercat: NumSlave: 9 SysTimer: GPT1 NetLoopOffs: 0 [ms] EcatDcs: 0
+CM 11:09:33 Tk5162 ECAT: OPERATIONAL
+TS 13/11/2024 11:09:43 TS 0   Tk7501
+SM 11:09:49 Tk9132 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 45632)
+SM 11:09:49 Tk9132 [GestCncSockProt] - COM21 sock 3 port 12001
+CM 11:09:58 Tk11330 *** Emergency RESET ***
+CM 11:10:01 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.1)
+CM 11:10:01 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.1)
+CM 11:10:01 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.1)
+CM 11:10:07 EXIT  AutoId 2002
+CF 11:10:36 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CE 11:10:36 E#340045900 (AutoId 3003 ProgId 1) Line 94, File c:/cnc/prog/CicloAutomatico.obj
+CE 11:10:36 E#150002132 ZeroAxTask (42): zero procedure interrupted (2)
+CE 11:10:36 E#140045900 (AutoId 1001 ProgId 4) Line 129, File C:\cnc/prog\C1_Azzeramento.obj
+CM 11:10:43 Tk22527 *** Emergency RESET ***
+CF 11:11:09 E#062050101 ETHERCAT FAULT Node: 1 ErrReg: 0 ErrCode: 0x3130
+CF 11:11:09 E#062050102 ETHERCAT FAULT Node: 2 ErrReg: 0 ErrCode: 0x3130
+CF 11:11:09 E#062050103 ETHERCAT FAULT Node: 3 ErrReg: 0 ErrCode: 0x3130
+CF 11:11:09 E#062050106 ETHERCAT FAULT Node: 6 ErrReg: 0 ErrCode: 0x3130
+CF 11:11:09 E#062050107 ETHERCAT FAULT Node: 7 ErrReg: 0 ErrCode: 0x3130
+CF 11:11:09 E#062050108 ETHERCAT FAULT Node: 8 ErrReg: 0 ErrCode: 0x3130
+BT 13/11/2024 11:11:16 DM32_0001 - Ver. 1.09.001 - Sep 13 2021  09:29:05 - B3
+SM 11:11:17 S368030    SN2117942  10  0  0
+CM 11:11:17 Boot Flash: 16 Mb Code Flash: 16 Mb Bank0 Sdram: 64 Mb
+BT 13/11/2024 11:11:24 DM32_0004 - Ver. 2.10.005 - Aug 10 2024  09:41:19 - C2
+CM 11:11:24 boot file: m32_0004_V2_10_x05_01_c2.bin
+SM 11:11:24 M32 - C2++STD >>FCT<< Spc: 34
+PF 11:11:25 Tk5 Last power fail time: 29/10/2024 08:42:17 - PfTick: 434201
+CM 11:11:25 Start task cucitrice n.1 TaskId=14
+CM 11:11:25 Start task JOG cucitrice n.1 TaskId=15
+CM 11:11:25 Start task cucitrice n.2 TaskId=16
+CM 11:11:25 NumChn: 3  NumGrpIntp: 2  EmergMode: 0
+CM 11:11:25 CpuCode: 65 UsPerTick: 4000 ParUsPerTick: 4000 (GPT1)
+CM 11:11:25 Cpld/Fpga Ver: 0x11 Type: 77 PlcCode: 4 PlcMs: 4
+CM 11:11:25 ChronoAlarmFlags: 0000  SysLogBMaxKb: 0  SysDbgBMaxKb: 0
+CM 11:11:25 FlagsCopy: 0001  IP: 192.168.0.92  LogStartAutoMin: 0
+CM 11:11:25 WatchDogFlags: 0007  UsbChipCode: 1
+CM 11:11:25 Start task JOG cucitrice n.2 TaskId=17
+SW 11:11:25 E#010000009 Com4: RS485
+CF 11:11:25 E#030800001 *** PLC EMERGENCY n. 1 - Chn 0 ***
+CF 11:11:25 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CF 11:11:25 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 11:11:25 NumStartupFun: 2 ID: 991 992
+CM 11:11:28 ecat net1 file: C:\cnc/param\ecat_Delta_x3_Microchip_x2_Delta_x3_Microchip_x1.xml - 9 nodes
+CM 11:11:28 Ethercat: NumSlave: 9 SysTimer: GPT1 NetLoopOffs: 0 [ms] EcatDcs: 0
+CM 11:11:44 Tk5163 ECAT: OPERATIONAL
+TS 13/11/2024 11:11:54 TS 0   Tk7501
+SM 11:12:01 Tk9360 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 60426)
+SM 11:12:01 Tk9362 [GestCncSockProt] - COM21 sock 3 port 12001
+CM 11:12:06 Tk10674 *** Emergency RESET ***
+CM 11:12:08 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.1)
+CM 11:12:08 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.1)
+CM 11:12:08 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.1)
+CM 11:12:14 EXIT  AutoId 2002
+CF 11:12:38 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CE 11:12:38 E#340045900 (AutoId 3003 ProgId 1) Line 94, File c:/cnc/prog/CicloAutomatico.obj
+CE 11:12:38 E#150002132 ZeroAxTask (42): zero procedure interrupted (2)
+CE 11:12:38 E#140045900 (AutoId 1001 ProgId 4) Line 129, File C:\cnc/prog\C1_Azzeramento.obj
+CM 11:13:27 Tk30947 *** Emergency RESET ***
+CM 11:13:30 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.2)
+CM 11:13:30 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.2)
+CM 11:13:30 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.2)
+CM 11:13:36 EXIT  AutoId 2002
+CM 11:13:59 EXIT  AutoId 1001
+CM 11:13:59 BREAK  AutoId 3003
+CF 11:14:49 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 11:14:54 Tk52567 *** Emergency RESET ***
+CF 11:15:50 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 11:16:30 Tk76527 *** Emergency RESET ***
+CM 11:16:33 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.3)
+CM 11:16:33 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.3)
+CM 11:16:33 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.3)
+CM 11:16:39 EXIT  AutoId 2002
+CM 11:16:41 EXIT  AutoId 1001
+CM 11:16:41 BREAK  AutoId 3003
+CM 11:35:43 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.4)
+CM 11:35:47 EXIT  AutoId 1001
+CM 11:36:43 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.5)
+CM 11:36:47 EXIT  AutoId 1001
+CM 11:37:05 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.6)
+CM 11:37:08 EXIT  AutoId 1001
+CM 11:38:11 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.7)
+CM 11:38:11 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.4)
+CM 11:38:13 EXIT  AutoId 2002
+CM 11:38:15 EXIT  AutoId 1001
+CM 11:42:29 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.8)
+CM 11:42:32 EXIT  AutoId 1001
+CM 11:42:39 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.9)
+CM 11:42:39 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.5)
+CM 11:42:41 EXIT  AutoId 2002
+CM 11:42:42 EXIT  AutoId 1001
+CM 11:47:54 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.10)
+CM 11:47:57 EXIT  AutoId 1001
+CM 11:49:10 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.11)
+CM 11:49:13 EXIT  AutoId 1001
+CM 11:51:42 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.12)
+CM 11:51:42 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.6)
+CM 11:51:44 EXIT  AutoId 2002
+CM 11:51:45 EXIT  AutoId 1001
+CM 11:52:58 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.13)
+CM 11:53:02 EXIT  AutoId 1001
+CM 11:53:36 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.14)
+CM 11:53:36 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.7)
+CM 11:53:38 EXIT  AutoId 2002
+CM 11:53:39 EXIT  AutoId 1001
+SM 11:56:29 Tk676281 COM27 LocPort 12006 Sock 9 - client 192.168.0.102 connected (port 60394)
+SM 11:56:29 Tk676284 [GestCncSockProt] - COM27 sock 9 port 12006
+SM 11:56:29 Tk676294 COM29 LocPort 12006 Sock 12 - client 192.168.0.102 connected (port 60395)
+SM 11:56:29 Tk676296 [GestCncSockProt] - COM29 sock 12 port 12006
+SM 11:56:30 Tk676743 COM23 LocPort 12003 Sock 5 - client 192.168.0.102 connected (port 60396)
+SM 11:56:30 Tk676745 [GestCncSockProt] - COM23 sock 5 port 12003
+CM 11:56:52 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.15)
+CM 11:56:55 EXIT  AutoId 1001
+CM 11:59:59 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.16)
+CM 11:59:59 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.8)
+CM 12:00:01 EXIT  AutoId 2002
+CM 12:00:02 EXIT  AutoId 1001
+SM 12:03:19 Tk778847 COM30 LocPort 12006 Sock 13 - client 192.168.0.102 connected (port 61113)
+SM 12:03:19 Tk778850 [GestCncSockProt] - COM30 sock 13 port 12006
+SM 12:04:34 Tk797567 COM23 LocPort 12003 Sock 14 - client 192.168.0.102 connected (port 61231)
+SM 12:04:34 Tk797567 [GestCncSockProt] - COM23 sock 14 port 12003
+CM 12:04:58 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.17)
+CM 12:05:02 EXIT  AutoId 1001
+CM 12:05:03 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.4)
+CF 12:06:22 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CE 12:06:22 E#340045900 (AutoId 3003 ProgId 2) Line 71, File C:\cnc/prog\TestManutenzione.obj
+CM 12:06:28 Tk826249 *** Emergency RESET ***
+CM 12:06:31 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.5)
+CM 12:06:31 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.18)
+CM 12:06:31 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.9)
+CM 12:06:36 EXIT  AutoId 1001
+CM 12:06:39 EXIT  AutoId 2002
+CM 12:06:39 BREAK  AutoId 3003
+CM 12:07:15 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.19)
+CM 12:07:19 EXIT  AutoId 1001
+CM 12:07:21 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.6)
+CM 12:07:21 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.20)
+CM 12:07:22 BREAK  AutoId 1001
+CM 12:07:30 BREAK  AutoId 3003
+CM 12:07:31 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.7)
+CM 12:07:31 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.21)
+CM 12:07:33 BREAK  AutoId 1001
+TS 13/11/2024 12:11:54 TS 1   Tk907501
+CM 12:22:46 BREAK  AutoId 3003
+CM 12:22:50 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.22)
+CM 12:22:50 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.10)
+CM 12:22:52 EXIT  AutoId 2002
+CM 12:22:54 EXIT  AutoId 1001
+CM 12:48:06 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.23)
+CM 12:48:09 EXIT  AutoId 1001
+CM 12:49:46 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.24)
+CM 12:49:49 EXIT  AutoId 1001
+CM 12:50:41 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.25)
+CM 12:50:44 EXIT  AutoId 1001
+CM 12:51:46 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.26)
+CM 12:51:49 EXIT  AutoId 1001
+CM 12:52:27 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.27)
+CM 12:52:30 EXIT  AutoId 1001
+CM 12:52:55 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.28)
+CM 12:52:58 EXIT  AutoId 1001
+CM 12:53:26 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.29)
+CM 12:53:26 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.11)
+CM 12:53:28 EXIT  AutoId 2002
+CM 12:53:30 EXIT  AutoId 1001
+CM 12:54:20 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.30)
+CM 12:54:24 EXIT  AutoId 1001
+CM 12:54:25 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.8)
+CM 12:54:25 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.31)
+CM 12:54:27 BREAK  AutoId 1001
+CM 13:01:46 BREAK  AutoId 3003
+CM 13:01:50 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.9)
+CM 13:01:50 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.32)
+CM 13:01:52 BREAK  AutoId 1001
+CM 13:02:03 BREAK  AutoId 3003
+CM 13:02:07 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.33)
+CM 13:02:07 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.12)
+CM 13:02:09 EXIT  AutoId 2002
+CM 13:02:10 EXIT  AutoId 1001
+CF 13:05:32 E#062050101 ETHERCAT FAULT Node: 1 ErrReg: 0 ErrCode: 0x3130
+CF 13:05:32 E#062050102 ETHERCAT FAULT Node: 2 ErrReg: 0 ErrCode: 0x3130
+CF 13:05:32 E#062050103 ETHERCAT FAULT Node: 3 ErrReg: 0 ErrCode: 0x3130
+CF 13:05:32 E#062050106 ETHERCAT FAULT Node: 6 ErrReg: 0 ErrCode: 0x3130
+CF 13:05:32 E#062050107 ETHERCAT FAULT Node: 7 ErrReg: 0 ErrCode: 0x3130
+CF 13:05:32 E#062050108 ETHERCAT FAULT Node: 8 ErrReg: 0 ErrCode: 0x3130
+BT 13/11/2024 13:12:56 DM32_0001 - Ver. 1.09.001 - Sep 13 2021  09:29:05 - B3
+SM 13:12:57 S368030    SN2117942  10  0  0
+CM 13:12:57 Boot Flash: 16 Mb Code Flash: 16 Mb Bank0 Sdram: 64 Mb
+BT 13/11/2024 13:13:05 DM32_0004 - Ver. 2.10.005 - Aug 10 2024  09:41:19 - C2
+CM 13:13:05 boot file: m32_0004_V2_10_x05_01_c2.bin
+SM 13:13:05 M32 - C2++STD >>FCT<< Spc: 34
+PF 13:13:06 Tk5 Last power fail time: 29/10/2024 08:42:17 - PfTick: 434201
+CM 13:13:06 Start task cucitrice n.1 TaskId=14
+CM 13:13:06 Start task JOG cucitrice n.1 TaskId=15
+CM 13:13:06 Start task cucitrice n.2 TaskId=16
+CM 13:13:06 NumChn: 3  NumGrpIntp: 2  EmergMode: 0
+CM 13:13:06 CpuCode: 65 UsPerTick: 4000 ParUsPerTick: 4000 (GPT1)
+CM 13:13:06 Cpld/Fpga Ver: 0x11 Type: 77 PlcCode: 4 PlcMs: 4
+CM 13:13:06 ChronoAlarmFlags: 0000  SysLogBMaxKb: 0  SysDbgBMaxKb: 0
+CM 13:13:06 FlagsCopy: 0001  IP: 192.168.0.92  LogStartAutoMin: 0
+CM 13:13:06 WatchDogFlags: 0007  UsbChipCode: 1
+CM 13:13:06 Start task JOG cucitrice n.2 TaskId=17
+SW 13:13:06 E#010000009 Com4: RS485
+CF 13:13:06 E#030800001 *** PLC EMERGENCY n. 1 - Chn 0 ***
+CF 13:13:06 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CF 13:13:06 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 13:13:06 NumStartupFun: 2 ID: 991 992
+CM 13:13:09 ecat net1 file: C:\cnc/param\ecat_Delta_x3_Microchip_x2_Delta_x3_Microchip_x1.xml - 9 nodes
+CM 13:13:09 Ethercat: NumSlave: 9 SysTimer: GPT1 NetLoopOffs: 0 [ms] EcatDcs: 0
+CM 13:13:25 Tk5164 ECAT: OPERATIONAL
+TS 13/11/2024 13:13:35 TS 0   Tk7501
+SM 13:13:42 Tk9412 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 33812)
+SM 13:13:42 Tk9414 [GestCncSockProt] - COM21 sock 3 port 12001
+CM 13:14:10 Tk16315 *** Emergency RESET ***
+CM 13:14:12 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.1)
+CM 13:14:13 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.1)
+CM 13:14:13 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.1)
+CM 13:14:17 EXIT  AutoId 1001
+CM 13:14:18 EXIT  AutoId 2002
+CM 13:14:18 BREAK  AutoId 3003
+CF 13:15:12 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+BT 13/11/2024 15:59:07 DM32_0001 - Ver. 1.09.001 - Sep 13 2021  09:29:05 - B3
+SM 15:59:08 S368030    SN2117942  10  0  0
+CM 15:59:08 Boot Flash: 16 Mb Code Flash: 16 Mb Bank0 Sdram: 64 Mb
+BT 13/11/2024 15:59:15 DM32_0004 - Ver. 2.10.005 - Aug 10 2024  09:41:19 - C2
+CM 15:59:15 boot file: m32_0004_V2_10_x05_01_c2.bin
+SM 15:59:15 M32 - C2++STD >>FCT<< Spc: 34
+PF 15:59:16 Tk5 Last power fail time: 29/10/2024 08:42:17 - PfTick: 434201
+CM 15:59:16 Start task cucitrice n.1 TaskId=14
+CM 15:59:16 Start task JOG cucitrice n.1 TaskId=15
+CM 15:59:16 Start task cucitrice n.2 TaskId=16
+CM 15:59:16 NumChn: 3  NumGrpIntp: 2  EmergMode: 0
+CM 15:59:16 CpuCode: 65 UsPerTick: 4000 ParUsPerTick: 4000 (GPT1)
+CM 15:59:16 Cpld/Fpga Ver: 0x11 Type: 77 PlcCode: 4 PlcMs: 4
+CM 15:59:16 ChronoAlarmFlags: 0000  SysLogBMaxKb: 0  SysDbgBMaxKb: 0
+CM 15:59:16 FlagsCopy: 0001  IP: 192.168.0.92  LogStartAutoMin: 0
+CM 15:59:16 WatchDogFlags: 0007  UsbChipCode: 1
+CM 15:59:16 Start task JOG cucitrice n.2 TaskId=17
+SW 15:59:16 E#010000009 Com4: RS485
+CF 15:59:16 E#030800001 *** PLC EMERGENCY n. 1 - Chn 0 ***
+CF 15:59:16 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 15:59:16 NumStartupFun: 2 ID: 991 992
+CM 15:59:19 ecat net1 file: C:\cnc/param\ecat_Delta_x3_Microchip_x2_Delta_x3_Microchip_x1.xml - 9 nodes
+CM 15:59:19 Ethercat: NumSlave: 9 SysTimer: GPT1 NetLoopOffs: 0 [ms] EcatDcs: 0
+CM 15:59:35 Tk5163 ECAT: OPERATIONAL
+TS 13/11/2024 15:59:45 TS 0   Tk7501
+SM 15:59:52 Tk9304 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 60384)
+SM 15:59:52 Tk9304 [GestCncSockProt] - COM21 sock 3 port 12001
+SM 15:59:52 Tk9360 COM21 LocPort 12001 Sock 12 - client 192.168.0.90 connected (port 60388)
+SM 15:59:52 Tk9362 [GestCncSockProt] - COM21 sock 12 port 12001
+CM 16:00:14 Tk14876 *** Emergency RESET ***
+CM 16:00:16 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.1)
+CM 16:00:16 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.1)
+CM 16:00:16 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.1)
+CM 16:00:21 EXIT  AutoId 1001
+CM 16:00:22 EXIT  AutoId 2002
+CM 16:00:22 BREAK  AutoId 3003
+CM 16:01:00 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.2)
+CM 16:01:03 EXIT  AutoId 1001
+CM 16:01:05 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.2)
+CM 16:01:05 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.3)
+CM 16:01:07 BREAK  AutoId 1001
+CM 16:01:59 BREAK  AutoId 3003
+CM 16:02:00 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.3)
+CM 16:02:00 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.4)
+CM 16:02:02 BREAK  AutoId 1001
+CM 16:02:34 BREAK  AutoId 3003
+CM 16:02:47 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.5)
+CM 16:02:47 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.2)
+CM 16:02:49 EXIT  AutoId 2002
+CM 16:02:51 EXIT  AutoId 1001
+SM 16:09:36 Tk155261 COM27 LocPort 12006 Sock 9 - client 192.168.0.102 connected (port 60899)
+SM 16:09:36 Tk155264 [GestCncSockProt] - COM27 sock 9 port 12006
+SM 16:09:41 Tk156545 COM23 LocPort 12003 Sock 5 - client 192.168.0.102 connected (port 60907)
+SM 16:09:41 Tk156545 [GestCncSockProt] - COM23 sock 5 port 12003
+TS 13/11/2024 16:59:45 TS 1   Tk907501
+CF 17:31:11 E#062050102 ETHERCAT FAULT Node: 2 ErrReg: 0 ErrCode: 0x3230
+CF 17:31:16 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 17:31:19 Tk1381198 *** Emergency RESET ***
+CF 17:31:26 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 17:31:45 Tk1387542 *** Emergency RESET ***
+CF 17:31:50 E#062050102 ETHERCAT FAULT Node: 2 ErrReg: 0 ErrCode: 0x3130
+CF 17:31:50 E#062050103 ETHERCAT FAULT Node: 3 ErrReg: 0 ErrCode: 0x3130
+CF 17:31:50 E#062050106 ETHERCAT FAULT Node: 6 ErrReg: 0 ErrCode: 0x3130
+CF 17:31:50 E#062050107 ETHERCAT FAULT Node: 7 ErrReg: 0 ErrCode: 0x3130
+CF 17:31:50 E#062050108 ETHERCAT FAULT Node: 8 ErrReg: 0 ErrCode: 0x3130
+BT 13/11/2024 17:31:57 DM32_0001 - Ver. 1.09.001 - Sep 13 2021  09:29:05 - B3
+SM 17:31:58 S368030    SN2117942  10  0  0
+CM 17:31:58 Boot Flash: 16 Mb Code Flash: 16 Mb Bank0 Sdram: 64 Mb
+BT 13/11/2024 17:32:06 DM32_0004 - Ver. 2.10.005 - Aug 10 2024  09:41:19 - C2
+CM 17:32:06 boot file: m32_0004_V2_10_x05_01_c2.bin
+SM 17:32:06 M32 - C2++STD >>FCT<< Spc: 34
+PF 17:32:07 Tk5 Last power fail time: 29/10/2024 08:42:17 - PfTick: 434201
+CM 17:32:07 Start task cucitrice n.1 TaskId=14
+CM 17:32:07 Start task JOG cucitrice n.1 TaskId=15
+CM 17:32:07 Start task cucitrice n.2 TaskId=16
+CM 17:32:07 NumChn: 3  NumGrpIntp: 2  EmergMode: 0
+CM 17:32:07 CpuCode: 65 UsPerTick: 4000 ParUsPerTick: 4000 (GPT1)
+CM 17:32:07 Cpld/Fpga Ver: 0x11 Type: 77 PlcCode: 4 PlcMs: 4
+CM 17:32:07 ChronoAlarmFlags: 0000  SysLogBMaxKb: 0  SysDbgBMaxKb: 0
+CM 17:32:07 FlagsCopy: 0001  IP: 192.168.0.92  LogStartAutoMin: 0
+CM 17:32:07 WatchDogFlags: 0007  UsbChipCode: 1
+CM 17:32:07 Start task JOG cucitrice n.2 TaskId=17
+SW 17:32:07 E#010000009 Com4: RS485
+CF 17:32:07 E#030800001 *** PLC EMERGENCY n. 1 - Chn 0 ***
+CF 17:32:07 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CF 17:32:07 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 17:32:07 NumStartupFun: 2 ID: 991 992
+CM 17:32:10 ecat net1 file: C:\cnc/param\ecat_Delta_x3_Microchip_x2_Delta_x3_Microchip_x1.xml - 9 nodes
+CM 17:32:10 Ethercat: NumSlave: 9 SysTimer: GPT1 NetLoopOffs: 0 [ms] EcatDcs: 0
+CM 17:32:26 Tk5164 ECAT: OPERATIONAL
+TS 13/11/2024 17:32:36 TS 0   Tk7501
+SM 17:32:42 Tk9129 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 59440)
+SM 17:32:42 Tk9131 [GestCncSockProt] - COM21 sock 3 port 12001
+CM 17:32:50 Tk11059 *** Emergency RESET ***
+CM 17:33:10 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.1)
+CM 17:33:10 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.1)
+CM 17:33:10 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.1)
+CM 17:33:15 EXIT  AutoId 1001
+CM 17:33:16 EXIT  AutoId 2002
+CM 17:33:16 BREAK  AutoId 3003
+CF 17:35:44 E#062050102 ETHERCAT FAULT Node: 2 ErrReg: 0 ErrCode: 0x3230
+CF 17:35:51 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 17:36:07 Tk60428 *** Emergency RESET ***
+CM 17:36:09 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.2)
+CM 17:36:09 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.2)
+CM 17:36:09 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.2)
+CM 17:36:14 EXIT  AutoId 1001
+CM 17:36:14 EXIT  AutoId 2002
+CM 17:36:14 BREAK  AutoId 3003
+CF 17:59:02 E#062050101 ETHERCAT FAULT Node: 1 ErrReg: 0 ErrCode: 0x3130
+CF 17:59:02 E#062050102 ETHERCAT FAULT Node: 2 ErrReg: 0 ErrCode: 0x3130
+CF 17:59:02 E#062050103 ETHERCAT FAULT Node: 3 ErrReg: 0 ErrCode: 0x3130
+CF 17:59:02 E#062050106 ETHERCAT FAULT Node: 6 ErrReg: 0 ErrCode: 0x3130
+CF 17:59:02 E#062050107 ETHERCAT FAULT Node: 7 ErrReg: 0 ErrCode: 0x3130
+CF 17:59:02 E#062050108 ETHERCAT FAULT Node: 8 ErrReg: 0 ErrCode: 0x3130
+BT 14/11/2024 08:08:43 DM32_0001 - Ver. 1.09.001 - Sep 13 2021  09:29:05 - B3
+SM 08:08:44 S368030    SN2117942  10  0  0
+CM 08:08:44 Boot Flash: 16 Mb Code Flash: 16 Mb Bank0 Sdram: 64 Mb
+BT 14/11/2024 08:08:51 DM32_0004 - Ver. 2.10.005 - Aug 10 2024  09:41:19 - C2
+CM 08:08:51 boot file: m32_0004_V2_10_x05_01_c2.bin
+SM 08:08:51 M32 - C2++STD >>FCT<< Spc: 34
+PF 08:08:52 Tk5 Last power fail time: 29/10/2024 08:42:17 - PfTick: 434201
+CM 08:08:52 Start task cucitrice n.1 TaskId=14
+CM 08:08:52 Start task JOG cucitrice n.1 TaskId=15
+CM 08:08:52 Start task cucitrice n.2 TaskId=16
+CM 08:08:52 NumChn: 3  NumGrpIntp: 2  EmergMode: 0
+CM 08:08:52 CpuCode: 65 UsPerTick: 4000 ParUsPerTick: 4000 (GPT1)
+CM 08:08:52 Cpld/Fpga Ver: 0x11 Type: 77 PlcCode: 4 PlcMs: 4
+CM 08:08:52 ChronoAlarmFlags: 0000  SysLogBMaxKb: 0  SysDbgBMaxKb: 0
+CM 08:08:52 FlagsCopy: 0001  IP: 192.168.0.92  LogStartAutoMin: 0
+RS 14/11/2024  08:08:52 DM32_0004 - Ver. 2.10.005 - Aug 10 2024  09:41:19 - C2
+CM 08:08:52 WatchDogFlags: 0007  UsbChipCode: 1
+CM 08:08:52 Start task JOG cucitrice n.2 TaskId=17
+SW 08:08:52 E#010000009 Com4: RS485
+CF 08:08:52 E#030800001 *** PLC EMERGENCY n. 1 - Chn 0 ***
+CF 08:08:52 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CF 08:08:52 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 08:08:52 NumStartupFun: 2 ID: 991 992
+CM 08:08:55 ecat net1 file: C:\cnc/param\ecat_Delta_x3_Microchip_x2_Delta_x3_Microchip_x1.xml - 9 nodes
+CM 08:08:55 Ethercat: NumSlave: 9 SysTimer: GPT1 NetLoopOffs: 0 [ms] EcatDcs: 0
+CM 08:09:11 Tk5165 ECAT: OPERATIONAL
+TS 14/11/2024 08:09:21 TS 0   Tk7501
+SM 08:09:28 Tk9291 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 59992)
+SM 08:09:28 Tk9291 [GestCncSockProt] - COM21 sock 3 port 12001
+CM 08:09:36 Tk11388 *** Emergency RESET ***
+CM 08:09:38 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.1)
+CM 08:09:38 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.1)
+CM 08:09:38 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.1)
+CM 08:09:43 EXIT  AutoId 1001
+CM 08:09:46 EXIT  AutoId 2002
+CM 08:09:46 BREAK  AutoId 3003
+CM 08:19:53 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.2)
+CM 08:19:55 EXIT  AutoId 2002
+CM 08:20:00 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.2)
+CM 08:20:00 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.2)
+CM 08:20:02 BREAK  AutoId 1001
+CM 08:20:07 BREAK  AutoId 3003
+CM 08:20:17 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.3)
+CM 08:20:17 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.3)
+CM 08:20:26 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.3)
+CM 08:20:30 EXIT  AutoId 1001
+CF 08:20:40 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CE 08:20:40 E#340045900 (AutoId 3003 ProgId 2) Line 136, File C:\cnc/prog\TestManutenzione.obj
+CE 08:20:40 E#240045900 (AutoId 2002 ProgId 3) Line 23, File C:\cnc/prog\C2_TestPinzaAgo.obj
+CM 08:20:44 Tk178479 *** Emergency RESET ***
+CM 08:20:46 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.4)
+CM 08:20:46 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.4)
+CM 08:20:46 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.4)
+CM 08:20:51 EXIT  AutoId 1001
+CM 08:20:52 EXIT  AutoId 2002
+CM 08:20:52 BREAK  AutoId 3003
+CM 08:25:21 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.5)
+CM 08:25:22 EXIT  AutoId 2002
+CM 08:25:24 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.5)
+CM 08:25:24 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.6)
+CM 08:25:59 BREAK  AutoId 2002
+CM 08:26:03 BREAK  AutoId 3003
+CM 08:26:31 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.7)
+CM 08:26:33 EXIT  AutoId 2002
+CM 08:26:35 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.8)
+CM 08:26:36 EXIT  AutoId 2002
+CM 08:26:39 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.9)
+CM 08:26:40 EXIT  AutoId 2002
+CM 08:26:43 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.6)
+CM 08:26:43 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.10)
+CM 08:26:45 BREAK  AutoId 2002
+CM 08:27:25 BREAK  AutoId 3003
+CM 08:31:10 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.5)
+CM 08:31:10 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.11)
+CM 08:31:11 EXIT  AutoId 2002
+CM 08:31:13 EXIT  AutoId 1001
+CF 08:37:27 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 08:37:30 Tk429811 *** Emergency RESET ***
+CM 08:37:31 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.7)
+CM 08:37:32 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.6)
+CM 08:37:32 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.12)
+CM 08:37:36 EXIT  AutoId 1001
+CM 08:37:37 EXIT  AutoId 2002
+CM 08:37:37 BREAK  AutoId 3003
+CM 08:37:46 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.13)
+CM 08:37:48 EXIT  AutoId 2002
+CM 08:37:50 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.8)
+CM 08:37:50 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.14)
+CM 08:37:52 BREAK  AutoId 2002
+CM 08:38:56 BREAK  AutoId 3003
+CM 08:39:30 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.7)
+CM 08:39:30 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.15)
+CM 08:39:32 EXIT  AutoId 2002
+CM 08:39:33 EXIT  AutoId 1001
+CM 08:39:49 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.16)
+CM 08:39:51 EXIT  AutoId 2002
+CM 08:39:54 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.9)
+CM 08:39:54 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.8)
+CM 08:39:56 BREAK  AutoId 1001
+CM 08:40:18 BREAK  AutoId 3003
+CM 08:40:51 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.9)
+CM 08:40:51 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.17)
+CM 08:40:53 EXIT  AutoId 2002
+CM 08:40:55 EXIT  AutoId 1001
+CM 08:57:32 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.18)
+CM 08:57:34 EXIT  AutoId 2002
+CM 08:57:36 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.10)
+CM 08:57:36 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.19)
+CM 08:57:38 BREAK  AutoId 2002
+CM 09:09:13 BREAK  AutoId 3003
+CM 09:09:15 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.10)
+CM 09:09:15 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.20)
+CM 09:09:17 EXIT  AutoId 2002
+CM 09:09:18 EXIT  AutoId 1001
+TS 14/11/2024 09:09:21 TS 1   Tk907501
+CF 09:18:36 E#062050101 ETHERCAT FAULT Node: 1 ErrReg: 0 ErrCode: 0x3130
+CF 09:18:36 E#062050102 ETHERCAT FAULT Node: 2 ErrReg: 0 ErrCode: 0x3130
+CF 09:18:36 E#062050103 ETHERCAT FAULT Node: 3 ErrReg: 0 ErrCode: 0x3130
+CF 09:18:36 E#062050106 ETHERCAT FAULT Node: 6 ErrReg: 0 ErrCode: 0x3130
+CF 09:18:36 E#062050107 ETHERCAT FAULT Node: 7 ErrReg: 0 ErrCode: 0x3130
+CF 09:18:36 E#062050108 ETHERCAT FAULT Node: 8 ErrReg: 0 ErrCode: 0x3130
+BT 14/11/2024 09:22:31 DM32_0001 - Ver. 1.09.001 - Sep 13 2021  09:29:05 - B3
+SM 09:22:32 S368030    SN2117942  10  0  0
+CM 09:22:32 Boot Flash: 16 Mb Code Flash: 16 Mb Bank0 Sdram: 64 Mb
+BT 14/11/2024 09:22:40 DM32_0004 - Ver. 2.10.005 - Aug 10 2024  09:41:19 - C2
+CM 09:22:40 boot file: m32_0004_V2_10_x05_01_c2.bin
+SM 09:22:40 M32 - C2++STD >>FCT<< Spc: 34
+PF 09:22:41 Tk5 Last power fail time: 29/10/2024 08:42:17 - PfTick: 434201
+CM 09:22:41 Start task cucitrice n.1 TaskId=14
+CM 09:22:41 Start task JOG cucitrice n.1 TaskId=15
+CM 09:22:41 Start task cucitrice n.2 TaskId=16
+CM 09:22:41 NumChn: 3  NumGrpIntp: 2  EmergMode: 0
+CM 09:22:41 CpuCode: 65 UsPerTick: 4000 ParUsPerTick: 4000 (GPT1)
+CM 09:22:41 Cpld/Fpga Ver: 0x11 Type: 77 PlcCode: 4 PlcMs: 4
+CM 09:22:41 ChronoAlarmFlags: 0000  SysLogBMaxKb: 0  SysDbgBMaxKb: 0
+CM 09:22:41 FlagsCopy: 0001  IP: 192.168.0.92  LogStartAutoMin: 0
+CM 09:22:41 WatchDogFlags: 0007  UsbChipCode: 1
+CM 09:22:41 Start task JOG cucitrice n.2 TaskId=17
+SW 09:22:41 E#010000009 Com4: RS485
+CF 09:22:41 E#030800001 *** PLC EMERGENCY n. 1 - Chn 0 ***
+CF 09:22:41 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CF 09:22:41 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 09:22:41 NumStartupFun: 2 ID: 991 992
+CM 09:22:44 ecat net1 file: C:\cnc/param\ecat_Delta_x3_Microchip_x2_Delta_x3_Microchip_x1.xml - 9 nodes
+CM 09:22:44 Ethercat: NumSlave: 9 SysTimer: GPT1 NetLoopOffs: 0 [ms] EcatDcs: 0
+CM 09:23:00 Tk5163 ECAT: OPERATIONAL
+TS 14/11/2024 09:23:10 TS 0   Tk7501
+SM 09:23:17 Tk9352 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 46330)
+SM 09:23:17 Tk9352 [GestCncSockProt] - COM21 sock 3 port 12001
+CM 09:23:33 Tk13419 *** Emergency RESET ***
+CM 09:23:37 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.1)
+CM 09:23:37 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.1)
+CM 09:23:37 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.1)
+CM 09:23:42 EXIT  AutoId 1001
+CM 09:23:43 EXIT  AutoId 2002
+CM 09:23:43 BREAK  AutoId 3003
+CF 10:00:29 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 10:04:37 Tk629463 *** Emergency RESET ***
+CM 10:04:40 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.2)
+CM 10:04:40 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.2)
+CM 10:04:40 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.2)
+CM 10:04:45 EXIT  AutoId 1001
+CM 10:04:45 EXIT  AutoId 2002
+CM 10:04:45 BREAK  AutoId 3003
+TS 14/11/2024 10:23:10 TS 1   Tk907501
+CF 10:25:37 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 11:14:54 Tk1683705 *** Emergency RESET ***
+CM 11:14:58 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.3)
+CM 11:14:59 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.3)
+CM 11:14:59 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.3)
+CM 11:15:04 EXIT  AutoId 1001
+CM 11:15:04 EXIT  AutoId 2002
+CM 11:15:04 BREAK  AutoId 3003
+TS 14/11/2024 11:23:10 TS 2   Tk1807501
+SM 11:33:45 Tk1966396 COM21 LocPort 12001 Sock 12 - client 192.168.0.90 connected (port 46332)
+SM 11:33:45 Tk1966398 [GestCncSockProt] - COM21 sock 12 port 12001
+TS 14/11/2024 12:23:10 TS 3   Tk2707501
+SM 12:25:50 Tk2747691 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 46334)
+SM 12:25:50 Tk2747692 [GestCncSockProt] - COM21 sock 3 port 12001
+SM 12:30:08 Tk2812194 COM27 LocPort 12006 Sock 9 - client 192.168.0.80 connected (port 65519)
+SM 12:30:08 Tk2812195 [GestCncSockProt] - COM27 sock 9 port 12006
+SM 12:30:22 Tk2815648 COM23 LocPort 12003 Sock 5 - client 192.168.0.80 connected (port 49168)
+SM 12:30:22 Tk2815650 [GestCncSockProt] - COM23 sock 5 port 12003
+SM 12:33:28 Tk2862155 COM21 LocPort 12001 Sock 13 - client 192.168.0.90 connected (port 46336)
+SM 12:33:28 Tk2862155 [GestCncSockProt] - COM21 sock 13 port 12001
+SM 12:39:47 Tk2956753 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 46338)
+SM 12:39:47 Tk2956753 [GestCncSockProt] - COM21 sock 3 port 12001
+SM 12:41:01 Tk2975307 COM21 LocPort 12001 Sock 13 - client 192.168.0.90 connected (port 46340)
+SM 12:41:01 Tk2975307 [GestCncSockProt] - COM21 sock 13 port 12001
+TS 14/11/2024 13:23:10 TS 4   Tk3607501
+CF 13:57:51 E#062050101 ETHERCAT FAULT Node: 1 ErrReg: 0 ErrCode: 0x3130
+CF 13:57:51 E#062050102 ETHERCAT FAULT Node: 2 ErrReg: 0 ErrCode: 0x3130
+CF 13:57:51 E#062050103 ETHERCAT FAULT Node: 3 ErrReg: 0 ErrCode: 0x3130
+CF 13:57:51 E#062050106 ETHERCAT FAULT Node: 6 ErrReg: 0 ErrCode: 0x3130
+CF 13:57:51 E#062050107 ETHERCAT FAULT Node: 7 ErrReg: 0 ErrCode: 0x3130
+CF 13:57:51 E#062050108 ETHERCAT FAULT Node: 8 ErrReg: 0 ErrCode: 0x3130
+BT 14/11/2024 15:18:24 DM32_0001 - Ver. 1.09.001 - Sep 13 2021  09:29:05 - B3
+SM 15:18:25 S368030    SN2117942  10  0  0
+CM 15:18:25 Boot Flash: 16 Mb Code Flash: 16 Mb Bank0 Sdram: 64 Mb
+BT 14/11/2024 15:18:33 DM32_0004 - Ver. 2.10.005 - Aug 10 2024  09:41:19 - C2
+CM 15:18:33 boot file: m32_0004_V2_10_x05_01_c2.bin
+SM 15:18:33 M32 - C2++STD >>FCT<< Spc: 34
+PF 15:18:34 Tk5 Last power fail time: 29/10/2024 08:42:17 - PfTick: 434201
+CM 15:18:34 Start task cucitrice n.1 TaskId=14
+CM 15:18:34 Start task JOG cucitrice n.1 TaskId=15
+CM 15:18:34 Start task cucitrice n.2 TaskId=16
+CM 15:18:34 NumChn: 3  NumGrpIntp: 2  EmergMode: 0
+CM 15:18:34 CpuCode: 65 UsPerTick: 4000 ParUsPerTick: 4000 (GPT1)
+CM 15:18:34 Cpld/Fpga Ver: 0x11 Type: 77 PlcCode: 4 PlcMs: 4
+CM 15:18:34 ChronoAlarmFlags: 0000  SysLogBMaxKb: 0  SysDbgBMaxKb: 0
+CM 15:18:34 FlagsCopy: 0001  IP: 192.168.0.92  LogStartAutoMin: 0
+CM 15:18:34 WatchDogFlags: 0007  UsbChipCode: 1
+CM 15:18:34 Start task JOG cucitrice n.2 TaskId=17
+SW 15:18:34 E#010000009 Com4: RS485
+CF 15:18:34 E#030800001 *** PLC EMERGENCY n. 1 - Chn 0 ***
+CF 15:18:34 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CF 15:18:34 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 15:18:34 NumStartupFun: 2 ID: 991 992
+SM 15:18:36 Tk891 COM23 LocPort 12003 Sock 5 - client 192.168.0.80 connected (port 62880)
+SM 15:18:36 Tk894 [GestCncSockProt] - COM23 sock 5 port 12003
+CM 15:18:37 ecat net1 file: C:\cnc/param\ecat_Delta_x3_Microchip_x2_Delta_x3_Microchip_x1.xml - 9 nodes
+CM 15:18:37 Ethercat: NumSlave: 9 SysTimer: GPT1 NetLoopOffs: 0 [ms] EcatDcs: 0
+SM 15:18:37 Tk1230 COM27 LocPort 12006 Sock 9 - client 192.168.0.80 connected (port 62852)
+SM 15:18:37 Tk1232 [GestCncSockProt] - COM27 sock 9 port 12006
+CM 15:18:53 Tk5169 ECAT: OPERATIONAL
+TS 14/11/2024 15:19:03 TS 0   Tk7501
+SM 15:19:11 Tk9616 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 58208)
+SM 15:19:11 Tk9616 [GestCncSockProt] - COM21 sock 3 port 12001
+CM 15:19:57 Tk21199 *** Emergency RESET ***
+CM 15:19:59 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.1)
+CM 15:19:59 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.1)
+CM 15:19:59 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.1)
+CM 15:20:03 EXIT  AutoId 2002
+CM 15:20:04 EXIT  AutoId 1001
+CM 15:20:04 BREAK  AutoId 3003
+SM 15:32:28 Tk208786 COM29 LocPort 12006 Sock 12 - client 192.168.0.80 connected (port 64426)
+SM 15:32:28 Tk208787 [GestCncSockProt] - COM29 sock 12 port 12006
+SM 15:32:44 Tk212984 COM30 LocPort 12006 Sock 13 - client 192.168.0.80 connected (port 64454)
+SM 15:32:44 Tk212988 [GestCncSockProt] - COM30 sock 13 port 12006
+SM 16:04:21 Tk687248 COM21 LocPort 12001 Sock 13 - client 192.168.0.90 connected (port 58210)
+SM 16:04:21 Tk687248 [GestCncSockProt] - COM21 sock 13 port 12001
+SM 16:13:03 Tk817536 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 58212)
+SM 16:13:03 Tk817536 [GestCncSockProt] - COM21 sock 3 port 12001
+SM 16:16:06 Tk863317 COM21 LocPort 12001 Sock 13 - client 192.168.0.90 connected (port 58214)
+SM 16:16:06 Tk863319 [GestCncSockProt] - COM21 sock 13 port 12001
+TS 14/11/2024 16:19:03 TS 1   Tk907501
+SM 16:22:56 Tk965785 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 58216)
+SM 16:22:56 Tk965787 [GestCncSockProt] - COM21 sock 3 port 12001
+CF 16:44:47 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CM 16:44:52 Tk1294867 *** Emergency RESET ***
+CM 16:44:56 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.2)
+CM 16:44:56 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.2)
+CM 16:44:56 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.2)
+CM 16:45:01 EXIT  AutoId 1001
+CM 16:45:02 EXIT  AutoId 2002
+CM 16:45:02 BREAK  AutoId 3003
+CM 16:45:20 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.3)
+CM 16:45:27 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.3)
+CM 16:45:28 EXIT  AutoId 1001
+CM 16:45:31 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.3)
+CM 16:45:32 EXIT  AutoId 3003
+CM 16:45:42 EXIT  AutoId 2002
+CM 16:49:29 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.4)
+CM 16:49:47 BREAK  AutoId 2002
+CM 16:49:47 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.5)
+CM 16:49:49 BREAK  AutoId 2002
+CM 17:05:19 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.4)
+CM 17:05:19 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.6)
+CM 17:05:21 EXIT  AutoId 2002
+CM 17:05:22 EXIT  AutoId 1001
+CF 17:09:55 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+TS 14/11/2024 17:19:03 TS 2   Tk1807501
+SM 17:30:06 Tk1973293 COM21 LocPort 12001 Sock 5 - client 192.168.0.90 connected (port 58218)
+SM 17:30:06 Tk1973293 [GestCncSockProt] - COM21 sock 5 port 12001
+SM 17:31:56 Tk2000860 COM21 LocPort 12001 Sock 3 - client 192.168.0.90 connected (port 58220)
+SM 17:31:56 Tk2000862 [GestCncSockProt] - COM21 sock 3 port 12001
+SM 17:37:59 Tk2091627 COM21 LocPort 12001 Sock 5 - client 192.168.0.90 connected (port 58222)
+SM 17:37:59 Tk2091629 [GestCncSockProt] - COM21 sock 5 port 12001
+SM 17:43:06 Tk2168436 COM29 LocPort 12006 Sock 12 - client 192.168.0.80 connected (port 58771)
+SM 17:43:06 Tk2168438 [GestCncSockProt] - COM29 sock 12 port 12006
+SM 17:43:11 Tk2169594 COM23 LocPort 12003 Sock 9 - client 192.168.0.80 connected (port 58782)
+SM 17:43:11 Tk2169594 [GestCncSockProt] - COM23 sock 9 port 12003
+CM 17:43:25 Tk2173117 *** Emergency RESET ***
+CM 17:43:26 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.4)
+CM 17:43:27 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.5)
+CM 17:43:27 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.7)
+CM 17:43:31 EXIT  AutoId 1001
+CM 17:43:32 EXIT  AutoId 2002
+CM 17:43:32 BREAK  AutoId 3003
+CM 17:43:48 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.5)
+CM 17:43:48 START Piegatore (AutoId 3109 - n.1)
+CF 17:45:27 E#030800002 *** PLC EMERGENCY n. 2 - Chn 0 ***
+CE 17:45:27 E#340045900 (AutoId 3003 ProgId 1) Line 1066, File c:/cnc/prog/CicloAutomatico.obj
+CM 17:45:27 BREAK  AutoId 3109
+CM 17:45:36 Tk2205862 *** Emergency RESET ***
+CM 17:45:41 START c:/cnc/prog/CicloAutomatico.obj (AutoId 3003 - n.6)
+CM 17:45:41 START c:/cnc/prog/C2_Main.obj (AutoId 2002 - n.8)
+CM 17:45:41 START c:/cnc/prog/C1_Main.obj (AutoId 1001 - n.6)
+CM 17:45:46 EXIT  AutoId 1001
+CM 17:45:47 EXIT  AutoId 2002
+CM 17:45:47 BREAK  AutoId 3003
+SM 17:50:34 Tk2280408 COM21 LocPort 12001 Sock 13 - client 192.168.0.90 connected (port 58224)
+SM 17:50:34 Tk2280409 [GestCncSockProt] - COM21 sock 13 port 12001
+SM 18:01:41 Tk2447234 COM21 LocPort 12001 Sock 5 - client 192.168.0.90 connected (port 58226)
+SM 18:01:41 Tk2447236 [GestCncSockProt] - COM21 sock 5 port 12001

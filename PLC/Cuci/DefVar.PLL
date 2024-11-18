@@ -2,7 +2,7 @@
  *
  * MDPlc source file: DefVar.PLL
  *
- * Date = "15/09/2024 10:25:01"
+ * Date = "13/11/2024 10:31:17"
  *)
 
 
@@ -115,6 +115,15 @@ VAR_GLOBAL
     Vb121_LanciaFuoriAuto                   AT %MB300.121  : BOOL;         {DE:"vb121  - 1 = la lancia viene fuori senza premere la pedana"}
     QuickStopOnEmerg                        AT %MB300.150  : BOOL;         {DE:"vb150  - 1=QuickStop su evento di emergenza - #M240809_1GF#"}
     QuickStopInProgress                     AT %MB300.151  : BOOL;         {DE:"vb151  - Quick stop in progress"}
+    Vb200DebugPartenzaNormale               AT %MB300.200  : BOOL;         {DE:"vb200"}
+    Vb201DebugPartenzaTest                  AT %MB300.201  : BOOL;         {DE:"vb201"}
+    Vb202DebugRipartenzaRewind              AT %MB300.202  : BOOL;         {DE:"vb202"}
+    Vb203DebugRipartenza                    AT %MB300.203  : BOOL;         {DE:"vb203"}
+    Vb204DebugStepPiu                       AT %MB300.204  : BOOL;         {DE:"vb204"}
+    Vb205DebugSteMeno                       AT %MB300.205  : BOOL;         {DE:"vb205"}
+    Vb206DebugStepPiuCont                   AT %MB300.206  : BOOL;         {DE:"vb206"}
+    Vb207DebugStepMenoCont                  AT %MB300.207  : BOOL;         {DE:"vb207"}
+    Vb208DebugReset                         AT %MB300.208  : BOOL;         {DE:"vb208"}
     Vb4000_Automatico                       AT %MB300.4000 : BOOL;         {DE:"vb4000 - /// messa a ON da HMI sono in automatico"}
     Vb4001_StepPiegatore                    AT %MB300.4001 : BOOL;         {DE:"vb4001 - /// messa a ON da HMI il piegatore è passo passo"}
     Vb4002_StepPiegatoreStop                AT %MB300.4002 : BOOL;         {DE:"vb4002 - /// punto di stop piegatore"}
@@ -402,7 +411,7 @@ VAR_GLOBAL
     Vn162_Read_anaout99                     AT %MW400.162  : INT;          {DE:"vn162"}
     Vn163_Read_anaout100                    AT %MW400.163  : INT;          {DE:"vn163"}
     Vn170_IdxAutoBobbinChanh                AT %MW400.170  : INT;          {DE:"vn170"}
-    Vn180_Device_Rinforzo                   AT %MW400.180  : INT;          {DE:"vn180  - 0= disabilitato, 1 = tipo JAM, 2 = tipo Turco con 3 schede IO Ethercat, 3 = tipo Turco con 3 schede IO Ethercat"}
+    Vn180_Device_Rinforzo                   AT %MW400.180  : INT;          {DE:"vn180  - 0= disabilitato, 1 = tipo JAM, 2 = tipo Turco con 3 schede IO Ethercat, 3 = tipo Turco con 2 schede IO Ethercat"}
     Vn181_Step_Rinforzo                     AT %MW400.181  : INT;          {DE:"vn181"}
     Vn196_Tasca_DX_C1                       AT %MW400.196  : INT;          {DE:"vn196"}
     Vn197_Tasca_SX_C1                       AT %MW400.197  : INT;          {DE:"vn197"}
@@ -461,6 +470,7 @@ VAR_GLOBAL
     Fun301_Car_vn826_idResult               AT %MW400.826  : INT;          {DE:"vn826"}
     VnOvdAx1                                AT %MW400.3001 : INT;          {DE:"vn3001 - Asse 1 - Override indipendente"}
     VnFaseZeroAx1                           AT %MW400.3011 : INT;          {DE:"vn3011 - Asse 1 - Fase azzeramento"}
+    VnFaseAX1_FASE                          AT %MW400.3012 : INT;          {DE:"vn3012"}
     VnStatoAx1                              AT %MW400.3013 : INT;          {DE:"vn3013 - Asse 1 - Status asse"}
     VnOvdAx2                                AT %MW400.3021 : INT;          {DE:"vn3021 - Asse 2 - Override indipendente"}
     VnFaseZeroAx2                           AT %MW400.3031 : INT;          {DE:"vn3031 - Asse 2 - Fase azzeramento"}
@@ -531,7 +541,7 @@ VAR_GLOBAL
     PosAx13                                 AT %MD500.63   : DINT;         {DE:"vq63   - Posizione asse 13"}
     PosAx14                                 AT %MD500.64   : DINT;         {DE:"vq64   - Posizione asse 14"}
     PosAx15                                 AT %MD500.65   : DINT;         {DE:"vq65   - Posizione asse 15"}
-    PosAx16                                 AT %MD500.66   : DINT;         {DE:"vq66   - Posizione asse 16"}
+    Copia_PosAx_C1_AsseCAR                  AT %MD500.66   : DINT;         {DE:"vq66   - Posizione asse 16"}
     Vq_100_WRITE_FC_ind_X                   AT %MD500.100  : DINT;         {DE:"vq100  - Vq scrittura fine corsa indietro asse X"}
     Vq_101_WRITE_FC_ava_X                   AT %MD500.101  : DINT;         {DE:"vq101  - Vq scrittura fine corsa avanti asse X"}
     Vq_102_WRITE_FC_ind_Y                   AT %MD500.102  : DINT;         {DE:"vq102  - Vq scrittura fine corsa indietro asse Y"}
@@ -636,6 +646,7 @@ VAR_GLOBAL
     Vq3163TemperaturaDriverCro              AT %MD500.3163 : DINT;         {DE:"vq3163 - coontiene la temperatura del driver crochet (si legge cone VB119)"}
     Vq3164TemperaturaDriverCar              AT %MD500.3164 : DINT;         {DE:"vq3164 - coontiene la temperatura del driver caricatore (si legge cone VB120)"}
     Vq3165_RitPressostato                   AT %MD500.3165 : DINT;         {DE:"vq3165"}
+    Vq3200                                  AT %MD500.3200 : DINT;         {DE:"vq3200"}
     Vq3500_PosizioneCaricRiposo             AT %MD500.3500 : DINT;         {DE:"vq3500 - posizione caricatore a riposo fuori ingombro"}
     Vq3501_PosizioneCaricCaricoTasca        AT %MD500.3501 : DINT;         {DE:"vq3501 - posizione caricatore carico tasca"}
     Vq3502_PosizioneCaricScaricoTasca       AT %MD500.3502 : DINT;         {DE:"vq3502 - posizione caricatore scarico tasca"}
@@ -662,9 +673,6 @@ VAR_GLOBAL
     Vq3561_ContPuntiRottFiloC1              AT %MD500.3561 : DINT;         {DE:"vq3561 - punti contati dalla molla rottura filo"}
     Vq3562_N_PuntiRottFiloC2                AT %MD500.3562 : DINT;         {DE:"vq3562 - punti impostati rottura filo"}
     Vq3563_ContPuntiRottFiloC2              AT %MD500.3563 : DINT;         {DE:"vq3563 - punti contati dalla molla rottura filo"}
-    Vq3564_Debug                            AT %MD500.3564 : DINT;         {DE:"vq3564"}
-    Vq3565_debug                            AT %MD500.3565 : DINT;         {DE:"vq3565"}
-    Vq3566_debug                            AT %MD500.3566 : DINT;         {DE:"vq3566"}
     Vq3591_CNT_CicliAutomaticoUser          AT %MD500.3591 : DINT;         {DE:"vq3591 - conteggio cicli automatico azzerabile da utente            valore 0.001"}
     Vq3592_CNT_CicliAutomaticoVita          AT %MD500.3592 : DINT;         {DE:"vq3592 - conteggio cicli automatico vita macchina                valore 0.001"}
     Vq3593_CNT_CicliAutomaticoVitaX100K     AT %MD500.3593 : DINT;         {DE:"vq3593 - conteggio cicli automatico vita macchina x 100000        a 100000 di vq3592 incrementa valore 0.001"}

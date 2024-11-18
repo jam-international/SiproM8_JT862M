@@ -95,6 +95,15 @@ As2000 Simbols Table
 #vb121;Vb121_LanciaFuoriAuto;1 = la lancia viene fuori senza premere la pedana
 #vb150;QuickStopOnEmerg;1=QuickStop su evento di emergenza - #M240809_1GF#
 #vb151;QuickStopInProgress;Quick stop in progress
+#vb200;Vb200DebugPartenzaNormale;
+#vb201;Vb201DebugPartenzaTest;
+#vb202;Vb202DebugRipartenzaRewind;
+#vb203;Vb203DebugRipartenza;
+#vb204;Vb204DebugStepPiu;
+#vb205;Vb205DebugSteMeno;
+#vb206;Vb206DebugStepPiuCont;
+#vb207;Vb207DebugStepMenoCont;
+#vb208;Vb208DebugReset;
 #vb4000;Vb4000_Automatico;/// messa a ON da HMI sono in automatico
 #vb4001;Vb4001_StepPiegatore;/// messa a ON da HMI il piegatore è passo passo
 #vb4002;Vb4002_StepPiegatoreStop;/// punto di stop piegatore
@@ -380,7 +389,7 @@ As2000 Simbols Table
 #vn162;Vn162_Read_anaout99;
 #vn163;Vn163_Read_anaout100;
 #vn170;Vn170_IdxAutoBobbinChanh;
-#vn180;Vn180_Device_Rinforzo;0= disabilitato, 1 = tipo JAM, 2 = tipo Turco con 3 schede IO Ethercat, 3 = tipo Turco con 3 schede IO Ethercat
+#vn180;Vn180_Device_Rinforzo;0= disabilitato, 1 = tipo JAM, 2 = tipo Turco con 3 schede IO Ethercat, 3 = tipo Turco con 2 schede IO Ethercat
 #vn181;Vn181_Step_Rinforzo;
 #vn196;Vn196_Tasca_DX_C1;
 #vn197;Vn197_Tasca_SX_C1;
@@ -439,6 +448,7 @@ As2000 Simbols Table
 #vn826;Fun301_Car_vn826_idResult;
 #vn3001;VnOvdAx1;Asse 1 - Override indipendente
 #vn3011;VnFaseZeroAx1;Asse 1 - Fase azzeramento
+#vn3012;VnFaseAX1_FASE;
 #vn3013;VnStatoAx1;Asse 1 - Status asse
 #vn3021;VnOvdAx2;Asse 2 - Override indipendente
 #vn3031;VnFaseZeroAx2;Asse 2 - Fase azzeramento
@@ -507,7 +517,7 @@ As2000 Simbols Table
 #vq63;PosAx13;Posizione asse 13
 #vq64;PosAx14;Posizione asse 14
 #vq65;PosAx15;Posizione asse 15
-#vq66;PosAx16;Posizione asse 16
+#vq66;Copia_PosAx_C1_AsseCAR;Posizione asse 16
 #vq100;Vq_100_WRITE_FC_ind_X;Vq scrittura fine corsa indietro asse X
 #vq101;Vq_101_WRITE_FC_ava_X;Vq scrittura fine corsa avanti asse X
 #vq102;Vq_102_WRITE_FC_ind_Y;Vq scrittura fine corsa indietro asse Y
@@ -612,6 +622,7 @@ As2000 Simbols Table
 #vq3163;Vq3163TemperaturaDriverCro;coontiene la temperatura del driver crochet (si legge cone VB119)
 #vq3164;Vq3164TemperaturaDriverCar;coontiene la temperatura del driver caricatore (si legge cone VB120)
 #vq3165;Vq3165_RitPressostato;
+#vq3200;Vq3200;
 #vq3500;Vq3500_PosizioneCaricRiposo;posizione caricatore a riposo fuori ingombro
 #vq3501;Vq3501_PosizioneCaricCaricoTasca;posizione caricatore carico tasca
 #vq3502;Vq3502_PosizioneCaricScaricoTasca;posizione caricatore scarico tasca
@@ -638,9 +649,6 @@ As2000 Simbols Table
 #vq3561;Vq3561_ContPuntiRottFiloC1;punti contati dalla molla rottura filo
 #vq3562;Vq3562_N_PuntiRottFiloC2;punti impostati rottura filo
 #vq3563;Vq3563_ContPuntiRottFiloC2;punti contati dalla molla rottura filo
-#vq3564;Vq3564_Debug;
-#vq3565;Vq3565_debug;
-#vq3566;Vq3566_debug;
 #vq3591;Vq3591_CNT_CicliAutomaticoUser;conteggio cicli automatico azzerabile da utente            valore 0.001
 #vq3592;Vq3592_CNT_CicliAutomaticoVita;conteggio cicli automatico vita macchina                valore 0.001
 #vq3593;Vq3593_CNT_CicliAutomaticoVitaX100K;conteggio cicli automatico vita macchina x 100000        a 100000 di vq3592 incrementa valore 0.001

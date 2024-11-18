@@ -1,1 +1,4 @@
 PLC
+VarTable|C:\Program Files (x86)\Sipro\SDE\CONFIG\VARTABLES\Variabili Asse.VTB
+VarTable|C:\Program Files (x86)\Sipro\SDE\CONFIG\VARTABLES\Empty.VTB
+Programs||

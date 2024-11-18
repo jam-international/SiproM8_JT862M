@@ -31,7 +31,7 @@ sub ()
         ///// dopo un reset riporto la pinza in posizione home
     if ( Vb4803_AppResetHmiC1 )
 
-
+	Vb208DebugReset = ON
 	SyncVar( C1_CmdPiedinoSu )    
 	Delays (0.1)
 
@@ -54,40 +54,13 @@ sub ()
 
 // ##### DA 26/08/2024 prova per problema programma spostato se riparto dopo RESET  ########
 
-//	VbFlgAzzAx1 = 0
-//	VbFlgAzzAx2 = 0
-
-	// Comando azzeramento AsseX
-
-//	VbCmdAzzAx1 = 1
-	// Attende fine azzeramento asse AsseX 
-//	WaitCond ( ( VbFlgAzzAx1 == 1 ) and ( VnFaseZeroAx1 >= 7 ) )
-
-	// Verifica se azzeramento completato con errore
-//	if ( VnFaseZeroAx1 > 7 )
-//		Vn2CodiceAllarmeXHmi = 7
-//		gosub "Halt.obj"
-//	endif
-
-	// Comando azzeramento AsseY
-//	VbCmdAzzAx2 = 1
-
-	// Attende fine azzeramento asse AsseY
-//	WaitCond ( ( VbFlgAzzAx2 == 1 ) and ( VnFaseZeroAx2 >= 7 ) )
-
-//	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
-	
-//	C1_AssiAzzerati = ON
-
-//	Delays (0.5)
-
 
 	C1_CmdHoldRelease = 0					//mi assicuro di spegnere Hold (TEST cucitura)
 	C1_CuciSimulaAuto = 0
 	ISO G281 P CA_MD_NO_RES_NO_INS X C1_FirstPt_X Y C1_FirstPt_Y	//resetto il buffer di cucitura e parto dall'inizio
 	Delays (0.3)
 
-
+	ExecPlcFun( 281, 104, 99 )	//esce dalla modalità cucitrice. Altrimenti ISO G1 non sposta gli assi
 
 	//ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F Vq3054_C1_VelFeed_Reset
 
@@ -121,8 +94,16 @@ sub ()
 	
 	
 
+	Vb200DebugPartenzaNormale  = OFF
+	Vb201DebugPartenzaTest = OFF	
+	Vb202DebugRipartenzaRewind = OFF	
+	Vb203DebugRipartenza = OFF
+	Vb204DebugStepPiu = OFF
+	Vb205DebugSteMeno = OFF
+	Vb206DebugStepPiuCont = OFF
+	Vb207DebugStepMenoCont = OFF
 
-
+	Copia_PosAx_C1_AsseCAR = 0 //per debug Ananta Bangladesh
 	
 		gosub "Halt.obj"						///// messo per non iniziare a cucire dopo il reset
 

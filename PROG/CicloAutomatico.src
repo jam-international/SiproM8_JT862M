@@ -229,6 +229,7 @@ switch ( VnStatoCuci1 )
 		if ( IsAxInQuote( C1_AsseCAR ) )
 			Vb4350_AppAut_o18_C1_Pinza_int = OFF
 			VnStatoCuci1 = 11
+			Copia_PosAx_C1_AsseCAR = PosAx_C1_AsseCAR  //per debug Ananta Bangladesh
 		endif
 
 		break

@@ -31,7 +31,7 @@ sub ()
         ///// dopo un reset riporto la pinza in posizione home
     if ( vb4803               )
 
-
+	vb208           = 1 
 	SyncVar( vb1003          )    
 	Delays (0.1)
 
@@ -54,40 +54,13 @@ sub ()
 
 // ##### DA 26/08/2024 prova per problema programma spostato se riparto dopo RESET  ########
 
-//	VbFlgAzzAx1 = 0
-//	VbFlgAzzAx2 = 0
-
-	// Comando azzeramento AsseX
-
-//	VbCmdAzzAx1 = 1
-	// Attende fine azzeramento asse AsseX 
-//	WaitCond ( ( VbFlgAzzAx1 == 1 ) and ( VnFaseZeroAx1 >= 7 ) )
-
-	// Verifica se azzeramento completato con errore
-//	if ( VnFaseZeroAx1 > 7 )
-//		Vn2CodiceAllarmeXHmi = 7
-//		gosub "Halt.obj"
-//	endif
-
-	// Comando azzeramento AsseY
-//	VbCmdAzzAx2 = 1
-
-	// Attende fine azzeramento asse AsseY
-//	WaitCond ( ( VbFlgAzzAx2 == 1 ) and ( VnFaseZeroAx2 >= 7 ) )
-
-//	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
-
-//	C1_AssiAzzerati = ON
-
-//	Delays (0.5)
-
 
 	vb1009            = 0					//mi assicuro di spegnere Hold (TEST cucitura)
 	vb1034            = 0
 	ISO G281 P 10                  X vq1027       Y vq1028      	//resetto il buffer di cucitura e parto dall'inizio
 	Delays (0.3)
 
-
+	ExecPlcFun( 281, 104, 99 )	//esce dalla modalità cucitrice. Altrimenti ISO G1 non sposta gli assi
 
 	//ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F Vq3054_C1_VelFeed_Reset
 
@@ -121,8 +94,16 @@ sub ()
 
 
 
+	vb200                      = 0  
+	vb201                  = 0  	
+	vb202                      = 0  	
+	vb203                = 0  
+	vb204             = 0  
+	vb205             = 0  
+	vb206                 = 0  
+	vb207                  = 0  
 
-
+	vq66                   = 0 //per debug Ananta Bangladesh
 
 		gosub "Halt.obj"						///// messo per non iniziare a cucire dopo il reset
 

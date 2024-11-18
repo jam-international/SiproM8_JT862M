@@ -12,3 +12,8 @@ y_03_08_24_FIN_862.C5P = diminuito rumore vibrazioni
 x_30_10_24.C5P = nuovo tabellone, cinghie tirate diversamente per ridurre le vibrazioni
 y_30_10_24.C5P = nuovo tabellone, cinghie tirate diversamente per ridurre le vibrazioni
 
+
+
+NeedleT1_v4 07/11/20244 = aggiunto P2-34 =0 pe togliere errore overspeed
+CroT1_v4 07/11/20244 = aggiunto P2-34 =0 pe togliere errore overspeed
+

@@ -279,6 +279,17 @@
 
 #define QuickStopOnEmerg		 	vb150		// 1=QuickStop su evento di emergenza - #M240809_1GF#
 #define QuickStopInProgress			vb151		// Quick stop in progress
+
+
+#define Vb200DebugPartenzaNormale	vb200
+#define Vb201DebugPartenzaTest		vb201
+#define Vb202DebugRipartenzaRewind	vb202
+#define Vb203DebugRipartenza		vb203
+#define Vb204DebugStepPiu			vb204
+#define Vb205DebugSteMeno			vb205
+#define Vb206DebugStepPiuCont		vb206
+#define Vb207DebugStepMenoCont		vb207
+#define Vb208DebugReset				vb208
 //------------------------------------------------------------------------
 //
 // #######################################
@@ -760,6 +771,7 @@
 
 #define Vn_ID_macchina							vn320   //vn numero identificatore macchina,  
 
+
 #define vntest						vn777
 #define vntest1						vn778
 #define vntest2						vn779
@@ -809,6 +821,7 @@
 
 #define VnOvdAx1                vn3001      // Asse 1 - Override indipendente
 #define VnFaseZeroAx1           vn3011      // Asse 1 - Fase azzeramento
+#define VnFaseAX1_FASE			vn3012
 #define VnStatoAx1              vn3013      // Asse 1 - Status asse
 
 #define VnOvdAx2                vn3021      // Asse 2 - Override indipendente
@@ -912,7 +925,7 @@
 #define PosAx13                 vq63        // Posizione asse 13
 #define PosAx14                 vq64        // Posizione asse 14
 #define PosAx15                 vq65        // Posizione asse 15
-#define PosAx16                 vq66        // Posizione asse 16
+#define Copia_PosAx_C1_AsseCAR                 vq66        // Posizione asse 16
 
 
     //variabili per scrittura parametri asse
@@ -1066,6 +1079,7 @@
 #define Vq3164TemperaturaDriverCar		Vq3164		//coontiene la temperatura del driver caricatore (si legge cone VB120)
 
 #define Vq3165_RitPressostato			Vq3165
+#define Vq3200							Vq3200
 //------------------------------------------------------------------------
 // VQ da utilizzare per il ciclo automatico pos ax Vq3500-Vq3599
 //------------------------------------------------------------------------
@@ -1112,9 +1126,7 @@
 #define ContPuntiRottFiloC2_IDX							3563 		// [INT]punti contati dalla molla rottura filo
 #define Vq3563_ContPuntiRottFiloC2						Vq3563 		// punti contati dalla molla rottura filo
 
-#define Vq3564_Debug											Vq3564
-#define Vq3565_debug											Vq3565
-#define Vq3566_debug											Vq3566
+
 
 //// contatori
 #define Vq3591_CNT_CicliAutomaticoUser					Vq3591		//  conteggio cicli automatico azzerabile da utente			valore 0.001

@@ -229,6 +229,7 @@ switch ( VnStatoCuci1 )
 		if ( IsAxInQuote( C1_AsseCAR ) )
 			Vb4350_AppAut_o18_C1_Pinza_int = OFF
 			VnStatoCuci1 = 11
+			Copia_PosAx_C1_AsseCAR = PosAx_C1_AsseCAR  //per debug Ananta Bangladesh
 		endif
 
 		break
@@ -325,7 +326,7 @@ switch ( VnStatoCuci1 )
 		
 		
 		VnStatoCuci1 = 16
-		
+		Copia_PosAx_C1_AsseCAR = 0 //per debug Ananta Bangladesh
 		break
 
 	case 16
@@ -381,6 +382,7 @@ switch ( VnStatoCuci1 )
 					endif
 					if(Vb121_LanciaFuoriAuto == ON and Vb4001_StepPiegatore == OFF)
 						Vb4341_AppAut_o9_Lancia_AD = ON
+						Vb4347_AppAut_o15_EvAspiratore = ON
 					endif
 				endif
 				if ( Vb4507_AppManAuto and Vb4511_AppEnbCaricatore )	//se Caricatore acceso lancio il suo Fork
