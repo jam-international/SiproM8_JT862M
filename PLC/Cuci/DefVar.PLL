@@ -1,8 +1,8 @@
 (*
  *
- * MDPlc source file: DefVar.PLL
+ * MDPlc source file: DefVar.pll
  *
- * Date = "13/11/2024 10:31:17"
+ * Date = "10/02/2025 11:39:02"
  *)
 
 
@@ -10,14 +10,6 @@ VAR_GLOBAL
 
 
     {G:"Application_Variables"}
-
-    C1_PrgName                              AT %MB700.1    : STRING[ 80 ]; {DE:"va1    - Nome del programma CN da eseguire"}
-    C1_UdfName                              AT %MB700.2    : STRING[ 80 ]; {DE:"va2    - Nome UDF - ( parametri, tabellone, profilo )"}
-    C2_PrgName                              AT %MB700.11   : STRING[ 80 ]; {DE:"va11   - Nome del programma CN da eseguire"}
-    C2_UdfName                              AT %MB700.12   : STRING[ 80 ]; {DE:"va12   - Nome UDF - ( parametri, tabellone, profilo )"}
-    Sup_PrgName                             AT %MB700.21   : STRING[ 80 ]; {DE:"va21   - Nome del programma CN del canale 3"}
-    App_Ver                                 AT %MB700.31   : STRING[ 80 ]; {DE:"va31   - Versione applicativo"}
-
 
     VbEnableCamme                           AT %MB300.1    : BOOL;         {DE:"vb1    - Comando di abilitazione camme ( globale )"}
     Vb2_C1_Apritensione                     AT %MB300.2    : BOOL;         {DE:"vb2    - Vb attivazione apritenzione cucitrice 1"}
@@ -113,17 +105,9 @@ VAR_GLOBAL
     LeggoTemperaturaDriverCro               AT %MB300.119  : BOOL;         {DE:"vb119  - 1 = il PLC tramite Ethercat legge la temperatura del driver Crochet"}
     LeggoTemperaturaDriverCar               AT %MB300.120  : BOOL;         {DE:"vb120  - 1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore"}
     Vb121_LanciaFuoriAuto                   AT %MB300.121  : BOOL;         {DE:"vb121  - 1 = la lancia viene fuori senza premere la pedana"}
+    Vb122_MZRulliScarAttivo                 AT %MB300.122  : BOOL;         {DE:"vb122  - 1 = HMI ha attivato la funzione rulli scaricatore tramite motore"}
     QuickStopOnEmerg                        AT %MB300.150  : BOOL;         {DE:"vb150  - 1=QuickStop su evento di emergenza - #M240809_1GF#"}
     QuickStopInProgress                     AT %MB300.151  : BOOL;         {DE:"vb151  - Quick stop in progress"}
-    Vb200DebugPartenzaNormale               AT %MB300.200  : BOOL;         {DE:"vb200"}
-    Vb201DebugPartenzaTest                  AT %MB300.201  : BOOL;         {DE:"vb201"}
-    Vb202DebugRipartenzaRewind              AT %MB300.202  : BOOL;         {DE:"vb202"}
-    Vb203DebugRipartenza                    AT %MB300.203  : BOOL;         {DE:"vb203"}
-    Vb204DebugStepPiu                       AT %MB300.204  : BOOL;         {DE:"vb204"}
-    Vb205DebugSteMeno                       AT %MB300.205  : BOOL;         {DE:"vb205"}
-    Vb206DebugStepPiuCont                   AT %MB300.206  : BOOL;         {DE:"vb206"}
-    Vb207DebugStepMenoCont                  AT %MB300.207  : BOOL;         {DE:"vb207"}
-    Vb208DebugReset                         AT %MB300.208  : BOOL;         {DE:"vb208"}
     Vb4000_Automatico                       AT %MB300.4000 : BOOL;         {DE:"vb4000 - /// messa a ON da HMI sono in automatico"}
     Vb4001_StepPiegatore                    AT %MB300.4001 : BOOL;         {DE:"vb4001 - /// messa a ON da HMI il piegatore è passo passo"}
     Vb4002_StepPiegatoreStop                AT %MB300.4002 : BOOL;         {DE:"vb4002 - /// punto di stop piegatore"}
@@ -230,7 +214,7 @@ VAR_GLOBAL
     Vb4152_AppMan_o20_C1_Retrattile_AC      AT %MB300.4152 : BOOL;         {DE:"vb4152"}
     Vb4153_AppMan_o21_C1_RaffreddamentoAgo  AT %MB300.4153 : BOOL;         {DE:"vb4153"}
     Vb4154_AppMan_o22_Scaric_dx_sx          AT %MB300.4154 : BOOL;         {DE:"vb4154"}
-    Vb4155_AppMan_o23_Lentezza_Tasca_AD     AT %MB300.4155 : BOOL;         {DE:"vb4155"}
+    Vb4155_AppMan_o23                       AT %MB300.4155 : BOOL;         {DE:"vb4155"}
     Vb4156_AppMan_o24_Pinza_carico_Su_Giu   AT %MB300.4156 : BOOL;         {DE:"vb4156"}
     Vb4157_AppMan_o25_C1_Cambio_Pinze       AT %MB300.4157 : BOOL;         {DE:"vb4157"}
     Vb4158_AppMan_o26_C1_Scalino_Piedino    AT %MB300.4158 : BOOL;         {DE:"vb4158"}
@@ -246,6 +230,9 @@ VAR_GLOBAL
     Vb4168_AppMan_o36_coltello_rinforzo     AT %MB300.4168 : BOOL;         {DE:"vb4168"}
     Vb4169_AppMan_o37_calamita_rinforzo     AT %MB300.4169 : BOOL;         {DE:"vb4169"}
     Vb4170_AppMan_o38_rullo_rinforzo        AT %MB300.4170 : BOOL;         {DE:"vb4170"}
+    Vb4171_AppMan_o22_PinzaDietroCaricMZ    AT %MB300.4171 : BOOL;         {DE:"vb4171"}
+    Vb4172_AppMan_o23_MZ_RulliSca_SuGIu     AT %MB300.4172 : BOOL;         {DE:"vb4172"}
+    Vb4173_AppMan_o30_MZ_SoffiLamiera       AT %MB300.4173 : BOOL;         {DE:"vb4173"}
     Vb4208_AppMagneteTensione               AT %MB300.4208 : BOOL;         {DE:"vb4208"}
     Vb4209_AppMagneteBloccaFilo             AT %MB300.4209 : BOOL;         {DE:"vb4209"}
     Vb4210_AppMagneteSopraPiegatore         AT %MB300.4210 : BOOL;         {DE:"vb4210"}
@@ -288,6 +275,9 @@ VAR_GLOBAL
     Vb4368_AppAut_o36_coltello_rinforzo     AT %MB300.4368 : BOOL;         {DE:"vb4368"}
     Vb4369_AppAut_o37_calamita_rinforzo     AT %MB300.4369 : BOOL;         {DE:"vb4369"}
     Vb4370_AppAut_o38_rullo_rinforzo        AT %MB300.4370 : BOOL;         {DE:"vb4370"}
+    Vb4371_AppAut_o22_PinzaDietroCaricMZ    AT %MB300.4371 : BOOL;         {DE:"vb4371"}
+    Vb4372_AppAut_o23_MZ_RulliSca_SuGIu     AT %MB300.4372 : BOOL;         {DE:"vb4372"}
+    Vb4373_AppAut_o30_MZ_SoffiLamiera       AT %MB300.4373 : BOOL;         {DE:"vb4373"}
     Vb4501_AppVbChn3StartHMI                AT %MB300.4501 : BOOL;         {DE:"vb4501 - app pulsante hmi start"}
     Vb4502_AppPosMacchinaPerZero            AT %MB300.4502 : BOOL;         {DE:"vb4502 - a ON tutte i cilindri sono posizionati correttamente per azzeramento"}
     Vb4503_CN_Allarme                       AT %MB300.4503 : BOOL;         {DE:"vb4503 - CN in allarme"}
@@ -362,6 +352,7 @@ VAR_GLOBAL
     VbChn1Start                             AT %MB300.7901 : BOOL;         {DE:"vb7901 - VB START canale 1"}
     VbChn1Reset                             AT %MB300.7903 : BOOL;         {DE:"vb7903 - VB RESET canale 1"}
     VbChn1AutoRun                           AT %MB300.7908 : BOOL;         {DE:"vb7908 - VB Auto Running canale 1"}
+    VbChn1Emerg                             AT %MB300.7909 : BOOL;         {DE:"vb7909 - VB canale 1 in emergenza"}
     VbChn2Start                             AT %MB300.7921 : BOOL;         {DE:"vb7921 - VB START canale 2"}
     VbChn2Reset                             AT %MB300.7923 : BOOL;         {DE:"vb7923 - VB RESET canale 2"}
     VbChn2AutoRun                           AT %MB300.7928 : BOOL;         {DE:"vb7928 - VB Auto Running canale 2"}
@@ -433,6 +424,7 @@ VAR_GLOBAL
     VnDeltaCntGiri_C2                       AT %MW400.233  : INT;          {DE:"vn233"}
     VnMemCntGiri_C2                         AT %MW400.234  : INT;          {DE:"vn234"}
     CodiceDeviceOptional                    AT %MW400.236  : INT;          {DE:"vn236"}
+    Vn239CntErrori                          AT %MW400.239  : INT;          {DE:"vn239"}
     Vn240AnnoOrologioPLC                    AT %MW400.240  : INT;          {DE:"vn240"}
     Vn241MeseOrologioPLC                    AT %MW400.241  : INT;          {DE:"vn241"}
     Vn242giornoOrologioPLC                  AT %MW400.242  : INT;          {DE:"vn242"}
@@ -542,6 +534,8 @@ VAR_GLOBAL
     PosAx14                                 AT %MD500.64   : DINT;         {DE:"vq64   - Posizione asse 14"}
     PosAx15                                 AT %MD500.65   : DINT;         {DE:"vq65   - Posizione asse 15"}
     Copia_PosAx_C1_AsseCAR                  AT %MD500.66   : DINT;         {DE:"vq66   - Posizione asse 16"}
+    DeltaFirst_C1_AsseX                     AT %MD500.70   : DINT;         {DE:"vq70   - Cucitrice 1 - PosX - QuotaPrimo Punto"}
+    DeltaFirst_C1_AsseY                     AT %MD500.71   : DINT;         {DE:"vq71   - Cucitrice 1 - PosY - QuotaPrimo Punto"}
     Vq_100_WRITE_FC_ind_X                   AT %MD500.100  : DINT;         {DE:"vq100  - Vq scrittura fine corsa indietro asse X"}
     Vq_101_WRITE_FC_ava_X                   AT %MD500.101  : DINT;         {DE:"vq101  - Vq scrittura fine corsa avanti asse X"}
     Vq_102_WRITE_FC_ind_Y                   AT %MD500.102  : DINT;         {DE:"vq102  - Vq scrittura fine corsa indietro asse Y"}
@@ -554,6 +548,14 @@ VAR_GLOBAL
     Vq109_WRITE_Vel_manualeAgo_C2           AT %MD500.109  : DINT;         {DE:"vq109  - Vq da inserire nel parametro asse velocità manuale asse Ago"}
     Vq_110_READ_FC_ind_CARIC                AT %MD500.110  : DINT;         {DE:"vq110  - Vq lettura fine corsa indietro asse Y"}
     Vq_111_READ_FC_ava_CARIC                AT %MD500.111  : DINT;         {DE:"vq111  - Vq lettura fine corsa avanti asse Y"}
+    vq121FUN107_MasterErr                   AT %MD500.121  : DINT;         {DE:"vq121  - = Errore istantaneo Master [mm]"}
+    vq122FUN107_SlaveErr                    AT %MD500.122  : DINT;         {DE:"vq122  - = Errore istantaneo Slave [mm]"}
+    vq123FUN107_DifMasterSlave              AT %MD500.123  : DINT;         {DE:"vq123  - = Differenza tra le posizione master e slave [mm] ( valore assoluto )"}
+    vq124FUN107_DifMaxMastSlave             AT %MD500.124  : DINT;         {DE:"vq124  - = Valore massimo della differenza tra le posizione master e slave [mm] ( valore assoluto )"}
+    vq125FUN107_SogliaAllGantry             AT %MD500.125  : DINT;         {DE:"vq125  - = Soglia di allarme inseguimento gantry [mm] impostata nei parametri assi"}
+    vq126FUN107_MasterFolErr                AT %MD500.126  : DINT;         {DE:"vq126  - = Emergenza GANTRY FOLLOW ERROR: errore istantaneo Master [mm]"}
+    vq127FUN107_SlaveFolErr                 AT %MD500.127  : DINT;         {DE:"vq127  - = Emergenza GANTRY FOLLOW ERROR: errore istantaneo Slave [mm]"}
+    vq128FUN107_DiffFolErr                  AT %MD500.128  : DINT;         {DE:"vq128  - = Emergenza GANTRY FOLLOW ERROR:  valore assoluto della differenza tra le posizione master e slave [mm]"}
     Vq3000_RitPiegatoreAD_ON                AT %MD500.3000 : DINT;         {DE:"vq3000"}
     Vq3001_RitPiegatoreAD_OFF               AT %MD500.3001 : DINT;         {DE:"vq3001"}
     Vq3002_RitPiegatoreAlto_ON              AT %MD500.3002 : DINT;         {DE:"vq3002"}
@@ -686,6 +688,16 @@ VAR_GLOBAL
     GoAxPlcCariObj                          AT %MD500.3601 : DINT;         {DE:"vq3601 - GoAx asse caricatore - quota obbiettivo"}
     GoAxPlcCaricVel                         AT %MD500.3602 : DINT;         {DE:"vq3602 - GoAx asse caricatore - Velocita'"}
     GoAxPlcCaric                            AT %MD500.3603 : DINT;         {DE:"vq3603 - GoAx asse caricatore - Libera"}
+    Copia_DeltaFirst_C1_AsseX_34            AT %MD500.4900 : DINT;         {DE:"vq4900"}
+    Copia_DeltaFirst_C1_AsseY_34            AT %MD500.4901 : DINT;         {DE:"vq4901"}
+    Copia_DeltaFirst_C1_AsseX_35            AT %MD500.4902 : DINT;         {DE:"vq4902"}
+    Copia_DeltaFirst_C1_AsseY_35            AT %MD500.4903 : DINT;         {DE:"vq4903"}
+    Copia_DeltaFirst_C1_AsseX_36            AT %MD500.4904 : DINT;         {DE:"vq4904"}
+    Copia_DeltaFirst_C1_AsseY_36            AT %MD500.4905 : DINT;         {DE:"vq4905"}
+    Copia_DeltaFirst_C1_AsseX_37            AT %MD500.4906 : DINT;         {DE:"vq4906"}
+    Copia_DeltaFirst_C1_AsseY_37            AT %MD500.4907 : DINT;         {DE:"vq4907"}
+    Copia_DeltaFirst_C1_AsseX_38            AT %MD500.4908 : DINT;         {DE:"vq4908"}
+    Copia_DeltaFirst_C1_AsseY_38            AT %MD500.4909 : DINT;         {DE:"vq4909"}
 
 
     VdTmpCalc                               AT %ML600.1    : LREAL;        {DE:"vd1    - Usato per calcoli temporanei nel PLC"}
@@ -694,6 +706,14 @@ VAR_GLOBAL
     VdTmpOP_T1                              AT %ML600.4    : LREAL;        {DE:"vd4    - Usato per calcoli temporanei nel PLC"}
     VdTmpOP_T2                              AT %ML600.5    : LREAL;        {DE:"vd5    - Usato per calcoli temporanei nel PLC"}
     VdTmpOP_T3                              AT %ML600.6    : LREAL;        {DE:"vd6    - Usato per calcoli temporanei nel PLC"}
+
+
+    C1_PrgName                              AT %MB700.1    : STRING[ 80 ]; {DE:"va1    - Nome del programma CN da eseguire"}
+    C1_UdfName                              AT %MB700.2    : STRING[ 80 ]; {DE:"va2    - Nome UDF - ( parametri, tabellone, profilo )"}
+    C2_PrgName                              AT %MB700.11   : STRING[ 80 ]; {DE:"va11   - Nome del programma CN da eseguire"}
+    C2_UdfName                              AT %MB700.12   : STRING[ 80 ]; {DE:"va12   - Nome UDF - ( parametri, tabellone, profilo )"}
+    Sup_PrgName                             AT %MB700.21   : STRING[ 80 ]; {DE:"va21   - Nome del programma CN del canale 3"}
+    App_Ver                                 AT %MB700.31   : STRING[ 80 ]; {DE:"va31   - Versione applicativo"}
 
 
     i1_Pulsanti_start                       AT %IX100.0    : BOOL;         {DE:"i1"}
@@ -709,9 +729,9 @@ VAR_GLOBAL
     i11_FcLancia_DI                         AT %IX100.10   : BOOL;         {DE:"i11"}
     i12_Pressostato                         AT %IX100.11   : BOOL;         {DE:"i12"}
     i13                                     AT %IX100.12   : BOOL;         {DE:"i13"}
-    i14                                     AT %IX100.13   : BOOL;         {DE:"i14"}
-    i15                                     AT %IX100.14   : BOOL;         {DE:"i15"}
-    i16                                     AT %IX100.15   : BOOL;         {DE:"i16"}
+    i14_MZRullo1Su                          AT %IX100.13   : BOOL;         {DE:"i14"}
+    i15_MZRullo2Su                          AT %IX100.14   : BOOL;         {DE:"i15"}
+    i16_MZRullo3Su                          AT %IX100.15   : BOOL;         {DE:"i16"}
     i17                                     AT %IX100.16   : BOOL;         {DE:"i17"}
     i18_RotturaFilo                         AT %IX100.17   : BOOL;         {DE:"i18"}
     i19_C1_FcMinAsseX                       AT %IX100.18   : BOOL;         {DE:"i19"}
@@ -757,7 +777,9 @@ VAR_GLOBAL
     o20_C1_Retrattile_AC                    AT %QX200.19   : BOOL;         {DE:"o20"}
     o21_C1_RaffreddamentoAgo                AT %QX200.20   : BOOL;         {DE:"o21"}
     o22_Scaric_dx_sx                        AT %QX200.21   : BOOL;         {DE:"o22"}
+    o22_MZ_PinzaDietroCaric                 AT %QX200.21   : BOOL;         {DE:"o22    - 862MZ"}
     o23_Lentezza_Tasca_AD                   AT %QX200.22   : BOOL;         {DE:"o23"}
+    o23_MZ_RulliSca_SuGIu                   AT %QX200.22   : BOOL;         {DE:"o23    - 862MZ"}
     o24_Pinza_carico_Su_Giu                 AT %QX200.23   : BOOL;         {DE:"o24"}
     o25_C1_Cambio_Pinze                     AT %QX200.24   : BOOL;         {DE:"o25"}
     o26_C1_Scalino_Piedino                  AT %QX200.25   : BOOL;         {DE:"o26"}
@@ -765,6 +787,7 @@ VAR_GLOBAL
     o28_Prima_barra                         AT %QX200.27   : BOOL;         {DE:"o28"}
     o29_Seconda_barra                       AT %QX200.28   : BOOL;         {DE:"o29"}
     o30_rullo_rinforzo                      AT %QX200.29   : BOOL;         {DE:"o30"}
+    o30_MZ_SoffiLamiera                     AT %QX200.29   : BOOL;         {DE:"o30    - 862MZ"}
     o31_bloccaFiloMagente                   AT %QX200.30   : BOOL;         {DE:"o31"}
     o32_Enable_AssiXY_C1C2                  AT %QX200.31   : BOOL;         {DE:"o32"}
     o33_Gancio_AutoBC                       AT %QX200.32   : BOOL;         {DE:"o33    - AutoBobbinChanger"}
@@ -772,7 +795,7 @@ VAR_GLOBAL
     o35_Braciio_AutoBC                      AT %QX200.34   : BOOL;         {DE:"o35    - AutoBobbinChanger"}
     o36_coltello_rinforzo                   AT %QX200.35   : BOOL;         {DE:"o36    - device rinforzo pneumatico"}
     o37_calamita_rinforzo                   AT %QX200.36   : BOOL;         {DE:"o37    - device rinforzo pneumatico"}
-    o38_rullo_rinforzo                      AT %QX200.37   : BOOL;         {DE:"o38    - device rinforzo pneumatico"}
+    o38_rullo_rinforzo                      AT %QX200.37   : BOOL;         {DE:"o38"}
 
 END_VAR
 
@@ -841,6 +864,43 @@ VAR_GLOBAL CONSTANT
     C2_MODE_BLOCCO_FILO_END                 : INT := 101; { DE:"Mode camma blocco filo durante primo giro" }
     C2_VB_BLOCCO_FILO_END                   : INT := 16; { DE:"VB blocco filo durante primo giro" }
     C2_ENA_BLOCCO_FILO_END                  : INT := 2001; { DE:"Indice VB abilitazione camma blocco filo durante primo giro ( vb1001 )" }
+    C1_NumPuntiRottFilo                     : DINT := 14000; { DE:"punti impostati rottura filo" }
+    PLC_VN_TO_VB                            : DINT := 15; { DE:"Copia una vn su 16 vb consecutive" }
+    PLC_READ_FORK_VAR                       : DINT := 28; { DE:"Lettura variabile fork" }
+    PLC_WRITE_FORK_VAR                      : DINT := 29; { DE:"Scrittura variabile fork" }
+    PLC_READ_AX_QUOTE                       : DINT := 70; { DE:"Lettura quota asse" }
+    PLC_WRITE_AX_QUOTE                      : DINT := 71; { DE:"Set quota asse" }
+    PLC_ROLLOVER_AX                         : DINT := 72; { DE:"Rollover asse" }
+    PLC_MOVE_AX_TONDO                       : DINT := 73; { DE:"Movimento asse tondo" }
+    PLC_MOVE_AX                             : DINT := 74; { DE:"Movimento asse" }
+    PLC_STOP_AX                             : DINT := 75; { DE:"Stop asse" }
+    PLC_CHG_QUO_OBJ_AX                      : DINT := 78; { DE:"Modifica quota obiettivo asse" }
+    PLC_SET_EMERGENZA                       : DINT := 90; { DE:"Set emergenza" }
+    PLC_ENABLE_FOLLOW                       : DINT := 105; { DE:"Abilitazione inseguimento" }
+    PLC_DISABLE_FOLLOW                      : DINT := 106; { DE:"Disabilitazione inseguimento" }
+    PLC_RESET_ALL_CAM                       : DINT := 120; { DE:"Reset di tutte le camme digitali" }
+    PLC_INIT_ONE_CAM                        : DINT := 121; { DE:"Inizializzazione di una camma digitale" }
+    PLC_DISABLE_ONE_CAM                     : DINT := 122; { DE:"Disabilitazione di una camma digitale" }
+    PLC_ANTICIPO_CAM                        : DINT := 123; { DE:"Set anticipo di una camma digitale" }
+    PLC_IO_CTL_CAM                          : DINT := 124; { DE:"IoCtl camma digitale" }
+    PLC_AN_OUT_NUM                          : DINT := 140; { DE:"imposta uscita analogica" }
+    PLC_AN_OUT_READ                         : DINT := 141; { DE:"legge uscita analogica" }
+    PLC_VCD_TO_VD                           : DINT := 168; { DE:"copia una Vcd in una Vd" }
+    PLC_VD_TO_VCD                           : DINT := 169; { DE:"copia una Vd in una Vcd" }
+    PLC_SET_UDT_CMD                         : DINT := 191; { DE:"Set comandi udt e udf" }
+    PLC_ENABLE_IRQ                          : DINT := 200; { DE:"Abilitazione interrupt" }
+    PLC_DISABLE_IRQ                         : DINT := 201; { DE:"Disabilitazione interrupt" }
+    PLC_ADD_FUN_IRQ                         : DINT := 202; { DE:"Inserimento di una funzione di interrupt" }
+    PLC_REMOVE_FUN_IRQ                      : DINT := 203; { DE:"Rimozione di una funzione di interrupt" }
+    PLC_READ_AX_PARAM                       : DINT := 210; { DE:"Lettura parametri assi" }
+    PLC_WRITE_AX_PARAM                      : DINT := 211; { DE:"Scrittura parametri assi" }
+    PLC_SPA_ACC_DEC                         : DINT := 216; { DE:"Calcolo spazio acc e dec" }
+    PLC_FORCE_ZEROED                        : DINT := 218; { DE:"Forzatura assi azzerati" }
+    PLC_CUCI_SET_PARAM                      : DINT := 280; { DE:"Impostazione parametri di cucitura" }
+    PLC_CUCI_CMD                            : DINT := 281; { DE:"Comandi per la cucitrice" }
+    PLC_ECAT_SDO_WR                         : DINT := 300; { DE:"Ethercat SDO write" }
+    PLC_ECAT_SDO_RD                         : DINT := 301; { DE:"Ethercat SDO read" }
+    PLC_ECAT_INFO                           : DINT := 302; { DE:"Ethercat info" }
     ENABLE_CAMME_IDX                        : INT := 1;
     EnbCountIRQPiegatore_Su_IDX             : INT := 4089; { DE:"///  HMI utilizzato per abilitare il conteggio del sensore piegatore su" }
     EnbCountRotturaFiloC1_IDX               : INT := 4092; { DE:"///  HMI utilizzato per abilitare il conteggio della rottura filo C1" }
@@ -884,42 +944,5 @@ VAR_GLOBAL CONSTANT
     AO98_ValoreBloccaFiloTesta1             : INT := 98; { DE:"valore scrittura analogica per elettrocalamita blocca filo testa 1  0-10000 mV" }
     AO99_ValoreElettrocSotto                : INT := 99; { DE:"valore scrittura analogica per elettrocalamita 0-10000 mV" }
     AO100_ValoreElettrocSopra               : INT := 100; { DE:"valore scrittura analogica per elettrocalamita perno 0-10000 mV" }
-    C1_NumPuntiRottFilo                     : DINT := 14000; { DE:"punti impostati rottura filo" }
-    PLC_VN_TO_VB                            : DINT := 15; { DE:"Copia una vn su 16 vb consecutive" }
-    PLC_READ_FORK_VAR                       : DINT := 28; { DE:"Lettura variabile fork" }
-    PLC_WRITE_FORK_VAR                      : DINT := 29; { DE:"Scrittura variabile fork" }
-    PLC_READ_AX_QUOTE                       : DINT := 70; { DE:"Lettura quota asse" }
-    PLC_WRITE_AX_QUOTE                      : DINT := 71; { DE:"Set quota asse" }
-    PLC_ROLLOVER_AX                         : DINT := 72; { DE:"Rollover asse" }
-    PLC_MOVE_AX_TONDO                       : DINT := 73; { DE:"Movimento asse tondo" }
-    PLC_MOVE_AX                             : DINT := 74; { DE:"Movimento asse" }
-    PLC_STOP_AX                             : DINT := 75; { DE:"Stop asse" }
-    PLC_CHG_QUO_OBJ_AX                      : DINT := 78; { DE:"Modifica quota obiettivo asse" }
-    PLC_SET_EMERGENZA                       : DINT := 90; { DE:"Set emergenza" }
-    PLC_ENABLE_FOLLOW                       : DINT := 105; { DE:"Abilitazione inseguimento" }
-    PLC_DISABLE_FOLLOW                      : DINT := 106; { DE:"Disabilitazione inseguimento" }
-    PLC_RESET_ALL_CAM                       : DINT := 120; { DE:"Reset di tutte le camme digitali" }
-    PLC_INIT_ONE_CAM                        : DINT := 121; { DE:"Inizializzazione di una camma digitale" }
-    PLC_DISABLE_ONE_CAM                     : DINT := 122; { DE:"Disabilitazione di una camma digitale" }
-    PLC_ANTICIPO_CAM                        : DINT := 123; { DE:"Set anticipo di una camma digitale" }
-    PLC_IO_CTL_CAM                          : DINT := 124; { DE:"IoCtl camma digitale" }
-    PLC_AN_OUT_NUM                          : DINT := 140; { DE:"imposta uscita analogica" }
-    PLC_AN_OUT_READ                         : DINT := 141; { DE:"legge uscita analogica" }
-    PLC_VCD_TO_VD                           : DINT := 168; { DE:"copia una Vcd in una Vd" }
-    PLC_VD_TO_VCD                           : DINT := 169; { DE:"copia una Vd in una Vcd" }
-    PLC_SET_UDT_CMD                         : DINT := 191; { DE:"Set comandi udt e udf" }
-    PLC_ENABLE_IRQ                          : DINT := 200; { DE:"Abilitazione interrupt" }
-    PLC_DISABLE_IRQ                         : DINT := 201; { DE:"Disabilitazione interrupt" }
-    PLC_ADD_FUN_IRQ                         : DINT := 202; { DE:"Inserimento di una funzione di interrupt" }
-    PLC_REMOVE_FUN_IRQ                      : DINT := 203; { DE:"Rimozione di una funzione di interrupt" }
-    PLC_READ_AX_PARAM                       : DINT := 210; { DE:"Lettura parametri assi" }
-    PLC_WRITE_AX_PARAM                      : DINT := 211; { DE:"Scrittura parametri assi" }
-    PLC_SPA_ACC_DEC                         : DINT := 216; { DE:"Calcolo spazio acc e dec" }
-    PLC_FORCE_ZEROED                        : DINT := 218; { DE:"Forzatura assi azzerati" }
-    PLC_CUCI_SET_PARAM                      : DINT := 280; { DE:"Impostazione parametri di cucitura" }
-    PLC_CUCI_CMD                            : DINT := 281; { DE:"Comandi per la cucitrice" }
-    PLC_ECAT_SDO_WR                         : DINT := 300; { DE:"Ethercat SDO write" }
-    PLC_ECAT_SDO_RD                         : DINT := 301; { DE:"Ethercat SDO read" }
-    PLC_ECAT_INFO                           : DINT := 302; { DE:"Ethercat info" }
 
 END_VAR

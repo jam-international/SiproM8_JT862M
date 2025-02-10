@@ -1,0 +1,201 @@
+[StartEthercat]
+  #Version 1.0.6.12207
+  #CanAdd NetEthercat
+
+  [StartNetEthercat]
+    #CanAdd EcatNodeDrvSiproPos
+    #CanAdd EcatNodeDrvSiproVel
+    #CanAdd EcatNodeDrvDanaPos
+    #CanAdd EcatNodeDrvDanaVel
+    #CanAdd EcatNodeDrvDeltaPos
+    #CanAdd EcatNodeDrvDeltaVel
+    #CanAdd EcatNodeDrvOmronPos
+    #CanAdd EcatNodeDrvOmronVel
+    #CanAdd EcatNodeDrvSanyoPos
+    #CanAdd EcatNodeDrvPanasonicPos
+    #CanAdd EcatNodeDrvPanasonicVel
+    #CanAdd EcatNodeDrvCtrlTechnPos
+    #CanAdd EcatNodeDrvCtrlTechnVel
+    #CanAdd EcatNodeDrvYaskawaPos
+    #CanAdd EcatNodeDrvYaskawaVel
+    #CanAdd EcatNodeDrvHdtLovatoPos
+    #CanAdd EcatNodeDrvHdtLovatoVel
+    #CanAdd EcatNodeDrvGenericPos
+    #CanAdd EcatNodeDrvGenericVel
+    #CanAdd EcatNodeMcpuEnhanced
+    #CanAdd EcatNodeBalluff
+    #CanAdd EcatGenericNode
+    NetId = 1
+    NetEnable = 1
+    NetDelayStartS = 10
+    NetOffsDelayRxUs = 0
+    NetDisableNmtInfo = 1
+    EcatDebugLevel = 0
+    NetEnableEmergOnLost = 0
+    EcatNetLoopTimeOffsMs = 0
+    EcatUseGpt1SysTimer = 0
+    EcatFirstNetLoopPeriodNs = 0
+    EcatLogMsgLevel = 0
+    EcatDCStartDelayUs = 0
+    EcatDCStartDelayPerNodeUs = 0
+    EcatMailboxPollTimeMs = 0
+    EcatDbgBufferSizeKb = 0
+    EcatGatewayMasterMode = 0
+    EcatGatewayIP = "0.0.0.0"
+    EcatNoDelayStartOnReboot = 0
+    EcatToutOperatTimeS = 0
+
+    [StartEcatNodeDrvDeltaPos]
+      #CanAdd EcatMonitor
+      #CanAdd EcatSetVal
+      EcatNodeId = 1
+      Name = ""
+      NodeEnable = 1
+      AxId = 3
+      EngineImpGiro = 65536
+      EmergOnPowerOff = 1
+      EcatZeroMode = 0
+      EcatFlgSensIncrem = 0
+      NodeStateVnIdx = 0
+      NodeGestStateVnIdx = 0
+    [EndEcatNodeDrvDeltaPos]
+
+    [StartEcatNodeDrvDeltaPos]
+      #CanAdd EcatMonitor
+      #CanAdd EcatSetVal
+      EcatNodeId = 2
+      Name = ""
+      NodeEnable = 1
+      AxId = 4
+      EngineImpGiro = 65536
+      EmergOnPowerOff = 1
+      EcatZeroMode = 0
+      EcatFlgSensIncrem = 0
+      NodeStateVnIdx = 0
+      NodeGestStateVnIdx = 0
+    [EndEcatNodeDrvDeltaPos]
+
+    [StartEcatNodeDrvDeltaPos]
+      #CanAdd EcatMonitor
+      #CanAdd EcatSetVal
+      EcatNodeId = 3
+      Name = ""
+      NodeEnable = 1
+      AxId = 5
+      EngineImpGiro = 65536
+      EmergOnPowerOff = 1
+      EcatZeroMode = 0
+      EcatFlgSensIncrem = 0
+      NodeStateVnIdx = 0
+      NodeGestStateVnIdx = 0
+    [EndEcatNodeDrvDeltaPos]
+
+    [StartEcatGenericNode]
+      #CanAdd EcatReadVal
+      #CanAdd EcatWriteVal
+      #CanAdd EcatDigIn
+      #CanAdd EcatDigOut
+      EcatNodeId = 4
+      Name = "Microchip"
+      NodeEnable = 1
+      EcatVendorId = 1240
+      EcatProductCode = 0
+      EcatTypeNode = 0
+      EcatPar1 = 0
+      ChangeTwinCATreg = 0
+      NodeStateVnIdx = 0
+      NodeGestStateVnIdx = 0
+      Sync0StartTimeUs = 0
+
+      [StartEcatDigIn]
+        EcatDigInIndex = &H3001
+        EcatDigInSubIndex = &H1
+        EcatDigInObjSize = 8
+        EcatFirstDigIn = 1
+        EcatNumDigIn = 8
+        EcatDigInPar = 0
+      [EndEcatDigIn]
+
+      [StartEcatDigIn]
+        EcatDigInIndex = &H3001
+        EcatDigInSubIndex = &H2
+        EcatDigInObjSize = 8
+        EcatFirstDigIn = 9
+        EcatNumDigIn = 8
+        EcatDigInPar = 0
+      [EndEcatDigIn]
+
+      [StartEcatDigOut]
+        EcatDigOutIndex = &H3101
+        EcatDigOutSubIndex = &H1
+        EcatDigOutObjSize = 8
+        EcatFirstDigOut = 1
+        EcatNumDigOut = 8
+        EcatDigOutPar = 0
+      [EndEcatDigOut]
+
+      [StartEcatDigOut]
+        EcatDigOutIndex = &H3101
+        EcatDigOutSubIndex = &H2
+        EcatDigOutObjSize = 8
+        EcatFirstDigOut = 9
+        EcatNumDigOut = 8
+        EcatDigOutPar = 0
+      [EndEcatDigOut]
+    [EndEcatGenericNode]
+
+    [StartEcatGenericNode]
+      #CanAdd EcatReadVal
+      #CanAdd EcatWriteVal
+      #CanAdd EcatDigIn
+      #CanAdd EcatDigOut
+      EcatNodeId = 5
+      Name = "Microchip"
+      NodeEnable = 1
+      EcatVendorId = 1240
+      EcatProductCode = 0
+      EcatTypeNode = 0
+      EcatPar1 = 0
+      ChangeTwinCATreg = 0
+      NodeStateVnIdx = 0
+      NodeGestStateVnIdx = 0
+      Sync0StartTimeUs = 0
+
+      [StartEcatDigIn]
+        EcatDigInIndex = &H3001
+        EcatDigInSubIndex = &H1
+        EcatDigInObjSize = 8
+        EcatFirstDigIn = 17
+        EcatNumDigIn = 8
+        EcatDigInPar = 0
+      [EndEcatDigIn]
+
+      [StartEcatDigIn]
+        EcatDigInIndex = &H3001
+        EcatDigInSubIndex = &H2
+        EcatDigInObjSize = 8
+        EcatFirstDigIn = 25
+        EcatNumDigIn = 8
+        EcatDigInPar = 0
+      [EndEcatDigIn]
+
+      [StartEcatDigOut]
+        EcatDigOutIndex = &H3101
+        EcatDigOutSubIndex = &H1
+        EcatDigOutObjSize = 8
+        EcatFirstDigOut = 17
+        EcatNumDigOut = 8
+        EcatDigOutPar = 0
+      [EndEcatDigOut]
+
+      [StartEcatDigOut]
+        EcatDigOutIndex = &H3101
+        EcatDigOutSubIndex = &H2
+        EcatDigOutObjSize = 8
+        EcatFirstDigOut = 25
+        EcatNumDigOut = 8
+        EcatDigOutPar = 0
+      [EndEcatDigOut]
+    [EndEcatGenericNode]
+  [EndNetEthercat]
+[EndEthercat]

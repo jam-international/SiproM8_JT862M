@@ -19,7 +19,7 @@
 
 
 sub ()
-	
+	Vb96_EnableJogXYPlc = OFF	//blocca i JOG XY dal PLC
         // Centratura pinza con ago
     if ( Vb4080_TestFcZeroC1 )
         gosub "C1_TestPinzaAgo"
@@ -30,8 +30,8 @@ sub ()
 
         ///// dopo un reset riporto la pinza in posizione home
     if ( Vb4803_AppResetHmiC1 )
-
-
+	
+	Vb208DebugReset = ON
 	SyncVar( C1_CmdPiedinoSu )    
 	Delays (0.1)
 
@@ -47,39 +47,42 @@ sub ()
 	ax[ C1_AsseX ] = 0 
 	ax[ C1_AsseY ] = 0
 
+// Modifica azzeramento
+//	WaitCond ( ( VbFlgAzzAx1 == 1 ) and ( VnFaseZeroAx1 >= 7 ) )
+//	WaitCond ( ( VbFlgAzzAx2 == 1 ) and ( VnFaseZeroAx2 >= 7 ) )
+//	Delays (0.1)
 	
-
-	
-
-
-// ##### DA 26/08/2024 prova per problema programma spostato se riparto dopo RESET  ########
-
 //	VbFlgAzzAx1 = 0
-//	VbFlgAzzAx2 = 0
-
-	// Comando azzeramento AsseX
-
 //	VbCmdAzzAx1 = 1
+
 	// Attende fine azzeramento asse AsseX 
 //	WaitCond ( ( VbFlgAzzAx1 == 1 ) and ( VnFaseZeroAx1 >= 7 ) )
-
+//	Delays (0.3)
 	// Verifica se azzeramento completato con errore
 //	if ( VnFaseZeroAx1 > 7 )
 //		Vn2CodiceAllarmeXHmi = 7
 //		gosub "Halt.obj"
 //	endif
-
+	
 	// Comando azzeramento AsseY
+//	VbFlgAzzAx2 = 0
 //	VbCmdAzzAx2 = 1
 
 	// Attende fine azzeramento asse AsseY
 //	WaitCond ( ( VbFlgAzzAx2 == 1 ) and ( VnFaseZeroAx2 >= 7 ) )
 
-//	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
-	
+	// Verifica se azzeramento completato con errore
+//	if ( VnFaseZeroAx2 > 7 )
+//		Vn2CodiceAllarmeXHmi = 7
+//		gosub "Halt.obj"
+//	endif
+
+//	Delays (0.3)
+
 //	C1_AssiAzzerati = ON
 
-//	Delays (0.5)
+
+// ##### DA 26/08/2024 prova per problema programma spostato se riparto dopo RESET  ########
 
 
 	C1_CmdHoldRelease = 0					//mi assicuro di spegnere Hold (TEST cucitura)
@@ -120,19 +123,8 @@ sub ()
 	C1_VqActPntCuci = 0	// azzero numero punti fatti 
 	
 	
-
-	Vb200DebugPartenzaNormale  = OFF
-	Vb201DebugPartenzaTest = OFF	
-	Vb202DebugRipartenzaRewind = OFF	
-	Vb203DebugRipartenza = OFF
-	Vb204DebugStepPiu = OFF
-	Vb205DebugSteMeno = OFF
-	Vb206DebugStepPiuCont = OFF
-	Vb207DebugStepMenoCont = OFF
-	Vb208DebugReset = ON
-	Copia_PosAx_C1_AsseCAR = 0 //per debug Ananta Bangladesh
 	
-		gosub "Halt.obj"						///// messo per non iniziare a cucire dopo il reset
+	gosub "Halt.obj"						///// messo per non iniziare a cucire dopo il reset
 
 	
 

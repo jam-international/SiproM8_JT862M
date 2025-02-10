@@ -18,7 +18,7 @@
 		
         UseRotoTrasl = 1
         CuciIsoMode  = 1
-	    SglOffLimits = 20
+	SglOffLimits = 20
         
         VbStartIdx   = 1951
         VbHoldIdx    = 1952

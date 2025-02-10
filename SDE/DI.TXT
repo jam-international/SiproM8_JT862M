@@ -12,9 +12,9 @@
 11, i11_FcLancia_DI
 12, i12_Pressostato
 13, i13
-14, i14
-15, i15
-16, i16
+14, i14_MZRullo1Su
+15, i15_MZRullo2Su
+16, i16_MZRullo3Su
 17, i17
 18, i18_RotturaFilo
 19, i19_C1_FcMinAsseX

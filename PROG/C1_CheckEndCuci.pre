@@ -33,6 +33,40 @@ sub ()
 		ISO G1 X vq1911      Y vq1912      F vq1962    
 
 
+//### INI - #M250107_1GF# 
+    DelayS( 0.1 )       // Sicuramente il PLC legge le posizioni degli assi X e Y
+
+        // Errore rispetto al primo punto
+    vq70                = vq51           - vq1911     
+    vq71                = vq52           - vq1912     
+
+        // Valore assoluto X
+    if ( vq70                < 0 )
+        vq70                = 0 - vq70               
+    endif
+
+        // Valore assoluto Y
+    if ( vq71                < 0 )
+        vq71                = 0 - vq71               
+    endif
+
+    if ( ( vq70                > 0.3              ) or ( vq71                > 0.3              ) )
+	vq4908                       = vq70               
+	vq4909                       = vq71               
+        vn2                  = 38
+        gosub "Halt.obj"        
+    else
+	vq4908                       = 0
+	vq4909                       = 0
+    endif
+
+
+//### END - #M250107_1GF# 
+	WaitCond ( Vb4045             and Vb4046             )
+
+
+
+
 		//Daniele x fine test
 		vb36            = 1 	//apro retrattile
 		vb37            = 1 	//abbasso perni ranocchia
@@ -41,7 +75,7 @@ sub ()
 		Vb4350                         = 1 
 		Vb4351                         = 1  
 
-		if(Vb4354                        )	//se lo scaricatore è a sx (può succedere se ho usato Test cucitura)
+		if(Vb4354                         or vb122                  )	//se lo scaricatore è a sx (può succedere se ho usato Test cucitura)
 			Vb4032                        = 1 
 			vq1952          = 0
 		endif

@@ -33,6 +33,7 @@ sub ()
 
 		endif
 		Vb4356                                = 0  
+
 		vb36            = 1 	//apro retrattile
 		vb37            = 1 	//abbasso perni ranocchia
 		vb38            = 1 	//disattivo salto piedino
@@ -45,6 +46,7 @@ sub ()
 
 	if ( vn10               == 11 or vn10               == 12 or vn10               == 13 or vn10               == 14 )
 		Vb4356                                = 0  
+
 		WaitCond ( din5                 )
 		WaitCond ( Vb4049                 )
 
@@ -70,8 +72,8 @@ sub ()
 
 
 :FINE
-	if(vb22                      )  //se è attivo il kit lentezza tasca lo faccio avanzare
-		Vb4355                              = 1 
+	if(vb22                      )  //se ï¿½ attivo il kit lentezza tasca lo faccio avanzare
+		Vb4355                              = 1   //lentezza on
 	endif
 	if(vb121                 == 1  and  Vb4001               == 0  )
 		Vb4341                     = 1 

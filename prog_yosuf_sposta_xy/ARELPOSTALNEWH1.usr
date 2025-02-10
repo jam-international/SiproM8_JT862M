@@ -1,0 +1,2025 @@
+[Name]
+ARELPOSTALNEWH1
+
+[Numero]
+1
+[Header VA Len]
+3
+[Data VA Len]
+21
+[Base Matrix]
+9800
+[Header Matrix]
+9801
+[Header]
+VQ:0.1
+VQ:0.1
+VQ:-228.4071
+VQ:-140.6177
+VQ:-73.5009
+VQ:2.2000
+VQ:0
+VQ:0
+VQ:0
+VQ:0
+[Header End]
+
+[Step]
+VN:1
+VQ:0
+VQ:0
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:0
+VQ:105.3
+VQ:0.8
+VQ:60
+VQ:61
+[End Step]
+
+[Step]
+VN:6
+VQ:104.600006
+VQ:0.8
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:101.90001
+VQ:0.8
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:101.3
+VQ:0.7166667
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:98.55
+VQ:0.6333333
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:95.8
+VQ:0.55
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:96.1608
+VQ:3.550018
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:96.52159
+VQ:6.5500364
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:96.88239
+VQ:9.550055
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:97.24319
+VQ:12.550073
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:97.60398
+VQ:15.55009
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:97.964775
+VQ:18.550108
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:98.32557
+VQ:21.550125
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:98.68636
+VQ:24.550144
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:99.047165
+VQ:27.550161
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:99.40796
+VQ:30.550179
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:99.76875
+VQ:33.550198
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:100.07945
+VQ:36.565216
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:100.39015
+VQ:39.580235
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:100.70085
+VQ:42.595253
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:101.01155
+VQ:45.61027
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:101.32225
+VQ:48.62529
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:101.63295
+VQ:51.64031
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:101.94365
+VQ:54.655327
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:102.25435
+VQ:57.670345
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:102.56505
+VQ:60.685364
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:102.87575
+VQ:63.700382
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:103.186066
+VQ:66.7754
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:103.496376
+VQ:69.85042
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:103.806694
+VQ:72.92544
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:104.145584
+VQ:75.996315
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:104.48447
+VQ:79.067184
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:104.82336
+VQ:82.13806
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:105.16224
+VQ:85.20894
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:105.50113
+VQ:88.27981
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:105.84001
+VQ:91.350685
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:106.1789
+VQ:94.421555
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:106.51779
+VQ:97.49243
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:106.856674
+VQ:100.56331
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:107.195564
+VQ:103.634186
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:107.53445
+VQ:106.705055
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:107.87334
+VQ:109.77593
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:108.21222
+VQ:112.8468
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:108.55111
+VQ:115.91768
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:108.86143
+VQ:118.95073
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:111.53574
+VQ:120.378235
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:114.21006
+VQ:121.80574
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:116.884384
+VQ:123.233246
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:119.5587
+VQ:124.66075
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:122.23302
+VQ:126.08825
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:124.90733
+VQ:127.515755
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:127.58166
+VQ:128.94327
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:130.25597
+VQ:130.37077
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:132.9303
+VQ:131.79828
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:135.60461
+VQ:133.22577
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:138.27893
+VQ:134.65327
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:140.95325
+VQ:136.08078
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:143.62756
+VQ:137.50829
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:146.30188
+VQ:138.93579
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:148.9762
+VQ:140.3633
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:151.65051
+VQ:141.7908
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:154.32483
+VQ:143.2183
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:156.99916
+VQ:144.64581
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:159.67346
+VQ:146.07332
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:162.3478
+VQ:147.50082
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:165.11432
+VQ:146.08405
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:167.88083
+VQ:144.66728
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:170.64735
+VQ:143.2505
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:173.41388
+VQ:141.83372
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:176.18039
+VQ:140.41695
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:178.94691
+VQ:139.00018
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:181.71344
+VQ:137.5834
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:184.47995
+VQ:136.16663
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:187.24648
+VQ:134.74985
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:190.013
+VQ:133.33307
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:192.77951
+VQ:131.9163
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:195.54604
+VQ:130.49953
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:198.31256
+VQ:129.05359
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:201.07907
+VQ:127.60764
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:203.8456
+VQ:126.1617
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:206.61212
+VQ:124.71576
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:209.35364
+VQ:123.18232
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:212.09515
+VQ:121.64888
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:214.83669
+VQ:120.11543
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:217.5782
+VQ:118.58199
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:218.04216
+VQ:115.97988
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:218.50612
+VQ:112.92777
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:218.9701
+VQ:109.875656
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:219.43405
+VQ:106.82354
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:219.89801
+VQ:103.77143
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:220.36198
+VQ:100.719315
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:220.82594
+VQ:97.667206
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:221.2899
+VQ:94.6151
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:221.75388
+VQ:91.56298
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:222.21783
+VQ:88.510864
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:222.6818
+VQ:85.458755
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:223.14577
+VQ:82.40665
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:223.60973
+VQ:79.35452
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:224.07368
+VQ:76.302414
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:224.53766
+VQ:73.250305
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:225.00162
+VQ:70.1982
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:225.46558
+VQ:67.14609
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:225.92953
+VQ:64.09396
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:226.39351
+VQ:61.041855
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:226.85747
+VQ:57.98974
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:227.32143
+VQ:54.93763
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:227.7854
+VQ:51.88552
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:228.24936
+VQ:48.833405
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:228.71332
+VQ:45.781303
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:229.17729
+VQ:42.72917
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:229.64125
+VQ:39.67707
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:230.10521
+VQ:36.624954
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:230.56918
+VQ:33.572838
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:231.03314
+VQ:30.52073
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:231.44482
+VQ:27.508656
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:231.8565
+VQ:24.496582
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:232.2682
+VQ:21.48451
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:103
+VQ:773
+VQ:1
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:103
+VQ:0
+VQ:1500
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:232.67989
+VQ:18.472437
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:233.09157
+VQ:15.460364
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:103
+VQ:772
+VQ:1
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:233.50325
+VQ:12.448292
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:233.91493
+VQ:9.436218
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:103
+VQ:771
+VQ:1
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:234.32663
+VQ:6.4241447
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:234.73831
+VQ:3.4120731
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:235.15
+VQ:0.39999962
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:103
+VQ:772
+VQ:0
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:232.4
+VQ:0.39999986
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:229.65
+VQ:0.39999986
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:226.9
+VQ:0.39999986
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:224.15
+VQ:0.39999986
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:223.83371
+VQ:3.4616606
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:223.51743
+VQ:6.523321
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:223.20114
+VQ:9.584981
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:222.88486
+VQ:12.646643
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:222.56857
+VQ:15.708303
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:103
+VQ:0
+VQ:0
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:103
+VQ:773
+VQ:0
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:222.2523
+VQ:18.769962
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:221.93602
+VQ:21.831625
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:221.61974
+VQ:24.893286
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:221.30345
+VQ:27.954947
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:220.98717
+VQ:31.016607
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:220.67088
+VQ:34.07827
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:220.32297
+VQ:37.156097
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:219.97505
+VQ:40.233925
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:219.62715
+VQ:43.311752
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:219.27924
+VQ:46.389576
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:218.93132
+VQ:49.467403
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:218.5834
+VQ:52.507133
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:218.2355
+VQ:55.546867
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:217.88759
+VQ:58.586597
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:217.53967
+VQ:61.626328
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:217.19177
+VQ:64.66606
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:216.84386
+VQ:67.705795
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:216.49594
+VQ:70.74552
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:216.14804
+VQ:73.785255
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:215.80013
+VQ:76.82498
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:215.45221
+VQ:79.864716
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:215.10431
+VQ:82.90445
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:214.7564
+VQ:85.94418
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:214.40848
+VQ:88.98391
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:214.06058
+VQ:92.02364
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:213.71266
+VQ:95.06337
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:213.36475
+VQ:98.1031
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:213.01685
+VQ:101.14284
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:212.66893
+VQ:104.18257
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:212.32101
+VQ:107.222305
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:211.97311
+VQ:110.26203
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:211.6252
+VQ:113.30176
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:208.86758
+VQ:114.82117
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:206.10997
+VQ:116.31998
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:203.35236
+VQ:117.818794
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:200.59476
+VQ:119.317604
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:197.83714
+VQ:120.81642
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:195.07953
+VQ:122.31523
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:192.32191
+VQ:123.81405
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:189.5643
+VQ:125.31286
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:186.8067
+VQ:126.811676
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:184.04909
+VQ:128.31049
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:181.29147
+VQ:129.8093
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:178.53387
+VQ:131.30812
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:175.77626
+VQ:132.80693
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:173.01865
+VQ:134.30574
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:170.26103
+VQ:135.80455
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:167.50342
+VQ:137.30338
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:164.74582
+VQ:138.80219
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:161.9882
+VQ:140.301
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:159.2144
+VQ:138.81274
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:156.4406
+VQ:137.32448
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:153.6668
+VQ:135.83623
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:150.89299
+VQ:134.34796
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:148.11919
+VQ:132.85971
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:145.34538
+VQ:131.37144
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:142.57158
+VQ:129.8832
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:139.79778
+VQ:128.39493
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:137.02397
+VQ:126.90667
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:134.25017
+VQ:125.41841
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:131.47636
+VQ:123.93016
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:128.70256
+VQ:122.4419
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:125.92876
+VQ:120.95364
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:123.15495
+VQ:119.465385
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:120.38115
+VQ:117.97713
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:117.607346
+VQ:116.48887
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:114.83354
+VQ:115.00061
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:114.60708
+VQ:111.88583
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:114.38061
+VQ:108.77106
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:114.154144
+VQ:105.65628
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:113.92768
+VQ:102.5415
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:113.70122
+VQ:99.42672
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:113.47475
+VQ:96.31194
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:113.24828
+VQ:93.19717
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:113.02182
+VQ:90.08238
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:112.79535
+VQ:86.967606
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:112.568886
+VQ:83.85283
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:112.34242
+VQ:80.67305
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:112.11595
+VQ:77.49327
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:111.88949
+VQ:74.31349
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:111.72256
+VQ:71.17812
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:111.55562
+VQ:68.042755
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:111.38869
+VQ:64.90738
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:111.221756
+VQ:61.77201
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:111.05482
+VQ:58.636642
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:110.887886
+VQ:55.501274
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:110.68023
+VQ:52.462315
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:110.472565
+VQ:49.423355
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:110.26491
+VQ:46.384396
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:110.05724
+VQ:43.345436
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:109.84959
+VQ:40.306477
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:109.64192
+VQ:37.267517
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:109.434265
+VQ:34.22856
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:109.2266
+VQ:31.189598
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:109.01894
+VQ:28.150637
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:108.81129
+VQ:25.11168
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:108.60362
+VQ:22.07272
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:108.395966
+VQ:19.03376
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:108.1883
+VQ:15.994797
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:103
+VQ:773
+VQ:1
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:103
+VQ:0
+VQ:1800
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:107.980644
+VQ:12.955845
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:107.77298
+VQ:9.916882
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:107.56532
+VQ:6.877922
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:107.35766
+VQ:3.8389587
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:107.15
+VQ:0.79999924
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:104.4
+VQ:0.8000002
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:101.65
+VQ:0.8000002
+VQ:0
+VQ:0
+[End Step]
+
+[Step]
+VN:6
+VQ:97.06011
+VQ:0.72505665
+VQ:0
+VQ:0
+[End Step]

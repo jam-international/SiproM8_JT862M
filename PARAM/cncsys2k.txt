@@ -1,5 +1,5 @@
 [StartCncSys]
-  #Version 1.0.6.12207
+  #Version 1.0.6.13293
   [StartNote]
     Parametri di sistema del cnc - 03.04.2009
   [EndNote]

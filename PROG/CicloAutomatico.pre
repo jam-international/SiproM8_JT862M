@@ -33,11 +33,18 @@ if ( vb50             == 0 )
 
 
 	vb7086      = 1
-	if(vn320          == 882 ) 
-		vb7186       = 1 
-	endif
+
+
+
 
 	WaitCond ( ( vb7093      == 1 ) and ( vn3091        >= 7 ) )
+
+	if(vn320          == 8620 )  //862MZ
+		Vb4371                               = 1 
+	endif
+
+
+
 
 	//se alla pressione del verde avevo il pulsante reset piegatore premuto il plc aveva alazato la pinza esterna per non far incastrare le dime
 	if(vb81                       == 1)
@@ -112,6 +119,7 @@ endif
 		        Vb4350                         = 0  
 				Vb4351                         = 0   
 				Vb4356                                = 0  
+
 
             // lancio automatico per centrare la caricatore su pinza cucitrice
 		gosub "TestManutenzione.obj"	
@@ -258,6 +266,8 @@ switch ( vn11         )
 
 
 			Vb4356                                = 0  
+			Vb4371                               = 1 
+
 			vn11         = 12
 		endif
 		if(vn2                  ==24)

@@ -1,0 +1,241 @@
+[StartParMac]
+  #Version 1.0.6.11984
+  [StartNote]
+    Parametri Macchina di Default
+  [EndNote]
+
+
+  [StartCnCommParam]
+    #CanAdd ComPar
+    CnIdCode = 1
+  [EndCnCommParam]
+
+  [StartCnDevOptions]
+    #HIDETITLEPAR
+    CheckAxHwFcMode = 0
+    OvdG0Indip = 0
+    EmergInAutoMode = 0
+    MaxNumCamDig = 32
+    TftpMode = 0
+    CncProgPathSearchCode = 0
+    CncUdtPathSearchCode = 0
+    MaxAutoFileBufKbSize = 0
+    CncMoveAxAlarmMode = 0
+    MaxNumMsgAlarms = 512
+    IsoCheckSyntaxLevel = 1
+    UsePcVars = 0
+    CncAutoGlobalConfig = 1
+  [EndCnDevOptions]
+
+  [StartSeqAz]
+    #CanAdd ProgAz
+    #CanAdd GrpAz
+  [EndSeqAz]
+
+  [StartEncodersParam]
+    #CanAdd Encoder
+    #CanAdd AnInEnc
+    #CanAdd EncSsi
+    #CanAdd EncVar
+
+    [StartEncoder]
+      EncId = 97
+      EncMmRif = 360
+      EncImpRif = 4000
+      EncInvDir = 0
+      EncZeroMm = 0
+      EncTipo = 0
+      EncImpGiro = 0
+      EncNumGiri = 0
+    [EndEncoder]
+
+    [StartEncoder]
+      EncId = 98
+      EncMmRif = 360
+      EncImpRif = 4000
+      EncInvDir = 0
+      EncZeroMm = 0
+      EncTipo = 0
+      EncImpGiro = 0
+      EncNumGiri = 0
+    [EndEncoder]
+  [EndEncodersParam]
+
+  [StartGroupsIntpParam]
+    #CanAdd GrpIntp
+
+    [StartGrpIntp]
+      #CanAdd AxGrpIntp
+      #CanAdd GeoMac
+      #CanAdd IntpSpindle
+      GrpId = 1
+      GrpEnabled = 1
+      ChnId = 1
+      NumPntBSpline = 3
+      AxTgId = 0
+      TgThresholdDeg = 20
+      TgMode = 0
+      GrpAccProfile = 0
+      GrpDecProfile = 0
+      GrpJaProfile = 0
+      GrpJdProfile = 0
+      CircMinNumPnt = 0
+      ChnRestoreParAxInAuto = 0
+      GrpMaxCompBlocks = 0
+
+      [StartAxGrpIntp]
+        AxId = 1
+        AxLetter = "X"
+        AxDir = 0
+      [EndAxGrpIntp]
+
+      [StartAxGrpIntp]
+        AxId = 2
+        AxLetter = "Y"
+        AxDir = 0
+      [EndAxGrpIntp]
+    [EndGrpIntp]
+
+    [StartGrpIntp]
+      #CanAdd AxGrpIntp
+      #CanAdd GeoMac
+      #CanAdd IntpSpindle
+      GrpId = 2
+      GrpEnabled = 1
+      ChnId = 2
+      NumPntBSpline = 3
+      AxTgId = 0
+      TgThresholdDeg = 20
+      TgMode = 0
+      GrpAccProfile = 0
+      GrpDecProfile = 0
+      GrpJaProfile = 0
+      GrpJdProfile = 0
+      CircMinNumPnt = 0
+      ChnRestoreParAxInAuto = 0
+      GrpMaxCompBlocks = 0
+
+      [StartAxGrpIntp]
+        AxId = 6
+        AxLetter = "X"
+        AxDir = 0
+      [EndAxGrpIntp]
+
+      [StartAxGrpIntp]
+        AxId = 7
+        AxLetter = "Y"
+        AxDir = 0
+      [EndAxGrpIntp]
+    [EndGrpIntp]
+  [EndGroupsIntpParam]
+
+  [StartResetVar]
+    #CanAdd ResetBlockVar
+  [EndResetVar]
+
+  [StartTest]
+
+    [StartAxSqtTest]
+      SqtMode = 1
+      SqtNumCycle = 2
+      SqtOutVolt = 1
+      SqtTon = 0.5
+      SqtToff = 0.5
+    [EndAxSqtTest]
+  [EndTest]
+
+  [StartChannels]
+    #CanAdd OneChannel
+
+    [StartOneChannel]
+      #CanAdd AxChn
+
+      [StartNote]
+        NOTA: Comando UDT di default = 15 per ripristinare il profilo eseguito e carica il passo
+        8  ripristina solo il nome
+        
+        
+        
+      [EndNote]
+
+      ChnId = 1
+      ChnEnabled = 1
+      ChnEmergInAutoMode = 0
+      ChnRestoreParAxInAuto = 0
+      ChnStartupUdtFile = ""
+      ChnStartupUdtCmd = 0
+      ChnDefaultUdtFile = ""
+      ChnDefaultUdtCmd = 8
+      ChnUdfInBkpRam = 0
+      ChnUdfBufKbSize = 384
+      ChnAutoMode = 0
+      ChnAutoSliceTimeCode = 0
+      ChnRestoreLastProgName = 0
+
+      [StartAxChn]
+        AxId = 3
+      [EndAxChn]
+
+      [StartAxChn]
+        AxId = 4
+      [EndAxChn]
+    [EndOneChannel]
+
+    [StartOneChannel]
+      #CanAdd AxChn
+
+      [StartNote]
+        NOTA: Comando UDT di default = 15 per ripristinare il profilo eseguito e carica il passo
+        8  ripristina solo il nome
+        
+      [EndNote]
+
+      ChnId = 2
+      ChnEnabled = 1
+      ChnEmergInAutoMode = 0
+      ChnRestoreParAxInAuto = 0
+      ChnStartupUdtFile = ""
+      ChnStartupUdtCmd = 0
+      ChnDefaultUdtFile = ""
+      ChnDefaultUdtCmd = 8
+      ChnUdfInBkpRam = 0
+      ChnUdfBufKbSize = 384
+      ChnAutoMode = 0
+      ChnAutoSliceTimeCode = 0
+      ChnRestoreLastProgName = 0
+
+      [StartAxChn]
+        AxId = 8
+      [EndAxChn]
+
+      [StartAxChn]
+        AxId = 9
+      [EndAxChn]
+    [EndOneChannel]
+
+    [StartOneChannel]
+      #CanAdd AxChn
+      ChnId = 3
+      ChnEnabled = 1
+      ChnEmergInAutoMode = 0
+      ChnRestoreParAxInAuto = 0
+      ChnStartupUdtFile = ""
+      ChnStartupUdtCmd = 0
+      ChnDefaultUdtFile = ""
+      ChnDefaultUdtCmd = 0
+      ChnUdfInBkpRam = 0
+      ChnUdfBufKbSize = 384
+      ChnAutoMode = 0
+      ChnAutoSliceTimeCode = 0
+      ChnRestoreLastProgName = 0
+
+      [StartAxChn]
+        AxId = 5
+      [EndAxChn]
+
+      [StartAxChn]
+        AxId = 10
+      [EndAxChn]
+    [EndOneChannel]
+  [EndChannels]
+[EndParMac]

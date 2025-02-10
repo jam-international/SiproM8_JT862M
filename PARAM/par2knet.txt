@@ -1,5 +1,5 @@
 [StartNets]
-  #Version 1.0.6.12207
+  #Version 1.0.6.13293
   [StartNote]
     File di Configurazione Reti Ethernet (Default)
   [EndNote]

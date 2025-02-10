@@ -1,0 +1,3 @@
+cambiare firmware
+inserire le funzioni di allineamento impusi, vedi ExecPlcFun( 281, 193, 1 ) ExecPlcFun( 281, 193 ,0 ) nel loop G280 e 
+	nell'emergenza PLC Vret := ExecPlcFun( 281, 193, 0 );

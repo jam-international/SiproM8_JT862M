@@ -156,7 +156,7 @@
 #define     PLC_ECAT_SDO_RD     301     // [DINT] Ethercat SDO read
 #define     PLC_ECAT_INFO       302     // [DINT] Ethercat info
 
-
+#define		SOGLIA_ERRORE_G0	0.3		//
 // ============================================================================
 //      ASSEGNAZIONE VB
 // ============================================================================
@@ -251,7 +251,7 @@
 #define Vb93_RotazRevolver			vb93		// = 1 il revolver fa un passo di rotazione
 #define Vb94_Cambiare_revolver		Vb94		// =1 è ora di cambiare il revolver
 #define Vb95_ResetConteggio			vb95		// tasto Reset HMI rimette il conteggio 1/7
-//
+#define Vb96_EnableJogXYPlc			vb96		// = 1 in fase di hold è possibile fare i jog con i tasti +- del HMI
 #define Vb97_InversioneRetrattile	vb97		// = 1 invertire i tubi aria dell'apri chiudi della retrattile
 #define Vb98_ArrestaAssiQuick		vb98		// = 1 ferma tutti gli assi in quick mode
 #define	VbTest					    vb99		// per test
@@ -276,19 +276,15 @@
 #define LeggoTemperaturaDriverCro 	vb119		//1 = il PLC tramite Ethercat legge la temperatura del driver Crochet
 #define LeggoTemperaturaDriverCar 	vb120		//1 = il PLC tramite Ethercat legge la temperatura del driver Cariatore
 #define Vb121_LanciaFuoriAuto		vb121		//1 = la lancia viene fuori senza premere la pedana
+#define Vb122_MZRulliScarAttivo		vb122		//1 = HMI ha attivato la funzione rulli scaricatore tramite motore
+
 
 #define QuickStopOnEmerg		 	vb150		// 1=QuickStop su evento di emergenza - #M240809_1GF#
 #define QuickStopInProgress			vb151		// Quick stop in progress
 
 
-#define Vb200DebugPartenzaNormale	vb200
-#define Vb201DebugPartenzaTest		vb201
-#define Vb202DebugRipartenzaRewind	vb202
-#define Vb203DebugRipartenza		vb203
-#define Vb204DebugStepPiu			vb204
-#define Vb205DebugSteMeno			vb205
-#define Vb206DebugStepPiuCont		vb206
-#define Vb207DebugStepMenoCont		vb207
+
+
 //------------------------------------------------------------------------
 //
 // #######################################
@@ -456,7 +452,7 @@
 #define Vb4152_AppMan_o20_C1_Retrattile_AC				Vb4152
 #define Vb4153_AppMan_o21_C1_RaffreddamentoAgo			Vb4153
 #define Vb4154_AppMan_o22_Scaric_dx_sx					Vb4154
-#define	Vb4155_AppMan_o23_Lentezza_Tasca_AD				Vb4155
+#define	Vb4155_AppMan_o23								Vb4155
 #define Vb4156_AppMan_o24_Pinza_carico_Su_Giu			Vb4156
 #define Vb4157_AppMan_o25_C1_Cambio_Pinze				Vb4157
 #define Vb4158_AppMan_o26_C1_Scalino_Piedino			Vb4158
@@ -471,7 +467,11 @@
 #define Vb4167_AppMan_o35_Braccio_AutoBC				Vb4167
 #define Vb4168_AppMan_o36_coltello_rinforzo				Vb4168
 #define Vb4169_AppMan_o37_calamita_rinforzo				Vb4169
-#define Vb4170_AppMan_o38_rullo_rinforzo				Vb4170
+#define	Vb4170_AppMan_o38_rullo_rinforzo				Vb4170
+#define Vb4171_AppMan_o22_PinzaDietroCaricMZ			Vb4171
+#define Vb4172_AppMan_o23_MZ_RulliSca_SuGIu				Vb4172
+#define Vb4173_AppMan_o30_MZ_SoffiLamiera				Vb4173
+
 
 
 
@@ -523,6 +523,9 @@
 #define Vb4368_AppAut_o36_coltello_rinforzo				Vb4368
 #define Vb4369_AppAut_o37_calamita_rinforzo				Vb4369
 #define Vb4370_AppAut_o38_rullo_rinforzo				Vb4370
+#define Vb4371_AppAut_o22_PinzaDietroCaricMZ			Vb4371
+#define Vb4372_AppAut_o23_MZ_RulliSca_SuGIu				Vb4372
+#define Vb4373_AppAut_o30_MZ_SoffiLamiera				Vb4373
 
 
 //-------------------------------------------------------------------------
@@ -642,6 +645,7 @@
 #define VbChn1Start             vb7901      // VB START canale 1
 #define VbChn1Reset             vb7903      // VB RESET canale 1
 #define VbChn1AutoRun           vb7908      // VB Auto Running canale 1
+#define VbChn1Emerg				vb7909		// VB canale 1 in emergenza
 
 #define VbChn2Start             vb7921      // VB START canale 2
 #define VbChn2Reset             vb7923      // VB RESET canale 2
@@ -758,6 +762,7 @@
 
 #define CodiceDeviceOptional			vn236
 
+#define Vn239CntErrori				vn239
 #define Vn240AnnoOrologioPLC		vn240
 #define Vn241MeseOrologioPLC		vn241
 #define Vn242giornoOrologioPLC		vn242
@@ -926,6 +931,8 @@
 #define PosAx15                 vq65        // Posizione asse 15
 #define Copia_PosAx_C1_AsseCAR                 vq66        // Posizione asse 16
 
+#define DeltaFirst_C1_AsseX     vq70        // Cucitrice 1 - PosX - QuotaPrimo Punto
+#define DeltaFirst_C1_AsseY     vq71        // Cucitrice 1 - PosY - QuotaPrimo Punto
 
     //variabili per scrittura parametri asse
 #define Vq_100_WRITE_FC_ind_X       vq100      // Vq scrittura fine corsa indietro asse X
@@ -941,6 +948,19 @@
 #define	Vq109_WRITE_Vel_manualeAgo_C2	vq109	//Vq da inserire nel parametro asse velocità manuale asse Ago
 #define Vq_110_READ_FC_ind_CARIC        vq110      // Vq lettura fine corsa indietro asse Y
 #define Vq_111_READ_FC_ava_CARIC        vq111      // Vq lettura fine corsa avanti asse Y
+
+
+
+
+
+#define vq121FUN107_MasterErr		vq121		//= Errore istantaneo Master [mm]
+#define vq122FUN107_SlaveErr		vq122		//= Errore istantaneo Slave [mm]
+#define vq123FUN107_DifMasterSlave	vq123		// = Differenza tra le posizione master e slave [mm] ( valore assoluto )
+#define vq124FUN107_DifMaxMastSlave	vq124		// = Valore massimo della differenza tra le posizione master e slave [mm] ( valore assoluto )
+#define vq125FUN107_SogliaAllGantry	vq125		// = Soglia di allarme inseguimento gantry [mm] impostata nei parametri assi
+#define vq126FUN107_MasterFolErr	vq126		// = Emergenza GANTRY FOLLOW ERROR: errore istantaneo Master [mm]
+#define vq127FUN107_SlaveFolErr		vq127		//= Emergenza GANTRY FOLLOW ERROR: errore istantaneo Slave [mm]
+#define vq128FUN107_DiffFolErr		vq128		// = Emergenza GANTRY FOLLOW ERROR:  valore assoluto della differenza tra le posizione master e slave [mm]
 //------------------------------------------------------------------------
 //
 // #######################################
@@ -1154,6 +1174,22 @@
 
 
 
+
+
+#define Copia_DeltaFirst_C1_AsseX_34	vq4900
+#define Copia_DeltaFirst_C1_AsseY_34	vq4901
+#define Copia_DeltaFirst_C1_AsseX_35	vq4902
+#define Copia_DeltaFirst_C1_AsseY_35	vq4903
+#define Copia_DeltaFirst_C1_AsseX_36	vq4904
+#define Copia_DeltaFirst_C1_AsseY_36	vq4905
+#define Copia_DeltaFirst_C1_AsseX_37	vq4906
+#define Copia_DeltaFirst_C1_AsseY_37	vq4907
+#define Copia_DeltaFirst_C1_AsseX_38	vq4908
+#define Copia_DeltaFirst_C1_AsseY_38	vq4909
+
+
+
+
 // ============================================================================
 //      ASSEGNAZIONE VD e VCD
 // ============================================================================
@@ -1247,9 +1283,9 @@
 #define i11_FcLancia_DI 		din11	//
 #define i12_Pressostato			din12	//
 #define i13						din13	//
-#define i14						din14	//
-#define i15						din15	//
-#define i16						din16	//
+#define i14_MZRullo1Su			din14	//
+#define i15_MZRullo2Su			din15	//
+#define i16_MZRullo3Su			din16	//
 
 #define i17						din17	//
 #define i18_RotturaFilo 		din18	//
@@ -1300,7 +1336,9 @@
 #define o20_C1_Retrattile_AC		dout20      // 
 #define o21_C1_RaffreddamentoAgo	dout21      // 	
 #define o22_Scaric_dx_sx			dout22      //
+#define o22_MZ_PinzaDietroCaric		dout22		//862MZ
 #define o23_Lentezza_Tasca_AD		dout23      //
+#define o23_MZ_RulliSca_SuGIu		dout23		//862MZ
 #define o24_Pinza_carico_Su_Giu		dout24	    // 
 #define o25_C1_Cambio_Pinze			dout25      //
 #define o26_C1_Scalino_Piedino		dout26      // 
@@ -1308,6 +1346,7 @@
 #define o28_Prima_barra				dout28      // 
 #define o29_Seconda_barra			dout29      // 
 #define o30_rullo_rinforzo			dout30      //
+#define o30_MZ_SoffiLamiera			dout30      //862MZ
 #define o31_bloccaFiloMagente		dout31      //
 #define o32_Enable_AssiXY_C1C2		dout32      //
 #define o33_Gancio_AutoBC			dout33		//AutoBobbinChanger
@@ -1315,7 +1354,7 @@
 #define o35_Braciio_AutoBC			dout35		//AutoBobbinChanger
 #define o36_coltello_rinforzo		dout36		//device rinforzo pneumatico
 #define o37_calamita_rinforzo		dout37		//device rinforzo pneumatico
-#define o38_rullo_rinforzo			dout38		//device rinforzo pneumatico
+#define o38_rullo_rinforzo			dout38		
 
 
 // ============================================================================

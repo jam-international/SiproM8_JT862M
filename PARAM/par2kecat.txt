@@ -1,5 +1,5 @@
 [StartEthercat]
-  #Version 1.0.6.12207
+  #Version 1.0.6.13293
   #CanAdd NetEthercat
 
   [StartNetEthercat]
@@ -193,60 +193,6 @@
         EcatDigOutSubIndex = &H2
         EcatDigOutObjSize = 8
         EcatFirstDigOut = 25
-        EcatNumDigOut = 8
-        EcatDigOutPar = 0
-      [EndEcatDigOut]
-    [EndEcatGenericNode]
-
-    [StartEcatGenericNode]
-      #CanAdd EcatReadVal
-      #CanAdd EcatWriteVal
-      #CanAdd EcatDigIn
-      #CanAdd EcatDigOut
-      EcatNodeId = 6
-      Name = "Microchip"
-      NodeEnable = 1
-      EcatVendorId = 0
-      EcatProductCode = 0
-      EcatTypeNode = 0
-      EcatPar1 = 0
-      ChangeTwinCATreg = 0
-      NodeStateVnIdx = 0
-      NodeGestStateVnIdx = 0
-      Sync0StartTimeUs = 0
-
-      [StartEcatDigIn]
-        EcatDigInIndex = &H3001
-        EcatDigInSubIndex = &H1
-        EcatDigInObjSize = 8
-        EcatFirstDigIn = 33
-        EcatNumDigIn = 8
-        EcatDigInPar = 0
-      [EndEcatDigIn]
-
-      [StartEcatDigIn]
-        EcatDigInIndex = &H3001
-        EcatDigInSubIndex = &H2
-        EcatDigInObjSize = 8
-        EcatFirstDigIn = 41
-        EcatNumDigIn = 8
-        EcatDigInPar = 0
-      [EndEcatDigIn]
-
-      [StartEcatDigOut]
-        EcatDigOutIndex = &H3101
-        EcatDigOutSubIndex = &H1
-        EcatDigOutObjSize = 8
-        EcatFirstDigOut = 33
-        EcatNumDigOut = 8
-        EcatDigOutPar = 0
-      [EndEcatDigOut]
-
-      [StartEcatDigOut]
-        EcatDigOutIndex = &H3101
-        EcatDigOutSubIndex = &H2
-        EcatDigOutObjSize = 8
-        EcatFirstDigOut = 41
         EcatNumDigOut = 8
         EcatDigOutPar = 0
       [EndEcatDigOut]

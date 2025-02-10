@@ -34,5 +34,6 @@ sub ()
         // azzero numero punti fatti 
 	C1_VqActPntCuci = 0
 
+	ExecPlcFun( PLC_CUCI_CMD, 113, 1 )	// imposto CucuIsoMode = 1
 endsub
 

@@ -21,6 +21,7 @@ sub ()
 
         // Verifica se la ripartenza e' in una zona di fermata temporanea
         // In tal caso bisogna riportarsi all'inizio della prossima cucitura
+
     do
 
             // Attesa rilascio hold          
@@ -28,24 +29,20 @@ sub ()
            // Per evitare di chiamare furiosamente la FUN 150
         DelayS( 0.1 )
 
-
-	vb200                      = 0  
-	vb201                  = 0  	
-	vb202                      = 0  	
-	vb203                = 0  
-
         if ( vb1033              or vb43                    )
 		vb43                    = 0  
             exitdo
         endif
             // Movimento simulato avanti fino a ripresa o fine cucitura
-        ExecPlcFun( 281         , 150, 10 )  
+        ExecPlcFun( 281         , 150, 10 )
+
 
             // Attesa assi X Y fermi
         WaitCond( IsAxInStop( 1        ) )      
         WaitCond( IsAxInStop( 2        ) )      
 
     loop
+
 
         // Elimina le forzature di velocita' asse ago
     ExecPlcFun( 281         , 108, 0 )        
@@ -57,10 +54,9 @@ sub ()
        // Verifica se necessario riposizionare gli indici di estrazione del buffer            
     if ( vb1028           )
         ISO G281 P 10                  X vq1027       Y vq1028      			//riparte dall'inizio del programma
-	vb202                      = 1 
+
     else
         ISO G281 P 126                        X vq1027       Y vq1028      		//continua dal punto in cui era
-	vb203                = 1 
+
     endif
-    vb44                 = 1 	//	<<<<<<<<<--------------------chiede al HMI di scrivere il file debugsys.txt con le variabili di debug------
 endsub

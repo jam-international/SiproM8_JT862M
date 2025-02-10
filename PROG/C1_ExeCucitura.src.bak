@@ -19,6 +19,18 @@
 
 
 sub ()
+
+	Vb200DebugPartenzaNormale  = OFF
+	Vb201DebugPartenzaTest = OFF	
+	Vb202DebugRipartenzaRewind = OFF	
+	Vb203DebugRipartenza = OFF	
+	Vb204DebugStepPiu = OFF
+	Vb205DebugSteMeno = OFF
+	Vb206DebugStepPiuCont = OFF
+	Vb207DebugStepMenoCont = OFF
+	Vb208DebugReset = OFF
+	Vb209Debug281_150  = OFF
+	
 	Vb28_C1_ExeCucitura_Run = ON
         // Piedino su
     SyncVar( C1_CmdPiedinoSu )    
@@ -147,13 +159,47 @@ do
 vntest2 = 1
 	// Movimento a posizione di inizio cucitura
     C1_VelFeed = C1_Udf_FeedG0
-    ISO G1 X C1_FirstPt_X Y C1_FirstPt_Y F C1_VelFeed
+   if(C1_VelFeed >50000)
+	C1_VelFeed = 50000
+    endif
+ 
+	ISO G1 X C1_FirstPt_X Y C1_FirstPt_Y F C1_VelFeed
 
-    WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
+//### INI - #M250107_1GF# 
+    DelayS( 0.1 )       // Sicuramente il PLC legge le posizioni degli assi X e Y
+    
+        // Errore rispetto al primo punto
+    DeltaFirst_C1_AsseX = PosAx_C1_AsseX - C1_FirstPt_X
+    DeltaFirst_C1_AsseY = PosAx_C1_AsseY - C1_FirstPt_Y
+    
+        // Valore assoluto X
+    if ( DeltaFirst_C1_AsseX < 0 )
+        DeltaFirst_C1_AsseX = 0 - DeltaFirst_C1_AsseX
+    endif
+        
+        // Valore assoluto Y
+    if ( DeltaFirst_C1_AsseY < 0 )
+        DeltaFirst_C1_AsseY = 0 - DeltaFirst_C1_AsseY
+    endif
+
+ 
+    
+    if ( ( DeltaFirst_C1_AsseX > SOGLIA_ERRORE_G0 ) or ( DeltaFirst_C1_AsseY > SOGLIA_ERRORE_G0) )
+	Copia_DeltaFirst_C1_AsseX_34 = DeltaFirst_C1_AsseX
+	Copia_DeltaFirst_C1_AsseY_34 = DeltaFirst_C1_AsseY
+        Vn2CodiceAllarmeXHmi = 34
+        gosub "Halt.obj"
+    else
+	Copia_DeltaFirst_C1_AsseX_34 = 0
+	Copia_DeltaFirst_C1_AsseY_34 = 0
+    endif
+
+//### END - #M250107_1GF# 
+	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
 
         // Verifica se parto con il TEST premuto : viene forzato Hold
     if ( C1_CuciSimulaAuto == 1 )
-        C1_CmdHoldRelease = 1		//il TEST è premuto quindi attivo Hold
+        C1_CmdHoldRelease = 1		//il TEST ï¿½ premuto quindi attivo Hold
 	vntest2 = 2
     endif
     
@@ -172,19 +218,21 @@ vntest2 = 1
 
     C1_CuciBufRewind = OFF      // #M230406_1GF# - reset rewind flag    
 
-    C1_ReloadParam = OFF        // finito il primo giro in automatico non eseguo più le impostazioni
+    C1_ReloadParam = OFF        // finito il primo giro in automatico non eseguo piï¿½ le impostazioni
 
         // Esecuzione cucitura
     Vb30_C1_InCucitura = ON 
 
-	Vb44_WriteDebugSuHmi = ON	//	<<<<<<<<<--------------------chiede al HMI di scrivere il file debugsys.txt con le variabili di debug------
-	vntest2 = 5
+		vntest2 = 5
     do
 	
         ISO G280
 
+        ExecPlcFun( 281, 193, 1 )	//riallina gli impulsi XY tra quota teorica e reale
             // Attesa
         DelayS( 0.1 )
+
+        ExecPlcFun( 281, 193 ,0 )	//riallina gli impulsi XY tra quota teorica e reale
 
             // Attesa asse ago fermo
         WaitCond( IsAxInStop( C1_AsseAGO ) )      
@@ -199,18 +247,8 @@ vntest2 = 1
     loop        
 	Vb42_PrimaTasca = OFF
 
-	Vb200DebugPartenzaNormale  = OFF
-	Vb201DebugPartenzaTest = OFF	
-	Vb202DebugRipartenzaRewind = OFF	
-	Vb203DebugRipartenza = OFF	
-	Vb204DebugStepPiu = OFF
-	Vb205DebugSteMeno = OFF
-	Vb206DebugStepPiuCont = OFF
-	Vb207DebugStepMenoCont = OFF
-	Copia_PosAx_C1_AsseCAR = 0 //per debug Ananta Bangladesh
-
-
-
+	Vb44_WriteDebugSuHmi = ON	//	<<<<<<<<<--------------------chiede al HMI di scrivere il file debugsys.txt con le variabili di debug------
+	
 
         // Piedino su
     SyncVar( C1_CmdPiedinoSu )    
@@ -226,6 +264,35 @@ vntest2 = 1
 
         ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F C1_VelFeed
 
+//### INI - #M250107_1GF# 
+    DelayS( 0.1 )       // Sicuramente il PLC legge le posizioni degli assi X e Y
+    
+        // Errore rispetto al primo punto
+    DeltaFirst_C1_AsseX = PosAx_C1_AsseX - C1_QuoHomeX
+    DeltaFirst_C1_AsseY = PosAx_C1_AsseY - C1_QuoHomeY
+    
+        // Valore assoluto X
+    if ( DeltaFirst_C1_AsseX < 0 )
+        DeltaFirst_C1_AsseX = 0 - DeltaFirst_C1_AsseX
+    endif
+        
+        // Valore assoluto Y
+    if ( DeltaFirst_C1_AsseY < 0 )
+        DeltaFirst_C1_AsseY = 0 - DeltaFirst_C1_AsseY
+    endif
+    
+    if ( ( DeltaFirst_C1_AsseX > (SOGLIA_ERRORE_G0/100) ) or ( DeltaFirst_C1_AsseY > (SOGLIA_ERRORE_G0/100) ) )
+	Copia_DeltaFirst_C1_AsseX_35 = DeltaFirst_C1_AsseX
+	Copia_DeltaFirst_C1_AsseY_35 = DeltaFirst_C1_AsseY
+        Vn2CodiceAllarmeXHmi = 35
+        gosub "Halt.obj"
+    else
+	Copia_DeltaFirst_C1_AsseX_35 = 0
+	Copia_DeltaFirst_C1_AsseY_35 = 0	
+    endif
+
+//### END - #M250107_1GF# 
+	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
 
 	//se attivo auto bobbin changer
 	if(Vb4072_AllarmeContSpolaC1 ==1 and Vb90_EnableAutoBobbinChang)
@@ -267,7 +334,38 @@ vntest2 = 1
     Vb4802_PulsResetHmiC1 = 0 //per DACCA, in alcuni casi dopo essere tornato al punto di carico eseguiva erroneamente il movimento XY di reset
     Vb4803_AppResetHmiC1 = 0 //per DACCA, in alcuni casi dopo essere tornato al punto di carico eseguiva erroneamente il movimento XY di reset
     
-    ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F C1_VelFeed    
+    ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F C1_VelFeed
+
+//### INI - #M250107_1GF# 
+    DelayS( 0.1 )       // Sicuramente il PLC legge le posizioni degli assi X e Y
+    
+        // Errore rispetto al primo punto
+    DeltaFirst_C1_AsseX = PosAx_C1_AsseX - C1_QuoHomeX
+    DeltaFirst_C1_AsseY = PosAx_C1_AsseY - C1_QuoHomeY
+    
+        // Valore assoluto X
+    if ( DeltaFirst_C1_AsseX < 0 )
+        DeltaFirst_C1_AsseX = 0 - DeltaFirst_C1_AsseX
+    endif
+        
+        // Valore assoluto Y
+    if ( DeltaFirst_C1_AsseY < 0 )
+        DeltaFirst_C1_AsseY = 0 - DeltaFirst_C1_AsseY
+    endif
+    
+    if ( ( DeltaFirst_C1_AsseX > 0.1 ) or ( DeltaFirst_C1_AsseY > 0.1 ) )
+	Copia_DeltaFirst_C1_AsseX_36 = DeltaFirst_C1_AsseX
+	Copia_DeltaFirst_C1_AsseY_36 = DeltaFirst_C1_AsseY
+     //   Vn2CodiceAllarmeXHmi = 36
+   //     gosub "Halt.obj"
+    else
+	Copia_DeltaFirst_C1_AsseX_36 = 0
+	Copia_DeltaFirst_C1_AsseY_36 = 0
+    endif
+
+//### END - #M250107_1GF# 
+	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
+
     if(Vn14TipoScartafiloC1 == 1)
         Vb4038_Scatena_scartafilo = ON
     endif

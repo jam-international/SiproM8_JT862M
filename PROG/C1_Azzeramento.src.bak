@@ -174,6 +174,39 @@ sub ()
     endif
     ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F C1_VelFeed
 
+
+//### INI - #M250107_1GF# 
+    DelayS( 0.1 )       // Sicuramente il PLC legge le posizioni degli assi X e Y
+    
+        // Errore rispetto al primo punto
+    DeltaFirst_C1_AsseX = PosAx_C1_AsseX - C1_QuoHomeX
+    DeltaFirst_C1_AsseY = PosAx_C1_AsseY - C1_QuoHomeY
+    
+        // Valore assoluto X
+    if ( DeltaFirst_C1_AsseX < 0 )
+        DeltaFirst_C1_AsseX = 0 - DeltaFirst_C1_AsseX
+    endif
+        
+        // Valore assoluto Y
+    if ( DeltaFirst_C1_AsseY < 0 )
+        DeltaFirst_C1_AsseY = 0 - DeltaFirst_C1_AsseY
+    endif
+    
+    if ( ( DeltaFirst_C1_AsseX > 0.1 ) or ( DeltaFirst_C1_AsseY > 0.1 ) )
+	Copia_DeltaFirst_C1_AsseX_37 = DeltaFirst_C1_AsseX
+	Copia_DeltaFirst_C1_AsseY_37 = DeltaFirst_C1_AsseY
+      //  Vn2CodiceAllarmeXHmi = 37
+       // gosub "Halt.obj"
+    else
+	Copia_DeltaFirst_C1_AsseX_37 = 0
+	Copia_DeltaFirst_C1_AsseY_37 = 0
+    endif
+
+//### END - #M250107_1GF# 
+	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
+
+
+
         // Operazioni finali Custom
     gosub "C1_AzzEndCustom"    
 
@@ -181,5 +214,5 @@ sub ()
 	C1_AssiAzzerati = ON
 	Vb52RichiestaZeroAxDaHmiC1 = OFF
 	Vb86In_Azzeramento_C1 = OFF
-	Vb87_FineCucituraSottoprogramma = ON
+
 endsub

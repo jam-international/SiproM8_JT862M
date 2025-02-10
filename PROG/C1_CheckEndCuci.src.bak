@@ -33,20 +33,56 @@ sub ()
 		ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F C1_VelFeed
 
 
+//### INI - #M250107_1GF# 
+    DelayS( 0.1 )       // Sicuramente il PLC legge le posizioni degli assi X e Y
+    
+        // Errore rispetto al primo punto
+    DeltaFirst_C1_AsseX = PosAx_C1_AsseX - C1_QuoHomeX
+    DeltaFirst_C1_AsseY = PosAx_C1_AsseY - C1_QuoHomeY
+    
+        // Valore assoluto X
+    if ( DeltaFirst_C1_AsseX < 0 )
+        DeltaFirst_C1_AsseX = 0 - DeltaFirst_C1_AsseX
+    endif
+        
+        // Valore assoluto Y
+    if ( DeltaFirst_C1_AsseY < 0 )
+        DeltaFirst_C1_AsseY = 0 - DeltaFirst_C1_AsseY
+    endif
+    
+    if ( ( DeltaFirst_C1_AsseX > 0.1 ) or ( DeltaFirst_C1_AsseY > 0.1 ) )
+	Copia_DeltaFirst_C1_AsseX_38 = DeltaFirst_C1_AsseX
+	Copia_DeltaFirst_C1_AsseY_38 = DeltaFirst_C1_AsseY
+     //   Vn2CodiceAllarmeXHmi = 38
+      //  gosub "Halt.obj"        
+    else
+	Copia_DeltaFirst_C1_AsseX_38 = 0
+	Copia_DeltaFirst_C1_AsseY_38 = 0
+    endif
+    
+
+//### END - #M250107_1GF# 
+	WaitCond ( Vb4045_C1_AxXFermo and Vb4046_C1_AxYFermo )
+
+
+
+
 		//Daniele x fine test
+		Vb36_Clear_OPT1 = ON	//apro retrattile
+		Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
+		Vb38_Clear_OPT3 = ON	//disattivo salto piedino
+
 		Vb4350_AppAut_o18_C1_Pinza_int = ON
 		Vb4351_AppAut_o19_C1_Pinza_est = ON 
 
-		if(Vb4354_AppAut_o22_Scaric_dx_sx)	//se lo scaricatore è a sx (può succedere se ho usato Test cucitura)
+		if(Vb4354_AppAut_o22_Scaric_dx_sx or Vb122_MZRulliScarAttivo)	//se lo scaricatore è a sx (può succedere se ho usato Test cucitura)
 			Vb4032_AppScaricatoreStrBarre = ON
 			C1_VqActPntCuci = 0
 		endif
 
-		WaitCond ( i24_C1_PinzaEstAlta == 1)
+		//WaitCond ( i24_C1_PinzaEstAlta == 1)
 
-		Vb36_Clear_OPT1 = ON	//apro retrattile
-		Vb38_Clear_OPT3 = ON	//disattivo salto piedino
-
+		
 	
 		gosub "Halt.obj"
 	endif

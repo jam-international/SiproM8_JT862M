@@ -1,0 +1,341 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Ricetta descrizione="" numero="1" pcx="0.1" pcy="0.1" UdfVelLavRPM="4000" UdfPuntiVelIni="0.0020000000949949026" UdfVelIniRPM="300" UdfPuntiVelRall="0.003000000026077032" UdfVelRallRPM="250" Udf_FeedG0="50000" Udf_ValTensioneT1="9" Udf_20="0" Udf_ValElettrocalamitaSopra="75" Udf_ValElettrocalamitaSotto="50" Udf_VelocitaCaricLavoro="70000" Udf_24="0" Udf_25="0" Udf_26="0" Udf_27="0" Udf_28="0" Udf_29="0" Udf_30="0" Udf_SequenzaPiegatore_chiusura="1230" Udf_SequenzaPiegatore_apetura="321">
+  <Feed x-start="0.1" y-start="0.1" x-end="105.3" y-end="0.8" entity="c452a7b0-851e-4a82-bd1a-dc8e3423a4c7" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0">
+    <Step x="105.3" y="0.8" bt="0" />
+  </Feed>
+  <Line x-start="105.3" y-start="0.8" x-end="104.600006" y-end="0.8" entity="9ab3f2fa-b069-4215-8021-7a80fb2b39bf" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="105.3" y="0.8" bt="0" />
+    <Step x="104.600006" y="0.8" bt="0" />
+  </Line>
+  <Line x-start="104.600006" y-start="0.8" x-end="101.90001" y-end="0.8" entity="9ab3f2fa-b069-4215-8021-7a80fb2b39bf" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="104.600006" y="0.8" bt="0" />
+    <Step x="101.90001" y="0.8" bt="0" />
+  </Line>
+  <Line x-start="101.90001" y-start="0.8" x-end="101.3" y-end="0.7166667" entity="9ab3f2fa-b069-4215-8021-7a80fb2b39bf" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="101.90001" y="0.8" bt="0" />
+    <Step x="101.3" y="0.7166667" bt="0" />
+  </Line>
+  <Line x-start="101.3" y-start="0.7166667" x-end="95.8" y-end="0.55" entity="9ab3f2fa-b069-4215-8021-7a80fb2b39bf" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="101.3" y="0.7166667" bt="0" />
+    <Step x="98.55" y="0.6333333" bt="0" />
+    <Step x="95.8" y="0.55" bt="0" />
+  </Line>
+  <Line x-start="95.8" y-start="0.55" x-end="99.76875" y-end="33.550198" entity="9ab3f2fa-b069-4215-8021-7a80fb2b39bf" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="95.8" y="0.55" bt="0" />
+    <Step x="96.1608" y="3.550018" bt="0" />
+    <Step x="96.52159" y="6.5500364" bt="0" />
+    <Step x="96.88239" y="9.550055" bt="0" />
+    <Step x="97.24319" y="12.550073" bt="0" />
+    <Step x="97.60398" y="15.55009" bt="0" />
+    <Step x="97.964775" y="18.550108" bt="0" />
+    <Step x="98.32557" y="21.550125" bt="0" />
+    <Step x="98.68636" y="24.550144" bt="0" />
+    <Step x="99.047165" y="27.550161" bt="0" />
+    <Step x="99.40796" y="30.550179" bt="0" />
+    <Step x="99.76875" y="33.550198" bt="0" />
+  </Line>
+  <Line x-start="99.76875" y-start="33.550198" x-end="102.87575" y-end="63.700382" entity="9ab3f2fa-b069-4215-8021-7a80fb2b39bf" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="99.76875" y="33.550198" bt="0" />
+    <Step x="100.07945" y="36.565216" bt="0" />
+    <Step x="100.39015" y="39.580235" bt="0" />
+    <Step x="100.70085" y="42.595253" bt="0" />
+    <Step x="101.01155" y="45.61027" bt="0" />
+    <Step x="101.32225" y="48.62529" bt="0" />
+    <Step x="101.63295" y="51.64031" bt="0" />
+    <Step x="101.94365" y="54.655327" bt="0" />
+    <Step x="102.25435" y="57.670345" bt="0" />
+    <Step x="102.56505" y="60.685364" bt="0" />
+    <Step x="102.87575" y="63.700382" bt="0" />
+  </Line>
+  <Line x-start="102.87575" y-start="63.700382" x-end="103.806694" y-end="72.92544" entity="9ab3f2fa-b069-4215-8021-7a80fb2b39bf" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="102.87575" y="63.700382" bt="0" />
+    <Step x="103.186066" y="66.7754" bt="0" />
+    <Step x="103.496376" y="69.85042" bt="0" />
+    <Step x="103.806694" y="72.92544" bt="0" />
+  </Line>
+  <Line x-start="103.806694" y-start="72.92544" x-end="108.55111" y-end="115.91768" entity="9ab3f2fa-b069-4215-8021-7a80fb2b39bf" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="103.806694" y="72.92544" bt="0" />
+    <Step x="104.145584" y="75.996315" bt="0" />
+    <Step x="104.48447" y="79.067184" bt="0" />
+    <Step x="104.82336" y="82.13806" bt="0" />
+    <Step x="105.16224" y="85.20894" bt="0" />
+    <Step x="105.50113" y="88.27981" bt="0" />
+    <Step x="105.84001" y="91.350685" bt="0" />
+    <Step x="106.1789" y="94.421555" bt="0" />
+    <Step x="106.51779" y="97.49243" bt="0" />
+    <Step x="106.856674" y="100.56331" bt="0" />
+    <Step x="107.195564" y="103.634186" bt="0" />
+    <Step x="107.53445" y="106.705055" bt="0" />
+    <Step x="107.87334" y="109.77593" bt="0" />
+    <Step x="108.21222" y="112.8468" bt="0" />
+    <Step x="108.55111" y="115.91768" bt="0" />
+  </Line>
+  <Line x-start="108.55111" y-start="115.91768" x-end="108.86143" y-end="118.95073" entity="6cd4ab4d-2c5a-486c-9da6-959d13826b2d" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="108.55111" y="115.91768" bt="0" />
+    <Step x="108.86143" y="118.95073" bt="0" />
+  </Line>
+  <Line x-start="108.86143" y-start="118.95073" x-end="162.3478" y-end="147.50082" entity="6cd4ab4d-2c5a-486c-9da6-959d13826b2d" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="108.86143" y="118.95073" bt="0" />
+    <Step x="111.53574" y="120.378235" bt="0" />
+    <Step x="114.21006" y="121.80574" bt="0" />
+    <Step x="116.884384" y="123.233246" bt="0" />
+    <Step x="119.5587" y="124.66075" bt="0" />
+    <Step x="122.23302" y="126.08825" bt="0" />
+    <Step x="124.90733" y="127.515755" bt="0" />
+    <Step x="127.58166" y="128.94327" bt="0" />
+    <Step x="130.25597" y="130.37077" bt="0" />
+    <Step x="132.9303" y="131.79828" bt="0" />
+    <Step x="135.60461" y="133.22577" bt="0" />
+    <Step x="138.27893" y="134.65327" bt="0" />
+    <Step x="140.95325" y="136.08078" bt="0" />
+    <Step x="143.62756" y="137.50829" bt="0" />
+    <Step x="146.30188" y="138.93579" bt="0" />
+    <Step x="148.9762" y="140.3633" bt="0" />
+    <Step x="151.65051" y="141.7908" bt="0" />
+    <Step x="154.32483" y="143.2183" bt="0" />
+    <Step x="156.99916" y="144.64581" bt="0" />
+    <Step x="159.67346" y="146.07332" bt="0" />
+    <Step x="162.3478" y="147.50082" bt="0" />
+  </Line>
+  <Line x-start="162.3478" y-start="147.50082" x-end="195.54604" y-end="130.49953" entity="6cd4ab4d-2c5a-486c-9da6-959d13826b2d" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="162.3478" y="147.50082" bt="0" />
+    <Step x="165.11432" y="146.08405" bt="0" />
+    <Step x="167.88083" y="144.66728" bt="0" />
+    <Step x="170.64735" y="143.2505" bt="0" />
+    <Step x="173.41388" y="141.83372" bt="0" />
+    <Step x="176.18039" y="140.41695" bt="0" />
+    <Step x="178.94691" y="139.00018" bt="0" />
+    <Step x="181.71344" y="137.5834" bt="0" />
+    <Step x="184.47995" y="136.16663" bt="0" />
+    <Step x="187.24648" y="134.74985" bt="0" />
+    <Step x="190.013" y="133.33307" bt="0" />
+    <Step x="192.77951" y="131.9163" bt="0" />
+    <Step x="195.54604" y="130.49953" bt="0" />
+  </Line>
+  <Line x-start="195.54604" y-start="130.49953" x-end="206.61212" y-end="124.71576" entity="6cd4ab4d-2c5a-486c-9da6-959d13826b2d" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="195.54604" y="130.49953" bt="0" />
+    <Step x="198.31256" y="129.05359" bt="0" />
+    <Step x="201.07907" y="127.60764" bt="0" />
+    <Step x="203.8456" y="126.1617" bt="0" />
+    <Step x="206.61212" y="124.71576" bt="0" />
+  </Line>
+  <Line x-start="206.61212" y-start="124.71576" x-end="217.5782" y-end="118.58199" entity="028b8223-f539-4d15-b017-0583ce659f7c" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="206.61212" y="124.71576" bt="0" />
+    <Step x="209.35364" y="123.18232" bt="0" />
+    <Step x="212.09515" y="121.64888" bt="0" />
+    <Step x="214.83669" y="120.11543" bt="0" />
+    <Step x="217.5782" y="118.58199" bt="0" />
+  </Line>
+  <Line x-start="217.5782" y-start="118.58199" x-end="218.04216" y-end="115.97988" entity="028b8223-f539-4d15-b017-0583ce659f7c" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="217.5782" y="118.58199" bt="0" />
+    <Step x="218.04216" y="115.97988" bt="0" />
+  </Line>
+  <Line x-start="218.04216" y-start="115.97988" x-end="231.03314" y-end="30.52073" entity="028b8223-f539-4d15-b017-0583ce659f7c" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="218.04216" y="115.97988" bt="0" />
+    <Step x="218.50612" y="112.92777" bt="0" />
+    <Step x="218.9701" y="109.875656" bt="0" />
+    <Step x="219.43405" y="106.82354" bt="0" />
+    <Step x="219.89801" y="103.77143" bt="0" />
+    <Step x="220.36198" y="100.719315" bt="0" />
+    <Step x="220.82594" y="97.667206" bt="0" />
+    <Step x="221.2899" y="94.6151" bt="0" />
+    <Step x="221.75388" y="91.56298" bt="0" />
+    <Step x="222.21783" y="88.510864" bt="0" />
+    <Step x="222.6818" y="85.458755" bt="0" />
+    <Step x="223.14577" y="82.40665" bt="0" />
+    <Step x="223.60973" y="79.35452" bt="0" />
+    <Step x="224.07368" y="76.302414" bt="0" />
+    <Step x="224.53766" y="73.250305" bt="0" />
+    <Step x="225.00162" y="70.1982" bt="0" />
+    <Step x="225.46558" y="67.14609" bt="0" />
+    <Step x="225.92953" y="64.09396" bt="0" />
+    <Step x="226.39351" y="61.041855" bt="0" />
+    <Step x="226.85747" y="57.98974" bt="0" />
+    <Step x="227.32143" y="54.93763" bt="0" />
+    <Step x="227.7854" y="51.88552" bt="0" />
+    <Step x="228.24936" y="48.833405" bt="0" />
+    <Step x="228.71332" y="45.781303" bt="0" />
+    <Step x="229.17729" y="42.72917" bt="0" />
+    <Step x="229.64125" y="39.67707" bt="0" />
+    <Step x="230.10521" y="36.624954" bt="0" />
+    <Step x="230.56918" y="33.572838" bt="0" />
+    <Step x="231.03314" y="30.52073" bt="0" />
+  </Line>
+  <Line x-start="231.03314" y-start="30.52073" x-end="235.15" y-end="0.39999986" entity="028b8223-f539-4d15-b017-0583ce659f7c" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="231.03314" y="30.52073" bt="0" />
+    <Step x="231.44482" y="27.508656" bt="0" />
+    <Step x="231.8565" y="24.496582" bt="0" />
+    <Step x="232.2682" y="21.48451" bt="0" />
+    <Step x="232.67989" y="18.472437" bt="0" />
+    <Step x="233.09157" y="15.460364" bt="0" />
+    <Step x="233.50325" y="12.448292" bt="0" />
+    <Step x="233.91493" y="9.436218" bt="0" />
+    <Step x="234.32663" y="6.4241447" bt="0" />
+    <Step x="234.73831" y="3.4120731" bt="0" />
+    <Step x="235.15" y="0.39999962" bt="0" />
+  </Line>
+  <Line x-start="235.15" y-start="0.39999986" x-end="224.15" y-end="0.39999986" entity="4ffaae5d-f2cb-491e-ba9a-56bc50bdcc18" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="235.15" y="0.39999986" bt="0" />
+    <Step x="232.4" y="0.39999986" bt="0" />
+    <Step x="229.65" y="0.39999986" bt="0" />
+    <Step x="226.9" y="0.39999986" bt="0" />
+    <Step x="224.15" y="0.39999986" bt="0" />
+  </Line>
+  <Line x-start="224.15" y-start="0.39999986" x-end="220.67088" y-end="34.07827" entity="a2ee3fa8-c0dd-43b6-9de6-f1b97bf1f843" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="224.15" y="0.39999986" bt="0" />
+    <Step x="223.83371" y="3.4616606" bt="0" />
+    <Step x="223.51743" y="6.523321" bt="0" />
+    <Step x="223.20114" y="9.584981" bt="0" />
+    <Step x="222.88486" y="12.646643" bt="0" />
+    <Step x="222.56857" y="15.708303" bt="0" />
+    <Step x="222.2523" y="18.769962" bt="0" />
+    <Step x="221.93602" y="21.831625" bt="0" />
+    <Step x="221.61974" y="24.893286" bt="0" />
+    <Step x="221.30345" y="27.954947" bt="0" />
+    <Step x="220.98717" y="31.016607" bt="0" />
+    <Step x="220.67088" y="34.07827" bt="0" />
+  </Line>
+  <Line x-start="220.67088" y-start="34.07827" x-end="218.93132" y-end="49.467403" entity="a2ee3fa8-c0dd-43b6-9de6-f1b97bf1f843" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="220.67088" y="34.07827" bt="0" />
+    <Step x="220.32297" y="37.156097" bt="0" />
+    <Step x="219.97505" y="40.233925" bt="0" />
+    <Step x="219.62715" y="43.311752" bt="0" />
+    <Step x="219.27924" y="46.389576" bt="0" />
+    <Step x="218.93132" y="49.467403" bt="0" />
+  </Line>
+  <Line x-start="218.93132" y-start="49.467403" x-end="211.6252" y-end="113.301765" entity="a2ee3fa8-c0dd-43b6-9de6-f1b97bf1f843" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="218.93132" y="49.467403" bt="0" />
+    <Step x="218.5834" y="52.507133" bt="0" />
+    <Step x="218.2355" y="55.546867" bt="0" />
+    <Step x="217.88759" y="58.586597" bt="0" />
+    <Step x="217.53967" y="61.626328" bt="0" />
+    <Step x="217.19177" y="64.66606" bt="0" />
+    <Step x="216.84386" y="67.705795" bt="0" />
+    <Step x="216.49594" y="70.74552" bt="0" />
+    <Step x="216.14804" y="73.785255" bt="0" />
+    <Step x="215.80013" y="76.82498" bt="0" />
+    <Step x="215.45221" y="79.864716" bt="0" />
+    <Step x="215.10431" y="82.90445" bt="0" />
+    <Step x="214.7564" y="85.94418" bt="0" />
+    <Step x="214.40848" y="88.98391" bt="0" />
+    <Step x="214.06058" y="92.02364" bt="0" />
+    <Step x="213.71266" y="95.06337" bt="0" />
+    <Step x="213.36475" y="98.1031" bt="0" />
+    <Step x="213.01685" y="101.14284" bt="0" />
+    <Step x="212.66893" y="104.18257" bt="0" />
+    <Step x="212.32101" y="107.222305" bt="0" />
+    <Step x="211.97311" y="110.26203" bt="0" />
+    <Step x="211.6252" y="113.30176" bt="0" />
+  </Line>
+  <Line x-start="211.6252" y-start="113.301765" x-end="208.86758" y-end="114.82117" entity="36eb8a9b-0dc3-4635-922c-679d8815af92" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="211.6252" y="113.301765" bt="0" />
+    <Step x="208.86758" y="114.82117" bt="0" />
+  </Line>
+  <Line x-start="208.86758" y-start="114.82117" x-end="161.9882" y-end="140.301" entity="d08c0847-7355-4bbe-809b-2ffb497fc6f0" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="208.86758" y="114.82117" bt="0" />
+    <Step x="206.10997" y="116.31998" bt="0" />
+    <Step x="203.35236" y="117.818794" bt="0" />
+    <Step x="200.59476" y="119.317604" bt="0" />
+    <Step x="197.83714" y="120.81642" bt="0" />
+    <Step x="195.07953" y="122.31523" bt="0" />
+    <Step x="192.32191" y="123.81405" bt="0" />
+    <Step x="189.5643" y="125.31286" bt="0" />
+    <Step x="186.8067" y="126.811676" bt="0" />
+    <Step x="184.04909" y="128.31049" bt="0" />
+    <Step x="181.29147" y="129.8093" bt="0" />
+    <Step x="178.53387" y="131.30812" bt="0" />
+    <Step x="175.77626" y="132.80693" bt="0" />
+    <Step x="173.01865" y="134.30574" bt="0" />
+    <Step x="170.26103" y="135.80455" bt="0" />
+    <Step x="167.50342" y="137.30338" bt="0" />
+    <Step x="164.74582" y="138.80219" bt="0" />
+    <Step x="161.9882" y="140.301" bt="0" />
+  </Line>
+  <Line x-start="161.9882" y-start="140.301" x-end="114.83354" y-end="115.00061" entity="c6b5c116-3709-4b30-bc41-05d06c263095" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="161.9882" y="140.301" bt="0" />
+    <Step x="159.2144" y="138.81274" bt="0" />
+    <Step x="156.4406" y="137.32448" bt="0" />
+    <Step x="153.6668" y="135.83623" bt="0" />
+    <Step x="150.89299" y="134.34796" bt="0" />
+    <Step x="148.11919" y="132.85971" bt="0" />
+    <Step x="145.34538" y="131.37144" bt="0" />
+    <Step x="142.57158" y="129.8832" bt="0" />
+    <Step x="139.79778" y="128.39493" bt="0" />
+    <Step x="137.02397" y="126.90667" bt="0" />
+    <Step x="134.25017" y="125.41841" bt="0" />
+    <Step x="131.47636" y="123.93016" bt="0" />
+    <Step x="128.70256" y="122.4419" bt="0" />
+    <Step x="125.92876" y="120.95364" bt="0" />
+    <Step x="123.15495" y="119.465385" bt="0" />
+    <Step x="120.38115" y="117.97713" bt="0" />
+    <Step x="117.607346" y="116.48887" bt="0" />
+    <Step x="114.83354" y="115.00061" bt="0" />
+  </Line>
+  <Line x-start="114.83354" y-start="115.00061" x-end="112.568886" y-end="83.85283" entity="fc12518a-bc6f-46e5-aac0-c4fae709ca29" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="114.83354" y="115.00061" bt="0" />
+    <Step x="114.60708" y="111.88583" bt="0" />
+    <Step x="114.38061" y="108.77106" bt="0" />
+    <Step x="114.154144" y="105.65628" bt="0" />
+    <Step x="113.92768" y="102.5415" bt="0" />
+    <Step x="113.70122" y="99.42672" bt="0" />
+    <Step x="113.47475" y="96.31194" bt="0" />
+    <Step x="113.24828" y="93.19717" bt="0" />
+    <Step x="113.02182" y="90.08238" bt="0" />
+    <Step x="112.79535" y="86.967606" bt="0" />
+    <Step x="112.568886" y="83.85283" bt="0" />
+  </Line>
+  <Line x-start="112.568886" y-start="83.85283" x-end="111.88949" y-end="74.31349" entity="ee3ba35f-9cd3-4b34-b463-8f57a7edf149" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="112.568886" y="83.85283" bt="0" />
+    <Step x="112.34242" y="80.67305" bt="0" />
+    <Step x="112.11595" y="77.49327" bt="0" />
+    <Step x="111.88949" y="74.31349" bt="0" />
+  </Line>
+  <Line x-start="111.88949" y-start="74.31349" x-end="110.887886" y-end="55.501274" entity="a1907008-af18-4a43-8b20-13b80887c57b" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="111.88949" y="74.31349" bt="0" />
+    <Step x="111.72256" y="71.17812" bt="0" />
+    <Step x="111.55562" y="68.042755" bt="0" />
+    <Step x="111.38869" y="64.90738" bt="0" />
+    <Step x="111.221756" y="61.77201" bt="0" />
+    <Step x="111.05482" y="58.636642" bt="0" />
+    <Step x="110.887886" y="55.501274" bt="0" />
+  </Line>
+  <Line x-start="110.887886" y-start="55.501274" x-end="107.15" y-end="0.8000002" entity="5f732cb8-b558-471e-b243-8957bc66670d" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="110.887886" y="55.501274" bt="0" />
+    <Step x="110.68023" y="52.462315" bt="0" />
+    <Step x="110.472565" y="49.423355" bt="0" />
+    <Step x="110.26491" y="46.384396" bt="0" />
+    <Step x="110.05724" y="43.345436" bt="0" />
+    <Step x="109.84959" y="40.306477" bt="0" />
+    <Step x="109.64192" y="37.267517" bt="0" />
+    <Step x="109.434265" y="34.22856" bt="0" />
+    <Step x="109.2266" y="31.189598" bt="0" />
+    <Step x="109.01894" y="28.150637" bt="0" />
+    <Step x="108.81129" y="25.11168" bt="0" />
+    <Step x="108.60362" y="22.07272" bt="0" />
+    <Step x="108.395966" y="19.03376" bt="0" />
+    <Step x="108.1883" y="15.994797" bt="0" />
+    <Step x="107.980644" y="12.955845" bt="0" />
+    <Step x="107.77298" y="9.916882" bt="0" />
+    <Step x="107.56532" y="6.877922" bt="0" />
+    <Step x="107.35766" y="3.8389587" bt="0" />
+    <Step x="107.15" y="0.79999924" bt="0" />
+  </Line>
+  <Line x-start="107.15" y-start="0.8000002" x-end="101.65" y-end="0.8000002" entity="63f530e0-22c5-425c-92ee-973db96a393b" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="107.15" y="0.8000002" bt="0" />
+    <Step x="104.4" y="0.8000002" bt="0" />
+    <Step x="101.65" y="0.8000002" bt="0" />
+  </Line>
+  <Line x-start="101.65" y-start="0.8000002" x-end="97.06011" y-end="0.72505665" entity="85ae8c16-6e6f-41d4-8667-3dd652d2434b" bt1-steps="0" bt1-passes="0" bt2-steps="0" bt2-passes="0" passo="3.1">
+    <Step x="101.65" y="0.8000002" bt="0" />
+    <Step x="97.06011" y="0.72505665" bt="0" />
+  </Line>
+  <Code code-type="SPEED_M8" code-value="0" elementIndex="18" stepIndex="5" />
+  <Code code-type="OP3" code-value="VALUE0" elementIndex="18" stepIndex="5" />
+  <Code code-type="OP3" code-value="VALUE1" elementIndex="16" stepIndex="3" />
+  <Code code-type="SPEED_M8" code-value="1500" elementIndex="16" stepIndex="3" />
+  <Code code-type="OP2" code-value="VALUE1" elementIndex="16" stepIndex="5" />
+  <Code code-type="OP1" code-value="VALUE1" elementIndex="16" stepIndex="7" />
+  <Code code-type="OP2" code-value="VALUE0" elementIndex="17" stepIndex="0" />
+  <Code code-type="OP3" code-value="VALUE1" elementIndex="27" stepIndex="13" />
+  <Code code-type="SPEED_M8" code-value="1800" elementIndex="27" stepIndex="13" />
+</Ricetta>

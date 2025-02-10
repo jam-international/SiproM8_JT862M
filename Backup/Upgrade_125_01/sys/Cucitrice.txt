@@ -1,0 +1,122 @@
+[StartCucitrice]
+
+    [StartOneCuci]
+
+        CuciId  = 1
+        HwCode  = 201
+        
+        Ax_Ago  = 3
+        Ax_X    = 1
+        Ax_Y    = 2
+
+        SelCuciEnc = 1
+        ImpGiroAgo = 4000
+        MaxAgoRPM  = 3000
+        MaxCuciMmMin = 20000
+
+        UdfContext = 5
+		
+        UseRotoTrasl = 1
+        CuciIsoMode  = 1
+        SglOffLimits = 20
+        
+        VbStartIdx   = 1951
+        VbHoldIdx    = 1952
+        VbReleaseIdx = 1953
+        VbEndIdx     = 1954
+        VbRunIdx     = 1955
+        VbRallIdx    = 1956
+        VbRasafIdx   = 1957
+        VbAgoAzzIdx  = 1958
+        VbCamMovIdx  = 1959
+        VbAxMovIdx   = 1960
+        VbLastPntIdx = 1961
+        VbSuspendIdx = 1962
+        VbCuciIsoIdx = 1963
+        VbGotoIdx    = 1964
+
+        VnErrIdx       = 1951
+        VnStatusIdx    = 1952
+        VnZeroCntIdx   = 1953
+        VnPntRallIdx   = 1954
+        VnOvdAxAgoIdx  = 1955
+        VnRpmMaxAgoIdx = 1956
+        VnInfoPointIdx = 1957
+
+        VqTotPntIdx     = 1951
+        VqActPntIdx     = 1952
+        VqEncImpIdx     = 1953
+        VqEncMmIdx      = 1954
+        VqRpmAgoIdx     = 1955
+        VqActStartIdx   = 1956
+        VqActStopIdx    = 1957
+        VqAgoStartIdx   = 1958
+        VqAgoStopIdx    = 1959
+        VqTotParzPntIdx = 1960 
+        VqActParzPntIdx = 1961
+        VqInfoTabUdfIdx = 1651
+
+    [EndOneCuci]
+
+
+    [StartOneCuci]
+
+        CuciId  = 2
+        HwCode  = 202
+        
+        Ax_Ago  = 8
+        Ax_X    = 6
+        Ax_Y    = 7
+
+        SelCuciEnc = 2
+        ImpGiroAgo = 4000
+        MaxAgoRPM  = 3000
+        MaxCuciMmMin = 20000
+
+        UdfContext = 6
+
+	UseRotoTrasl = 1
+        CuciIsoMode  = 1
+        SglOffLimits = 20
+
+        VbStartIdx   = 2951
+        VbHoldIdx    = 2952
+        VbReleaseIdx = 2953
+        VbEndIdx     = 2954
+        VbRunIdx     = 2955
+        VbRallIdx    = 2956
+        VbRasafIdx   = 2957
+        VbAgoAzzIdx  = 2958
+        VbCamMovIdx  = 2959
+        VbAxMovIdx   = 2960
+        VbLastPntIdx = 2961
+        VbSuspendIdx = 2962
+        VbCuciIsoIdx = 2963
+        VbGotoIdx    = 2964
+
+        VnErrIdx       = 2951
+        VnStatusIdx    = 2952
+        VnZeroCntIdx   = 2953
+        VnPntRallIdx   = 2954
+        VnOvdAxAgoIdx  = 2955
+        VnRpmMaxAgoIdx = 2956
+        VnInfoPointIdx = 2957
+
+        VqTotPntIdx     = 2951
+        VqActPntIdx     = 2952
+        VqEncImpIdx     = 2953
+        VqEncMmIdx      = 2954
+        VqRpmAgoIdx     = 2955
+        VqActStartIdx   = 2956
+        VqActStopIdx    = 2957
+        VqAgoStartIdx   = 2958
+        VqAgoStopIdx    = 2959
+        VqTotParzPntIdx = 2960 
+        VqActParzPntIdx = 2961
+        VqInfoTabUdfIdx = 2651
+
+    [EndOneCuci]
+
+
+[EndCucitrice]
+

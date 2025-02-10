@@ -21,7 +21,9 @@
 20, o20_C1_Retrattile_AC
 21, o21_C1_RaffreddamentoAgo
 22, o22_Scaric_dx_sx
+22, o22_MZ_PinzaDietroCaric
 23, o23_Lentezza_Tasca_AD
+23, o23_MZ_RulliSca_SuGIu
 24, o24_Pinza_carico_Su_Giu
 25, o25_C1_Cambio_Pinze
 26, o26_C1_Scalino_Piedino
@@ -29,6 +31,7 @@
 28, o28_Prima_barra
 29, o29_Seconda_barra
 30, o30_rullo_rinforzo
+30, o30_MZ_SoffiLamiera
 31, o31_bloccaFiloMagente
 32, o32_Enable_AssiXY_C1C2
 33, o33_Gancio_AutoBC

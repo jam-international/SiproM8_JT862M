@@ -50,7 +50,8 @@ sub ()
 ////	avanti piegatore on
 	vn132          = 101
 		Vb4342                         = 1 
-		vb115                   = 1 
+		Vb4371                               = 1 	//ON = alzo la pinza dietro
+	//metto più sotto	Vb115CricchettoRinforzo = ON
 			Waitcond ( din7              )
 				Delays ( Vq3000                   )
 								///// stop piegatore
@@ -164,6 +165,7 @@ sub ()
 		endif	
 ///////////////////////////////////////////////////////////////////////////////////////////	
 ////	piegatore 2 on
+	vb115                   = 1 
 	vn132          = 105
 		if ( Vn102               != 0 )
 			Vb4022               = 1 
@@ -222,6 +224,7 @@ sub ()
 		endif
 ///////////////////////////////////////////////////////////////////////////////////////////	
 ////	piegatore 4 on
+
 	vn132          = 107
 		if ( Vn104               != 0 )
 			Vb4024               = 1 
@@ -280,7 +283,9 @@ sub ()
 ///////////////////////////////////////////////////////////////////////////////////////////	
 ////	bilancere giu
 	vn132          = 109
+
 		 Vb4344                              = 1 
+	//non mettere pi� avanti	 		Vb115CricchettoRinforzo = ON
 //			Waitcond ( i38_FcBilancereGiu )
 				Delays ( Vq3014                 )
 								///// stop piegatore
@@ -518,6 +523,7 @@ sub ()
 ///////////////////////////////////////////////////////////////////////////////////////////	
 ////	avanti piegatore off
 		Vb4342                         = 0  
+
 		vn132          = 1161
 
 				Delays ( Vq3001                    )
@@ -771,6 +777,7 @@ sub ()
 ////	 pinza caricatore ON
 	vn132          = 118
 		Vb4356                                = 1 
+		Vb4371                               = 0  	//OFF = abbassa la pinza dietro
 			Waitcond ( din5                 == 0   )
 				Delays ( Vq3020                       )
 								///// stop piegatore
@@ -830,7 +837,7 @@ sub ()
 ////	lancia off
 	vn132          = 120
 		Vb4341                     = 0  
-		Vb4355                              = 0  
+		Vb4355                              = 0    //lentezza off
 			Waitcond ( din11            )
 				Delays ( Vq3023               )
 								///// stop piegatore
@@ -903,9 +910,24 @@ sub ()
 				Vq3502                            = 978
 			endif
 
+			if(vn320          == 8620 ) 
+				Vb4373                            = 1 	//soffio lamiera
+				if(vb122                  )
+					vn132          = 124
+					if( din14          and din15          and din16          )
+						exitdo	//esco e farà avanzare il caricatore sotto le pinze
+					endif
+				else
+					exitdo	//esco e farà avanzare il caricatore sotto le pinze
+				endif
 
-			AxAnt( 5         , Vq3502                            , Vq3513               , 2, 0 ) //lancia movimento e continua
-			exitdo
+			else
+
+				exitdo	//esco e farà avanzare il caricatore sotto le pinze
+			endif
+
+
+
 		endif
 
 								///// stop piegatore
@@ -933,12 +955,16 @@ sub ()
 		loop		
 
 
+
+	//spsoto il caricatore sotto le pinze
+	AxAnt( 5         , Vq3502                            , Vq3513               , 2, 0 ) //lancia movimento e continua
+
 ////	aspetto che il caricatore arrivi sotto le pinze di cucitura
 	vn132          = 123
 	do
 
 	if ( IsAxInQuote( 5          ) )
-
+		Vb4373                            = 0  
 		exitdo
 	endif
 
@@ -989,19 +1015,26 @@ sub ()
 
 :RESET_PIEGATORE
 vn132          = 150
+	if(Vb4350                        )
+		fp[ 5          ] = 5
+		ax[ 5          ] = Vq3500                      
+		WaitCond ( IsAxInQuote( 5          ) )
+	endif
+
 
 // alzo la pinza caricatore e sposto alla posizione Vq3500_PosizioneCaricRiposo
 	Vb4356                                = 0  
+	Vb4371                               = 1 	//ON alza
 	Waitcond ( din5                 )
 	// Imposta le velocita' e predispone gli assi caricatori
-	fp[ 5          ] = 5
+//	fp[ C1_AsseCAR ] = 5
 
-	ax[ 5          ] = Vq3500                      
+//	ax[ C1_AsseCAR ] = Vq3500_PosizioneCaricRiposo 
 // spengo aspirazione 
 	Vb4347                         = 0  
-	Vb4355                              = 0  
+	Vb4355                              = 0    //lentezza off
 
-
+	Vb4371                               = 0  	//OFF abbassa
 //////
 	vn132          = 151
 	ExecPlcFun( 140            , 100                       , 0 )
@@ -1044,11 +1077,12 @@ vn132          = 150
 	Waitcond ( din8              )
 
 	Vb4341                     = 0  
-	Vb4355                              = 0  
+	Vb4355                              = 0    //lentezza off
 	Waitcond ( din11           )
 //////	
 	vn132          = 153
 	Vb4344                              = 0  
+
 
 //////
 	vn132          = 160
@@ -1062,9 +1096,12 @@ vn132          = 150
 	Vb4334                       = 0  
 	Vb4335                       = 0  
 	Vb4336                       = 0  
+	Vb4373                            = 0   
+	Vb4371                               = 1 	//ON alza
 
-	if(vb22                      )  //se � attivo il kit lentezza tasca lo faccio avanzare
-		Vb4355                              = 1 
+
+	if(vb22                      )  //se � attivo il kit lentezza tasca lo faccio avanzare
+		Vb4355                              = 1    //lentezza on
 	endif
 	if(vb121                 == 1  and  Vb4001               == 0  )
 		Vb4341                     = 1 

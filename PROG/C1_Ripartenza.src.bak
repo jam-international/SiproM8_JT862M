@@ -33,7 +33,8 @@ sub ()
             exitdo
         endif
             // Movimento simulato avanti fino a ripresa o fine cucitura
-        ExecPlcFun( PLC_CUCI_CMD, 150, 10 )  
+        ExecPlcFun( PLC_CUCI_CMD, 150, 10 )
+	Vb209Debug281_150  = ON
 
             // Attesa assi X Y fermi
         WaitCond( IsAxInStop( C1_AsseX ) )      
@@ -56,6 +57,5 @@ sub ()
         ISO G281 P CA_MD_NO_RES_NO_INS_NO_REW X C1_FirstPt_X Y C1_FirstPt_Y		//continua dal punto in cui era
 	Vb203DebugRipartenza = ON
     endif
-    Vb44_WriteDebugSuHmi = ON	//	<<<<<<<<<--------------------chiede al HMI di scrivere il file debugsys.txt con le variabili di debug------
 endsub
 

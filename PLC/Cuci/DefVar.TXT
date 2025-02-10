@@ -77,6 +77,7 @@ As2000 Simbols Table
 #vb93;Vb93_RotazRevolver;= 1 il revolver fa un passo di rotazione
 #vb94;Vb94_Cambiare_revolver;=1 è ora di cambiare il revolver
 #vb95;Vb95_ResetConteggio;tasto Reset HMI rimette il conteggio 1/7
+#vb96;Vb96_EnableJogXYPlc;= 1 in fase di hold è possibile fare i jog con i tasti +- del HMI
 #vb97;Vb97_InversioneRetrattile;= 1 invertire i tubi aria dell'apri chiudi della retrattile
 #vb98;Vb98_ArrestaAssiQuick;= 1 ferma tutti gli assi in quick mode
 #vb99;VbTest;per test
@@ -104,6 +105,7 @@ As2000 Simbols Table
 #vb206;Vb206DebugStepPiuCont;
 #vb207;Vb207DebugStepMenoCont;
 #vb208;Vb208DebugReset;
+#vb209;Vb209Debug281_150;
 #vb4000;Vb4000_Automatico;/// messa a ON da HMI sono in automatico
 #vb4001;Vb4001_StepPiegatore;/// messa a ON da HMI il piegatore è passo passo
 #vb4002;Vb4002_StepPiegatoreStop;/// punto di stop piegatore
@@ -342,6 +344,7 @@ As2000 Simbols Table
 #vb7901;VbChn1Start;VB START canale 1
 #vb7903;VbChn1Reset;VB RESET canale 1
 #vb7908;VbChn1AutoRun;VB Auto Running canale 1
+#vb7909;VbChn1Emerg;VB canale 1 in emergenza
 #vb7921;VbChn2Start;VB START canale 2
 #vb7923;VbChn2Reset;VB RESET canale 2
 #vb7928;VbChn2AutoRun;VB Auto Running canale 2
@@ -518,6 +521,8 @@ As2000 Simbols Table
 #vq64;PosAx14;Posizione asse 14
 #vq65;PosAx15;Posizione asse 15
 #vq66;Copia_PosAx_C1_AsseCAR;Posizione asse 16
+#vq70;DeltaFirst_C1_AsseX;Cucitrice 1 - PosX - QuotaPrimo Punto
+#vq71;DeltaFirst_C1_AsseY;Cucitrice 1 - PosY - QuotaPrimo Punto
 #vq100;Vq_100_WRITE_FC_ind_X;Vq scrittura fine corsa indietro asse X
 #vq101;Vq_101_WRITE_FC_ava_X;Vq scrittura fine corsa avanti asse X
 #vq102;Vq_102_WRITE_FC_ind_Y;Vq scrittura fine corsa indietro asse Y
@@ -530,6 +535,14 @@ As2000 Simbols Table
 #vq109;Vq109_WRITE_Vel_manualeAgo_C2;Vq da inserire nel parametro asse velocità manuale asse Ago
 #vq110;Vq_110_READ_FC_ind_CARIC;Vq lettura fine corsa indietro asse Y
 #vq111;Vq_111_READ_FC_ava_CARIC;Vq lettura fine corsa avanti asse Y
+#vq121;vq121FUN107_MasterErr;= Errore istantaneo Master [mm]
+#vq122;vq122FUN107_SlaveErr;= Errore istantaneo Slave [mm]
+#vq123;vq123FUN107_DifMasterSlave;= Differenza tra le posizione master e slave [mm] ( valore assoluto )
+#vq124;vq124FUN107_DifMaxMastSlave;= Valore massimo della differenza tra le posizione master e slave [mm] ( valore assoluto )
+#vq125;vq125FUN107_SogliaAllGantry;= Soglia di allarme inseguimento gantry [mm] impostata nei parametri assi
+#vq126;vq126FUN107_MasterFolErr;= Emergenza GANTRY FOLLOW ERROR: errore istantaneo Master [mm]
+#vq127;vq127FUN107_SlaveFolErr;= Emergenza GANTRY FOLLOW ERROR: errore istantaneo Slave [mm]
+#vq128;vq128FUN107_DiffFolErr;= Emergenza GANTRY FOLLOW ERROR:  valore assoluto della differenza tra le posizione master e slave [mm]
 #vq3000;Vq3000_RitPiegatoreAD_ON;
 #vq3001;Vq3001_RitPiegatoreAD_OFF;
 #vq3002;Vq3002_RitPiegatoreAlto_ON;
@@ -662,6 +675,7 @@ As2000 Simbols Table
 #vq3601;GoAxPlcCariObj;GoAx asse caricatore - quota obbiettivo
 #vq3602;GoAxPlcCaricVel;GoAx asse caricatore - Velocita'
 #vq3603;GoAxPlcCaric;GoAx asse caricatore - Libera
+#vq3700;VqDebugProblemaSpostamento;
 #i1;i1_Pulsanti_start;
 #i2;i2_C1_Pedana;
 #i3;i3_C1_PedanaPiegatore;

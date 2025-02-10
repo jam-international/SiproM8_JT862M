@@ -33,11 +33,18 @@ if ( MacchinaAzzerata == 0 )
 	
 	
 	VbCmdAzzAx5 = 1
-	if(Vn_ID_macchina == 882 ) 
-		VbCmdAzzAx10 = 1 
-	endif
+
+	
+
 
 	WaitCond ( ( VbFlgAzzAx5 == 1 ) and ( VnFaseZeroAx5 >= 7 ) )
+
+	if(Vn_ID_macchina == 8620 )  //862MZ
+		Vb4371_AppAut_o22_PinzaDietroCaricMZ = 1 
+	endif
+
+
+
 	
 	//se alla pressione del verde avevo il pulsante reset piegatore premuto il plc aveva alazato la pinza esterna per non far incastrare le dime
 	if(Vb81PremutoResetAccensione == 1)
@@ -112,6 +119,7 @@ endif
 		        Vb4350_AppAut_o18_C1_Pinza_int = OFF
 				Vb4351_AppAut_o19_C1_Pinza_est = OFF 
 				Vb4356_AppAut_o24_Pinza_carico_Su_Giu = OFF
+
 							
             // lancio automatico per centrare la caricatore su pinza cucitrice
 		gosub "TestManutenzione.obj"	
@@ -258,6 +266,8 @@ switch ( VnStatoCuci1 )
 
 
 			Vb4356_AppAut_o24_Pinza_carico_Su_Giu = OFF
+			Vb4371_AppAut_o22_PinzaDietroCaricMZ = ON
+
 			VnStatoCuci1 = 12
 		endif
 		if(Vn2CodiceAllarmeXHmi ==24)

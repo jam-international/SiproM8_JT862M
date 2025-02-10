@@ -30,15 +30,15 @@ sub ()
 
         ///// dopo un reset riporto la pinza in posizione home
     if ( Vb4803_AppResetHmiC1 )
+	
 
-	Vb208DebugReset = ON
 	SyncVar( C1_CmdPiedinoSu )    
 	Delays (0.1)
 
 
         fa[ C1_AsseX ] = Vq3054_C1_VelFeed_Reset
         fa[ C1_AsseY ] = Vq3054_C1_VelFeed_Reset
-	if(Vn_ID_macchina == 862 )
+	if(Vn_ID_macchina == 862 or  Vn_ID_macchina == 8620)
 		ax[ C1_AsseY ] = 250        //// sposto tutto indietro
 	else
 		ax[ C1_AsseY ] = 200        //// sposto tutto indietro
@@ -47,9 +47,39 @@ sub ()
 	ax[ C1_AsseX ] = 0 
 	ax[ C1_AsseY ] = 0
 
+// Modifica azzeramento
+//	WaitCond ( ( VbFlgAzzAx1 == 1 ) and ( VnFaseZeroAx1 >= 7 ) )
+//	WaitCond ( ( VbFlgAzzAx2 == 1 ) and ( VnFaseZeroAx2 >= 7 ) )
+//	Delays (0.1)
 	
+//	VbFlgAzzAx1 = 0
+//	VbCmdAzzAx1 = 1
 
+	// Attende fine azzeramento asse AsseX 
+//	WaitCond ( ( VbFlgAzzAx1 == 1 ) and ( VnFaseZeroAx1 >= 7 ) )
+//	Delays (0.3)
+	// Verifica se azzeramento completato con errore
+//	if ( VnFaseZeroAx1 > 7 )
+//		Vn2CodiceAllarmeXHmi = 7
+//		gosub "Halt.obj"
+//	endif
 	
+	// Comando azzeramento AsseY
+//	VbFlgAzzAx2 = 0
+//	VbCmdAzzAx2 = 1
+
+	// Attende fine azzeramento asse AsseY
+//	WaitCond ( ( VbFlgAzzAx2 == 1 ) and ( VnFaseZeroAx2 >= 7 ) )
+
+	// Verifica se azzeramento completato con errore
+//	if ( VnFaseZeroAx2 > 7 )
+//		Vn2CodiceAllarmeXHmi = 7
+//		gosub "Halt.obj"
+//	endif
+
+//	Delays (0.3)
+
+//	C1_AssiAzzerati = ON
 
 
 // ##### DA 26/08/2024 prova per problema programma spostato se riparto dopo RESET  ########
@@ -60,7 +90,7 @@ sub ()
 	ISO G281 P CA_MD_NO_RES_NO_INS X C1_FirstPt_X Y C1_FirstPt_Y	//resetto il buffer di cucitura e parto dall'inizio
 	Delays (0.3)
 
-	ExecPlcFun( 281, 104, 99 )	//esce dalla modalità cucitrice. Altrimenti ISO G1 non sposta gli assi
+	ExecPlcFun( 281, 104, 99 )	//esce dalla modalitï¿½ cucitrice. Altrimenti ISO G1 non sposta gli assi
 
 	//ISO G1 X C1_QuoHomeX Y C1_QuoHomeY F Vq3054_C1_VelFeed_Reset
 
@@ -93,19 +123,8 @@ sub ()
 	C1_VqActPntCuci = 0	// azzero numero punti fatti 
 	
 	
-
-	Vb200DebugPartenzaNormale  = OFF
-	Vb201DebugPartenzaTest = OFF	
-	Vb202DebugRipartenzaRewind = OFF	
-	Vb203DebugRipartenza = OFF
-	Vb204DebugStepPiu = OFF
-	Vb205DebugSteMeno = OFF
-	Vb206DebugStepPiuCont = OFF
-	Vb207DebugStepMenoCont = OFF
-
-	Copia_PosAx_C1_AsseCAR = 0 //per debug Ananta Bangladesh
 	
-		gosub "Halt.obj"						///// messo per non iniziare a cucire dopo il reset
+	gosub "Halt.obj"						///// messo per non iniziare a cucire dopo il reset
 
 	
 

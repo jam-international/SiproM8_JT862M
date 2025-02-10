@@ -174,6 +174,39 @@ sub ()
     endif
     ISO G1 X vq1911      Y vq1912      F vq1962    
 
+
+//### INI - #M250107_1GF# 
+    DelayS( 0.1 )       // Sicuramente il PLC legge le posizioni degli assi X e Y
+
+        // Errore rispetto al primo punto
+    vq70                = vq51           - vq1911     
+    vq71                = vq52           - vq1912     
+
+        // Valore assoluto X
+    if ( vq70                < 0 )
+        vq70                = 0 - vq70               
+    endif
+
+        // Valore assoluto Y
+    if ( vq71                < 0 )
+        vq71                = 0 - vq71               
+    endif
+
+    if ( ( vq70                > 0.3              ) or ( vq71                > 0.3              ) )
+	vq4906                       = vq70               
+	vq4907                       = vq71               
+        vn2                  = 37
+        gosub "Halt.obj"
+    else
+	vq4906                       = 0
+	vq4907                       = 0
+    endif
+
+//### END - #M250107_1GF# 
+	WaitCond ( Vb4045             and Vb4046             )
+
+
+
         // Operazioni finali Custom
     gosub "C1_AzzEndCustom"    
 

@@ -24,6 +24,9 @@ sub ()
         // alzo le pinze dopo azzeramento
 	//  if ( Vb4803_AppResetHmiC1 == 0 and Vb52RichiestaZeroAxDaHmiC1 == 0 )   Daniele: quando torno da tool alza le pinze
 	if ( Vb4803_AppResetHmiC1 == 0 and Vb4807_PinzeAlteDopoPC ==1)
+		Vb36_Clear_OPT1 = ON	//apro retrattile
+		Vb37_Clear_OPT2 = ON	//abbasso perni ranocchia
+		Vb38_Clear_OPT3 = ON	//disattivo salto piedino
 		Vb4350_AppAut_o18_C1_Pinza_int = ON
 		Vb4351_AppAut_o19_C1_Pinza_est = ON 
 	endif
@@ -31,5 +34,6 @@ sub ()
         // azzero numero punti fatti 
 	C1_VqActPntCuci = 0
 
+	ExecPlcFun( PLC_CUCI_CMD, 113, 0 )	// imposto CucuIsoMode = 1
 endsub
 
